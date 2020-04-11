@@ -1,0 +1,48 @@
+body {
+	display: grid;
+	grid-template-columns: 70% auto;
+	grid-template-rows: auto auto;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #ebf4f5;
+}
+
+header {
+	grid-column: span 2;
+	text-align: center;
+}
+
+div {
+	border: none;
+	margin: 1em;
+	padding: 3px;
+	border-radius: 5px;
+	background: #ebf4f5;
+	box-shadow:  20px 20px 60px #c8cfd0, 
+             -20px -20px 60px #ffffff;
+}
+h1, h2 {
+	text-align: center;
+	color: #6b799e;
+}
+
+fieldset {
+    border: thin solid #9c8f96;
+    border-radius: 5px;
+}
+progress {
+	height:4em;
+	width: 4em;
+	transform: rotate(-90deg);
+}
+
+#slider {
+	display: grid;
+	grid-template-columns: auto auto;
+	color: #000;
+
+}
+
+#order {
+	border: thin solid #9c8f96; 
+	font-size: 15px;
+}

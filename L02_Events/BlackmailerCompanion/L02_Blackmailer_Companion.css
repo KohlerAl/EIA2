@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+    margin: 0 8px;
+}
+
+body {
+    background-color: #e1e1e1;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    display: grid;
+    grid-template-rows: min-content min-content auto;
+}
+
+div {
+    border:  solid #1d617c;
+    border-radius: 10px;
+    background-color: #b6c7d2;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+span {
+    font-size: 6em;
+    position: absolute;
+    border: solid #1d617c;
+    padding: 10px;
+    border-radius: 5px;
+}
