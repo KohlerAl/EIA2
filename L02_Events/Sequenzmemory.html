@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequenzmemory</title>
+    <link rel="stylesheet" href="Sequenzmemory.css">
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>Which Sequence do you want to use?</legend>
+            <input id="predefined" type="radio" checked name="sequence" value="Predefined">Predefined</input>
+            <input id="own" type="radio" name="sequence" value="Own">Own</input>
+            <button type="button" id="radioButton" >+</button>
+        </fieldset>
+
+        <fieldset>
+            <legend>Choose your Sequence</legend>
+            <select id="selectPredefined"disabled>
+                <option value="Alohomora">Alohomora</option>
+                <option value="Episkey">Episkey</option>
+                <option value="Expecto Patronum">Expecto Patronum</option>
+                <option value="Expelliarmus">Expelliarmus</option>
+                <option value="Riddikulus">Riddikulus</option>
+                <option value="Accio">Accio</option>
+                <option value="Protego">Protego</option>
+                <option value="Wingardium Leviosa">Wingardium Leviosa</option>
+                <option value="Silencio">Silencio</option>
+                <option value="Reparo">Reparo</option>
+            </select>
+            <input id="inputOwn" type="text" disabled>
+            
+        </fieldset>
+
+        <fieldset>
+            <legend>How long do you want to play? (Seconds)</legend>
+            <input id="duration" type="number">
+            <button id="time" type="button">+</button>
+            <label> Please make sure to hit this button before insert something below!</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>How long do you want to see the cards at the beginning? (Seconds)</legend>
+            <input id="startDuration" type="number">
+            <button id="startTime" type="button">+</button>
+            <label>After pressing this button, the game starts!</label>
+        </fieldset>
+    </form>
+
+    <div id=playarea>
+    <div id="countdown"></div>
+    <div id="word"></div>
+    <div id="playground">
+    </div>
+    </div>
+    <script src="Sequenzmemory.js"></script>
+</body>
+</html>
