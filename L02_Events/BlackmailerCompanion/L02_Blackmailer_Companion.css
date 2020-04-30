@@ -27,3 +27,20 @@ span {
     padding: 10px;
     border-radius: 5px;
 }
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 18px;
+    }
+    p {
+        font-size: 12px;
+    }
+    div {
+        width: 95%;
+        margin: 5px;
+    }
+    span {
+        font-size: 15px;
+        padding: 5px;
+    }
+}

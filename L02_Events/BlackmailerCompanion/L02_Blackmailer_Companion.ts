@@ -13,6 +13,7 @@ namespace L02_BlackmailerCompanion {
 
     function placeLetter(_event: MouseEvent): void {
         // console.log(_event);
+
         let x: number = _event.offsetX;
         let y: number = _event.offsetY;
 
