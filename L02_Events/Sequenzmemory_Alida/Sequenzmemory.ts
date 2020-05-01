@@ -219,4 +219,3 @@ namespace L02_Memory {
     alert(_sequence[index]);
    }
 }
-// Soooo, ich hoffe das war verständlich :) 
