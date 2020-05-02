@@ -1,7 +1,7 @@
 namespace L02_Sequenzmemory {
     
     /**
-     * Der Aufbau mit den Events ist nicht ganz richtig. Keine Funktion wird irgendwo aufgerufen.
+     * Der Aufbau mit den Events ist im AD nicht ganz richtig. Keine Funktion wird irgendwo aufgerufen.
      * Ich hab das ganze mal so "interpretiert" wie ich denke, dass es gemeint war,
      * damit ich wenigstens schauen kann, ob der Aufbau grob hinaut. Nach Absprache über WhatsApp habe 
      * ich aus den DIV-Boxen mit den vordefinierten Sequenzen Input-Felder gemacht. Eine Hilfe-Funktion ist im AD
@@ -68,7 +68,7 @@ namespace L02_Sequenzmemory {
         let temp1: number = sentence.length;
 
         /**
-         * Aus dem AD ist mir nicht klar geworden, ob innerhalb von createSquenz und chooseSequenz
+         * Aus dem AD ist mir nicht klar geworden, ob innerhalb von createSequenz und chooseSequenz
          * dieselben Funktionen zum mischen und erstellen der Karten verwendet werden. Einerseits
          * wäre es logisch den Code einmal zu schreiben und zweimal aufzurufen,
          * aber so wie es im AD aussieht, sind es zwei getrennte Funktionen, deswegen schreibe
@@ -86,6 +86,11 @@ namespace L02_Sequenzmemory {
         for (let index = 0; index < temp4; index++) {
             let card: HTMLSpanElement = document.createElement("span"); 
             card.className = "card"; 
+            /**
+             * Der Event-Listener und die ID standen nicht dort im AD, wo die Karten erstellt werden, sondern
+             *  in der Funktion checkCards. Da aber jede Karte separat einen Event-Listener bekommen soll, fand
+             * ich, dass es einfacher ist, das direkt hier mit rein zu schreiben. 
+             */
             card.addEventListener("click", function(): void {
                 checkCards(sequence, event); 
             }); 
@@ -126,6 +131,8 @@ namespace L02_Sequenzmemory {
             playground.removeChild(_event.target);
         }
         else {
+            // Hier war ich nicht ganz sicher, was ich mit "Fehlermeldung erscheint" anfangen soll. Deswegen habe ich mich für
+            // einen alert entschieden. 
             alert("Diese Karte passt nicht"); 
         }
     }
@@ -135,6 +142,7 @@ namespace L02_Sequenzmemory {
     /**
      * Fazit: Leider ist das AD an einigen Stellen oberflächlich. Ich denke, wenn ich die Aufgabe nicht gekannt und selbst
      * schon ein Konzept und den Code geschrieben hätte, hätte ich große Probleme bei der Umsetzung bekommen. 
+     * Du hast nirgends im AD Variablen angegeben (oder an andere Funktionen übergeben).
      * Aus Zeitgründen habe ich über viel hinweg gesehen (und stattdessen die Kommentare geschrieben).
      * Ich denke, im Ansatz ist im AD schon viel richtig und mit ein bisschen Zeit und Übung wir das bestimmt
      * besser. 
