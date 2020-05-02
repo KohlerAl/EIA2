@@ -3,7 +3,8 @@ namespace L02_Sequenzmemory {
     /**
      * Der Aufbau mit den Events ist nicht ganz richtig. Keine Funktion wird irgendwo aufgerufen.
      * Ich hab das ganze mal so "interpretiert" wie ich denke, dass es gemeint war,
-     * damit ich wenigstens schauen kann, ob der Aufbau grob hinaut. Eine Hilfe-Funktion ist im AD
+     * damit ich wenigstens schauen kann, ob der Aufbau grob hinaut. Nach Absprache über WhatsApp habe 
+     * ich aus den DIV-Boxen mit den vordefinierten Sequenzen Input-Felder gemacht. Eine Hilfe-Funktion ist im AD
      * nicht zu finden, genauso wenig ist ein Eingabefeld da, mit dem der Nutzer festlegen kann, 
      * wie lange er die Karten sehen möchte. Da die Karten im UI-Scribble aufgedeckt sind und ich 
      * auch im AD nicht gesehen habe, dass die Karten verdeckt werden sollen, habe ich dazu nichts gecodet. 
