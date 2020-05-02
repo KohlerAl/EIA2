@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sequenzmemory</title>
     <link rel="stylesheet" href="Sequenzmemory.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 </head>
 <body>
+    <h1>Memory</h1>
     <form>
         <fieldset>
             <legend>Which Sequence do you want to use?</legend>
             <input id="predefined" type="radio" checked name="sequence" value="Predefined">Predefined</input>
             <input id="own" type="radio" name="sequence" value="Own">Own</input>
-            <button type="button" id="radioButton" >+</button>
+            <button type="button" class="fas fa-check" id="radioButton" ></button>
         </fieldset>
 
         <fieldset>
@@ -36,14 +38,13 @@
         <fieldset>
             <legend>How long do you want to play? (Seconds)</legend>
             <input id="duration" type="number">
-            <button id="time" type="button">+</button>
-            <label> Please make sure to hit this button before insert something below!</label>
+            <button id="time" class="fas fa-check" type="button"></button>
         </fieldset>
 
         <fieldset>
             <legend>How long do you want to see the cards at the beginning? (Seconds)</legend>
             <input id="startDuration" type="number">
-            <button id="startTime" type="button">+</button>
+            <button id="startTime" class="fas fa-check" type="button"></button>
             <label>After pressing this button, the game starts!</label>
         </fieldset>
     </form>

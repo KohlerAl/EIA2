@@ -177,5 +177,4 @@ var L02_Memory;
         alert(_sequence[index]);
     }
 })(L02_Memory || (L02_Memory = {}));
-// Soooo, ich hoffe das war verständlich :) 
 //# sourceMappingURL=Sequenzmemory.js.map
