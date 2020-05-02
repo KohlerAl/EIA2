@@ -3,8 +3,8 @@ var L02_Sequenzmemory;
 (function (L02_Sequenzmemory) {
     /**
      * Der Aufbau mit den Events ist nicht ganz richtig. Keine Funktion wird irgendwo aufgerufen.
-     * Ich hab das ganze mal "interpretiert", damit ich wenigstens schauen kann, ob der Aufbau
-     * grob hinaut
+     * Ich hab das ganze mal so "interpretiert" wie ich denke, dass es gemeint war,
+     *  damit ich wenigstens schauen kann, ob der Aufbau grob hinaut
      */
     let word = document.getElementById("selectPredefined");
     let playground = document.getElementById("playground");
