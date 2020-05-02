@@ -5,13 +5,17 @@ var L02_Sequenzmemory;
      * Der Aufbau mit den Events ist nicht ganz richtig. Keine Funktion wird irgendwo aufgerufen.
      * Ich hab das ganze mal so "interpretiert" wie ich denke, dass es gemeint war,
      * damit ich wenigstens schauen kann, ob der Aufbau grob hinaut. Eine Hilfe-Funktion ist im AD
-     * nicht zu finden, daher habe ich auch keine geschrieben
+     * nicht zu finden, genauso wenig ist ein Eingabefeld da, mit dem der Nutzer festlegen kann,
+     * wie lange er die Karten sehen möchte. Da die Karten im UI-Scribble aufgedeckt sind und ich
+     * auch im AD nicht gesehen habe, dass die Karten verdeckt werden sollen, habe ich dazu nichts gecodet.
+     * Ich finde, das wäre zu viel "Einmischung" gewesen.
      */
     let word = document.getElementById("selectPredefined");
     let playground = document.getElementById("playground");
     let ownWord = document.getElementById("ownWord");
     let clock = document.getElementById("clock");
     let timer = document.getElementById("timer");
+    let index = 0;
     /**
      * Die beiden Buttons habe ich eingefügt, weil es beim Testen sonst sehr unübersichtlich
      *  geworden wäre (und damit ich überhaupt was bekomme, um den nachfolgenenden Code zu testen)
@@ -73,6 +77,10 @@ var L02_Sequenzmemory;
         for (let index = 0; index < temp4; index++) {
             let card = document.createElement("span");
             card.className = "card";
+            card.addEventListener("click", function () {
+                checkCards(sequence, event);
+            });
+            card.id = "" + sentence[index];
             card.innerHTML = "" + sentence[index];
             playground.appendChild(card);
         }
@@ -80,14 +88,12 @@ var L02_Sequenzmemory;
     }
     function setTimer() {
         //Das AD sagt hier nur "Timer wird gestellt". Laut der WhatsApp Nachricht soll hier irgendwas mit 
-        // "Array/ Schleife" passieren, ich nehme an, dass damit auch setInterval gemeint ist. l
-        // Update: Ich habe eine einfache Lösung gefunden und sie in diesen Code und in meine Umsetzung meines Konzeptes geschrieben. 
+        // "Array/ Schleife" passieren, ich nehme an, dass damit auch setInterval gemeint ist. 
         let time = Number(clock.value);
         let countdown = 1;
         timer.innerHTML = "" + time;
         let i = setInterval(function () {
             let currentTime = time - countdown;
-            console.log(currentTime);
             timer.innerHTML = "" + currentTime;
             countdown++;
             if (currentTime == 0) {
@@ -96,8 +102,21 @@ var L02_Sequenzmemory;
             }
         }, 1000);
     }
+    function checkCards(_sequence, _event) {
+        let id = _event.target.id;
+        console.log(index);
+        console.log(_sequence[index]);
+        // Im AD steht nicht, was passieren soll, wenn man alle Karten gefunden hat
+        if (id == _sequence[index]) {
+            index++;
+            playground.removeChild(_event.target);
+        }
+        else {
+            alert("Diese Karte passt nicht");
+        }
+    }
     /**
-     * Fazit: Leider ist das AD sehr oberflächlich. Ich denke, wenn ich die Aufgabe nicht gekannt und selbst
+     * Fazit: Leider ist das AD an einigen Stellen oberflächlich. Ich denke, wenn ich die Aufgabe nicht gekannt und selbst
      * schon ein Konzept und den Code geschrieben hätte, hätte ich große Probleme bei der Umsetzung bekommen.
      * Aus Zeitgründen habe ich über viel hinweg gesehen (und stattdessen die Kommentare geschrieben).
      * Ich denke, im Ansatz ist im AD schon viel richtig und mit ein bisschen Zeit und Übung wir das bestimmt
