@@ -120,7 +120,7 @@ namespace L02_Memory {
          * Buchstaben als ID (damit ich nachher kontrollieren kann, ob die Karte passt). Damit der Spieler sieht, wo 
          * welche Karte ist, lasse ich erstmal die Buchstaben anzeigen und zwar für die Zeit, die der Spieler eingegeben hat (siehe Zeile  146 )
          */
-        let newCard: HTMLDivElement = document.createElement("div"); 
+        let newCard: HTMLSpanElement = document.createElement("span"); 
          
         newCard.className = "card"; 
            newCard.id = "" + _arrayMixed[index]; 
@@ -148,31 +148,16 @@ namespace L02_Memory {
 
    function startGame(_time: number): void {
 
-    /**
-     *  Hier starten wir den Timer. Wir erstellen eine Variable mit der Zeit vom Zeitpunkt, an dem die Funktion aufgrufen wurde
-     * Uns interessieren hier nur die Sekunden, deswegen benutze ich getSeconds. Als nächstes addiere ich zu dieser Variable den 
-     * Wert aus dem Timer Inputfeld dazu.
-     */
-    let countDownEnd: Date = new Date(); 
-    let temp: number = countDownEnd.getSeconds(); 
-    temp = temp + _time;
-    
+    let timer: number = 1; 
+    countdown.innerHTML = "" + _time; 
+
     var i = setInterval (function(): void {
-        // In einem Intervall von einer Sekunde erstelle ich die Variable mit der aktuellen Zeit (wieder nur die Sekunden)
-        let now: Date = new Date(); 
-        let store: number = now.getSeconds();
-        
-        // Dann ziehe ich den Wert von oben von der aktuellen Zeit ab, damit der Timer rückwärts läuft
-        let distance = temp - store; 
-
-        // Hier lasse ich das ganze dann anzeigen, damit man auch was davon sieht
-        countdown.innerHTML = distance + " s"; 
-
-        if (distance == 0) {
-            // Wenn der Timer null erreicht, stoppe ich das Intervall und zeige eine Nachricht an. Zudem lasse ich die Spielkarten verschwinden 
-            countdown.innerHTML = "GameOver :("; 
+        let currentTime: number = _time - timer; 
+        countdown.innerHTML = "" + currentTime; 
+        timer++; 
+        if (currentTime == 0) {
             clearInterval(i); 
-            playground.innerHTML= ""; 
+            countdown.innerHTML = "Leider verloren :("; 
         }
         
     }, 1000); 
@@ -184,7 +169,6 @@ namespace L02_Memory {
 
        // Hier hole ich mir die ID von event.target (hier die Karte auf die geklickt wurde)
        let id = _event.target.id; 
-       // Die Länge des Arrays minus eins (selber Grund wie oben)
        let stop: number = _original.length - 1; 
        // Wenn die letzte Karte aufgedeckt wurde, wird eine Nachricht angezeigt und der Countdown gelöscht
        if (index == stop ) {

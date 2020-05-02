@@ -71,14 +71,17 @@ p {
 
 #selectPredefined {
     position: relative;
-    left: -290px; 
+    left: -295px; 
     top: 120px; 
+    height: 28px;
+    width: 167px;
 }
 
 #button {
     position: relative;
-    left: -440px; 
-    top: 150px; 
+    left: -290px; 
+    top: 120px; 
+    height:28px; 
 }
 
 #text {
@@ -93,4 +96,14 @@ p {
     height: 80px; 
     position: relative;
     top: -20px;
+}
+
+#timer {
+    border: thin solid #eee; 
+    text-align: center; 
+    font-size: 30px; ;
+    width: 200px;
+    height: 50px;
+    color: #eee;
+    margin-bottom: 30px;
 }
