@@ -179,7 +179,7 @@ namespace L02_Memory {
 }
 
    let index: number = 0; 
-   // Der Error ist vom Linter, weil _event den Typ any hat *Äffchen-Emoji*, ich habs aber nicht besser hinbekommen und es geht trotzdem
+   
    function checkCard(_original: string, _event): void {
 
        // Hier hole ich mir die ID von event.target (hier die Karte auf die geklickt wurde)

@@ -17,40 +17,6 @@ h1 {
     width: 400px;
 }
 
-.word {
-    border: thin solid;
-    border-color: #eee;
-    background: #222;
-    color: #eee;
-    position: relative;
-    top: 124px;
-    left: -170px;
-    width: 160px; 
-    height: 20px; 
-    margin: 5px; 
-    padding: 2px;
-    text-align: center;
-    font-weight: unset;
-}
-
-.word2 {
-    border: thin solid;
-    border-color: #fff;
-    background: #222;
-    color: #eee;
-    height: 20px; 
-    width: 160px;
-    margin: 5px;
-    padding: 2px;
-    text-align: center;
-    font-weight: unset;
-}
-
-.word:hover, .word2:hover {
-    background: linear-gradient(145deg, #5f7880, #4a636b);
-    border-color: #9da2ae;
-    color: #eee;
-}
 #input {
     position: relative;
     left: 60%; 
@@ -65,9 +31,8 @@ input {
     padding: 5px;
     margin: 4px;
     position: relative;
-    left: -170px; 
-    top: 128px;
-    
+    left: -300px; 
+    top: 107px; 
     padding: 2px;
     border: thin solid #eee;
 }
@@ -86,8 +51,46 @@ p {
 
 #instruction {
     position: relative;
-    left: 400px;
     top: 38px;
     border: thin solid #eee;
     width: 400px;
+}
+
+.card {
+    position: relative;
+    top: 30px;
+    width: 50px; 
+    height: 50px;
+    border: thin solid #eee;
+    color: #eee;   
+    font-size: 20px; 
+    text-align: center; 
+    padding: 5px;
+    margin: 10px; 
+}
+
+#selectPredefined {
+    position: relative;
+    left: -290px; 
+    top: 120px; 
+}
+
+#button {
+    position: relative;
+    left: -440px; 
+    top: 150px; 
+}
+
+#text {
+    position: relative;
+    left: -300px; 
+    top: 75px; 
+    height: 28px;
+}
+
+#playground {
+    border: thin solid #eee; 
+    height: 80px; 
+    position: relative;
+    top: -20px;
 }

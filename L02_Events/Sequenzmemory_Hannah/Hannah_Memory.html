@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hannahs Sequenzmemory</title>
     <link rel="stylesheet" href="Hannah_Memory.css">
 </head>
 <body>
@@ -19,16 +18,27 @@
     </div>
     <div id="input">
         <div><input type="number" id="clock" placeholder="Zeit"></div>
-        <div><input type="text" id="ownWord" placeholder="Eigene Eingabe hier"></div>
-        <div class="word">HALLO</div>
-        <div class="word">HANNAH</div>
-        <div class="word">EIA</div>
-        <div class="word2">MEDIENKONZEPTION</div>
-        <div class="word2">VOLLEYBALL</div>
-        <div class="word2">SONNENSCHEIN</div>
-        <div class="word2">SPASS</div>
+        <div><input type="text" id="ownWord" placeholder="Eigene Eingabe hier">
+        <button id="text">Eigene Eingabe verwenden</button></div>
+        
+        <select id="selectPredefined">
+            <option value="Alohomora">Alohomora</option>
+            <option value="Episkey">Episkey</option>
+            <option value="Expecto Patronum">Expecto Patronum</option>
+            <option value="Expelliarmus">Expelliarmus</option>
+            <option value="Riddikulus">Riddikulus</option>
+            <option value="Accio">Accio</option>
+            <option value="Protego">Protego</option>
+            <option value="Wingardium Leviosa">Wingardium Leviosa</option>
+            <option value="Silencio">Silencio</option>
+            <option value="Reparo">Reparo</option>
+        </select>
+        <button id="button">Vordefinierte Eingabe verwenden</button>
     </div>
+    <div id="playground">
+
     </div>
+  
     <script src="Hannah_Memory.js"></script>
 </body>
 </html>
