@@ -1,0 +1,21 @@
+{
+  "name": "eiazwei",
+  "version": "1.0.0",
+  "description": "EIA2",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "node L05_Client/CocktailBar.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KohlerAl/EIA2.git"
+  },
+  "author": "Alida",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KohlerAl/EIA2/issues"
+  },
+  "homepage": "https://github.com/KohlerAl/EIA2#readme"
+}

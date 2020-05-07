@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haushaltshilfe</title>
     <link rel="stylesheet" href="Haushaltshilfe.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 </head>
 
 <body>
@@ -19,7 +20,33 @@
     </div>
     <div id="order">
         <h3>Bestellübersicht</h3>
-        <input type="date">
+        <table id="table">
+            <tr>
+                <th>Löschen</th>
+                <th>Artikel</th>
+                <th>Preis</th>
+                <th>Menge</th>
+                <th>Einheit</th>
+                <th>Gebühr</th>
+                <th>Zusätzliche Informationen</th>
+            </tr>
+        </table>
+        <table id="table2">
+            <tr>
+                <th>Löschen</th>
+                <th>Erledigung</th>
+                <th>Preis</th>
+            </tr>
+        </table>
+        <table id="table3">
+            <tr>
+                <th>Löschen</th>
+                <th>Erledigung</th>
+                <th>Preis</th>
+            </tr>
+        </table>
+        <label>Lieferdatum</label> <input id="date" type="date" min="2020-05-07">
+        <label id="totalPrice"></label>
         <button type="button" id="submit">Ok</button>
     </div>
     <div id="form">
@@ -34,22 +61,24 @@
                     <option name="Mehl" value="Mehl" unit="1kg-Packung" price="1.40">Mehl</option>
                     <option name="Äpfel" value="Äpfel" unit="1kg" price="2.00">Äpfel</option>
                     <option name="Paprika" value="Paprika" unit="Stück" price="2.00">Paprika</option>
+                    <option name="Hefe" value="Hefe" unit="Würfel" price="0.10">Paprika</option>
+                    <option name="Nudeln" value="Nudeln" unit="500g-Packung" price="1.50">Paprika</option>
+                    <option name="Klopapier" value="Klopapier" unit="Packung" price="2.50">Paprika</option>
                 </datalist>
                 <span id="slider">
                     <span>
                         1
-                        <input  price="0" type="range" min="1" max="5" name="Menge" id="Quantity" step="1" value="1">
+                        <input  type="range" min="1" max="5" name="Menge" id="Quantity" step="1" value="1">
                         5
                     </span>
                 </span>
-                <input name="Bevorzugter Supermarkt" list="market" placeholder="Supermarkt wählen" value="Rewe"/>
+                <input name="Bevorzugter Supermarkt" list="market" placeholder="Supermarkt wählen" />
                 <datalist id="market">
                     <option name="Rewe" price="0" value="Rewe">Rewe</option>
                     <option name="Aldi" price="0" value="Aldi">Aldi</option>
                     <option name="Lidl" price="0" value="Lidl">Lidl</option>
                     <option name="Edeka" price="0" value="Edeka">Edeka</option>
                 </datalist>
-                <span id="price"></span>
                 <button id="cart" type="button" id="hello">Zur Bestellung hinzufügen</button>
             </fieldset>
             <fieldset id="money" disabled>
@@ -59,23 +88,23 @@
                 <span id="sliderr">
                     <span>
                         20
-                        <input price="0" type="range" name="bank" min="20" max="150" id="Bank" step="5" value="20">
+                        <input price="0" type="range" name="bargeld" min="20" max="150" id="Bank" step="5" value="20">
                         150
                     </span>
                 </span>
                 <span id="cash"></span>
-                <button type="button">Zur Bestellung hinzufügen</button>
+                <button id="getCash" type="button">Zur Bestellung hinzufügen</button>
             </fieldset>
 
             <fieldset id="household" disabled>
                 <legend>Haushaltsarbeiten</legend>
-                <input type="checkbox" value="Putzdienst" name="toDo"/><label>Putzdienst</label><br>
-                <input type="checkbox" value="Medikament" name="toDo"/><label>Medikamente besorgen</label><br>
-                <input type="checkbox" value="Post abholen" name="toDo"/><label>Post abholen</label><br>
-                <input type="checkbox" value="Post wegbringen" name="toDo"/><label>Post wegbringen</label><br>
-                <input type="checkbox" value="Rasen mähen" name="toDo"/><label>Rasen mähen</label><br>
+                <input type="checkbox" price="20" value="Putzdienst" name="toDo"/><label>Putzdienst</label><br>
+                <input type="checkbox" price="15" value="Medikamente besorgen" name="toDo"/><label>Medikamente besorgen</label><br>
+                <input type="checkbox" price="5" value="Post abholen" name="toDo"/><label>Post abholen</label><br>
+                <input type="checkbox" price="5" value="Post wegbringen" name="toDo"/><label>Post wegbringen</label><br>
+                <input type="checkbox" price="20" value="Rasen mähen" name="toDo"/><label>Rasen mähen</label><br>
                 <span id="assignment"></span>
-                <button type="button">Zur Bestellung hinzufügen</button>
+                <button id="householdDone" type="button">Zur Bestellung hinzufügen</button>
             </fieldset>
         </form>
     </div>
