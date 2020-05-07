@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haushaltshilfe</title>
+    <link rel="stylesheet" href="Haushaltshilfe.css">
+</head>
+
+<body>
+    <h1>Haushaltshilfe</h1>
+    <div id="choice">
+        <h3>Bitte wählen Sie eine Erledigung aus</h3>
+        <input type="radio" name="task" id="shopping" checked><label>Einkaufen</label><br>
+        <input type="radio" name="task" id="cash"><label>Geld abheben/ einzahlen</label><br>
+        <input type="radio" name="task" id="house"><label>Haushaltsservice</label><br>
+        <button type="button" id="confirm">Ok</button>
+    </div>
+    <div id="order">
+        <h3>Bestellübersicht</h3>
+        <input type="date">
+        <button type="button" id="submit">Ok</button>
+    </div>
+    <div id="form">
+        <form>
+            <fieldset id="grocery">
+                <legend>Einkaufen</legend>
+                <input name="Artikel" list="article"  placeholder="Artikel auswählen"/>
+                <datalist id="article">
+                    <option name="Brot" value="Brot" unit="Laib" price="2.00">Brot</option>
+                    <option name="Eier" value="Eier" unit="10er-Packung" price="2.50">Eier</option>
+                    <option name="Milch" value="Milch" unit="1L-Karton" price="0.78">Milch</option>
+                    <option name="Mehl" value="Mehl" unit="1kg-Packung" price="1.40">Mehl</option>
+                    <option name="Äpfel" value="Äpfel" unit="1kg" price="2.00">Äpfel</option>
+                    <option name="Paprika" value="Paprika" unit="Stück" price="2.00">Paprika</option>
+                </datalist>
+                <span id="slider">
+                    <span>
+                        1
+                        <input  price="0" type="range" min="1" max="5" name="Menge" id="Quantity" step="1" value="1">
+                        5
+                    </span>
+                </span>
+                <input name="Bevorzugter Supermarkt" list="market" placeholder="Supermarkt wählen" value="Rewe"/>
+                <datalist id="market">
+                    <option name="Rewe" price="0" value="Rewe">Rewe</option>
+                    <option name="Aldi" price="0" value="Aldi">Aldi</option>
+                    <option name="Lidl" price="0" value="Lidl">Lidl</option>
+                    <option name="Edeka" price="0" value="Edeka">Edeka</option>
+                </datalist>
+                <span id="price"></span>
+                <button id="cart" type="button" id="hello">Zur Bestellung hinzufügen</button>
+            </fieldset>
+            <fieldset id="money" disabled>
+                <legend>Geld abheben/ einzahlen</legend>
+                <input type="checkbox" value="Geld einzahlen" name="cash"/><label>Geld einzahlen</label><br>
+                <input type="checkbox" value="Geld abheben" name="cash"/><label>Geld abheben</label><br>
+                <span id="sliderr">
+                    <span>
+                        20
+                        <input price="0" type="range" name="bank" min="20" max="150" id="Bank" step="5" value="20">
+                        150
+                    </span>
+                </span>
+                <span id="cash"></span>
+                <button type="button">Zur Bestellung hinzufügen</button>
+            </fieldset>
+
+            <fieldset id="household" disabled>
+                <legend>Haushaltsarbeiten</legend>
+                <input type="checkbox" value="Putzdienst" name="toDo"/><label>Putzdienst</label><br>
+                <input type="checkbox" value="Medikament" name="toDo"/><label>Medikamente besorgen</label><br>
+                <input type="checkbox" value="Post abholen" name="toDo"/><label>Post abholen</label><br>
+                <input type="checkbox" value="Post wegbringen" name="toDo"/><label>Post wegbringen</label><br>
+                <input type="checkbox" value="Rasen mähen" name="toDo"/><label>Rasen mähen</label><br>
+                <span id="assignment"></span>
+                <button type="button">Zur Bestellung hinzufügen</button>
+            </fieldset>
+        </form>
+    </div>
+    <script src="Haushaltshilfe.js"> </script>
+</body>
+
+</html>

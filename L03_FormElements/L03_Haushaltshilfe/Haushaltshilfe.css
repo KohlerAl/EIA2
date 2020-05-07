@@ -1,0 +1,41 @@
+body {
+    background-color: aliceblue;
+}
+
+#choice {
+    border: thin solid gray;
+    width: 350px;
+    padding: 8px;
+}
+
+#order {
+    border: thin solid gray;
+    
+}
+
+
+#grocery > input {
+    margin: 5px;
+    display: block;
+}
+
+#household > *{
+    margin: 7px;
+}
+
+#money {
+    position: relative;
+    
+}
+
+#household {
+    position: relative;
+    
+}
+
+button {
+    margin: 5px;
+    border: thin solid gray;
+    border-radius: 15px;
+}
+
