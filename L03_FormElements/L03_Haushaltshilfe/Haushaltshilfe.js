@@ -60,11 +60,10 @@ var L03_Haushaltshilfe;
         // Iterieren über alle Einträge in formData
         for (let entry of formData) {
             // Erstellen einer Variable mit dem Wert des Eintrags
-            let select = "[value='" + entry[1] + "']";
+            let selector = "[value='" + entry[1] + "']";
             // Selektieren des HTML-Elements mit dem entsprechenden Wert
-            let item = document.querySelector(select);
-            // Suchen nach dem Preis-Attribut 
-            let itemPrice = Number(item.getAttribute("price"));
+            let item = document.querySelector(selector);
+            console.log(item);
             //Neue Tabellenzeile und insgesamt sechs Spalten erstellen
             let row = document.createElement("tr");
             let td = document.createElement("td");
@@ -83,6 +82,8 @@ var L03_Haushaltshilfe;
                 case "Menge":
                     break;
                 case "Artikel":
+                    // Suchen nach dem Preis-Attribut 
+                    let itemPrice = Number(item.getAttribute("price"));
                     // Wert aus dem Slider abgreufen 
                     let menge = Number(formData.get("Menge"));
                     // Wert, um welche Einheit es sich bei dem Artikel handelt suchen 
@@ -121,6 +122,7 @@ var L03_Haushaltshilfe;
                     form.reset();
                     break;
                 case "cash":
+                    // Suchen nach dem Preis-Attribut 
                     // Der Wert wird rausgesucht und zum String gemacht, um ihn in der if-else Anweisung vergleichen zu können
                     let money = String(item.getAttribute("value"));
                     // Wenn der Wert Geld abheben ist, muss der Wert aus dem slider mit den Grundkosten verrechnet werden 
@@ -168,9 +170,11 @@ var L03_Haushaltshilfe;
                     }
                     break;
                 case "toDo":
+                    // Suchen nach dem Preis-Attribut 
+                    let itemCost = Number(item.getAttribute("price"));
                     // Nach dem selben Prinzip wie oben werden jetzt auch die Haushaltsarbeiten durchgearbeitet
                     td.innerHTML = "" + entry[1];
-                    td2.innerHTML = "" + itemPrice + "€";
+                    td2.innerHTML = "" + itemCost + "€";
                     deleteButton.addEventListener("click", function () {
                         deleteList(itemPrice, event);
                     });
@@ -179,7 +183,7 @@ var L03_Haushaltshilfe;
                     row.appendChild(td2);
                     row.appendChild(td3);
                     table3.appendChild(row);
-                    totalCost += itemPrice;
+                    totalCost += itemCost;
                     form.reset();
                     break;
             }

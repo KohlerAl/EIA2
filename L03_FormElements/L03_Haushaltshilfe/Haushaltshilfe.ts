@@ -63,11 +63,10 @@
         // Iterieren über alle Einträge in formData
         for (let entry of formData) {
             // Erstellen einer Variable mit dem Wert des Eintrags
-            let select: string = "[value='" + entry[1] + "']";
+            let selector: string = "[value='" + entry[1] + "']";
             // Selektieren des HTML-Elements mit dem entsprechenden Wert
-            let item: HTMLInputElement = <HTMLInputElement>document.querySelector(select); 
-            // Suchen nach dem Preis-Attribut 
-            let itemPrice: number = Number(item.getAttribute("price")); 
+            let item: HTMLInputElement = <HTMLInputElement>document.querySelector(selector); 
+            console.log(item);  
             //Neue Tabellenzeile und insgesamt sechs Spalten erstellen
             let row = document.createElement("tr"); 
             let td = document.createElement("td"); 
@@ -86,6 +85,8 @@
                 case "Menge":
                     break; 
                 case "Artikel":
+                    // Suchen nach dem Preis-Attribut 
+                    let itemPrice: number = Number(item.getAttribute("price"));
                     // Wert aus dem Slider abgreufen 
                     let menge: number = Number(formData.get("Menge")); 
                     // Wert, um welche Einheit es sich bei dem Artikel handelt suchen 
@@ -124,6 +125,7 @@
                     form.reset();
                     break;
                 case "cash":
+                    // Suchen nach dem Preis-Attribut 
                     // Der Wert wird rausgesucht und zum String gemacht, um ihn in der if-else Anweisung vergleichen zu können
                     let money: string = String(item.getAttribute("value")); 
                     // Wenn der Wert Geld abheben ist, muss der Wert aus dem slider mit den Grundkosten verrechnet werden 
@@ -171,9 +173,11 @@
                 }
                 break; 
                 case "toDo":
+                    // Suchen nach dem Preis-Attribut 
+                let itemCost: number = Number(item.getAttribute("price"));
                 // Nach dem selben Prinzip wie oben werden jetzt auch die Haushaltsarbeiten durchgearbeitet
                 td.innerHTML = "" + entry[1];
-                td2.innerHTML = "" + itemPrice + "€" ;
+                td2.innerHTML = "" + itemCost + "€" ;
                 deleteButton.addEventListener("click", function() {
                     deleteList(itemPrice, event);
                 }); 
@@ -182,7 +186,7 @@
                 row.appendChild(td2); 
                 row.appendChild(td3)
                 table3.appendChild(row);
-                totalCost += itemPrice;
+                totalCost += itemCost;
                 form.reset();
                 break; 
                 
