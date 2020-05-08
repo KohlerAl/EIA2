@@ -18,6 +18,7 @@ input {
     padding: 8px;
     margin: 10px 0px 10px 0px;
     background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
+    box-shadow: 5px 5px 5px #a29f9f;
 }
 
 #order {
@@ -25,7 +26,9 @@ input {
     border-radius: 10px;
     padding: 8px;
     margin: 5px 0px 5px 0px; 
+    width: 650px;
     background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
+    box-shadow: 5px 5px 5px #a29f9f;
 }
 
 legend {
@@ -40,6 +43,7 @@ legend {
     background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
     border: none;
     margin: 10px;
+    box-shadow: 5px 5px 5px #a29f9f;
 }
 
 #household > *{
@@ -53,6 +57,7 @@ legend {
     margin: 10px;
     background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
     border: none;
+    box-shadow: 5px 5px 5px #a29f9f;
     
 }
 
@@ -63,16 +68,16 @@ legend {
     margin: 10px;
     background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
     border: none;
+    box-shadow: 5px 5px 5px #a29f9f;
 }
 
 button {
     margin: 5px;
-    border: thin solid gray;
+    border: thin solid #4f7171;
     border-radius: 15px;
-}
-
-button {
-    background-color: gray;
+    color: #f6f0f1;
+    background-color: #4f7171;
+    box-shadow: 3px 3px 3px #3a5353;
 }
 
 table, th, td {

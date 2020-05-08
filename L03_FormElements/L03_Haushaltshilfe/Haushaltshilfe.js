@@ -73,6 +73,7 @@ var L03_Haushaltshilfe;
             let td4 = document.createElement("td");
             let td5 = document.createElement("td");
             let td6 = document.createElement("td");
+            let td7 = document.createElement("td");
             // Erstellen eines Buttons, damit man den Eintrag später auch löschen kann 
             let deleteButton = document.createElement("button");
             // Hinzufügen eines Mülleimer-Symbols
@@ -105,13 +106,14 @@ var L03_Haushaltshilfe;
                     td5.innerHTML = "" + 0.50 + "€";
                     td6.innerHTML = "" + markt;
                     // Die neuen Elemente in das HTML integrieren
-                    row.appendChild(deleteButton);
+                    td7.appendChild(deleteButton);
                     row.appendChild(td);
                     row.appendChild(td2);
                     row.appendChild(td3);
                     row.appendChild(td4);
                     row.appendChild(td5);
                     row.appendChild(td6);
+                    row.appendChild(td7);
                     table.appendChild(row);
                     // Hinzufügen des Preises zum Gesamtpreis
                     totalCost += itemPrice + 0.50;
@@ -135,9 +137,10 @@ var L03_Haushaltshilfe;
                             deleteList(geld, event);
                         });
                         // Alle neuen Elemente ins HTML integrieren
-                        row.appendChild(deleteButton);
+                        td3.appendChild(deleteButton);
                         row.appendChild(td);
                         row.appendChild(td2);
+                        row.appendChild(td3);
                         table2.appendChild(row);
                         // Die Kosten zu den Gesamtkosten hinzufügen und dann das Form-Element leeren
                         totalCost += geld;
@@ -154,9 +157,10 @@ var L03_Haushaltshilfe;
                         deleteButton.addEventListener("click", function () {
                             deleteList(5, event);
                         });
-                        row.appendChild(deleteButton);
+                        td3.appendChild(deleteButton);
                         row.appendChild(td);
                         row.appendChild(td2);
+                        row.appendChild(td3);
                         table2.appendChild(row);
                         totalCost += 5;
                         form.reset();
@@ -170,9 +174,10 @@ var L03_Haushaltshilfe;
                     deleteButton.addEventListener("click", function () {
                         deleteList(itemPrice, event);
                     });
-                    row.appendChild(deleteButton);
+                    td3.appendChild(deleteButton);
                     row.appendChild(td);
                     row.appendChild(td2);
+                    row.appendChild(td3);
                     table3.appendChild(row);
                     totalCost += itemPrice;
                     form.reset();
@@ -192,14 +197,16 @@ var L03_Haushaltshilfe;
         let target = _event.target;
         let parent = target.parentNode;
         let grandParent = parent.parentNode;
-        grandParent.removeChild(parent);
+        let greatGrandParent = grandParent.parentNode;
         parent.removeChild(target);
+        grandParent.removeChild(parent);
+        greatGrandParent.removeChild(grandParent);
     }
     function sendOrder(_event) {
         // Wenn der Button zum Abschicken gedrückt wurde, wird in einem Alert-Fenster eine Benachrichtigung mit dem Lieferdatum angezeigt
         let date = document.getElementById("date");
         let lieferdatum = date.value;
-        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "bei Ihnen sein!");
+        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!");
     }
 })(L03_Haushaltshilfe || (L03_Haushaltshilfe = {}));
 //# sourceMappingURL=Haushaltshilfe.js.map

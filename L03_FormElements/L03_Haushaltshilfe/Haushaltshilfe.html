@@ -22,27 +22,27 @@
         <h3>Bestellübersicht</h3>
         <table id="table">
             <tr>
-                <th>Löschen</th>
                 <th>Artikel</th>
                 <th>Preis</th>
                 <th>Menge</th>
                 <th>Einheit</th>
                 <th>Gebühr</th>
                 <th>Zusätzliche Informationen</th>
+                <th>Löschen</th>
             </tr>
         </table>
         <table id="table2">
             <tr>
-                <th>Löschen</th>
                 <th>Erledigung</th>
                 <th>Preis</th>
+                <th>Löschen</th>
             </tr>
         </table>
         <table id="table3">
             <tr>
-                <th>Löschen</th>
                 <th>Erledigung</th>
                 <th>Preis</th>
+                <th>Löschen</th>
             </tr>
         </table>
         <label>Lieferdatum</label> <input id="date" type="date" min="2020-05-07">
@@ -60,10 +60,11 @@
                     <option name="Milch" value="Milch" unit="1L-Karton" price="0.78">Milch</option>
                     <option name="Mehl" value="Mehl" unit="1kg-Packung" price="1.40">Mehl</option>
                     <option name="Äpfel" value="Äpfel" unit="1kg" price="2.00">Äpfel</option>
-                    <option name="Paprika" value="Paprika" unit="Stück" price="2.00">Paprika</option>
-                    <option name="Hefe" value="Hefe" unit="Würfel" price="0.10">Paprika</option>
-                    <option name="Nudeln" value="Nudeln" unit="500g-Packung" price="1.50">Paprika</option>
-                    <option name="Klopapier" value="Klopapier" unit="Packung" price="2.50">Paprika</option>
+                    <option name="Hefe" value="Hefe" unit="Würfel" price="0.10">Hefe</option>
+                    <option name="Nudeln" value="Nudeln" unit="500g-Packung" price="1.50">Nudeln</option>
+                    <option name="Klopapier" value="Klopapier" unit="Packung" price="2.50">Klopapier</option>
+                    <option name="Wasser" value="Wasser" unit="1L-Flasche" price="0.50">Wasser</option>
+                    <option name="Orangensaft" value="Orangensaft" unit="1L-Flasche" price="1.00">Orangensaft</option>
                 </datalist>
                 <span id="slider">
                     <span>
@@ -72,7 +73,7 @@
                         5
                     </span>
                 </span>
-                <input name="Bevorzugter Supermarkt" list="market" placeholder="Supermarkt wählen" />
+                <input name="Bevorzugter Supermarkt" list="market" placeholder="Supermarkt wählen" value=""/>
                 <datalist id="market">
                     <option name="Rewe" price="0" value="Rewe">Rewe</option>
                     <option name="Aldi" price="0" value="Aldi">Aldi</option>
