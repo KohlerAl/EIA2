@@ -24,12 +24,13 @@ input {
 #order {
     border: none;
     border-radius: 10px;
-    padding: 8px;
+    padding: 2px;
     margin: 5px 0px 5px 0px; 
     width: 650px;
     background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
     box-shadow: 5px 5px 5px #a29f9f;
 }
+
 
 legend {
     background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
