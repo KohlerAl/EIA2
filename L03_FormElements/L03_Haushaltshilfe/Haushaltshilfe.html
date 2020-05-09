@@ -45,12 +45,12 @@
                 <th>Löschen</th>
             </tr>
         </table>
-        <label>Lieferdatum</label> <input id="date" type="date" min="2020-05-07">
+        <label for="date">Lieferdatum</label> <input id="date" type="date" min="2020-05-07">
         <label id="totalPrice"></label><br>
         <label>Zahlungsart:</label>
-        <laabel >Paypal:</label> <input type="radio" name="payment" id="paypal" value="Paypal"/>
-        <label>Überweisung:</label> <input type="radio" name="payment" id="überweisung" value="Überweisung"/>
-        <label>Bar:</label><input type="radio" name="payment" id="bar" value="Bar"/>
+        <label for="paypal">Paypal:</label> <input type="radio" name="payment" id="paypal" value="Paypal"/>
+        <label for="überweisung">Überweisung:</label> <input type="radio" name="payment" id="überweisung" value="Überweisung"/>
+        <label for="bar">Bar:</label><input type="radio" name="payment" id="bar" value="Bar"/>
         <button type="button" id="submit">Ok</button>
     </div>
     <div id="form">
@@ -89,8 +89,8 @@
             </fieldset>
             <fieldset id="money" disabled>
                 <legend>Geld abheben/ einzahlen</legend>
-                <input type="checkbox" value="Geld einzahlen" name="cash"/><label>Geld einzahlen</label><br>
-                <input type="checkbox" value="Geld abheben" name="cash"/><label>Geld abheben</label><br>
+                <input type="checkbox" value="Geld einzahlen" name="cash" id="einzahlen"/><label for="einzahlen">Geld einzahlen</label><br>
+                <input type="checkbox" value="Geld abheben" name="cash"id="abheben"/><label for="abheben">Geld abheben</label><br>
                 <span id="sliderr">
                     <span>
                         20
@@ -103,12 +103,12 @@
 
             <fieldset id="household" disabled>
                 <legend>Haushaltsarbeiten</legend>
-                <input type="checkbox" price="20" value="Putzdienst" name="toDo"/><label>Putzdienst</label><br>
-                <input type="checkbox" price="15" value="Medikamente besorgen" name="toDo"/><label>Medikamente besorgen</label><br>
-                <input type="checkbox" price="5" value="Post abholen" name="toDo"/><label>Post abholen</label><br>
-                <input type="checkbox" price="5" value="Post wegbringen" name="toDo"/><label>Post wegbringen</label><br>
-                <input type="checkbox" price="20" value="Rasen mähen" name="toDo"/><label>Rasen mähen</label><br>
-                <input type="checkbox" price="10" value="Gassi gehen" name="toDo"/><label>Gassi gehen</label><br>
+                <input type="checkbox" price="20" value="Putzdienst" name="toDo" id="putzdienst"/><label for="putzdienst">Putzdienst</label><br>
+                <input type="checkbox" price="15" value="Medikamente besorgen" name="toDo" id="medikamente"/><label for="medikamente">Medikamente besorgen</label><br>
+                <input type="checkbox" price="5" value="Post abholen" name="toDo" id="abholen"/><label for="abholen">Post abholen</label><br>
+                <input type="checkbox" price="5" value="Post wegbringen" name="toDo" id="wegbringen"/><label for="wegbringen">Post wegbringen</label><br>
+                <input type="checkbox" price="20" value="Rasen mähen" name="toDo" id="rasen"/><label for="rasen">Rasen mähen</label><br>
+                <input type="checkbox" price="10" value="Gassi gehen" name="toDo"id="gassi"/><label for="gassi">Gassi gehen</label><br>
                 <button id="householdDone" type="button">Zur Bestellung hinzufügen</button>
             </fieldset>
         </form>
