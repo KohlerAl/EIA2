@@ -222,7 +222,7 @@ var L03_Haushaltshilfe;
         else {
             Zahlungsart = "Bar";
         }
-        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost);
+        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost + "€");
     }
 })(L03_Haushaltshilfe || (L03_Haushaltshilfe = {}));
 //# sourceMappingURL=Haushaltshilfe.js.map
