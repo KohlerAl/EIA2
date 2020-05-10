@@ -176,7 +176,7 @@ var L03_Haushaltshilfe;
                     td.innerHTML = "" + entry[1];
                     td2.innerHTML = "" + itemCost + "€";
                     deleteButton.addEventListener("click", function () {
-                        deleteList(itemPrice, event);
+                        deleteList(itemCost, event);
                     });
                     td3.appendChild(deleteButton);
                     row.appendChild(td);
