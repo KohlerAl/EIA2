@@ -1,7 +1,8 @@
 "use strict";
 var L03_Haushaltshilfe;
 (function (L03_Haushaltshilfe) {
-    //Hinzufügen eiens load-Listeners 
+    //Hinzufügen eines load-Listeners 
+    console.log("Hello");
     window.addEventListener("load", handleLoad);
     /**
      * Deklarieren von Variablen, für einfacheres Schreiben im Code und Deklaration
@@ -60,6 +61,7 @@ var L03_Haushaltshilfe;
         // Iterieren über alle Einträge in formData
         for (let entry of formData) {
             // Erstellen einer Variable mit dem Wert des Eintrags
+            console.log(entry);
             let selector = "[value='" + entry[1] + "']";
             // Selektieren des HTML-Elements mit dem entsprechenden Wert
             let item = document.querySelector(selector);

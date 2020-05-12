@@ -1,0 +1,107 @@
+body {
+    background-color: #f6f0f1;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #191205;
+    font-weight: smaller;
+}
+
+fieldset {
+    border: thin solid #d1a9a9; 
+}
+input {
+    border-radius: 10px;
+    opacity: 0.8;
+    padding: 2px;
+}
+
+#choice {
+    border: none;
+    border-radius: 10px;
+    width: 350px;
+    padding: 8px;
+    margin: 10px 0px 10px 0px;
+    background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
+    box-shadow: 5px 5px 5px #a29f9f;
+}
+
+#order {
+    border: none;
+    border-radius: 10px;
+    padding: 2px;
+    margin: 5px 0px 5px 0px; 
+    width: 650px;
+    background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
+    box-shadow: 5px 5px 5px #a29f9f;
+}
+
+
+legend {
+    background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#grocery {
+    border-radius: 10px;
+    width: 500px;
+    background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
+    border: none;
+    margin: 10px;
+    box-shadow: 5px 5px 5px #a29f9f;
+}
+
+#household > *{
+    margin: 7px;
+}
+
+#money {
+    position: relative;
+    border-radius: 10px;
+    width: 500px;
+    margin: 10px;
+    background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
+    border: none;
+    box-shadow: 5px 5px 5px #a29f9f;
+    
+}
+
+#household {
+    position: relative;
+    border-radius: 10px;
+    width: 500px;
+    margin: 10px;
+    background: linear-gradient(145deg, #d1a9a9, #c7a2a2);
+    border: none;
+    box-shadow: 5px 5px 5px #a29f9f;
+}
+
+button {
+    margin: 5px;
+    border: thin solid #4f7171;
+    border-radius: 15px;
+    color: #f6f0f1;
+    background-color: #4f7171;
+    box-shadow: 3px 3px 3px #3a5353;
+}
+
+table, th, td {
+    background-color: #b08e8e;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px; 
+}
+
+table {
+    margin: 10px;
+}
+
+#grocery:disabled, #household:disabled, #money:disabled {
+    color: #cca5a5;
+}
+
+.deleteButton {
+    width: 20px; 
+    height: 20px; 
+    border-radius: 10px;
+    color: #b08e8e;
+}
