@@ -22,6 +22,7 @@ var L04_Haushaltshilfe;
     let submit = document.getElementById("submit");
     let totalPrice = document.getElementById("totalPrice");
     function handleLoad() {
+        console.log("HaushaltshilfeL04 ready");
         L04_Haushaltshilfe.generateContent(L04_Haushaltshilfe.data);
         // Event-Listener auf alle Buttons, nachdem alles geladen wurde
         cart.addEventListener("click", handleChange);
@@ -65,7 +66,6 @@ var L04_Haushaltshilfe;
             let selector = "[value='" + entry[1] + "']";
             // Selektieren des HTML-Elements mit dem entsprechenden Wert
             let item = document.querySelector(selector);
-            console.log(item);
             //Neue Tabellenzeile und insgesamt sechs Spalten erstellen
             let row = document.createElement("tr");
             let td = document.createElement("td");
@@ -80,6 +80,7 @@ var L04_Haushaltshilfe;
             // Hinzufügen eines Mülleimer-Symbols
             deleteButton.classList.add("far", "fa-trash-alt");
             // Switch-Case mit den Namen der Einträge 
+            console.log(entry);
             switch (entry[0]) {
                 case "Menge":
                     break;

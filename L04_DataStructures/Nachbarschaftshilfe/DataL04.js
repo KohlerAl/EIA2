@@ -1,6 +1,7 @@
 "use strict";
 var L04_Haushaltshilfe;
 (function (L04_Haushaltshilfe) {
+    console.log("DataL04 ready");
     L04_Haushaltshilfe.data = {
         produce: [
             { name: "Brot", unit: "Laib", price: 2.00 },

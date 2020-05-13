@@ -22,6 +22,7 @@ namespace L04_Haushaltshilfe {
     let totalPrice: HTMLLabelElement = <HTMLLabelElement>document.getElementById("totalPrice");
 
     function handleLoad(): void {
+        console.log("HaushaltshilfeL04 ready"); 
         generateContent(data);
         // Event-Listener auf alle Buttons, nachdem alles geladen wurde
         cart.addEventListener("click", handleChange);
@@ -68,7 +69,6 @@ namespace L04_Haushaltshilfe {
             let selector: string = "[value='" + entry[1] + "']";
             // Selektieren des HTML-Elements mit dem entsprechenden Wert
             let item: HTMLInputElement = <HTMLInputElement>document.querySelector(selector);
-            console.log(item);
             //Neue Tabellenzeile und insgesamt sechs Spalten erstellen
             let row = document.createElement("tr");
             let td = document.createElement("td");
@@ -83,6 +83,7 @@ namespace L04_Haushaltshilfe {
             // Hinzufügen eines Mülleimer-Symbols
             deleteButton.classList.add("far", "fa-trash-alt");
             // Switch-Case mit den Namen der Einträge 
+            console.log(entry);
             switch (entry[0]) {
                 case "Menge":
                     break;

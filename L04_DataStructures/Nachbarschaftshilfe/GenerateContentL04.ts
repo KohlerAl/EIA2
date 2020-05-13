@@ -1,4 +1,5 @@
 namespace L04_Haushaltshilfe {
+    console.log("GenerateContentL04 ready"); 
     export function generateContent(_data: Data): void {
         for (let category in _data) {
             let items: Item[] = _data[category]; 
@@ -30,26 +31,25 @@ namespace L04_Haushaltshilfe {
     function createDatalist(_item: Item[] , _category: string): HTMLElement | null {
         let group: HTMLDivElement = document.createElement("div");
         let input: HTMLInputElement = document.createElement("input"); 
-        input.name = _category; 
-        input.setAttribute("list", _category); 
+        input.setAttribute("list", _category + "s"); 
         input.setAttribute("placeholder", "Choose " + _category);
-        //input.name = _category; 
+        input.name = _category; 
         let datalist: HTMLDataListElement = document.createElement("datalist"); 
-        datalist.id = _category;  
+        datalist.id = _category + "s";  
         for (let item of _item) {
             let option: HTMLOptionElement = document.createElement("option"); 
-            option.setAttribute("name", item.name);
+            option.setAttribute("name",  item.name);
             option.value = item.name;
             option.setAttribute("unit", item.unit); 
             option.setAttribute("price", item.price.toFixed(2));  
-            option.id = item.name; 
+            //option.id = item.name; 
             
             //let label: HTMLLabelElement = document.createElement("label"); 
             //label.textContent = item.name; 
             //label.htmlFor = item.name; 
 
-            group.appendChild(input); 
-            group.appendChild(datalist); 
+            group.appendChild(input);  
+            group.appendChild(datalist);
             datalist.appendChild(option); 
             //datalist.appendChild(label);  
 

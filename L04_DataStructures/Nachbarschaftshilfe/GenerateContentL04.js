@@ -1,6 +1,7 @@
 "use strict";
 var L04_Haushaltshilfe;
 (function (L04_Haushaltshilfe) {
+    console.log("GenerateContentL04 ready");
     function generateContent(_data) {
         for (let category in _data) {
             let items = _data[category];
@@ -29,19 +30,18 @@ var L04_Haushaltshilfe;
     function createDatalist(_item, _category) {
         let group = document.createElement("div");
         let input = document.createElement("input");
-        input.name = _category;
-        input.setAttribute("list", _category);
+        input.setAttribute("list", _category + "s");
         input.setAttribute("placeholder", "Choose " + _category);
-        //input.name = _category; 
+        input.name = _category;
         let datalist = document.createElement("datalist");
-        datalist.id = _category;
+        datalist.id = _category + "s";
         for (let item of _item) {
             let option = document.createElement("option");
             option.setAttribute("name", item.name);
             option.value = item.name;
             option.setAttribute("unit", item.unit);
             option.setAttribute("price", item.price.toFixed(2));
-            option.id = item.name;
+            //option.id = item.name; 
             //let label: HTMLLabelElement = document.createElement("label"); 
             //label.textContent = item.name; 
             //label.htmlFor = item.name; 

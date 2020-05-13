@@ -1,4 +1,5 @@
 namespace L04_Haushaltshilfe {
+    console.log("InterfacesL04 ready"); 
 
     export interface Item {
         name: string; 

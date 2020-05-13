@@ -1,5 +1,6 @@
 namespace L04_Haushaltshilfe {
 
+    console.log("DataL04 ready"); 
     export let data: Data = {
         produce: [
             {name: "Brot", unit: "Laib", price: 2.00},
