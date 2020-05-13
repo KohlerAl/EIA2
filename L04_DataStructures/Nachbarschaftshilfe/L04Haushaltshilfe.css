@@ -1,0 +1,121 @@
+body {
+    background-color: #eadad0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #191205;
+    font-weight: smaller;
+    font-size: 15px;
+}
+
+fieldset {
+    border: thin solid #7f423d; 
+}
+input {
+    border-radius: 10px;
+    opacity: 0.8;
+    padding: 2px;
+}
+
+#choice {
+    color: #f6f0f1;
+    border: none;
+    border-radius: 10px;
+    width: 350px;
+    padding: 8px;
+    margin: 10px 0px 10px 0px;
+    background: #7f423d;
+    box-shadow: 5px 5px 5px #a0958e;
+}
+
+#order {
+    color: #f6f0f1; 
+    border: none;
+    border-radius: 10px;
+    padding: 2px;
+    margin: 5px 0px 5px 0px; 
+    width: 650px;
+    background: #7f423d;
+    box-shadow: 5px 5px 5px #a0958e;
+}
+
+
+legend {
+    color: #f6f0f1;
+    background: #7f423d;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#grocery {
+    color: #f6f0f1;
+    border-radius: 10px;
+    width: 500px;
+    background: #7f423d;
+    border: none;
+    margin: 10px;
+    box-shadow: 5px 5px 5px #a0958e;
+}
+
+#household > *{
+    margin: 7px;
+}
+
+#money {
+    color: #f6f0f1;
+    position: relative;
+    border-radius: 10px;
+    width: 500px;
+    margin: 10px;
+    background: #7f423d;
+    border: none;
+    box-shadow: 5px 5px 5px #a0958e;
+    
+}
+
+#household {
+    color: #f6f0f1;
+    position: relative;
+    border-radius: 10px;
+    width: 500px;
+    margin: 10px;
+    background: #7f423d;
+    border: none;
+    box-shadow: 5px 5px 5px #a0958e;
+}
+
+button {
+    margin: 5px;
+    border: thin solid #a8ad97;
+    border-radius: 15px;
+    color: #f6f0f1;
+    background-color: #a8ad97;
+    box-shadow: 3px 3px 3px #4e2d2a;
+}
+
+table, th, td {
+    background-color: #d0c9b5;
+    border: 1px solid #7f423d;
+    color: #333333;
+    border-collapse: collapse;
+    padding: 5px; 
+}
+
+table {
+    margin: 10px;
+}
+
+#grocery:disabled, #household:disabled, #money:disabled {
+    color: #7f423d;
+}
+#grocery:disabled * , #household:disabled *, #money:disabled *{
+    background-color: #7f423d;
+    border-color: #7f423d;
+    color: #7f423d;
+    box-shadow: n;
+}
+
+.deleteButton {
+    width: 20px; 
+    height: 20px; 
+    border-radius: 10px;
+    color: #a8ad97;
+}
