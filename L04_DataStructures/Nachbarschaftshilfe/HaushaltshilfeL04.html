@@ -16,9 +16,12 @@
     <h1>Haushaltshilfe</h1>
     <div id="choice">
         <h3>Bitte wählen Sie eine Erledigung aus</h3>
-        <input type="radio" name="task" id="shopping" checked><label>Einkaufen</label><br>
+        <fieldset id="input">
+        <!-- <input type="radio" name="task" id="shopping" checked><label>Einkaufen</label><br>
         <input type="radio" name="task" id="cash"><label>Geld abheben/ einzahlen</label><br>
-        <input type="radio" name="task" id="house"><label>Haushaltsservice</label><br>
+        <input type="radio" name="task" id="house"><label>Haushaltsservice</label><br> -->
+    </fieldset>
+
         <button type="button" id="confirm">Ok</button>
     </div>
     <div id="order">
@@ -50,10 +53,12 @@
         </table>
         <label for="date">Lieferdatum</label> <input id="date" type="date" min="2020-05-07">
         <label id="totalPrice"></label><br>
-        <label>Zahlungsart:</label>
+        <fieldset id="zahlungsart">
+        </fieldset>
+        <!-- <label>Zahlungsart:</label>
         <label for="paypal">Paypal:</label> <input type="radio" name="payment" id="paypal" value="Paypal"/>
         <label for="überweisung">Überweisung:</label> <input type="radio" name="payment" id="überweisung" value="Überweisung"/>
-        <label for="bar">Bar:</label><input type="radio" name="payment" id="bar" value="Bar"/>
+        <label for="bar">Bar:</label><input type="radio" name="payment" id="bar" value="Bar"/> -->
         <button type="button" id="submit">Ok</button>
     </div>
     <div id="form">

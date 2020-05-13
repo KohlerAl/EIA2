@@ -8,9 +8,6 @@ namespace L04_Haushaltshilfe {
     let totalCost: number = 0;
     let form: HTMLFormElement = <HTMLFormElement>document.querySelector("form");
     let confirm: HTMLButtonElement = <HTMLButtonElement>document.getElementById("confirm");
-    let cash: HTMLInputElement = <HTMLInputElement>document.getElementById("cash");
-    let shopping: HTMLInputElement = <HTMLInputElement>document.getElementById("shopping");
-    let house: HTMLInputElement = <HTMLInputElement>document.getElementById("house");
 
     let grocery: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("grocery");
     let money: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("money");
@@ -37,6 +34,9 @@ namespace L04_Haushaltshilfe {
          * Aktivieren des Fieldsets, für das sich der Nutzer entschieden hat und 
          * deaktivieren der anderen, damit versehentliche Eingaben vermieden werden. 
          */
+        let cash: HTMLInputElement = <HTMLInputElement>document.getElementById("Bankgeschäfte");
+        let shopping: HTMLInputElement = <HTMLInputElement>document.getElementById("Einkaufen");
+        let house: HTMLInputElement = <HTMLInputElement>document.getElementById("Haushaltsarbeiten");
 
         if (cash.checked == true) {
             grocery.disabled = true;
@@ -200,8 +200,8 @@ namespace L04_Haushaltshilfe {
         // Wenn der Button zum Abschicken gedrückt wurde, wird in einem Alert-Fenster eine Benachrichtigung mit dem Lieferdatum angezeigt
         let date: HTMLInputElement = <HTMLInputElement>document.getElementById("date");
         let lieferdatum = date.value;
-        let paypal: HTMLInputElement = <HTMLInputElement>document.getElementById("paypal");
-        let überweisung: HTMLInputElement = <HTMLInputElement>document.getElementById("überweisung");
+        let paypal: HTMLInputElement = <HTMLInputElement>document.getElementById("Paypal");
+        let überweisung: HTMLInputElement = <HTMLInputElement>document.getElementById("Überweisung");
         let Zahlungsart: string;
         if (paypal.checked == true) {
             Zahlungsart = "Paypal"

@@ -10,9 +10,6 @@ var L04_Haushaltshilfe;
     let totalCost = 0;
     let form = document.querySelector("form");
     let confirm = document.getElementById("confirm");
-    let cash = document.getElementById("cash");
-    let shopping = document.getElementById("shopping");
-    let house = document.getElementById("house");
     let grocery = document.getElementById("grocery");
     let money = document.getElementById("money");
     let household = document.getElementById("household");
@@ -36,6 +33,9 @@ var L04_Haushaltshilfe;
          * Aktivieren des Fieldsets, für das sich der Nutzer entschieden hat und
          * deaktivieren der anderen, damit versehentliche Eingaben vermieden werden.
          */
+        let cash = document.getElementById("Bankgeschäfte");
+        let shopping = document.getElementById("Einkaufen");
+        let house = document.getElementById("Haushaltsarbeiten");
         if (cash.checked == true) {
             grocery.disabled = true;
             money.disabled = false;
@@ -191,8 +191,8 @@ var L04_Haushaltshilfe;
         // Wenn der Button zum Abschicken gedrückt wurde, wird in einem Alert-Fenster eine Benachrichtigung mit dem Lieferdatum angezeigt
         let date = document.getElementById("date");
         let lieferdatum = date.value;
-        let paypal = document.getElementById("paypal");
-        let überweisung = document.getElementById("überweisung");
+        let paypal = document.getElementById("Paypal");
+        let überweisung = document.getElementById("Überweisung");
         let Zahlungsart;
         if (paypal.checked == true) {
             Zahlungsart = "Paypal";

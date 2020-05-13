@@ -3,6 +3,11 @@ var L04_Haushaltshilfe;
 (function (L04_Haushaltshilfe) {
     console.log("DataL04 ready");
     L04_Haushaltshilfe.data = {
+        input: [
+            { name: "Einkaufen", unit: "", price: 0 },
+            { name: "Bankgeschäfte", unit: "", price: 0 },
+            { name: "Haushaltsarbeiten", unit: "", price: 0 }
+        ],
         produce: [
             { name: "Brot", unit: "Laib", price: 2.00 },
             { name: "Eier", unit: "10er-Packung", price: 2.50 },
@@ -32,6 +37,11 @@ var L04_Haushaltshilfe;
             { name: "Post abholen", unit: "", price: 5 },
             { name: "Post wegbringen", unit: "", price: 5 },
             { name: "Rasen mähen", unit: "Garten", price: 20 }
+        ],
+        zahlungsart: [
+            { name: "Paypal", unit: "", price: 0 },
+            { name: "Überweisung", unit: "", price: 0 },
+            { name: "Bar", unit: "", price: 0 },
         ]
     };
 })(L04_Haushaltshilfe || (L04_Haushaltshilfe = {}));

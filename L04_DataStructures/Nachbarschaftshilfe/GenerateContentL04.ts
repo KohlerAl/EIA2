@@ -1,64 +1,69 @@
 namespace L04_Haushaltshilfe {
-    console.log("GenerateContentL04 ready"); 
+    console.log("GenerateContentL04 ready");
     export function generateContent(_data: Data): void {
         for (let category in _data) {
-            let items: Item[] = _data[category]; 
+            let items: Item[] = _data[category];
 
-            let group: HTMLElement | null = null; 
+            let group: HTMLElement | null = null;
             switch (category) {
-                case "produce": 
-                group = createDatalist(items, category); 
-                break; 
-                case "market": 
-                group = createDatalist(items, category); 
-                break;
-                case "money" : 
-                group = createRadio(items, category); 
-                break; 
-                case "household": 
-                group = createMultiple(items, category); 
-                default: 
-                break; 
+                case "input":
+                    group = createRadio(items, category);
+                    break;
+                case "produce":
+                    group = createDatalist(items, category);
+                    break;
+                case "market":
+                    group = createDatalist(items, category);
+                    break;
+                case "money":
+                    group = createRadio(items, category);
+                    break;
+                case "household":
+                    group = createMultiple(items, category);
+                    case "zahlungsart": 
+                    group = createRadio(items, category); 
+                default:
+                    break;
             }
 
-            let fieldset: HTMLFieldSetElement | null = document.querySelector("fieldset#" + category); 
-            if (fieldset && group) 
-                fieldset.insertBefore(group, fieldset.childNodes[0]); 
-            
+            let fieldset: HTMLFieldSetElement | null = document.querySelector("fieldset#" + category);
+            if (fieldset && group)
+                fieldset.insertBefore(group, fieldset.childNodes[0]);
+
         }
     }
 
-    function createDatalist(_item: Item[] , _category: string): HTMLElement | null {
+    function createDatalist(_item: Item[], _category: string): HTMLElement | null {
         let group: HTMLDivElement = document.createElement("div");
-        let input: HTMLInputElement = document.createElement("input"); 
-        input.setAttribute("list", _category + "s"); 
+        let input: HTMLInputElement = document.createElement("input");
+        input.setAttribute("list", _category + "s");
         input.setAttribute("placeholder", "Choose " + _category);
-        input.name = _category; 
-        let datalist: HTMLDataListElement = document.createElement("datalist"); 
-        datalist.id = _category + "s";  
+        input.name = _category;
+        let datalist: HTMLDataListElement = document.createElement("datalist");
+        datalist.id = _category + "s";
         for (let item of _item) {
-            let option: HTMLOptionElement = document.createElement("option"); 
-            option.setAttribute("name",  item.name);
+            let option: HTMLOptionElement = document.createElement("option");
+            option.setAttribute("name", item.name);
             option.value = item.name;
-            option.setAttribute("unit", item.unit); 
-            option.setAttribute("price", item.price.toFixed(2));  
+            option.setAttribute("unit", item.unit);
+            option.setAttribute("price", item.price.toFixed(2));
             //option.id = item.name; 
-            
+
             //let label: HTMLLabelElement = document.createElement("label"); 
             //label.textContent = item.name; 
             //label.htmlFor = item.name; 
 
-            group.appendChild(input);  
+            group.appendChild(input);
             group.appendChild(datalist);
-            datalist.appendChild(option); 
+            datalist.appendChild(option);
             //datalist.appendChild(label);  
 
         }
-        return group; 
-        
+        return group;
+
     }
 
-    function createMultiple(_item: Item[] , _category: string): HTMLElement | null {
+    function createMultiple(_item: Item[], _category: string): HTMLElement | null {
         let group: HTMLDivElement = document.createElement("div");
         for (let item of _item) {
             let checkbox: HTMLInputElement = document.createElement("input");
@@ -76,7 +81,7 @@ namespace L04_Haushaltshilfe {
 
             group.appendChild(checkbox);
             group.appendChild(label);
-            group.appendChild(br); 
+            group.appendChild(br);
         }
         return group;
     }
@@ -99,7 +104,7 @@ namespace L04_Haushaltshilfe {
 
             group.appendChild(radio);
             group.appendChild(label);
-            group.appendChild(br); 
+            group.appendChild(br);
         }
         return group;
     }
