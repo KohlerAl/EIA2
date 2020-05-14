@@ -21,6 +21,7 @@ var L04_Haushaltshilfe;
     function handleLoad() {
         console.log("HaushaltshilfeL04 ready");
         L04_Haushaltshilfe.generateContent(L04_Haushaltshilfe.data);
+        L04_Haushaltshilfe.createContent(L04_Haushaltshilfe.detail);
         // Event-Listener auf alle Buttons, nachdem alles geladen wurde
         cart.addEventListener("click", handleChange);
         getCash.addEventListener("click", handleChange);

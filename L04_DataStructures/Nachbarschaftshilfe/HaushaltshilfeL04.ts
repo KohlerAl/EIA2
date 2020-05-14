@@ -21,6 +21,7 @@ namespace L04_Haushaltshilfe {
     function handleLoad(): void {
         console.log("HaushaltshilfeL04 ready"); 
         generateContent(data);
+        createContent(detail);
         // Event-Listener auf alle Buttons, nachdem alles geladen wurde
         cart.addEventListener("click", handleChange);
         getCash.addEventListener("click", handleChange);

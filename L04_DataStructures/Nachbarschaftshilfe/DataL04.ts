@@ -1,6 +1,4 @@
 namespace L04_Haushaltshilfe {
-
-    console.log("DataL04 ready"); 
     export let data: Data = {
         produce: [
             {name: "Brot", unit: "Laib", price: 2.00},
@@ -14,12 +12,6 @@ namespace L04_Haushaltshilfe {
             {name: "Wasser", unit: "1L-Flasche", price: 0.50},
             {name: "Orangensaft", unit: "1L-Flasche", price: 1.00}
         ],
-        market: [
-            {name: "Edeka", unit: "", price: 0},
-            {name: "Aldi", unit: "", price: 0},
-            {name: "Lidl", unit: "", price: 0},
-            {name: "Rewe", unit: "", price: 0}
-        ],
         money: [
             {name: "Geld abheben", unit: "Euro", price: 5.00},
             {name: "Geld einzahlen", unit: "Euro", price: 5.00}
@@ -32,10 +24,21 @@ namespace L04_Haushaltshilfe {
             {name: "Post wegbringen", unit: "", price: 5},
             {name: "Rasen mähen", unit: "Garten", price: 20}
         ],
+    }
+
+    export let detail: Detail = {
+        market: [
+            {name: "Edeka"}, 
+            {name: "Aldi"}, 
+            {name: "Rewe"}, 
+            {name: "Lidl"}
+        ],
         zahlungsart: [
-            {name: "Paypal", unit: "", price: 0},
-            {name: "Überweisung", unit: "", price: 0},
-            {name: "Bar", unit: "", price: 0},
-        ]
+            {name: "Paypal"},
+            {name: "Überweisung"},
+            {name: "Bar"}
+        ] 
+
+
     }
 }

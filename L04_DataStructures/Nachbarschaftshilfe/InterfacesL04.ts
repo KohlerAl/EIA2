@@ -9,4 +9,12 @@ namespace L04_Haushaltshilfe {
     export interface Data {
         [category: string]: Item[]; 
     }
+
+    export interface Element {
+        name: string; 
+    }
+
+    export interface Detail {
+        [product: string]: Element[]; 
+    }
 }
