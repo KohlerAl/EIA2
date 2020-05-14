@@ -34,9 +34,9 @@ namespace L04_Haushaltshilfe {
          * Aktivieren des Fieldsets, für das sich der Nutzer entschieden hat und 
          * deaktivieren der anderen, damit versehentliche Eingaben vermieden werden. 
          */
-        let cash: HTMLInputElement = <HTMLInputElement>document.getElementById("Bankgeschäfte");
-        let shopping: HTMLInputElement = <HTMLInputElement>document.getElementById("Einkaufen");
-        let house: HTMLInputElement = <HTMLInputElement>document.getElementById("Haushaltsarbeiten");
+        let cash: HTMLInputElement = <HTMLInputElement>document.getElementById("cash");
+        let shopping: HTMLInputElement = <HTMLInputElement>document.getElementById("shopping");
+        let house: HTMLInputElement = <HTMLInputElement>document.getElementById("house");
 
         if (cash.checked == true) {
             grocery.disabled = true;

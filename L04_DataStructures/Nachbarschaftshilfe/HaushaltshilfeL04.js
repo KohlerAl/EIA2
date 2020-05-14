@@ -33,9 +33,9 @@ var L04_Haushaltshilfe;
          * Aktivieren des Fieldsets, für das sich der Nutzer entschieden hat und
          * deaktivieren der anderen, damit versehentliche Eingaben vermieden werden.
          */
-        let cash = document.getElementById("Bankgeschäfte");
-        let shopping = document.getElementById("Einkaufen");
-        let house = document.getElementById("Haushaltsarbeiten");
+        let cash = document.getElementById("cash");
+        let shopping = document.getElementById("shopping");
+        let house = document.getElementById("house");
         if (cash.checked == true) {
             grocery.disabled = true;
             money.disabled = false;

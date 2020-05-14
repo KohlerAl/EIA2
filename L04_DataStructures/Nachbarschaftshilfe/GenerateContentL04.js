@@ -7,9 +7,6 @@ var L04_Haushaltshilfe;
             let items = _data[category];
             let group = null;
             switch (category) {
-                case "input":
-                    group = createRadio(items, category);
-                    break;
                 case "produce":
                     group = createDatalist(items, category);
                     break;
@@ -21,6 +18,7 @@ var L04_Haushaltshilfe;
                     break;
                 case "household":
                     group = createMultiple(items, category);
+                    break;
                 case "zahlungsart":
                     group = createRadio(items, category);
                 default:

@@ -6,9 +6,6 @@ namespace L04_Haushaltshilfe {
 
             let group: HTMLElement | null = null;
             switch (category) {
-                case "input":
-                    group = createRadio(items, category);
-                    break;
                 case "produce":
                     group = createDatalist(items, category);
                     break;
@@ -20,6 +17,7 @@ namespace L04_Haushaltshilfe {
                     break;
                 case "household":
                     group = createMultiple(items, category);
+                    break; 
                     case "zahlungsart": 
                     group = createRadio(items, category); 
                 default:
