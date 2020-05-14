@@ -105,12 +105,14 @@ table {
 
 #grocery:disabled, #household:disabled, #money:disabled {
     color: #7f423d;
+    display: none;
 }
 #grocery:disabled * , #household:disabled *, #money:disabled *{
     background-color: #7f423d;
     border-color: #7f423d;
     color: #7f423d;
-    box-shadow: n;
+    box-shadow: none;
+    display: none;
 }
 
 .deleteButton {
@@ -119,3 +121,15 @@ table {
     border-radius: 10px;
     color: #a8ad97;
 }
+
+/* #grocery > * , #grocery *{
+    visibility: inherit;
+}
+
+#household > *, #household *{
+    visibility: inherit;
+}
+
+/* #money > * , #money *{
+    visibility: inherit; 
+} */

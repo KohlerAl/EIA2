@@ -21,6 +21,7 @@ var L04_Haushaltshilfe;
                     break;
                 case "zahlungsart":
                     group = createRadio(items, category);
+                    break;
                 default:
                     break;
             }

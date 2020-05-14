@@ -3,11 +3,6 @@ var L04_Haushaltshilfe;
 (function (L04_Haushaltshilfe) {
     console.log("DataL04 ready");
     L04_Haushaltshilfe.data = {
-        input: [
-            { name: "Einkaufen", unit: "", price: 0 },
-            { name: "Bankgeschäfte", unit: "", price: 0 },
-            { name: "Haushaltsarbeiten", unit: "", price: 0 }
-        ],
         produce: [
             { name: "Brot", unit: "Laib", price: 2.00 },
             { name: "Eier", unit: "10er-Packung", price: 2.50 },
@@ -16,7 +11,7 @@ var L04_Haushaltshilfe;
             { name: "Äpfel", unit: "1kg", price: 2.00 },
             { name: "Hefe", unit: "Würfel", price: 0.10 },
             { name: "Nudeln", unit: "500g-Packung", price: 1.50 },
-            { name: "Klopapier", unit: "1L-Packung", price: 0.78 },
+            { name: "Klopapier", unit: "Packung", price: 0.78 },
             { name: "Wasser", unit: "1L-Flasche", price: 0.50 },
             { name: "Orangensaft", unit: "1L-Flasche", price: 1.00 }
         ],

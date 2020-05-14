@@ -10,7 +10,7 @@ namespace L04_Haushaltshilfe {
             {name: "Äpfel", unit: "1kg", price: 2.00},
             {name: "Hefe", unit: "Würfel", price: 0.10},
             {name: "Nudeln", unit: "500g-Packung", price: 1.50},
-            {name: "Klopapier", unit: "1L-Packung", price: 0.78},
+            {name: "Klopapier", unit: "Packung", price: 0.78},
             {name: "Wasser", unit: "1L-Flasche", price: 0.50},
             {name: "Orangensaft", unit: "1L-Flasche", price: 1.00}
         ],

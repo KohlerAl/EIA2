@@ -93,6 +93,7 @@ var L04_Haushaltshilfe;
                     let einheit = String(item.getAttribute("unit"));
                     // Eintrag aus dem Supermarkt-Inputfeld suchen 
                     let markt = String(formData.get("market"));
+                    console.log(markt);
                     // Den Preis aus Menge und dem jeweiligen Grundpreis des Artikels berechen
                     itemPrice = menge * itemPrice;
                     // Deklarieren einer Variablen, um den Gesamtpreis (inklusive Service-Gebühr) an 
