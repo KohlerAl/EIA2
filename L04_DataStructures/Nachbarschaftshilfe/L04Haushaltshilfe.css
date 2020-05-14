@@ -51,7 +51,8 @@ legend {
     width: 500px;
     background: #7f423d;
     border: none;
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     box-shadow: 5px 5px 5px #a0958e;
 }
 
@@ -64,7 +65,8 @@ legend {
     position: relative;
     border-radius: 10px;
     width: 500px;
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background: #7f423d;
     border: none;
     box-shadow: 5px 5px 5px #a0958e;
@@ -76,7 +78,8 @@ legend {
     position: relative;
     border-radius: 10px;
     width: 500px;
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background: #7f423d;
     border: none;
     box-shadow: 5px 5px 5px #a0958e;
@@ -121,15 +124,3 @@ table {
     border-radius: 10px;
     color: #a8ad97;
 }
-
-/* #grocery > * , #grocery *{
-    visibility: inherit;
-}
-
-#household > *, #household *{
-    visibility: inherit;
-}
-
-/* #money > * , #money *{
-    visibility: inherit; 
-} */
