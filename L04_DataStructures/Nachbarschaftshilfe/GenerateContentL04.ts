@@ -17,9 +17,10 @@ namespace L04_Haushaltshilfe {
                     break;
                 case "household":
                     group = createMultiple(items, category);
-                    break; 
-                    case "zahlungsart": 
-                    group = createRadio(items, category); 
+                    break;
+                case "zahlungsart":
+                    group = createRadio(items, category);
+                    break;
                 default:
                     break;
             }
