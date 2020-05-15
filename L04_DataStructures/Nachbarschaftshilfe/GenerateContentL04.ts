@@ -119,9 +119,9 @@ namespace L04_Haushaltshilfe {
     }
 
 
-    function createSingle(_details: Element[], _product: string): HTMLElement | null {
+    function createSingle(_elements: Element[], _product: string): HTMLElement | null {
         let group: HTMLDivElement = document.createElement("div");
-        for (let item of _details) {
+        for (let item of _elements) {
             let radio: HTMLInputElement = document.createElement("input");
             radio.type = "radio";
             radio.value = item.name;

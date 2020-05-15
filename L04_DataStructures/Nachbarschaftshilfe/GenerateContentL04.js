@@ -102,9 +102,9 @@ var L04_Haushaltshilfe;
         }
         return group;
     }
-    function createSingle(_details, _product) {
+    function createSingle(_elements, _product) {
         let group = document.createElement("div");
-        for (let item of _details) {
+        for (let item of _elements) {
             let radio = document.createElement("input");
             radio.type = "radio";
             radio.value = item.name;
