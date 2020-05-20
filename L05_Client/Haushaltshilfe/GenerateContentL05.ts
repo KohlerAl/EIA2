@@ -6,7 +6,7 @@ namespace L05_Haushaltshilfe {
             let group: HTMLElement | null = null;
             switch (category) {
                 case "produce":
-                    group = createDatalist(items, category);
+                    group = createMultiple(items, category);
                     break;
                 case "money":
                     group = createRadio(items, category);
@@ -48,11 +48,33 @@ namespace L05_Haushaltshilfe {
         }
     }
 
-    function createDatalist(_item: Item[], _category: string): HTMLElement | null {
+    function createSlider(_parent: HTMLDivElement, _name: string, _box: HTMLInputElement, _unit: string): HTMLElement | null {
+        let slider = document.createElement("input"); 
+        let span = document.createElement("span"); 
+        span.innerHTML = "1"
+        slider.type = "range"; 
+        slider.setAttribute("min", "1"); 
+        slider.setAttribute("step", "1"); 
+        slider.setAttribute("max", "5"); 
+        slider.setAttribute("value", "1"); 
+        slider.classList.add(_name); 
+        let span2 = document.createElement("span");
+        span2.innerHTML = "5";  
+        _parent.appendChild(span); 
+        _parent.appendChild(slider); 
+        _parent.appendChild(span2); 
+        _box.setAttribute("unit", _unit);
+        return slider; 
+    }
+
+    /* function createDatalist(_item: Item[], _category: string): HTMLElement | null {
         let group: HTMLDivElement = document.createElement("div");
         let input: HTMLInputElement = document.createElement("input");
+        if (_category == "produce") {
+            createSlider(group); 
+        }
         input.setAttribute("list", _category + "s");
-        input.setAttribute("placeholder", "Choose " + _category);
+        input.setAttribute("placeholder", "Produkt auswählen");
         input.name = _category;
         let datalist: HTMLDataListElement = document.createElement("datalist");
         datalist.id = _category + "s";
@@ -70,7 +92,7 @@ namespace L05_Haushaltshilfe {
         }
         return group;
 
-    }
+    } */
 
     function createMultiple(_item: Item[], _category: string): HTMLElement | null {
         let group: HTMLDivElement = document.createElement("div");
@@ -82,7 +104,7 @@ namespace L05_Haushaltshilfe {
             checkbox.name = _category;
             checkbox.id = item.name;
 
-            let br: HTMLBRElement = document.createElement("br");
+            let br: HTMLBRElement = document.createElement("br"); 
 
             let label: HTMLLabelElement = document.createElement("label");
             label.textContent = item.name;
@@ -90,7 +112,12 @@ namespace L05_Haushaltshilfe {
 
             group.appendChild(checkbox);
             group.appendChild(label);
-            group.appendChild(br);
+
+            if (_category == "produce") {
+                createSlider(group, item.name, checkbox, item.unit); 
+            }
+            
+            group.appendChild(br); 
         }
         return group;
     }
@@ -145,7 +172,7 @@ namespace L05_Haushaltshilfe {
         let group: HTMLDivElement = document.createElement("div");
         let input: HTMLInputElement = document.createElement("input");
         input.setAttribute("list", _product + "s");
-        input.setAttribute("placeholder", "Choose " + _product);
+        input.setAttribute("placeholder", "Supermarkt auswählen");
         input.name = _product;
         let datalist: HTMLDataListElement = document.createElement("datalist");
         datalist.id = _product + "s";

@@ -13,6 +13,8 @@
 
 <body>
     <h1>Haushaltshilfe</h1>
+    <p>Im unten stehenden Formular können Sie auswählen, was wir für Sie erledigen sollen :) </p>
+    <!-- <h1>Haushaltshilfe</h1>
     <div id="choice">
         <h3>Bitte wählen Sie eine Erledigung aus</h3>
         <fieldset id="input">
@@ -22,26 +24,26 @@
         </fieldset>
 
         <button type="button" id="confirm" class="fa fa-check"></button>
-    </div>
+    </div> -->
     <form id="form" method="GET">
         <div>
-            <fieldset id="grocery">
+            <fieldset id="grocery" >
                 <legend>Einkaufen</legend>
                 <fieldset id="produce">
                 </fieldset>
-                <span id="slider">
+                <!-- <span id="slider">
                     <span>
                         Menge:
                         1
                         <input type="range" min="1.0" max="5.0" name="Menge" id="Quantity" step="1.0" value="1.0">
                         5
                     </span>
-                </span>
-                <fieldset id="market">
-                </fieldset>
-                <button id="cart" type="button" id="hello">Zur Bestellung hinzufügen</button>
+                </span> -->
+                <fieldset id="market" >
+                </fieldset><!-- 
+                <button id="cart" type="button">Zur Bestellung hinzufügen</button> -->
             </fieldset>
-            <fieldset id="money" disabled>
+            <fieldset id="money" >
                 <legend>Geld abheben/ einzahlen</legend>
                 <span id="sliderr">
                     <span>
@@ -50,13 +52,13 @@
                         150
                     </span>
                 </span>
-                <button id="getCash" type="button">Zur Bestellung hinzufügen</button>
+                <!-- <button id="getCash" type="button">Zur Bestellung hinzufügen</button> -->
             </fieldset>
 
-            <fieldset id="household" disabled>
+            <fieldset id="household" >
                 <legend>Haushaltsarbeiten</legend>
-                <button id="householdDone" type="button">Zur Bestellung hinzufügen</button>
             </fieldset>
+            <button id="householdDone" type="button">Auswahl zur Bestellung hinzufügen</button>
         </div>
     </form>
     <div id="order">

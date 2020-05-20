@@ -108,6 +108,15 @@ button:hover {
     color: #ffd187; 
 }
 
+input[type=range] {
+    position: relative;
+    top: 5px;
+}
+
+label {
+    padding-right: 50px; 
+}
+
 table, th, td {
     background-color: #b0b0b0;
     border: 1px solid #353535;

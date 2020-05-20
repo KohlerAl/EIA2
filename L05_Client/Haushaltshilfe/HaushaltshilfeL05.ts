@@ -6,14 +6,9 @@ namespace L05_Haushaltshilfe {
      * der globalen Variablen totalCost 
      */
     let totalCost: number = 0;
-    let form: HTMLFormElement = <HTMLFormElement>document.querySelector("form");
-    let confirm: HTMLButtonElement = <HTMLButtonElement>document.getElementById("confirm");
-
-    let grocery: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("grocery");
-    let money: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("money");
-    let household: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("household");
+    let form: HTMLFormElement = <HTMLFormElement>document.querySelector("form");/* 
     let cart: HTMLButtonElement = <HTMLButtonElement>document.getElementById("cart");
-    let getCash: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getCash");
+    let getCash: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getCash"); */
     let householdDone: HTMLButtonElement = <HTMLButtonElement>document.getElementById("householdDone");
     let resetButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("resetButton");
     let submitButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("submitButton");
@@ -31,38 +26,12 @@ namespace L05_Haushaltshilfe {
         generateContent(data);
         createContent(detail);
         // Event-Listener auf alle Buttons, nachdem alles geladen wurde
-        cart.addEventListener("click", handleChange);
-        getCash.addEventListener("click", handleChange);
-        householdDone.addEventListener("click", handleChange);
-        confirm.addEventListener("click", showInput);
+        /*cart.addEventListener("click", handleChange);
+        getCash.addEventListener("click", handleChange); */
+        householdDone.addEventListener("click", handleChange);/* 
+        confirm.addEventListener("click", showInput);  */
         submitButton.addEventListener("click", sendOrder);
         resetButton.addEventListener("click", resetForm);
-    }
-
-    function showInput(): void {
-        /**
-         * Aktivieren des Fieldsets, für das sich der Nutzer entschieden hat und 
-         * deaktivieren der anderen, damit versehentliche Eingaben vermieden werden. 
-         */
-        let cash: HTMLInputElement = <HTMLInputElement>document.getElementById("cash");
-        let shopping: HTMLInputElement = <HTMLInputElement>document.getElementById("shopping");
-        let house: HTMLInputElement = <HTMLInputElement>document.getElementById("house");
-
-        if (cash.checked == true) {
-            grocery.disabled = true;
-            money.disabled = false;
-            household.disabled = true;
-        }
-        else if (shopping.checked == true) {
-            grocery.disabled = false;
-            money.disabled = true;
-            household.disabled = true;
-        }
-        else if (house.checked == true) {
-            grocery.disabled = true;
-            money.disabled = true;
-            household.disabled = false;
-        }
     }
 
     function handleChange(_event: Event): void {
@@ -92,102 +61,98 @@ namespace L05_Haushaltshilfe {
             // Hinzufügen eines Mülleimer-Symbols
             deleteButton.classList.add("far", "fa-trash-alt");
             // Switch-Case mit den Namen der Einträge 
-            if (entry[1] == "") {
-                alert("In der Eingabe ist ein Fehler!")
+            console.log(entry[0]); 
+            switch (entry[0]) {
+                case "Menge":
+                    break;
+                case "produce":
+                    // Suchen nach dem Preis-Attribut 
+                    let itemPrice: number = Number(item.getAttribute("price"));
+                    // Wert aus dem Slider abgreufen 
+                    let menge: string = "[class='" + entry[1] + "']";
+                    // Selektieren des HTML-Elements mit dem entsprechenden Wert
+                    let slider: HTMLInputElement = <HTMLInputElement>document.querySelector(menge);
+                    let amount: number = Number(slider.value);
+                    // Wert, um welche Einheit es sich bei dem Artikel handelt suchen 
+                    let einheit: string = String(item.getAttribute("unit"));
+                    // Eintrag aus dem Supermarkt-Inputfeld suchen 
+                    let markt: string = String(formData.get("market"));
+                    // Den Preis aus Menge und dem jeweiligen Grundpreis des Artikels berechen
+                    itemPrice = amount * itemPrice;
+                    // Deklarieren einer Variablen, um den Gesamtpreis (inklusive Service-Gebühr) an 
+                    // die Funktion deleteListener zu übergeben 
+                    let gesamt = itemPrice + 0.5;
+                    // Installieren des Event-Listeners auf dem Button und übergeben des Gesamtpreises
+                    deleteButton.addEventListener("click", function () {
+                        deleteList(gesamt, event);
+                    });
+                    // Eintragen der Werte in die Tabelle
+                    td.innerHTML = "" + entry[1];
+                    td2.innerHTML = "" + itemPrice.toFixed(2) + "€";
+                    td3.innerHTML = "" + amount;
+                    td4.innerHTML = "" + einheit;
+                    td5.innerHTML = "" + 0.50 + "€";
+                    td6.innerHTML = "" + markt;
+                    // Die neuen Elemente in das HTML integrieren
+                    td7.appendChild(deleteButton);
+                    row.appendChild(td);
+                    row.appendChild(td2);
+                    row.appendChild(td3);
+                    row.appendChild(td4);
+                    row.appendChild(td5);
+                    row.appendChild(td6);
+                    row.appendChild(td7)
+                    table.appendChild(row);
+                    // Hinzufügen des Preises zum Gesamtpreis
+                    totalCost += itemPrice + 0.50;
+                    break;
+                case "money":
+                    // Suchen nach dem Preis-Attribut 
+                    // Der Wert wird rausgesucht und zum String gemacht, um ihn in der if-else Anweisung vergleichen zu können
+                    let money: string = String(item.getAttribute("value"));
+                    // Wenn der Wert Geld abheben ist, muss der Wert aus dem slider mit den Grundkosten verrechnet werden 
+
+                    // Der Wert vom Slider wird abgegriffen
+                    let bargeld: number = Number(formData.get("bargeld"));
+                    // Die Grundgebühr wird hinzugfeügt
+                    let geld = bargeld + 5;
+                    // Die Werte in die Tabellenspalten eintragen
+                    td.innerHTML = "" + money;
+                    td2.innerHTML = "" + geld + "€";
+                    // Den Event-Listener zum Button hinzufügen und den Gesamtpreis übergeben
+                    deleteButton.addEventListener("click", function () {
+                        deleteList(geld, event);
+                    });
+                    // Alle neuen Elemente ins HTML integrieren
+                    td3.appendChild(deleteButton);
+                    row.appendChild(td);
+                    row.appendChild(td2);
+                    row.appendChild(td3);
+                    table2.appendChild(row);
+                    // Die Kosten zu den Gesamtkosten hinzufügen und dann das Form-Element leeren
+                    totalCost += geld;
+                    break;
+
+                case "household":
+                    // Suchen nach dem Preis-Attribut 
+                    let itemCost: number = Number(item.getAttribute("price"));
+                    // Nach dem selben Prinzip wie oben werden jetzt auch die Haushaltsarbeiten durchgearbeitet
+                    td.innerHTML = "" + entry[1];
+                    td2.innerHTML = "" + itemCost + "€";
+                    deleteButton.addEventListener("click", function () {
+                        deleteList(itemCost, event);
+                    });
+                    td3.appendChild(deleteButton);
+                    row.appendChild(td);
+                    row.appendChild(td2);
+                    row.appendChild(td3)
+                    table3.appendChild(row);
+                    totalCost += itemCost;
+                    break;
+                default:
+                    break;
+
             }
-            else
-                switch (entry[0]) {
-                    case "Menge":
-                        break;
-                    case "produce":
-                        // Suchen nach dem Preis-Attribut 
-                        let itemPrice: number = Number(item.getAttribute("price"));
-                        // Wert aus dem Slider abgreufen 
-                        let menge: number = Number(formData.get("Menge"));
-                        // Wert, um welche Einheit es sich bei dem Artikel handelt suchen 
-                        let einheit: string = String(item.getAttribute("unit"));
-                        // Eintrag aus dem Supermarkt-Inputfeld suchen 
-                        let markt: string = String(formData.get("market"));
-                        // Den Preis aus Menge und dem jeweiligen Grundpreis des Artikels berechen
-                        itemPrice = menge * itemPrice;
-                        // Deklarieren einer Variablen, um den Gesamtpreis (inklusive Service-Gebühr) an 
-                        // die Funktion deleteListener zu übergeben 
-                        let gesamt = itemPrice + 0.5;
-                        // Installieren des Event-Listeners auf dem Button und übergeben des Gesamtpreises
-                        deleteButton.addEventListener("click", function () {
-                            deleteList(gesamt, event);
-                        });
-                        // Eintragen der Werte in die Tabelle
-                        td.innerHTML = "" + entry[1];
-                        td2.innerHTML = "" + itemPrice.toFixed(2) + "€";
-                        td3.innerHTML = "" + menge;
-                        td4.innerHTML = "" + einheit;
-                        td5.innerHTML = "" + 0.50 + "€";
-                        td6.innerHTML = "" + markt;
-                        // Die neuen Elemente in das HTML integrieren
-                        td7.appendChild(deleteButton);
-                        row.appendChild(td);
-                        row.appendChild(td2);
-                        row.appendChild(td3);
-                        row.appendChild(td4);
-                        row.appendChild(td5);
-                        row.appendChild(td6);
-                        row.appendChild(td7)
-                        table.appendChild(row);
-                        // Hinzufügen des Preises zum Gesamtpreis
-                        totalCost += itemPrice + 0.50;
-                        // Das Form-Element wird geleert, damit der Nutzer die Eingaben nicht selbst löschen muss 
-                        form.reset();
-                        break;
-                    case "money":
-                        // Suchen nach dem Preis-Attribut 
-                        // Der Wert wird rausgesucht und zum String gemacht, um ihn in der if-else Anweisung vergleichen zu können
-                        let money: string = String(item.getAttribute("value"));
-                        // Wenn der Wert Geld abheben ist, muss der Wert aus dem slider mit den Grundkosten verrechnet werden 
-
-                        // Der Wert vom Slider wird abgegriffen
-                        let bargeld: number = Number(formData.get("bargeld"));
-                        // Die Grundgebühr wird hinzugfeügt
-                        let geld = bargeld + 5;
-                        // Die Werte in die Tabellenspalten eintragen
-                        td.innerHTML = "" + money;
-                        td2.innerHTML = "" + geld + "€";
-                        // Den Event-Listener zum Button hinzufügen und den Gesamtpreis übergeben
-                        deleteButton.addEventListener("click", function () {
-                            deleteList(geld, event);
-                        });
-                        // Alle neuen Elemente ins HTML integrieren
-                        td3.appendChild(deleteButton);
-                        row.appendChild(td);
-                        row.appendChild(td2);
-                        row.appendChild(td3);
-                        table2.appendChild(row);
-                        // Die Kosten zu den Gesamtkosten hinzufügen und dann das Form-Element leeren
-                        totalCost += geld;
-                        form.reset();
-                        break;
-
-                    case "household":
-                        // Suchen nach dem Preis-Attribut 
-                        let itemCost: number = Number(item.getAttribute("price"));
-                        // Nach dem selben Prinzip wie oben werden jetzt auch die Haushaltsarbeiten durchgearbeitet
-                        td.innerHTML = "" + entry[1];
-                        td2.innerHTML = "" + itemCost + "€";
-                        deleteButton.addEventListener("click", function () {
-                            deleteList(itemCost, event);
-                        });
-                        td3.appendChild(deleteButton);
-                        row.appendChild(td);
-                        row.appendChild(td2);
-                        row.appendChild(td3)
-                        table3.appendChild(row);
-                        totalCost += itemCost;
-                        form.reset();
-                        break;
-                    default:
-                        break;
-
-                }
             // Der Gesamtpreis wird in der Bestellübersicht angezeigt, nachdem der alte Preis-Eintrag gelöscht wurde
             totalPrice.innerHTML = "";
             totalPrice.innerHTML = "<strong>Gesamtpreis: </strong>" + totalCost.toFixed(2) + "€";
@@ -211,12 +176,16 @@ namespace L05_Haushaltshilfe {
     }
 
     async function sendOrder(_event: Event): Promise<void> {
-        let formData: FormData = new FormData(form);
+        let formData: FormData = new FormData(document.forms[0]);
+        console.log(form);
+        for (let entry of formData) {
+            console.log(entry[1]);
+        }
         //Query-String zusammenbauen 
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         //Fetch (suchen der HTML-Datei (Haushaltshilfe))
         await fetch("HaushaltshilfeL05.html?" + query.toString());
-        
+
 
         // Wenn der Button zum Abschicken gedrückt wurde, wird in einem Alert-Fenster eine Benachrichtigung mit dem Lieferdatum angezeigt
         let date: HTMLInputElement = <HTMLInputElement>document.getElementById("date");

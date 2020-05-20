@@ -7,7 +7,7 @@ var L05_Haushaltshilfe;
             let group = null;
             switch (category) {
                 case "produce":
-                    group = createDatalist(items, category);
+                    group = createMultiple(items, category);
                     break;
                 case "money":
                     group = createRadio(items, category);
@@ -44,26 +44,50 @@ var L05_Haushaltshilfe;
         }
     }
     L05_Haushaltshilfe.createContent = createContent;
-    function createDatalist(_item, _category) {
-        let group = document.createElement("div");
-        let input = document.createElement("input");
+    function createSlider(_parent, _name, _box, _unit) {
+        let slider = document.createElement("input");
+        let span = document.createElement("span");
+        span.innerHTML = "1";
+        slider.type = "range";
+        slider.setAttribute("min", "1");
+        slider.setAttribute("step", "1");
+        slider.setAttribute("max", "5");
+        slider.setAttribute("value", "1");
+        slider.classList.add(_name);
+        let span2 = document.createElement("span");
+        span2.innerHTML = "5";
+        _parent.appendChild(span);
+        _parent.appendChild(slider);
+        _parent.appendChild(span2);
+        _box.setAttribute("unit", _unit);
+        return slider;
+    }
+    /* function createDatalist(_item: Item[], _category: string): HTMLElement | null {
+        let group: HTMLDivElement = document.createElement("div");
+        let input: HTMLInputElement = document.createElement("input");
+        if (_category == "produce") {
+            createSlider(group);
+        }
         input.setAttribute("list", _category + "s");
-        input.setAttribute("placeholder", "Choose " + _category);
+        input.setAttribute("placeholder", "Produkt auswählen");
         input.name = _category;
-        let datalist = document.createElement("datalist");
+        let datalist: HTMLDataListElement = document.createElement("datalist");
         datalist.id = _category + "s";
         for (let item of _item) {
-            let option = document.createElement("option");
+            let option: HTMLOptionElement = document.createElement("option");
             option.setAttribute("name", item.name);
             option.value = item.name;
             option.setAttribute("unit", item.unit);
             option.setAttribute("price", item.price.toFixed(2));
+
             group.appendChild(input);
             group.appendChild(datalist);
             datalist.appendChild(option);
+
         }
         return group;
-    }
+
+    } */
     function createMultiple(_item, _category) {
         let group = document.createElement("div");
         for (let item of _item) {
@@ -79,6 +103,9 @@ var L05_Haushaltshilfe;
             label.htmlFor = item.name;
             group.appendChild(checkbox);
             group.appendChild(label);
+            if (_category == "produce") {
+                createSlider(group, item.name, checkbox, item.unit);
+            }
             group.appendChild(br);
         }
         return group;
@@ -124,7 +151,7 @@ var L05_Haushaltshilfe;
         let group = document.createElement("div");
         let input = document.createElement("input");
         input.setAttribute("list", _product + "s");
-        input.setAttribute("placeholder", "Choose " + _product);
+        input.setAttribute("placeholder", "Supermarkt auswählen");
         input.name = _product;
         let datalist = document.createElement("datalist");
         datalist.id = _product + "s";
