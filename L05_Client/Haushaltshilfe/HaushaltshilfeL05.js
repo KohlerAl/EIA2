@@ -1,6 +1,6 @@
 "use strict";
-var L05_Haushaltshilfe;
-(function (L05_Haushaltshilfe) {
+var L05_Household;
+(function (L05_Household) {
     //Hinzufügen eiens load-Listeners 
     window.addEventListener("load", handleLoad);
     /**
@@ -22,8 +22,8 @@ var L05_Haushaltshilfe;
         let answer = await fetch("DetailL05.json");
         let offers = await answer.text();
         let detail = JSON.parse(offers);
-        L05_Haushaltshilfe.generateContent(data);
-        L05_Haushaltshilfe.createContent(detail);
+        L05_Household.generateContent(data);
+        L05_Household.createContent(detail);
         // Event-Listener auf alle Buttons, nachdem alles geladen wurde
         /*cart.addEventListener("click", handleChange);
         getCash.addEventListener("click", handleChange); */
@@ -59,7 +59,7 @@ var L05_Haushaltshilfe;
             // Hinzufügen eines Mülleimer-Symbols
             deleteButton.classList.add("far", "fa-trash-alt");
             // Switch-Case mit den Namen der Einträge 
-            console.log(entry[0]);
+            console.log(entry[1]);
             switch (entry[0]) {
                 case "Menge":
                     break;
@@ -67,10 +67,11 @@ var L05_Haushaltshilfe;
                     // Suchen nach dem Preis-Attribut 
                     let itemPrice = Number(item.getAttribute("price"));
                     // Wert aus dem Slider abgreufen 
-                    let menge = "[class='" + entry[1] + "']";
+                    let menge = String(entry[1]);
                     // Selektieren des HTML-Elements mit dem entsprechenden Wert
-                    let slider = document.querySelector(menge);
-                    let amount = Number(slider.value);
+                    /* let slider: HTMLInputElement = <HTMLInputElement>document.querySelector(menge); */
+                    let slider = formData.get(menge);
+                    let amount = Number(slider);
                     // Wert, um welche Einheit es sich bei dem Artikel handelt suchen 
                     let einheit = String(item.getAttribute("unit"));
                     // Eintrag aus dem Supermarkt-Inputfeld suchen 
@@ -106,7 +107,7 @@ var L05_Haushaltshilfe;
                     break;
                 case "money":
                     // Suchen nach dem Preis-Attribut 
-                    // Der Wert wird rausgesucht und zum String gemacht, um ihn in der if-else Anweisung vergleichen zu können
+                    // Der Wert wird rausgesucht und zum String umgewandelt
                     let money = String(item.getAttribute("value"));
                     // Wenn der Wert Geld abheben ist, muss der Wert aus dem slider mit den Grundkosten verrechnet werden 
                     // Der Wert vom Slider wird abgegriffen
@@ -147,10 +148,10 @@ var L05_Haushaltshilfe;
                     break;
                 default:
                     break;
+                    // Der Gesamtpreis wird in der Bestellübersicht angezeigt, nachdem der alte Preis-Eintrag gelöscht wurde
+                    totalPrice.innerHTML = "";
+                    totalPrice.innerHTML = "<strong>Gesamtpreis: </strong>" + totalCost.toFixed(2) + "€";
             }
-            // Der Gesamtpreis wird in der Bestellübersicht angezeigt, nachdem der alte Preis-Eintrag gelöscht wurde
-            totalPrice.innerHTML = "";
-            totalPrice.innerHTML = "<strong>Gesamtpreis: </strong>" + totalCost.toFixed(2) + "€";
         }
     }
     function deleteList(price, _event) {
@@ -194,6 +195,26 @@ var L05_Haushaltshilfe;
         }
         alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost + "€");
     }
+    function enableSlider(_event) {
+        let id = _event.target.id;
+        let slider = document.querySelector("." + id);
+        console.log(slider);
+        console.log(id);
+        if (_event.target.checked == true) {
+            slider.disabled = false;
+            console.log("enabled");
+        }
+        else {
+            slider.disabled = true;
+            console.log("disabled");
+        }
+    }
+    L05_Household.enableSlider = enableSlider;
+    function enableRadio() {
+        let bank = document.getElementById("Bank");
+        bank.disabled = false;
+    }
+    L05_Household.enableRadio = enableRadio;
     function resetForm(_event) {
         let table = document.getElementById("table");
         let table2 = document.getElementById("table2");
@@ -221,5 +242,5 @@ var L05_Haushaltshilfe;
         }
         totalPrice.innerHTML = "<strong>Gesamtpreis: </strong>  0.00€";
     }
-})(L05_Haushaltshilfe || (L05_Haushaltshilfe = {}));
+})(L05_Household || (L05_Household = {}));
 //# sourceMappingURL=HaushaltshilfeL05.js.map

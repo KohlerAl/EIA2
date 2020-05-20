@@ -34,6 +34,7 @@ input {
     box-shadow: 5px 5px 5px #a0958e;
 }
 
+
 #order {
     color: #f6f0f1; 
     border: none;
@@ -44,7 +45,6 @@ input {
     background: #353535;
     box-shadow: 5px 5px 5px #a0958e;
 }
-
 
 legend {
     color: #f6f0f1;
@@ -127,18 +127,6 @@ table, th, td {
 
 table {
     margin: 10px;
-}
-
-#grocery:disabled, #household:disabled, #money:disabled {
-    color: #353535;
-    display: none;
-}
-#grocery:disabled * , #household:disabled *, #money:disabled *{
-    background-color: #353535;
-    border-color: #353535;
-    color: #353535;
-    box-shadow: none;
-    display: none;
 }
 
 .deleteButton {

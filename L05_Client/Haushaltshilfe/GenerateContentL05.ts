@@ -1,4 +1,4 @@
-namespace L05_Haushaltshilfe {
+namespace L05_Household {
     export function generateContent(_data: Data): void {
         for (let category in _data) {
             let items: Item[] = _data[category];
@@ -57,8 +57,11 @@ namespace L05_Haushaltshilfe {
         slider.setAttribute("step", "1"); 
         slider.setAttribute("max", "5"); 
         slider.setAttribute("value", "1"); 
+        slider.disabled = true; 
         slider.classList.add(_name); 
+        slider.setAttribute("name", _name)
         let span2 = document.createElement("span");
+        _box.addEventListener("click", enableSlider); 
         span2.innerHTML = "5";  
         _parent.appendChild(span); 
         _parent.appendChild(slider); 
@@ -66,33 +69,6 @@ namespace L05_Haushaltshilfe {
         _box.setAttribute("unit", _unit);
         return slider; 
     }
-
-    /* function createDatalist(_item: Item[], _category: string): HTMLElement | null {
-        let group: HTMLDivElement = document.createElement("div");
-        let input: HTMLInputElement = document.createElement("input");
-        if (_category == "produce") {
-            createSlider(group); 
-        }
-        input.setAttribute("list", _category + "s");
-        input.setAttribute("placeholder", "Produkt auswählen");
-        input.name = _category;
-        let datalist: HTMLDataListElement = document.createElement("datalist");
-        datalist.id = _category + "s";
-        for (let item of _item) {
-            let option: HTMLOptionElement = document.createElement("option");
-            option.setAttribute("name", item.name);
-            option.value = item.name;
-            option.setAttribute("unit", item.unit);
-            option.setAttribute("price", item.price.toFixed(2));
-
-            group.appendChild(input);
-            group.appendChild(datalist);
-            datalist.appendChild(option);
-
-        }
-        return group;
-
-    } */
 
     function createMultiple(_item: Item[], _category: string): HTMLElement | null {
         let group: HTMLDivElement = document.createElement("div");
@@ -131,6 +107,8 @@ namespace L05_Haushaltshilfe {
             radio.value = item.name;
             radio.name = _category;
             radio.id = item.name;
+
+            radio.addEventListener("click", enableRadio); 
 
             let br: HTMLBRElement = document.createElement("br");
 

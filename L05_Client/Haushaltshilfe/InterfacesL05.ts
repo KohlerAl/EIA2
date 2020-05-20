@@ -1,4 +1,4 @@
-namespace L05_Haushaltshilfe {
+namespace L05_Household {
 
     export interface Item {
         name: string; 

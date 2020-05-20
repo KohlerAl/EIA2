@@ -1,6 +1,6 @@
 "use strict";
-var L05_Haushaltshilfe;
-(function (L05_Haushaltshilfe) {
+var L05_Household;
+(function (L05_Household) {
     function generateContent(_data) {
         for (let category in _data) {
             let items = _data[category];
@@ -23,7 +23,7 @@ var L05_Haushaltshilfe;
                 fieldset.insertBefore(group, fieldset.childNodes[0]);
         }
     }
-    L05_Haushaltshilfe.generateContent = generateContent;
+    L05_Household.generateContent = generateContent;
     function createContent(_detail) {
         for (let product in _detail) {
             let elements = _detail[product];
@@ -43,7 +43,7 @@ var L05_Haushaltshilfe;
                 fieldset.insertBefore(group, fieldset.childNodes[0]);
         }
     }
-    L05_Haushaltshilfe.createContent = createContent;
+    L05_Household.createContent = createContent;
     function createSlider(_parent, _name, _box, _unit) {
         let slider = document.createElement("input");
         let span = document.createElement("span");
@@ -53,8 +53,11 @@ var L05_Haushaltshilfe;
         slider.setAttribute("step", "1");
         slider.setAttribute("max", "5");
         slider.setAttribute("value", "1");
+        slider.disabled = true;
         slider.classList.add(_name);
+        slider.setAttribute("name", _name);
         let span2 = document.createElement("span");
+        _box.addEventListener("click", L05_Household.enableSlider);
         span2.innerHTML = "5";
         _parent.appendChild(span);
         _parent.appendChild(slider);
@@ -62,32 +65,6 @@ var L05_Haushaltshilfe;
         _box.setAttribute("unit", _unit);
         return slider;
     }
-    /* function createDatalist(_item: Item[], _category: string): HTMLElement | null {
-        let group: HTMLDivElement = document.createElement("div");
-        let input: HTMLInputElement = document.createElement("input");
-        if (_category == "produce") {
-            createSlider(group);
-        }
-        input.setAttribute("list", _category + "s");
-        input.setAttribute("placeholder", "Produkt auswählen");
-        input.name = _category;
-        let datalist: HTMLDataListElement = document.createElement("datalist");
-        datalist.id = _category + "s";
-        for (let item of _item) {
-            let option: HTMLOptionElement = document.createElement("option");
-            option.setAttribute("name", item.name);
-            option.value = item.name;
-            option.setAttribute("unit", item.unit);
-            option.setAttribute("price", item.price.toFixed(2));
-
-            group.appendChild(input);
-            group.appendChild(datalist);
-            datalist.appendChild(option);
-
-        }
-        return group;
-
-    } */
     function createMultiple(_item, _category) {
         let group = document.createElement("div");
         for (let item of _item) {
@@ -119,6 +96,7 @@ var L05_Haushaltshilfe;
             radio.value = item.name;
             radio.name = _category;
             radio.id = item.name;
+            radio.addEventListener("click", L05_Household.enableRadio);
             let br = document.createElement("br");
             let label = document.createElement("label");
             label.textContent = item.name;
@@ -165,5 +143,5 @@ var L05_Haushaltshilfe;
         }
         return group;
     }
-})(L05_Haushaltshilfe || (L05_Haushaltshilfe = {}));
+})(L05_Household || (L05_Household = {}));
 //# sourceMappingURL=GenerateContentL05.js.map

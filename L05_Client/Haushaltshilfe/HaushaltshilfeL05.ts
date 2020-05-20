@@ -1,4 +1,4 @@
-namespace L05_Haushaltshilfe {
+namespace L05_Household {
     //Hinzufügen eiens load-Listeners 
     window.addEventListener("load", handleLoad);
     /**
@@ -61,7 +61,7 @@ namespace L05_Haushaltshilfe {
             // Hinzufügen eines Mülleimer-Symbols
             deleteButton.classList.add("far", "fa-trash-alt");
             // Switch-Case mit den Namen der Einträge 
-            console.log(entry[0]); 
+            console.log(entry[1]);
             switch (entry[0]) {
                 case "Menge":
                     break;
@@ -69,10 +69,11 @@ namespace L05_Haushaltshilfe {
                     // Suchen nach dem Preis-Attribut 
                     let itemPrice: number = Number(item.getAttribute("price"));
                     // Wert aus dem Slider abgreufen 
-                    let menge: string = "[class='" + entry[1] + "']";
+                    let menge: string = String(entry[1]);
                     // Selektieren des HTML-Elements mit dem entsprechenden Wert
-                    let slider: HTMLInputElement = <HTMLInputElement>document.querySelector(menge);
-                    let amount: number = Number(slider.value);
+                    /* let slider: HTMLInputElement = <HTMLInputElement>document.querySelector(menge); */
+                    let slider = formData.get(menge);
+                    let amount: number = Number(slider);
                     // Wert, um welche Einheit es sich bei dem Artikel handelt suchen 
                     let einheit: string = String(item.getAttribute("unit"));
                     // Eintrag aus dem Supermarkt-Inputfeld suchen 
@@ -108,7 +109,7 @@ namespace L05_Haushaltshilfe {
                     break;
                 case "money":
                     // Suchen nach dem Preis-Attribut 
-                    // Der Wert wird rausgesucht und zum String gemacht, um ihn in der if-else Anweisung vergleichen zu können
+                    // Der Wert wird rausgesucht und zum String umgewandelt
                     let money: string = String(item.getAttribute("value"));
                     // Wenn der Wert Geld abheben ist, muss der Wert aus dem slider mit den Grundkosten verrechnet werden 
 
@@ -152,11 +153,12 @@ namespace L05_Haushaltshilfe {
                 default:
                     break;
 
-            }
-            // Der Gesamtpreis wird in der Bestellübersicht angezeigt, nachdem der alte Preis-Eintrag gelöscht wurde
-            totalPrice.innerHTML = "";
-            totalPrice.innerHTML = "<strong>Gesamtpreis: </strong>" + totalCost.toFixed(2) + "€";
 
+                    // Der Gesamtpreis wird in der Bestellübersicht angezeigt, nachdem der alte Preis-Eintrag gelöscht wurde
+                    totalPrice.innerHTML = "";
+                    totalPrice.innerHTML = "<strong>Gesamtpreis: </strong>" + totalCost.toFixed(2) + "€";
+
+            }
         }
     }
 
@@ -206,6 +208,24 @@ namespace L05_Haushaltshilfe {
         alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost + "€");
     }
 
+    export function enableSlider(_event: any): void {
+        let id: string = _event.target.id; 
+        let slider: HTMLInputElement = <HTMLInputElement>document.querySelector("." + id); 
+        console.log(slider);
+        console.log(id); 
+        if (_event.target.checked == true) {
+            slider.disabled = false; 
+            console.log("enabled"); 
+        }
+        else {
+        slider.disabled = true; 
+        console.log("disabled"); }
+    }
+
+    export function enableRadio(): void {
+        let bank: HTMLInputElement = <HTMLInputElement>document.getElementById("Bank"); 
+        bank.disabled = false; 
+    }
 
     function resetForm(_event: Event): void {
         let table: HTMLDivElement = <HTMLDivElement>document.getElementById("table");
