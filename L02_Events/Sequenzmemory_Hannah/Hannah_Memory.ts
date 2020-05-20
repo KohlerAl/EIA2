@@ -121,7 +121,7 @@ namespace L02_Sequenzmemory {
 
     }
 
-    function checkCards(_sequence: string, _event): void {
+    function checkCards(_sequence: string, _event: any): void {
         let id = _event.target.id; 
         console.log(index); 
         console.log(_sequence[index]);

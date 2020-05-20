@@ -183,7 +183,7 @@ namespace L04_Haushaltshilfe {
         }
     }
 
-    function deleteList(price: number, _event): void {
+    function deleteList(price: number, _event: any): void {
         // Der Preis wird vom Gesamtpreis abgezogen und die Anzeige aktualiiert
         totalCost -= price;
         totalPrice.innerHTML = "" + totalCost.toFixed(2) + "€";

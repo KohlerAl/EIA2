@@ -2,8 +2,10 @@
 var L04_Haushaltshilfe;
 (function (L04_Haushaltshilfe) {
     function generateContent(_data) {
-        for (let category in _data) {
+        for (let category in _data[name]) {
             let items = _data[category];
+            console.log(items);
+            console.log("Hello");
             let group = null;
             switch (category) {
                 case "produce":

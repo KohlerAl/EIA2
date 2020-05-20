@@ -1,0 +1,25 @@
+{"market": [
+    {
+        "name": "Edeka"
+    },
+    {
+        "name": "Aldi"
+    },
+    {
+        "name": "Rewe"
+    },
+    {
+        "name": "Lidl"
+    }
+],
+"zahlungsart": [
+    {
+        "name": "Paypal"
+    },
+    {
+        "name": "Überweisung"
+    },
+    {
+        "name": "Bar"
+    }
+]}

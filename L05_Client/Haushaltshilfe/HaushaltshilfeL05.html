@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haushaltshilfe L05</title>
+    <link rel="stylesheet" href="L05Haushaltshilfe.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <script src="InterfacesL05.js"> </script>
+    <script src="GenerateContentL05.js"> </script>
+</head>
+
+<body>
+    <h1>Haushaltshilfe</h1>
+    <div id="choice">
+        <h3>Bitte wählen Sie eine Erledigung aus</h3>
+        <fieldset id="input">
+            <input type="radio" name="task" id="shopping" checked><label>Einkaufen</label><br>
+            <input type="radio" name="task" id="cash"><label>Geld abheben/ einzahlen</label><br>
+            <input type="radio" name="task" id="house"><label>Haushaltsservice</label><br>
+        </fieldset>
+
+        <button type="button" id="confirm" class="fa fa-check"></button>
+    </div>
+    <form id="form" method="GET">
+        <div>
+            <fieldset id="grocery">
+                <legend>Einkaufen</legend>
+                <fieldset id="produce">
+                </fieldset>
+                <span id="slider">
+                    <span>
+                        Menge:
+                        1
+                        <input type="range" min="1.0" max="5.0" name="Menge" id="Quantity" step="1.0" value="1.0">
+                        5
+                    </span>
+                </span>
+                <fieldset id="market">
+                </fieldset>
+                <button id="cart" type="button" id="hello">Zur Bestellung hinzufügen</button>
+            </fieldset>
+            <fieldset id="money" disabled>
+                <legend>Geld abheben/ einzahlen</legend>
+                <span id="sliderr">
+                    <span>
+                        20
+                        <input price="0" type="range" name="bargeld" min="20" max="150" id="Bank" step="5" value="20">
+                        150
+                    </span>
+                </span>
+                <button id="getCash" type="button">Zur Bestellung hinzufügen</button>
+            </fieldset>
+
+            <fieldset id="household" disabled>
+                <legend>Haushaltsarbeiten</legend>
+                <button id="householdDone" type="button">Zur Bestellung hinzufügen</button>
+            </fieldset>
+        </div>
+    </form>
+    <div id="order">
+        <h3>Bestellübersicht</h3>
+        <table id="table">
+            <tr>
+                <th>Artikel</th>
+                <th>Preis</th>
+                <th>Menge</th>
+                <th>Einheit</th>
+                <th>Gebühr</th>
+                <th>Zusätzliche Informationen</th>
+                <th>Löschen</th>
+            </tr>
+        </table>
+        <table id="table2">
+            <tr>
+                <th>Erledigung</th>
+                <th>Preis</th>
+                <th>Löschen</th>
+            </tr>
+        </table>
+        <table id="table3">
+            <tr>
+                <th>Erledigung</th>
+                <th>Preis</th>
+                <th>Löschen</th>
+            </tr>
+        </table>
+        <label for="date">Lieferdatum</label> <input id="date" type="date" min="2020-05-14">
+        <label id="totalPrice"><strong>Gesamtpreis: </strong>0.00€</label><br>
+        <fieldset id="zahlungsart">
+        </fieldset>
+        <button type="button" id="submitButton" form="form">Bestellung abschicken</button>
+        <button type="reset" id="resetButton" form="form" class="fa fa-undo"></button>
+</body>
+<script src="HaushaltshilfeL05.js"> </script>
+
+</html>

@@ -1,8 +1,9 @@
 namespace L04_Haushaltshilfe {
     export function generateContent(_data: Data): void {
-        for (let category in _data) {
+        for (let category in _data[name]) {
             let items: Item[] = _data[category];
-
+            console.log(items); 
+            console.log("Hello")
             let group: HTMLElement | null = null;
             switch (category) {
                 case "produce":

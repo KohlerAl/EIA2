@@ -165,7 +165,7 @@ namespace L02_Memory {
 
    let index: number = 0; 
    
-   function checkCard(_original: string, _event): void {
+   function checkCard(_original: string, _event: any): void {
 
        // Hier hole ich mir die ID von event.target (hier die Karte auf die geklickt wurde)
        let id = _event.target.id; 
