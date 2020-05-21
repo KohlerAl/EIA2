@@ -67,7 +67,6 @@ var L05_Household;
         _parent.appendChild(slider);
         _parent.appendChild(span2);
         _box.setAttribute("unit", _unit);
-        return slider;
     }
     function createMultiple(_item, _category) {
         let group = document.createElement("div");

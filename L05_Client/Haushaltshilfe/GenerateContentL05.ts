@@ -47,7 +47,7 @@ namespace L05_Household {
         }
     }
 
-    function createSlider(_parent: HTMLDivElement, _name: string, _box: HTMLInputElement, _unit: string): HTMLElement | null {
+    function createSlider(_parent: HTMLDivElement, _name: string, _box: HTMLInputElement, _unit: string): void {
         let slider = document.createElement("input"); 
         let span = document.createElement("span"); 
         span.innerHTML = "1"
@@ -70,7 +70,6 @@ namespace L05_Household {
         _parent.appendChild(slider); 
         _parent.appendChild(span2); 
         _box.setAttribute("unit", _unit);
-        return slider; 
     }
 
     function createMultiple(_item: Item[], _category: string): HTMLElement | null {
