@@ -182,7 +182,7 @@ namespace L05_Household {
         console.log(form);
         for (let entry of formData) {
             console.log(entry[1]);
-        }
+        } 
         //Query-String zusammenbauen 
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         //Fetch (suchen der HTML-Datei (Haushaltshilfe))
@@ -205,26 +205,30 @@ namespace L05_Household {
         else {
             Zahlungsart = "Bar"
         }
-        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost + "€");
+        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost.toFixed(2) + "€");
     }
 
     export function enableSlider(_event: any): void {
         let id: string = _event.target.id; 
         let slider: HTMLInputElement = <HTMLInputElement>document.querySelector("." + id); 
-        console.log(slider);
-        console.log(id); 
+        let range: HTMLSpanElement = <HTMLSpanElement>document.querySelector(".range" + id); 
+        let range2: HTMLSpanElement = <HTMLSpanElement>document.querySelector(".range2" + id); 
         if (_event.target.checked == true) {
             slider.disabled = false; 
-            console.log("enabled"); 
+            range.style.opacity = "1";
+            range2.style.opacity = "1";
         }
         else {
         slider.disabled = true; 
-        console.log("disabled"); }
+        range.style.opacity = "0";
+        range2.style.opacity = "0"; }
     }
 
     export function enableRadio(): void {
         let bank: HTMLInputElement = <HTMLInputElement>document.getElementById("Bank"); 
         bank.disabled = false; 
+        let money: HTMLSpanElement = <HTMLSpanElement>document.querySelector(".money");
+        money.style.opacity = "1"
     }
 
     function resetForm(_event: Event): void {

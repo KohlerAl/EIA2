@@ -2,7 +2,6 @@ namespace L05_Household {
     export function generateContent(_data: Data): void {
         for (let category in _data) {
             let items: Item[] = _data[category];
-
             let group: HTMLElement | null = null;
             switch (category) {
                 case "produce":
@@ -52,6 +51,8 @@ namespace L05_Household {
         let slider = document.createElement("input"); 
         let span = document.createElement("span"); 
         span.innerHTML = "1"
+        span.classList.add("range" + _name); 
+        span.style.opacity = "0";
         slider.type = "range"; 
         slider.setAttribute("min", "1"); 
         slider.setAttribute("step", "1"); 
@@ -59,10 +60,12 @@ namespace L05_Household {
         slider.setAttribute("value", "1"); 
         slider.disabled = true; 
         slider.classList.add(_name); 
-        slider.setAttribute("name", _name)
+        slider.setAttribute("name", _name);
         let span2 = document.createElement("span");
         _box.addEventListener("click", enableSlider); 
         span2.innerHTML = "5";  
+        span2.classList.add("range2" + _name); 
+        span2.style.opacity = "0"; 
         _parent.appendChild(span); 
         _parent.appendChild(slider); 
         _parent.appendChild(span2); 

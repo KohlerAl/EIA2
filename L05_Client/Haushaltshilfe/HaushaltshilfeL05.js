@@ -193,26 +193,30 @@ var L05_Household;
         else {
             Zahlungsart = "Bar";
         }
-        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost + "€");
+        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost.toFixed(2) + "€");
     }
     function enableSlider(_event) {
         let id = _event.target.id;
         let slider = document.querySelector("." + id);
-        console.log(slider);
-        console.log(id);
+        let range = document.querySelector(".range" + id);
+        let range2 = document.querySelector(".range2" + id);
         if (_event.target.checked == true) {
             slider.disabled = false;
-            console.log("enabled");
+            range.style.opacity = "1";
+            range2.style.opacity = "1";
         }
         else {
             slider.disabled = true;
-            console.log("disabled");
+            range.style.opacity = "0";
+            range2.style.opacity = "0";
         }
     }
     L05_Household.enableSlider = enableSlider;
     function enableRadio() {
         let bank = document.getElementById("Bank");
         bank.disabled = false;
+        let money = document.querySelector(".money");
+        money.style.opacity = "1";
     }
     L05_Household.enableRadio = enableRadio;
     function resetForm(_event) {

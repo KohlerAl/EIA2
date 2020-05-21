@@ -17,6 +17,14 @@ input {
     background-color: #fafafa; 
 }
 
+input[type=range]:disabled {
+   opacity: 0; 
+}
+
+.money {
+    opacity: 0;
+}
+
 #Quantity {
     position: relative;
     top: 8px;
