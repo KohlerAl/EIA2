@@ -153,13 +153,11 @@ namespace L05_Household {
                     break;
                 default:
                     break;
-
-
-                    // Der Gesamtpreis wird in der Bestellübersicht angezeigt, nachdem der alte Preis-Eintrag gelöscht wurde
+                }
                     totalPrice.innerHTML = "";
                     totalPrice.innerHTML = "<strong>Gesamtpreis: </strong>" + totalCost.toFixed(2) + "€";
 
-            }
+            
         }
     }
 
