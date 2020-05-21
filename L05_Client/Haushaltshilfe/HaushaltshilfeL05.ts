@@ -1,4 +1,5 @@
 namespace L05_Household {
+
     //Hinzufügen eiens load-Listeners 
     window.addEventListener("load", handleLoad);
     /**
@@ -54,12 +55,12 @@ namespace L05_Household {
             let td3 = document.createElement("td");
             let td4 = document.createElement("td");
             let td5 = document.createElement("td");
-            let td6 = document.createElement("td");
-            let td7 = document.createElement("td");
+            let td6 = document.createElement("td");/* 
+            let td7 = document.createElement("td"); */
             // Erstellen eines Buttons, damit man den Eintrag später auch löschen kann 
-            let deleteButton: HTMLButtonElement | null = document.createElement("button");
+            /* let deleteButton: HTMLButtonElement | null = document.createElement("button");
             // Hinzufügen eines Mülleimer-Symbols
-            deleteButton.classList.add("far", "fa-trash-alt");
+            deleteButton.classList.add("far", "fa-trash-alt"); */
             // Switch-Case mit den Namen der Einträge 
             console.log(entry[1]);
             switch (entry[0]) {
@@ -82,11 +83,11 @@ namespace L05_Household {
                     itemPrice = amount * itemPrice;
                     // Deklarieren einer Variablen, um den Gesamtpreis (inklusive Service-Gebühr) an 
                     // die Funktion deleteListener zu übergeben 
-                    let gesamt = itemPrice + 0.5;
+                    /*let gesamt = itemPrice + 0.5; 
                     // Installieren des Event-Listeners auf dem Button und übergeben des Gesamtpreises
-                    deleteButton.addEventListener("click", function () {
+                     deleteButton.addEventListener("click", function () {
                         deleteList(gesamt, event);
-                    });
+                    }); */
                     // Eintragen der Werte in die Tabelle
                     td.innerHTML = "" + entry[1];
                     td2.innerHTML = "" + itemPrice.toFixed(2) + "€";
@@ -95,14 +96,14 @@ namespace L05_Household {
                     td5.innerHTML = "" + 0.50 + "€";
                     td6.innerHTML = "" + markt;
                     // Die neuen Elemente in das HTML integrieren
-                    td7.appendChild(deleteButton);
+                    /* td7.appendChild(deleteButton);  */
                     row.appendChild(td);
                     row.appendChild(td2);
                     row.appendChild(td3);
                     row.appendChild(td4);
                     row.appendChild(td5);
-                    row.appendChild(td6);
-                    row.appendChild(td7)
+                    row.appendChild(td6);/* 
+                    row.appendChild(td7) */
                     table.appendChild(row);
                     // Hinzufügen des Preises zum Gesamtpreis
                     totalCost += itemPrice + 0.50;
@@ -121,14 +122,14 @@ namespace L05_Household {
                     td.innerHTML = "" + money;
                     td2.innerHTML = "" + geld + "€";
                     // Den Event-Listener zum Button hinzufügen und den Gesamtpreis übergeben
-                    deleteButton.addEventListener("click", function () {
+                    /* deleteButton.addEventListener("click", function () {
                         deleteList(geld, event);
                     });
                     // Alle neuen Elemente ins HTML integrieren
-                    td3.appendChild(deleteButton);
+                    td3.appendChild(deleteButton); */
                     row.appendChild(td);
-                    row.appendChild(td2);
-                    row.appendChild(td3);
+                    row.appendChild(td2);/* 
+                    row.appendChild(td3); */
                     table2.appendChild(row);
                     // Die Kosten zu den Gesamtkosten hinzufügen und dann das Form-Element leeren
                     totalCost += geld;
@@ -140,13 +141,13 @@ namespace L05_Household {
                     // Nach dem selben Prinzip wie oben werden jetzt auch die Haushaltsarbeiten durchgearbeitet
                     td.innerHTML = "" + entry[1];
                     td2.innerHTML = "" + itemCost + "€";
-                    deleteButton.addEventListener("click", function () {
+                   /*  deleteButton.addEventListener("click", function () {
                         deleteList(itemCost, event);
                     });
-                    td3.appendChild(deleteButton);
+                    td3.appendChild(deleteButton); */
                     row.appendChild(td);
-                    row.appendChild(td2);
-                    row.appendChild(td3)
+                    row.appendChild(td2);/* 
+                    row.appendChild(td3) */
                     table3.appendChild(row);
                     totalCost += itemCost;
                     break;
@@ -162,7 +163,7 @@ namespace L05_Household {
         }
     }
 
-    function deleteList(price: number, _event: any): void {
+    /* function deleteList(price: number, _event: any): void {
         // Der Preis wird vom Gesamtpreis abgezogen und die Anzeige aktualiiert
         totalCost -= price;
         totalPrice.innerHTML = "" + totalCost.toFixed(2) + "€";
@@ -175,7 +176,7 @@ namespace L05_Household {
         parent.removeChild(target);
         grandParent.removeChild(parent);
         greatGrandParent.removeChild(grandParent);
-    }
+    } */
 
     async function sendOrder(_event: Event): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
@@ -259,6 +260,7 @@ namespace L05_Household {
             table3.removeChild(tr);
             length3--;
         }
+        totalCost = 0; 
         totalPrice.innerHTML = "<strong>Gesamtpreis: </strong>  0.00€";
     }
 

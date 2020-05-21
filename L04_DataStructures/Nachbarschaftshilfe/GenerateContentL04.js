@@ -2,7 +2,7 @@
 var L04_Haushaltshilfe;
 (function (L04_Haushaltshilfe) {
     function generateContent(_data) {
-        for (let category in _data[name]) {
+        for (let category in _data) {
             let items = _data[category];
             console.log(items);
             console.log("Hello");
