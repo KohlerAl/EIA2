@@ -2,8 +2,8 @@ namespace L05_Household {
 
     /**
      * An alle die vorhaben, diesen Code ganz oder in Teilen zu kopieren: Gebt bitte meinen Namen an!
-     * Es macht mich traurig, dass meine Arbeit und Mühe, die in diesem Code stecken, von einigen so wenig geschätzt
-     * werden, dass nicht einmal mein Name angegeben wird :(
+     * Es macht mich traurig, dass meine Arbeit und Mühe, die in diesem Code stecken (und in seinen Vorgänger-Versionen),
+     * von einigen so wenig geschätzt werden, dass nicht einmal mein Name angegeben wird :(
      */
 
     //Hinzufügen eiens load-Listeners 
