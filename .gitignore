@@ -50,3 +50,11 @@ node_modules/@types/node/v8.d.ts
 node_modules/@types/node/vm.d.ts
 node_modules/@types/node/worker_threads.d.ts
 node_modules/@types/node/zlib.d.ts
+node_modules/@types/node/globals.global.d.ts
+node_modules/@types/node/fs/promises.d.ts
+node_modules/@types/node/ts3.2/base.d.ts
+node_modules/@types/node/ts3.5/base.d.ts
+node_modules/@types/node/ts3.5/globals.global.d.ts
+node_modules/@types/node/ts3.7/assert.d.ts
+node_modules/@types/node/ts3.7/base.d.ts
+node_modules/@types/node/ts3.7/index.d.ts

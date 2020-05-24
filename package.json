@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "EIA2",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@types/node": "^14.0.5"
+  },
   "devDependencies": {},
   "scripts": {
     "start": "node L05_Client/CocktailBar.js"
