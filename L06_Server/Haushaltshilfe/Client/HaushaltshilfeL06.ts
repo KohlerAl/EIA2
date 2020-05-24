@@ -190,7 +190,7 @@ namespace L06_Household {
         //await fetch("HaushaltshilfeL05.html?" + query.toString());
         let response: Response = await fetch(url + "?" + query.toString());
         let responseText: string = await response.text();
-        alert(responseText);
+        console.log(url); 
 
 
         // Wenn der Button zum Abschicken gedrückt wurde, wird in einem Alert-Fenster eine Benachrichtigung mit dem Lieferdatum angezeigt
@@ -209,7 +209,8 @@ namespace L06_Household {
         else {
             Zahlungsart = "Bar"
         }
-        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost.toFixed(2) + "€");
+        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " 
+        + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost.toFixed(2) + "€" + "\n Ihre Bestellung: " + "\n" + responseText);
     }
 
     export function enableSlider(_event: any): void {
