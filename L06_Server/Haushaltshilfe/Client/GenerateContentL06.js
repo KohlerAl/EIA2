@@ -6,7 +6,7 @@ var L06_Household;
             let items = _data[category];
             let group = null;
             switch (category) {
-                case "produce":
+                case "product":
                     group = createMultiple(items, category);
                     break;
                 case "money":
@@ -83,7 +83,7 @@ var L06_Household;
             label.htmlFor = item.name;
             group.appendChild(checkbox);
             group.appendChild(label);
-            if (_category == "produce") {
+            if (_category == "product") {
                 createSlider(group, item.name, checkbox, item.unit);
             }
             group.appendChild(br);

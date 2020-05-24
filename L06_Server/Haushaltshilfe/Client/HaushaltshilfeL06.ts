@@ -19,11 +19,11 @@ namespace L06_Household {
 
     async function handleLoad(_event: Event): Promise<void> {
 
-        let response: Response = await fetch("DataL05.json");
+        let response: Response = await fetch("DataL06.json");
         let offer: string = await response.text();
         let data: Data = JSON.parse(offer);
 
-        let answer: Response = await fetch("DetailL05.json");
+        let answer: Response = await fetch("DetailL06.json");
         let offers: string = await answer.text();
         let detail: Detail = JSON.parse(offers);
         generateContent(data);
@@ -68,7 +68,7 @@ namespace L06_Household {
             switch (entry[0]) {
                 case "Menge":
                     break;
-                case "produce":
+                case "product":
                     // Suchen nach dem Preis-Attribut 
                     let itemPrice: number = Number(item.getAttribute("price"));
                     // Wert aus dem Slider abgreufen 
@@ -190,8 +190,6 @@ namespace L06_Household {
         //await fetch("HaushaltshilfeL05.html?" + query.toString());
         let response: Response = await fetch(url + "?" + query.toString());
         let responseText: string = await response.text();
-        console.log(url); 
-
 
         // Wenn der Button zum Abschicken gedrückt wurde, wird in einem Alert-Fenster eine Benachrichtigung mit dem Lieferdatum angezeigt
         let date: HTMLInputElement = <HTMLInputElement>document.getElementById("date");

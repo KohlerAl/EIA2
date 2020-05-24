@@ -22,7 +22,13 @@ export namespace L06_Household {
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             for (let key in url.query) {
-                _response.write(key + ":" + url.query[key] + "\n");
+                switch (key) {
+                case "product": 
+                break; 
+                default: 
+                _response.write(key + ":  " + url.query[key] + "\n");
+                break; 
+                }
             }
 
             /* let jsonString: string = JSON.stringify(url.query);

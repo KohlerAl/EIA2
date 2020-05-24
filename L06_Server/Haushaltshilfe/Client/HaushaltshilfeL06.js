@@ -17,10 +17,10 @@ var L06_Household;
     let submitButton = document.getElementById("submitButton");
     let totalPrice = document.getElementById("totalPrice");
     async function handleLoad(_event) {
-        let response = await fetch("DataL05.json");
+        let response = await fetch("DataL06.json");
         let offer = await response.text();
         let data = JSON.parse(offer);
-        let answer = await fetch("DetailL05.json");
+        let answer = await fetch("DetailL06.json");
         let offers = await answer.text();
         let detail = JSON.parse(offers);
         L06_Household.generateContent(data);
@@ -64,7 +64,7 @@ var L06_Household;
             switch (entry[0]) {
                 case "Menge":
                     break;
-                case "produce":
+                case "product":
                     // Suchen nach dem Preis-Attribut 
                     let itemPrice = Number(item.getAttribute("price"));
                     // Wert aus dem Slider abgreufen 
@@ -180,7 +180,6 @@ var L06_Household;
         //await fetch("HaushaltshilfeL05.html?" + query.toString());
         let response = await fetch(url + "?" + query.toString());
         let responseText = await response.text();
-        console.log(url);
         // Wenn der Button zum Abschicken gedrückt wurde, wird in einem Alert-Fenster eine Benachrichtigung mit dem Lieferdatum angezeigt
         let date = document.getElementById("date");
         let lieferdatum = date.value;

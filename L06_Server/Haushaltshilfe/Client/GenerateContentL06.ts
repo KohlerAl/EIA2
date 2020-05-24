@@ -4,7 +4,7 @@ namespace L06_Household {
             let items: Item[] = _data[category];
             let group: HTMLElement | null = null;
             switch (category) {
-                case "produce":
+                case "product":
                     group = createMultiple(items, category);
                     break;
                 case "money":
@@ -91,7 +91,7 @@ namespace L06_Household {
             group.appendChild(checkbox);
             group.appendChild(label);
 
-            if (_category == "produce") {
+            if (_category == "product") {
                 createSlider(group, item.name, checkbox, item.unit); 
             }
             
