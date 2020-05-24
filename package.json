@@ -1,14 +1,14 @@
 {
-  "name": "eiazwei",
+  "name": "eiazweihaushaltshilfe",
   "version": "1.0.0",
   "description": "EIA2",
-  "main": "index.js",
+  "main": "",
   "dependencies": {
     "@types/node": "^14.0.5"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node L05_Client/CocktailBar.js"
+    "start": "node L06_Server/Haushaltshilfe/Server/L06_Server.js"
   },
   "repository": {
     "type": "git",
