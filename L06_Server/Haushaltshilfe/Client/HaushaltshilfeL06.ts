@@ -2,7 +2,7 @@ namespace L06_Household {
     //Hinzufügen eiens load-Listeners 
     window.addEventListener("load", handleLoad);
 
-    let url: string = "http://localhost:5000";
+    let url: string = "https://agkeia.herokuapp.com/";
 
     /**
      * Deklarieren von Variablen, für einfacheres Schreiben im Code und Deklaration 

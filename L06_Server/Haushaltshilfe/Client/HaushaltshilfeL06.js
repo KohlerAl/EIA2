@@ -3,7 +3,7 @@ var L06_Household;
 (function (L06_Household) {
     //Hinzufügen eiens load-Listeners 
     window.addEventListener("load", handleLoad);
-    let url = "http://localhost:5000";
+    let url = "https://agkeia.herokuapp.com/";
     /**
      * Deklarieren von Variablen, für einfacheres Schreiben im Code und Deklaration
      * der globalen Variablen totalCost
