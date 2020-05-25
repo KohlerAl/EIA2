@@ -134,15 +134,20 @@ var L06_Household;
                 case "household":
                     // Suchen nach dem Preis-Attribut 
                     let itemCost = Number(item.getAttribute("price"));
+                    //let unit:  string = "[unit='" + entry[1] +"']"; 
+                    let units = String(item.getAttribute("unit"));
+                    console.log(units);
                     // Nach dem selben Prinzip wie oben werden jetzt auch die Haushaltsarbeiten durchgearbeitet
                     td.innerHTML = "" + entry[1];
-                    td2.innerHTML = "" + itemCost + "€";
+                    td2.innerHTML = "" + units;
+                    td3.innerHTML = "" + itemCost + "€";
                     /*  deleteButton.addEventListener("click", function () {
                          deleteList(itemCost, event);
                      });
                      td3.appendChild(deleteButton); */
                     row.appendChild(td);
-                    row.appendChild(td2); /*
+                    row.appendChild(td2);
+                    row.appendChild(td3); /*
                     row.appendChild(td3) */
                     table3.appendChild(row);
                     totalCost += itemCost;

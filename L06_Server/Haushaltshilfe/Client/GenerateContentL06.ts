@@ -69,7 +69,7 @@ namespace L06_Household {
         _parent.appendChild(span); 
         _parent.appendChild(slider); 
         _parent.appendChild(span2); 
-        _box.setAttribute("unit", _unit);
+        //_box.setAttribute("unit", _unit);
     }
 
     function createMultiple(_item: Item[], _category: string): HTMLElement | null {
@@ -81,6 +81,7 @@ namespace L06_Household {
             checkbox.value = item.name;
             checkbox.name = _category;
             checkbox.id = item.name;
+            checkbox.setAttribute("unit", item.unit);
 
             let br: HTMLBRElement = document.createElement("br"); 
 
