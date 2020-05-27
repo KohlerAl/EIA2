@@ -1,6 +1,21 @@
 {
         "product": [
             {
+                "name": "Kekse",
+                "unit": "Packung",
+                "price": 2.00
+            },
+            {
+                "name": "Schokolade",
+                "unit": "100g-Tafel",
+                "price": 1.00
+            },
+            {
+                "name": "Eis",
+                "unit": "Packung",
+                "price": 2.50
+            },
+            {
                 "name": "Brot",
                 "unit": "Laib",
                 "price": 2.00

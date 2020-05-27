@@ -23,7 +23,7 @@ export namespace L06_Household {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             for (let key in url.query) {
                 switch (key) {
-                case "product": 
+                case "product":
                 break; 
                 default: 
                 _response.write(key + ":  " + url.query[key] + "\n");

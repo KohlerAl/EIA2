@@ -60,7 +60,7 @@ namespace L06_Household {
         slider.setAttribute("value", "1"); 
         slider.disabled = true; 
         slider.classList.add(_name); 
-        slider.setAttribute("name", _name);
+        slider.setAttribute("name", _name); 
         let span2 = document.createElement("span");
         _box.addEventListener("click", enableSlider); 
         span2.innerHTML = "5";  
