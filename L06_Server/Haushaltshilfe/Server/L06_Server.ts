@@ -21,7 +21,7 @@ export namespace L06_Household {
 
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
-            for (let key in url.query) {
+            /* for (let key in url.query) {
                 switch (key) {
                 case "product":
                 break; 
@@ -29,10 +29,10 @@ export namespace L06_Household {
                 _response.write(key + ":  " + url.query[key] + "\n");
                 break; 
                 }
-            }
+            } */
 
-            /* let jsonString: string = JSON.stringify(url.query);
-            _response.write(jsonString); */
+            let jsonString: string = JSON.stringify(url.query);
+            _response.write(jsonString);
         }
 
         _response.end();
