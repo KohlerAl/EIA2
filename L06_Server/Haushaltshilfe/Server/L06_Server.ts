@@ -26,9 +26,7 @@ export namespace L06_Household {
                 case "product":
                 break; 
                 default: 
-                /* _response.write(key + ":  " + url.query[key] + "\n"); */
-                let jsonString: string = JSON.stringify(url.query);
-            _response.write(jsonString);
+                _response.write(key + ":  " + url.query[key] + "\n");
                 break; 
                 }
             }
