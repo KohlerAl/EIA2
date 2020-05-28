@@ -31,7 +31,7 @@ export namespace L06_Household {
                 }
             } */
 
-            let jsonString: string = JSON.stringify((url.query), null, 5);
+            let jsonString: string = JSON.stringify((url.query), null , '\n');
             _response.write(jsonString);
         }
 
