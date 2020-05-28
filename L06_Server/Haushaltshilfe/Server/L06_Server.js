@@ -26,7 +26,7 @@ var L06_Household;
                 break;
                 }
             } */
-            let jsonString = JSON.stringify((url.query), null, '\n');
+            let jsonString = JSON.stringify((url.query), null, '\t');
             _response.write(jsonString);
         }
         _response.end();
