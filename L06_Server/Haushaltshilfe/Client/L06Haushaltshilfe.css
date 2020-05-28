@@ -49,8 +49,8 @@ input[type=range]:disabled {
     margin: 5px 0px 5px 0px; 
     width: 650px;
     border-radius: 10px;
-background: #a6b4b3;
-box-shadow: inset -9px -9px 15px #94a09f, 
+    background: #a6b4b3;
+    box-shadow: inset -9px -9px 15px #94a09f, 
             inset 9px 9px 15px #b8c8c7;
 }
 
@@ -72,8 +72,8 @@ fieldset {
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-background: #a6b4b3;
-box-shadow: inset -9px -9px 15px #94a09f, 
+    background: #a6b4b3;
+    box-shadow: inset -9px -9px 15px #94a09f, 
             inset 9px 9px 15px #b8c8c7;
 }
 
@@ -89,8 +89,8 @@ box-shadow: inset -9px -9px 15px #94a09f,
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-background: #a6b4b3;
-box-shadow: inset -9px -9px 15px #94a09f, 
+    background: #a6b4b3;
+    box-shadow: inset -9px -9px 15px #94a09f, 
             inset 9px 9px 15px #b8c8c7;
     
 }
@@ -103,8 +103,8 @@ box-shadow: inset -9px -9px 15px #94a09f,
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-background: #a6b4b3;
-box-shadow: inset -9px -9px 15px #94a09f, 
+    background: #a6b4b3;
+    box-shadow: inset -9px -9px 15px #94a09f, 
             inset 9px 9px 15px #b8c8c7;
 }
 
@@ -114,8 +114,8 @@ button {
     padding: 5px; 
     border: none; 
     border-radius: 150px;
-background: #a6b4b3;
-box-shadow: inset -9px -9px 15px #929e9e, 
+    background: #a6b4b3;
+    box-shadow: inset -9px -9px 15px #929e9e, 
             inset 9px 9px 15px #bacac8;
 }
 
@@ -126,6 +126,13 @@ button:hover {
 input[type=range] {
     position: relative;
     top: 5px;
+}
+
+input {
+    border: none; 
+    color: #ffd187;
+    caret-color: #ffd187;
+    fill: #a6b4b3; 
 }
 
 label {
