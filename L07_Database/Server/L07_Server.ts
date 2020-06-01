@@ -56,7 +56,7 @@ export namespace L07_Household {
     }
 
 
-    function storeOrder(_order: any): void {
+    function storeOrder(_order: Order): void {
         orders.insert(_order);
     }
 }

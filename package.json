@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node L07_Database/Server/L07_Server.js"
+    "start": "node L06_Server/Haushaltshilfe/Server/L06_Server.js"
   },
   "repository": {
     "type": "git",
