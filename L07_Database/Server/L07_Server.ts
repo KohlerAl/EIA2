@@ -4,7 +4,7 @@ import * as Mongo from "mongodb";
 
 export namespace L07_Household {
     interface Order {
-        [type: string]: string | string[];
+        [type: string]: string | string[] | undefined;
     }
 
     let orders: Mongo.Collection;
