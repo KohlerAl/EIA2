@@ -49,14 +49,14 @@ export namespace L07_Household {
             let jsonString: string = JSON.stringify(url.query);
             _response.write(jsonString);
 
-            storeOrder(url.query);
+            //storeOrder(url.query);
         }
 
         _response.end();
     }
 
 
-    function storeOrder(_order: Order): void {
+    /* function storeOrder(_order: Order): void {
         orders.insert(_order);
-    }
+    } */
 }

@@ -36,12 +36,12 @@ var L07_Household;
             }
             let jsonString = JSON.stringify(url.query);
             _response.write(jsonString);
-            storeOrder(url.query);
+            //storeOrder(url.query);
         }
         _response.end();
     }
-    function storeOrder(_order) {
+    /* function storeOrder(_order: Order): void {
         orders.insert(_order);
-    }
+    } */
 })(L07_Household = exports.L07_Household || (exports.L07_Household = {}));
 //# sourceMappingURL=L07_Server.js.map
