@@ -4,11 +4,13 @@
   "description": "EIA2",
   "main": "",
   "dependencies": {
-    "@types/node": "^14.0.5"
+    "@types/mongodb": "^3.5.20",
+    "@types/node": "^14.0.5",
+    "mongodb": "^3.5.8"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node L06_Server/Haushaltshilfe/Server/L06_Server.js"
+    "start": "node L07_Database/Server/L07_Server.js"
   },
   "repository": {
     "type": "git",

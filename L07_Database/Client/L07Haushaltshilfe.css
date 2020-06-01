@@ -1,0 +1,162 @@
+body {
+    background-color: #a6b4b3;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #353535;
+    font-weight: smaller;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+
+input {
+    border-radius: 5px;   
+    opacity: 0.8;
+    padding: 2px;
+    background-color: #fafafa; 
+}
+
+input[type=range]:disabled {
+   opacity: 0; 
+}
+
+.money {
+    opacity: 0;
+}
+
+#Quantity {
+    position: relative;
+    top: 8px;
+    margin-bottom: 10px;;
+}
+
+#choice {
+    color: #353535;
+    border: none;
+    border-radius: 5px;   
+    width: 350px;
+    padding: 8px;
+    margin: 10px 0px 10px 0px;
+    background: #353535;
+    box-shadow: 5px 5px 5px #a0958e;
+}
+
+
+#order {
+    color: #353535; 
+    border: none;
+    border-radius: 5px;   
+    padding: 8px;
+    margin: 5px 0px 5px 0px; 
+    width: 650px;
+    border-radius: 10px;
+    background: #a6b4b3;
+    box-shadow: inset -9px -9px 15px #94a09f, 
+            inset 9px 9px 15px #b8c8c7;
+}
+
+legend {
+    color: #353535;
+    background: #b8c8c779; 
+    border: none; 
+    border-radius: 5px;
+    padding: 5px;
+}
+fieldset {
+    border: none; 
+}
+#grocery {
+    color: #353535;
+    border-radius: 5px;   
+    width: 500px;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #a6b4b3;
+    box-shadow: inset -9px -9px 15px #94a09f, 
+            inset 9px 9px 15px #b8c8c7;
+}
+
+#household > *{
+    margin: 7px;
+}
+
+#money {
+    color: #353535;
+    position: relative;
+    border-radius: 5px;   
+    width: 500px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #a6b4b3;
+    box-shadow: inset -9px -9px 15px #94a09f, 
+            inset 9px 9px 15px #b8c8c7;
+    
+}
+
+#household {
+    color: #353535;
+    position: relative;
+    border-radius: 5px;   
+    width: 500px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #a6b4b3;
+    box-shadow: inset -9px -9px 15px #94a09f, 
+            inset 9px 9px 15px #b8c8c7;
+}
+
+button {
+    color: #353535; 
+    margin: 15px;
+    padding: 5px; 
+    border: none; 
+    border-radius: 150px;
+    background: #a6b4b3;
+    box-shadow: inset -9px -9px 15px #929e9e, 
+            inset 9px 9px 15px #bacac8;
+}
+
+button:hover {
+    color: #ffd187; 
+}
+
+input[type=range] {
+    position: relative;
+    top: 5px;
+}
+
+input {
+    border: none; 
+    caret-color: #ffd187;
+    fill: #a6b4b3; 
+}
+
+label {
+    padding-right: 50px; 
+}
+
+table, th, td {
+    background-color: #b0b0b0;
+    border: 1px solid #353535;
+    color: #333333;
+    border-collapse: collapse;
+    padding: 5px; 
+}
+
+table {
+    margin: 10px;
+}
+
+.deleteButton {
+    width: 20px; 
+    height: 20px; 
+    border-radius: 5px;   
+    color: #a8ad97;
+}
+
+.fa-trash-alt {
+    margin: px; 
+}
