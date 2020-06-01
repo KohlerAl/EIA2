@@ -13,7 +13,8 @@ export namespace L07_Household {
     if (port == undefined)
         port = 5001;
 
-    let databaseUrl: string = "mongodb+srv://testUser:<testUser1234>@alidaeia2-qgqj8.mongodb.net/test?retryWrites=true&w=majority";
+    let databaseUrl: string = "mongodb://localhost:27017";
+     //"mongodb+srv://testUser:<testUser1234>@alidaeia2-qgqj8.mongodb.net/test?retryWrites=true&w=majority";
 
     startServer(port);
     connectToDatabase(databaseUrl);
@@ -42,21 +43,28 @@ export namespace L07_Household {
 
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
-            for (let key in url.query) {
-                _response.write(key + ":" + url.query[key] + "<br/>");
-            }
+            /* for (let key in url.query) {
+                switch (key) {
+                case "product":
+                break; 
+                default: 
+                _response.write(key + ":  " + url.query[key] + "\n");
+                break; 
+                }
+            } */
 
-            let jsonString: string = JSON.stringify(url.query);
+            let jsonString: string = JSON.stringify((url.query), null , 2);
             _response.write(jsonString);
+        
 
-            //storeOrder(url.query);
+            storeOrder(url.query);
         }
 
         _response.end();
     }
 
 
-    /* function storeOrder(_order: Order): void {
+    function storeOrder(_order: Order): void {
         orders.insert(_order);
-    } */
+    }
 }
