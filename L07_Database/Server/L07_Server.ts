@@ -28,6 +28,7 @@ export namespace L07_Household {
     async function connectToDatabase(_url: string): Promise<void> {
         //let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url);
+        console.log(_url); 
         await mongoClient.connect();
         console.log(_url);
         console.log(mongoClient);  
