@@ -12,8 +12,6 @@ var L07_Household;
         port = 5001;
     let databaseUrl = "mongodb+srv://testUser:testUser1234@alidaeia2-qgqj8.mongodb.net/test?retryWrites=true&w=majority";
     //"mongodb://localhost:27017";
-    startServer(port);
-    connectToDatabase(databaseUrl);
     function startServer(_port) {
         let server = Http.createServer();
         console.log("Server starting on port:" + _port);
@@ -27,6 +25,8 @@ var L07_Household;
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
+    startServer(port);
+    connectToDatabase(databaseUrl);
     function handleRequest(_request, _response) {
         console.log("What's up?");
         _response.setHeader("content-type", "text/html; charset=utf-8");

@@ -16,12 +16,6 @@ export namespace L07_Household {
     let databaseUrl: string = "mongodb+srv://testUser:testUser1234@alidaeia2-qgqj8.mongodb.net/test?retryWrites=true&w=majority";
     //"mongodb://localhost:27017";
 
-    
-
-
-    startServer(port);
-    connectToDatabase(databaseUrl);
-
     function startServer(_port: number | string): void {
         let server: Http.Server = Http.createServer();
         console.log("Server starting on port:" + _port);
@@ -37,6 +31,9 @@ export namespace L07_Household {
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
+
+    startServer(port);
+    connectToDatabase(databaseUrl);
 
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
         console.log("What's up?");
