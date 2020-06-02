@@ -23,6 +23,7 @@ var L07_Household;
     async function connectToDatabase(_url) {
         //let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         //let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+        console.log(_url);
         let client = await Mongo.connect(_url);
         orders = client.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
