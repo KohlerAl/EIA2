@@ -32,7 +32,7 @@ export namespace L07_Household {
         await mongoClient.connect();
         console.log(_url);
         console.log(mongoClient);  
-        orders = mongoClient.db("Household").collection("Orders");
+        orders = mongoClient.db("AlidaEIA2").collection("Household");
         console.log("Database connection ", orders != undefined);
     }
 
