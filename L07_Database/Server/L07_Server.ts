@@ -10,10 +10,11 @@ export namespace L07_Household {
     let orders: Mongo.Collection;
 
     let port: number | string | undefined = process.env.PORT;
-    if (port == undefined)
+    if (port == undefined) {
         port = 5001;
+    }
 
-    let databaseUrl: string = "mongodb+srv://testUser:testUser1234@alidaeia2-qgqj8.mongodb.net/test?retryWrites=true&w=majority";
+    let databaseUrl: string = "mongodb+srv://test:test@alidaeia2-qgqj8.mongodb.net/test?retryWrites=true&w=majority";
     //"mongodb://localhost:27017";
 
     function startServer(_port: number | string): void {
