@@ -29,6 +29,8 @@ export namespace L07_Household {
         //let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url);
         await mongoClient.connect();
+        console.log(_url);
+        console.log(mongoClient);  
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
