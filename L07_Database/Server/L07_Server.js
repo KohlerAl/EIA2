@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.L07_Household = void 0;
 const Http = require("http");
 const Url = require("url");
 const Mongo = require("mongodb");
@@ -20,10 +21,10 @@ var L07_Household;
         server.addListener("request", handleRequest);
     }
     async function connectToDatabase(_url) {
-        let options = { useNewUrlParser: true, useUnifiedTopology: true };
-        let mongoClient = new Mongo.MongoClient(_url, options);
-        await mongoClient.connect();
-        orders = mongoClient.db("Household").collection("Orders");
+        //let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+        //let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+        let client = await Mongo.connect(_url);
+        orders = client.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
     function handleRequest(_request, _response) {
