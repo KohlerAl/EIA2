@@ -13,6 +13,8 @@ var L07_Household;
     }
     let databaseUrl = "mongodb+srv://test:test@alidaeia2-qgqj8.mongodb.net/test?retryWrites=true&w=majority";
     //"mongodb://localhost:27017";
+    startServer(port);
+    connectToDatabase(databaseUrl);
     function startServer(_port) {
         let server = Http.createServer();
         console.log("Server starting on port:" + _port);
@@ -29,8 +31,6 @@ var L07_Household;
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
-    startServer(port);
-    connectToDatabase(databaseUrl);
     function handleRequest(_request, _response) {
         console.log("What's up?");
         _response.setHeader("content-type", "text/html; charset=utf-8");
@@ -53,7 +53,7 @@ var L07_Household;
         _response.end();
     }
     function storeOrder(_order) {
-        //orders.insert(_order);
+        orders.insert(_order);
         console.log(orders);
         console.log(_order);
     }
