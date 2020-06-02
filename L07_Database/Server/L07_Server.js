@@ -48,7 +48,8 @@ var L07_Household;
         _response.end();
     }
     function storeOrder(_order) {
-        orders.insert(_order);
+        //orders.insert(_order);
+        console.log(orders);
     }
 })(L07_Household = exports.L07_Household || (exports.L07_Household = {}));
 //# sourceMappingURL=L07_Server.js.map
