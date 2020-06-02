@@ -26,7 +26,7 @@ var L07_Household;
         await mongoClient.connect();
         console.log(_url);
         console.log(mongoClient);
-        orders = mongoClient.db("AlidaEIA2").collection("Household");
+        orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
     startServer(port);
