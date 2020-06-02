@@ -22,8 +22,8 @@ var L07_Household;
         server.addListener("request", handleRequest);
     }
     async function connectToDatabase(_url) {
-        //let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
-        let mongoClient = new Mongo.MongoClient(_url);
+        let options = { useNewUrlParser: true, useUnifiedTopology: true };
+        let mongoClient = new Mongo.MongoClient(_url, options);
         console.log(_url);
         await mongoClient.connect();
         console.log(_url);
