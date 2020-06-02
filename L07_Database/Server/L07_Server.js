@@ -10,7 +10,7 @@ var L07_Household;
     let port = process.env.PORT;
     if (port == undefined)
         port = 5001;
-    let databaseUrl = "mongodb+srv://testUser:<testUser1234>@alidaeia2-qgqj8.mongodb.net/test?retryWrites=true&w=majority";
+    let databaseUrl = "mongodb+srv://testUser:testUser1234@alidaeia2-qgqj8.mongodb.net/test?retryWrites=true&w=majority";
     //"mongodb://localhost:27017";
     startServer(port);
     connectToDatabase(databaseUrl);
