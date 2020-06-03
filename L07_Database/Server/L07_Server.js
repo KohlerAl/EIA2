@@ -28,37 +28,38 @@ var L07_Household;
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
-    function handleRequest(_request, _response) {
+    async function handleRequest(_request, _response) {
         console.log("What's up?");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         console.log("Request-URL:  " + _request.url);
         if (_request.url) {
-            let url = Url.parse(_request.url, true);
-            /* for (let key in url.query) {
-                switch (key) {
-                case "product":
-                break;
-                default:
-                _response.write(key + ":  " + url.query[key] + "\n");
-                break;
-                }
-            } */
-            let jsonString = JSON.stringify((url.query), null, 2);
-            _response.write(jsonString);
-            storeOrder(url.query);
+            if (_request.url == "/?") {
+                let url = Url.parse(_request.url, true);
+                /* for (let key in url.query) {
+                    switch (key) {
+                    case "product":
+                    break;
+                    default:
+                    _response.write(key + ":  " + url.query[key] + "\n");
+                    break;
+                    }
+                } */
+                let jsonString = JSON.stringify((url.query), null, 2);
+                _response.write(jsonString);
+                storeOrder(url.query);
+            }
+        }
+        else if (_request.url == "/") {
+            console.log("ShowData called");
+            let options = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient = new Mongo.MongoClient(databaseUrl, options);
+            let orders = mongoClient.db("Household").collection("Orders");
+            let cursor = await orders.find();
+            let answer = await cursor.toString();
+            return answer;
         }
         _response.end();
-    }
-    showData;
-    async function showData(_response) {
-        console.log("ShowData called");
-        let options = { useNewUrlParser: true, useUnifiedTopology: true };
-        let mongoClient = new Mongo.MongoClient(databaseUrl, options);
-        let orders = mongoClient.db("Household").collection("Orders");
-        let cursor = await orders.find();
-        let answer = await cursor.toString();
-        return answer;
     }
     function storeOrder(_order) {
         orders.insert(_order);
