@@ -14,7 +14,7 @@ export namespace L07_Household {
         port = 5001;
     }
 
-    let databaseUrl: string = "mongodb+srv://test:test@alidaeia2-qgqj8.mongodb.net/test?retryWrites=true&w=majority";
+    let databaseUrl: string = "mongodb+srv://test:test@eia-yenva.mongodb.net/test?retryWrites=true&w=majority";
     //"mongodb://localhost:27017";
 
     startServer(port);
