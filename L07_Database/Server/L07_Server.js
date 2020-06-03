@@ -65,7 +65,7 @@ var L07_Household;
         let orders = mongoClient.db("Household").collection("Orders");
         let cursor = await orders.find();
         let answer = await cursor.toString();
-        return answer;
+        _response.write(answer);
     }
     function storeOrder(_order) {
         orders.insert(_order);
