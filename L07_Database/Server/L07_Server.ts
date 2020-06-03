@@ -62,8 +62,6 @@ export namespace L07_Household {
             else {
             let jsonString: string = JSON.stringify((url.query), null , 2);
             _response.write(jsonString);
-        
-
             storeOrder(url.query); }
         }
         _response.end();
@@ -81,6 +79,8 @@ export namespace L07_Household {
         await cursor.forEach(showOrders); 
         console.log("Cursor " + cursor);
         console.log(allOrders); 
+        let jsonString: string = JSON.stringify(allOrders); 
+        _response.write(jsonString); 
         return allOrders
     }
 
