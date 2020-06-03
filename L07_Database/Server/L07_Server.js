@@ -65,9 +65,9 @@ var L07_Household;
         await mongoClient.connect();
         let orders = mongoClient.db("Household").collection("Orders");
         let cursor = await orders.find();
-        let answer = await cursor.forEach(showOrders);
+        await cursor.forEach(showOrders);
         console.log("Cursor " + cursor);
-        console.log("Answer " + answer);
+        console.log(allOrders);
         return allOrders;
     }
     function storeOrder(_order) {
