@@ -69,8 +69,8 @@ export namespace L07_Household {
     async function showData(_response: Http.ServerResponse): Promise<void> {
         let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders") 
         let cursor: Mongo.Cursor = await orders.find(); 
-        let answer: any = await cursor.toArray; 
-        _response.write(answer); 
+        let answer: any = await cursor.toString(); 
+        return answer
     }
 
     function storeOrder(_order: Order): void {

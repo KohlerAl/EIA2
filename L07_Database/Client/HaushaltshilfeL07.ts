@@ -190,6 +190,7 @@ namespace L07_Household {
         let response: Response = await fetch(url); 
         let responseText: string = await response.text(); 
         orderData.innerHTML = "" + responseText; 
+        console.log(responseText); 
     }
 
     async function sendOrder(_event: Event): Promise<void> {
