@@ -48,16 +48,14 @@ var L07_Household;
             if (_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS");
                 showData(_response);
-                _response.write(allOrders);
-                _response.end();
             }
             else {
                 let jsonString = JSON.stringify((url.query), null, 2);
                 _response.write(jsonString);
                 storeOrder(url.query);
-                _response.end();
             }
         }
+        _response.end();
     }
     let allOrders = [];
     async function showData(_response) {

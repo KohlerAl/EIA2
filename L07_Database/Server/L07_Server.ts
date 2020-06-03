@@ -57,17 +57,16 @@ export namespace L07_Household {
             console.log(url.query); 
             if(_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS"); 
-                showData(_response);
-                _response.write(allOrders); 
-                _response.end();
+                showData(_response); 
             }
             else {
             let jsonString: string = JSON.stringify((url.query), null , 2);
             _response.write(jsonString);
-            storeOrder(url.query); 
-            _response.end();
+        
+
+            storeOrder(url.query); }
         }
-        }
+        _response.end();
     }
 
     let allOrders: string[] = []; 
@@ -82,7 +81,7 @@ export namespace L07_Household {
         await cursor.forEach(showOrders); 
         console.log("Cursor " + cursor);
         console.log(allOrders); 
-        return allOrders;
+        return allOrders
     }
 
     function storeOrder(_order: Order): void {
