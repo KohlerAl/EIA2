@@ -41,6 +41,7 @@ export namespace L07_Household {
 
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
+        console.log("Request-URL:  " + _request.url); 
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             /* for (let key in url.query) {
@@ -52,7 +53,8 @@ export namespace L07_Household {
                 break; 
                 }
             } */
-            console.log("Url Query: " + url.query); 
+            
+            console.log(url.query); 
             let jsonString: string = JSON.stringify((url.query), null , 2);
             _response.write(jsonString);
         
@@ -62,7 +64,7 @@ export namespace L07_Household {
         _response.end();
     }
     
-   /*  async function showData(_response: Http.ServerResponse): Promise<void> {
+    async function showData(_response: Http.ServerResponse): Promise<void> {
         console.log("ShowData called");
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
@@ -71,7 +73,7 @@ export namespace L07_Household {
         let answer: any = await cursor.toString(); 
         return answer
     }
- */
+
     function storeOrder(_order: Order): void {
         orders.insert(_order);
     }
