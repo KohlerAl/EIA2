@@ -81,7 +81,7 @@ export namespace L07_Household {
         let answer: any = await cursor.forEach(showOrders); 
         console.log("Cursor " + cursor);
         console.log("Answer " + answer); 
-        return allOrders
+        _response.write(allOrders); 
     }
 
     function storeOrder(_order: Order): void {

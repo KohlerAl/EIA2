@@ -68,7 +68,7 @@ var L07_Household;
         let answer = await cursor.forEach(showOrders);
         console.log("Cursor " + cursor);
         console.log("Answer " + answer);
-        return allOrders;
+        _response.write(allOrders);
     }
     function storeOrder(_order) {
         orders.insert(_order);
