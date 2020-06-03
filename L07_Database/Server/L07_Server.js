@@ -69,6 +69,7 @@ var L07_Household;
         console.log("Cursor " + cursor);
         console.log("Answer " + answer);
         _response.write(allOrders);
+        _response.end();
     }
     function storeOrder(_order) {
         orders.insert(_order);
