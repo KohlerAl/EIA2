@@ -190,6 +190,7 @@ namespace L07_Household {
         let response: Response = await fetch(url + "?" + "getOrder=yes"); 
         let responseText: string = await response.text(); 
         orderData.innerHTML = "" + responseText; 
+        alert(responseText); 
         console.log(responseText); 
     }
 

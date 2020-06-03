@@ -180,6 +180,7 @@ var L07_Household;
         let response = await fetch(url + "?" + "getOrder=yes");
         let responseText = await response.text();
         orderData.innerHTML = "" + responseText;
+        alert(responseText);
         console.log(responseText);
     }
     async function sendOrder(_event) {
