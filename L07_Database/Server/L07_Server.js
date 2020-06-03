@@ -32,6 +32,7 @@ var L07_Household;
         console.log("What's up?");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
+        console.log("Request-URL:  " + _request.url);
         if (_request.url && _request.url != "") {
             let url = Url.parse(_request.url, true);
             /* for (let key in url.query) {
