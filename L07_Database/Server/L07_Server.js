@@ -57,6 +57,7 @@ var L07_Household;
         }
         _response.end();
     }
+    let allOrders;
     async function showData(_response) {
         console.log("ShowData called");
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -67,13 +68,14 @@ var L07_Household;
         let answer = await cursor.forEach(showOrders);
         console.log("Cursor " + cursor);
         console.log("Answer " + answer);
-        return answer;
+        return allOrders;
     }
     function storeOrder(_order) {
         orders.insert(_order);
     }
     function showOrders(_item) {
-        console.log(_item);
+        console.log("Item" + _item);
+        allOrders.push(_item);
     }
 })(L07_Household = exports.L07_Household || (exports.L07_Household = {}));
 //# sourceMappingURL=L07_Server.js.map

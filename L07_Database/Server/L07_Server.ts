@@ -69,8 +69,9 @@ export namespace L07_Household {
         _response.end();
     }
 
+    let allOrders: string[]; 
     
-    async function showData(_response: Http.ServerResponse): Promise<void> {
+    async function showData(_response: Http.ServerResponse): Promise<any> {
         console.log("ShowData called");
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
@@ -80,7 +81,7 @@ export namespace L07_Household {
         let answer: any = await cursor.forEach(showOrders); 
         console.log("Cursor " + cursor);
         console.log("Answer " + answer); 
-        return answer
+        return allOrders
     }
 
     function storeOrder(_order: Order): void {
@@ -88,6 +89,7 @@ export namespace L07_Household {
     }
 
     function showOrders(_item: string): void {
-        console.log(_item); 
+        console.log("Item" + _item); 
+        allOrders.push(_item); 
     }
 }
