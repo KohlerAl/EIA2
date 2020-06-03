@@ -88,9 +88,10 @@ export namespace L07_Household {
         orders.insert(_order);
     }
 
-    function showOrders(_item: string): void {
-        let order: string = _item.toString(); 
-        allOrders.push(order); 
-        console.log(order); 
+    function showOrders(_item: object): void {
+        for (let entry in _item) {
+            allOrders.push(entry); 
+            console.log(entry); 
+        }
     }
 }
