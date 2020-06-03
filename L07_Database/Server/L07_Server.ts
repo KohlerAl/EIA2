@@ -16,8 +16,6 @@ export namespace L07_Household {
 
     let databaseUrl: string = "mongodb+srv://test:test@eia-yenva.mongodb.net/test?retryWrites=true&w=majority";
     //"mongodb://localhost:27017";
-    let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
-    let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
 
     startServer(port);
     connectToDatabase(databaseUrl);
@@ -31,6 +29,8 @@ export namespace L07_Household {
     }
 
     async function connectToDatabase(_url: string): Promise<void> {
+        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
@@ -67,6 +67,8 @@ export namespace L07_Household {
     }
 
     async function showData(_response: Http.ServerResponse): Promise<void> {
+        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
         let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders") 
         let cursor: Mongo.Cursor = await orders.find(); 
         let answer: any = await cursor.toString(); 

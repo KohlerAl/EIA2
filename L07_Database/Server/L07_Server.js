@@ -13,8 +13,6 @@ var L07_Household;
     }
     let databaseUrl = "mongodb+srv://test:test@eia-yenva.mongodb.net/test?retryWrites=true&w=majority";
     //"mongodb://localhost:27017";
-    let options = { useNewUrlParser: true, useUnifiedTopology: true };
-    let mongoClient = new Mongo.MongoClient(databaseUrl, options);
     startServer(port);
     connectToDatabase(databaseUrl);
     function startServer(_port) {
@@ -24,6 +22,8 @@ var L07_Household;
         server.addListener("request", handleRequest);
     }
     async function connectToDatabase(_url) {
+        let options = { useNewUrlParser: true, useUnifiedTopology: true };
+        let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
@@ -53,6 +53,8 @@ var L07_Household;
         _response.end();
     }
     async function showData(_response) {
+        let options = { useNewUrlParser: true, useUnifiedTopology: true };
+        let mongoClient = new Mongo.MongoClient(databaseUrl, options);
         let orders = mongoClient.db("Household").collection("Orders");
         let cursor = await orders.find();
         let answer = await cursor.toString();
