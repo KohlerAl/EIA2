@@ -43,7 +43,7 @@ export namespace L07_Household {
         _response.setHeader("Access-Control-Allow-Origin", "*");
         console.log("Request-URL:  " + _request.url); 
         if (_request.url) {
-            if(_request.url == "/?") {
+            if(_request.url != "/") {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             /* for (let key in url.query) {
                 switch (key) {
@@ -62,7 +62,7 @@ export namespace L07_Household {
             storeOrder(url.query);
             }
         }   
-            else if(_request.url == "/") {
+            else if(_request.url != "/?") {
                 console.log("ShowData called"); 
                 let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
                 let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
