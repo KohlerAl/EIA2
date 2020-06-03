@@ -33,7 +33,7 @@ var L07_Household;
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         console.log("Request-URL:  " + _request.url);
-        if (_request.url && _request.url == "/?") {
+        if (_request.url) {
             let url = Url.parse(_request.url, true);
             /* for (let key in url.query) {
                 switch (key) {
@@ -48,12 +48,11 @@ var L07_Household;
             _response.write(jsonString);
             storeOrder(url.query);
         }
-        else if (_request.url && _request.url == "/") {
-            showData;
-        }
         _response.end();
     }
+    showData;
     async function showData(_response) {
+        console.log("ShowData called");
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(databaseUrl, options);
         let orders = mongoClient.db("Household").collection("Orders");
