@@ -31,7 +31,6 @@ export namespace L07_Household {
     async function connectToDatabase(_url: string): Promise<void> {
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
-        console.log(_url); 
         await mongoClient.connect();
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
@@ -61,10 +60,18 @@ export namespace L07_Household {
 
             storeOrder(url.query);
         }
-
         _response.end();
     }
 
+    showData; 
+    async function showData(_response: Http.ServerResponse): Promise<void> {
+        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
+        let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders") 
+        let cursor: Mongo.Cursor = await orders.find(); 
+        let answer: any = await cursor.toString(); 
+        return answer
+    }
 
     function storeOrder(_order: Order): void {
         orders.insert(_order);

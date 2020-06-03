@@ -24,7 +24,6 @@ var L07_Household;
     async function connectToDatabase(_url) {
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
-        console.log(_url);
         await mongoClient.connect();
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
@@ -49,6 +48,15 @@ var L07_Household;
             storeOrder(url.query);
         }
         _response.end();
+    }
+    showData;
+    async function showData(_response) {
+        let options = { useNewUrlParser: true, useUnifiedTopology: true };
+        let mongoClient = new Mongo.MongoClient(databaseUrl, options);
+        let orders = mongoClient.db("Household").collection("Orders");
+        let cursor = await orders.find();
+        let answer = await cursor.toString();
+        return answer;
     }
     function storeOrder(_order) {
         orders.insert(_order);

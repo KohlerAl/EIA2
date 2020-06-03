@@ -16,6 +16,8 @@ namespace L07_Household {
     let resetButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("resetButton");
     let submitButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("submitButton");
     let totalPrice: HTMLLabelElement = <HTMLLabelElement>document.getElementById("totalPrice");
+    let orderData: HTMLDivElement = <HTMLDivElement>document.getElementById("orderData"); 
+    let getOrderData: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getOrderData"); 
 
     async function handleLoad(_event: Event): Promise<void> {
 
@@ -35,6 +37,7 @@ namespace L07_Household {
         confirm.addEventListener("click", showInput);  */
         submitButton.addEventListener("click", sendOrder);
         resetButton.addEventListener("click", resetForm);
+        getOrderData.addEventListener("click", getData); 
     }
 
     function handleChange(_event: Event): void {
@@ -183,7 +186,13 @@ namespace L07_Household {
         greatGrandParent.removeChild(grandParent);
     } */
 
-    
+    async function getData(_event: Event): Promise<void> {
+        let response: Response = await fetch(url); 
+        let responseText: string = await response.text(); 
+        orderData.innerHTML = "" + responseText; 
+        console.log(responseText); 
+    }
+
     async function sendOrder(_event: Event): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
         console.log(form);
