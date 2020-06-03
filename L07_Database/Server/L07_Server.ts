@@ -41,7 +41,6 @@ export namespace L07_Household {
 
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
-        console.log("Request-URL:  " + _request.url); 
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             /* for (let key in url.query) {
@@ -53,7 +52,7 @@ export namespace L07_Household {
                 break; 
                 }
             } */
-
+            console.log("Url Query: " + url.query)
             let jsonString: string = JSON.stringify((url.query), null , 2);
             _response.write(jsonString);
         
