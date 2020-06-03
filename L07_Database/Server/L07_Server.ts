@@ -61,16 +61,16 @@ export namespace L07_Household {
             storeOrder(url.query);
         }
         else {
-            showData(); 
+            showData; 
         }
         _response.end();
     }
 
-    async function showData(): Promise<Mongo.Cursor> {
+    async function showData(_response: Http.ServerResponse): Promise<void> {
         let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders") 
         let cursor: Mongo.Cursor = await orders.find(); 
         let answer: any = await cursor.toArray; 
-        return answer; 
+        _response.write(answer); 
     }
 
     function storeOrder(_order: Order): void {

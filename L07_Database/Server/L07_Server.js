@@ -48,15 +48,15 @@ var L07_Household;
             storeOrder(url.query);
         }
         else {
-            showData();
+            showData;
         }
         _response.end();
     }
-    async function showData() {
+    async function showData(_response) {
         let orders = mongoClient.db("Household").collection("Orders");
         let cursor = await orders.find();
         let answer = await cursor.toArray;
-        return answer;
+        _response.write(answer);
     }
     function storeOrder(_order) {
         orders.insert(_order);
