@@ -52,7 +52,7 @@ export namespace L07_Household {
                 break; 
                 }
             } */
-            console.log("Url Query: " + url.query)
+            console.log("Url Query: " + url.query); 
             let jsonString: string = JSON.stringify((url.query), null , 2);
             _response.write(jsonString);
         
@@ -62,7 +62,7 @@ export namespace L07_Household {
         _response.end();
     }
     
-    async function showData(_response: Http.ServerResponse): Promise<void> {
+   /*  async function showData(_response: Http.ServerResponse): Promise<void> {
         console.log("ShowData called");
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
@@ -71,7 +71,7 @@ export namespace L07_Household {
         let answer: any = await cursor.toString(); 
         return answer
     }
-
+ */
     function storeOrder(_order: Order): void {
         orders.insert(_order);
     }
