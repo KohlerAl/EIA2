@@ -60,12 +60,10 @@ export namespace L07_Household {
 
             storeOrder(url.query);
         }
-        else {
-            showData; 
-        }
         _response.end();
     }
 
+    /* showData; 
     async function showData(_response: Http.ServerResponse): Promise<void> {
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
@@ -73,7 +71,7 @@ export namespace L07_Household {
         let cursor: Mongo.Cursor = await orders.find(); 
         let answer: any = await cursor.toString(); 
         return answer
-    }
+    } */
 
     function storeOrder(_order: Order): void {
         orders.insert(_order);

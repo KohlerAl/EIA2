@@ -47,19 +47,17 @@ var L07_Household;
             _response.write(jsonString);
             storeOrder(url.query);
         }
-        else {
-            showData;
-        }
         _response.end();
     }
-    async function showData(_response) {
-        let options = { useNewUrlParser: true, useUnifiedTopology: true };
-        let mongoClient = new Mongo.MongoClient(databaseUrl, options);
-        let orders = mongoClient.db("Household").collection("Orders");
-        let cursor = await orders.find();
-        let answer = await cursor.toString();
-        return answer;
-    }
+    /* showData;
+    async function showData(_response: Http.ServerResponse): Promise<void> {
+        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
+        let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders")
+        let cursor: Mongo.Cursor = await orders.find();
+        let answer: any = await cursor.toString();
+        return answer
+    } */
     function storeOrder(_order) {
         orders.insert(_order);
     }
