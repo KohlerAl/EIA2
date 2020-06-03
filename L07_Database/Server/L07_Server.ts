@@ -77,7 +77,9 @@ export namespace L07_Household {
         let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders") 
         let cursor: Mongo.Cursor = await orders.find(); 
         let answer: any = await cursor.toString(); 
-        _response.write(answer);
+        console.log("Cursor " + cursor);
+        console.log("Answer " + answer); 
+        return answer
     }
 
     function storeOrder(_order: Order): void {
