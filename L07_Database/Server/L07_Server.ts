@@ -69,7 +69,7 @@ export namespace L07_Household {
         _response.end();
     }
 
-    let allOrders: string[]; 
+    let allOrders: string[] = []; 
     
     async function showData(_response: Http.ServerResponse): Promise<any> {
         console.log("ShowData called");

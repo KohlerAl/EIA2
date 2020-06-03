@@ -57,7 +57,7 @@ var L07_Household;
         }
         _response.end();
     }
-    let allOrders;
+    let allOrders = [];
     async function showData(_response) {
         console.log("ShowData called");
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
