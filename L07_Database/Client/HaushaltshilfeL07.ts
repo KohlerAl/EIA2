@@ -187,7 +187,7 @@ namespace L07_Household {
     } */
 
     async function getData(_event: Event): Promise<void> {
-        let response: Response = await fetch(url); 
+        let response: Response = await fetch(url + "?" + "getOrder=yes"); 
         let responseText: string = await response.text(); 
         orderData.innerHTML = "" + responseText; 
         console.log(responseText); 

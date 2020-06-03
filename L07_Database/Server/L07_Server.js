@@ -45,6 +45,9 @@ var L07_Household;
                 }
             } */
             console.log(url.query);
+            if (url.query["getData"] == "yes") {
+                console.log("THIS WORKS");
+            }
             let jsonString = JSON.stringify((url.query), null, 2);
             _response.write(jsonString);
             storeOrder(url.query);

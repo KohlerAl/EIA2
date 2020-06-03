@@ -177,7 +177,7 @@ var L07_Household;
         greatGrandParent.removeChild(grandParent);
     } */
     async function getData(_event) {
-        let response = await fetch(url);
+        let response = await fetch(url + "?" + "getOrder=yes");
         let responseText = await response.text();
         orderData.innerHTML = "" + responseText;
         console.log(responseText);
