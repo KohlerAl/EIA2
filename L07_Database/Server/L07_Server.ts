@@ -73,6 +73,7 @@ export namespace L07_Household {
         console.log("ShowData called");
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
+        await mongoClient.connect();
         let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders") 
         let cursor: Mongo.Cursor = await orders.find(); 
         let answer: any = await cursor.toString(); 

@@ -61,6 +61,7 @@ var L07_Household;
         console.log("ShowData called");
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(databaseUrl, options);
+        await mongoClient.connect();
         let orders = mongoClient.db("Household").collection("Orders");
         let cursor = await orders.find();
         let answer = await cursor.toString();
