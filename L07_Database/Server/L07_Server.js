@@ -74,8 +74,9 @@ var L07_Household;
         orders.insert(_order);
     }
     function showOrders(_item) {
-        console.log("Item" + _item);
-        allOrders.push(_item);
+        let order = _item.toString();
+        allOrders.push(order);
+        console.log(order);
     }
 })(L07_Household = exports.L07_Household || (exports.L07_Household = {}));
 //# sourceMappingURL=L07_Server.js.map
