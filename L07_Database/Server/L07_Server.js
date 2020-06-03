@@ -68,15 +68,14 @@ var L07_Household;
         let answer = await cursor.forEach(showOrders);
         console.log("Cursor " + cursor);
         console.log("Answer " + answer);
-        _response.write(allOrders);
-        _response.end();
+        return allOrders;
     }
     function storeOrder(_order) {
         orders.insert(_order);
     }
     function showOrders(_item) {
         console.log("Item" + _item);
-        //allOrders.push(_item); 
+        allOrders.push(_item);
     }
 })(L07_Household = exports.L07_Household || (exports.L07_Household = {}));
 //# sourceMappingURL=L07_Server.js.map
