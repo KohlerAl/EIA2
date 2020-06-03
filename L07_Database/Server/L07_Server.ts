@@ -57,12 +57,14 @@ export namespace L07_Household {
             console.log(url.query); 
             if(_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS"); 
+                showData; 
             }
+            else {
             let jsonString: string = JSON.stringify((url.query), null , 2);
             _response.write(jsonString);
         
 
-            storeOrder(url.query);
+            storeOrder(url.query); }
         }
         _response.end();
     }
