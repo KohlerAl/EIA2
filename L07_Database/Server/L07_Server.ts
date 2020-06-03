@@ -90,6 +90,6 @@ export namespace L07_Household {
 
     function showOrders(_item: string): void {
         console.log("Item" + _item); 
-        allOrders.push(_item); 
+        //allOrders.push(_item); 
     }
 }
