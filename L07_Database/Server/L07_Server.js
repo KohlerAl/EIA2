@@ -64,13 +64,16 @@ var L07_Household;
         await mongoClient.connect();
         let orders = mongoClient.db("Household").collection("Orders");
         let cursor = await orders.find();
-        let answer = await cursor.toString();
+        let answer = await cursor.forEach(showOrders);
         console.log("Cursor " + cursor);
         console.log("Answer " + answer);
         return answer;
     }
     function storeOrder(_order) {
         orders.insert(_order);
+    }
+    function showOrders(_item) {
+        console.log(_item);
     }
 })(L07_Household = exports.L07_Household || (exports.L07_Household = {}));
 //# sourceMappingURL=L07_Server.js.map
