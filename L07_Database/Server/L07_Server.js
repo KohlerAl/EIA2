@@ -48,6 +48,8 @@ var L07_Household;
             if (_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS");
                 showData(_response);
+                let jsonString = JSON.stringify(allOrders);
+                _response.write(jsonString);
             }
             else {
                 let jsonString = JSON.stringify((url.query), null, 2);
@@ -65,21 +67,20 @@ var L07_Household;
         await mongoClient.connect();
         let orders = mongoClient.db("Household").collection("Orders");
         let cursor = await orders.find();
-        let answer = await cursor.toArray();
-        JSON.stringify(answer);
-        console.log("Answer " + answer);
+        await cursor.forEach(showOrders);
         console.log("Cursor " + cursor);
         console.log(allOrders);
-        return answer;
+        return allOrders;
     }
     function storeOrder(_order) {
         orders.insert(_order);
     }
-    /* function showOrders(_item: object): void {
+    function showOrders(_item) {
         for (let entry in _item) {
+            JSON.stringify(entry);
             allOrders.push(entry);
             console.log(entry);
         }
-    } */
+    }
 })(L07_Household = exports.L07_Household || (exports.L07_Household = {}));
 //# sourceMappingURL=L07_Server.js.map
