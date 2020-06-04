@@ -48,7 +48,10 @@ var L07_Household;
             if (_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS");
                 showData(_response);
-                return allOrders;
+                for (let entry in allOrders) {
+                    let jsonString = JSON.stringify(entry);
+                    _response.write(jsonString);
+                }
             }
             else {
                 let jsonString = JSON.stringify((url.query), null, 2);
