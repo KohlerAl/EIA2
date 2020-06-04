@@ -66,7 +66,7 @@ var L07_Household;
         let mongoClient = new Mongo.MongoClient(databaseUrl, options);
         await mongoClient.connect();
         let orders = mongoClient.db("Household").collection("Orders");
-        let cursor = await orders.find();
+        let cursor = await orders.find({});
         await cursor.forEach(showOrders);
         console.log("Cursor " + cursor);
         console.log(allOrders);

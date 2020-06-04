@@ -179,8 +179,16 @@ var L07_Household;
     async function getData(_event) {
         let response = await fetch(url + "?" + "getOrder=yes");
         let responseText = await response.text();
-        orderData.innerHTML = "" + responseText;
-        alert(responseText);
+        for (let entry of responseText) {
+            console.log(entry);
+            switch (entry) {
+                case ("_id"):
+                    break;
+                default:
+                    orderData.innerHTML += "" + entry;
+                    break;
+            }
+        }
         console.log(responseText);
     }
     async function sendOrder(_event) {

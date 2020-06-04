@@ -78,7 +78,7 @@ export namespace L07_Household {
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
         await mongoClient.connect();
         let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders") 
-        let cursor: Mongo.Cursor<any> = await orders.find(); 
+        let cursor: Mongo.Cursor<any> = await orders.find({}); 
         await cursor.forEach(showOrders); 
         console.log("Cursor " + cursor);
         console.log(allOrders); 
