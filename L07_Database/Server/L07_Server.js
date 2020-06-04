@@ -55,7 +55,6 @@ var L07_Household;
                 let cursor = await orders.find();
                 await cursor.forEach(showOrders);
                 let jsonString = JSON.stringify(allOrders);
-                console.log("AllOrders JSON: " + jsonString);
                 let answer = jsonString.toString();
                 _response.write(answer);
             }
@@ -84,12 +83,10 @@ var L07_Household;
         orders.insert(_order);
     }
     function showOrders(_item) {
-        console.log("Item in Show Orders" + _item);
         //for (let entry in _item) {
         //JSON.stringify(entry);
         let jsonString = JSON.stringify(_item);
         allOrders.push(jsonString);
-        console.log("JSON String of _item in all Orders: " + jsonString);
         //console.log(entry); 
         //}
     }

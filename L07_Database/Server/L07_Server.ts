@@ -65,7 +65,6 @@ export namespace L07_Household {
                 let cursor: Mongo.Cursor<any> = await orders.find(); 
                 await cursor.forEach(showOrders); 
                 let jsonString: string = JSON.stringify(allOrders); 
-                console.log("AllOrders JSON: " + jsonString)
                 let answer: string = jsonString.toString();
                 _response.write(answer);
             }
@@ -97,12 +96,10 @@ export namespace L07_Household {
     }
 
     function showOrders(_item: object): void {
-        console.log("Item in Show Orders" + _item); 
         //for (let entry in _item) {
             //JSON.stringify(entry);
             let jsonString: string = JSON.stringify(_item);  
             allOrders.push(jsonString); 
-            console.log("JSON String of _item in all Orders: " + jsonString)
             //console.log(entry); 
         //}
     }
