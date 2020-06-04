@@ -76,11 +76,13 @@ var L07_Household;
         orders.insert(_order);
     }
     function showOrders(_item) {
-        for (let entry in _item) {
-            //JSON.stringify(entry); 
-            allOrders.push(entry);
-            console.log(entry);
-        }
+        console.log(_item);
+        //for (let entry in _item) {
+        //JSON.stringify(entry);
+        let jsonString = JSON.stringify(_item);
+        allOrders.push(jsonString);
+        //console.log(entry); 
+        //}
     }
 })(L07_Household = exports.L07_Household || (exports.L07_Household = {}));
 //# sourceMappingURL=L07_Server.js.map

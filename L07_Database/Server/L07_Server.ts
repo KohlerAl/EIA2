@@ -90,10 +90,12 @@ export namespace L07_Household {
     }
 
     function showOrders(_item: object): void {
-        for (let entry in _item) {
-            //JSON.stringify(entry); 
-            allOrders.push(entry); 
-            console.log(entry); 
-        }
+        console.log(_item); 
+        //for (let entry in _item) {
+            //JSON.stringify(entry);
+            let jsonString: string = JSON.stringify(_item);  
+            allOrders.push(jsonString); 
+            //console.log(entry); 
+        //}
     }
 }
