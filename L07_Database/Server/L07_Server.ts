@@ -58,7 +58,7 @@ export namespace L07_Household {
             if(_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS"); 
                 showData(_response); 
-                let jsonString: string = JSON.stringify(allOrders); 
+                let jsonString: string = JSON.stringify((allOrders), null, 2 ); 
                 _response.write(jsonString);
                 
             }
