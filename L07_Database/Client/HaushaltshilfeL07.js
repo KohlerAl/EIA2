@@ -180,7 +180,6 @@ var L07_Household;
         let response = await fetch(url + "?" + "getOrder=yes");
         let responseText = await response.text();
         for (let entry of responseText) {
-            console.log(entry);
             switch (entry) {
                 case ("_id"):
                     break;

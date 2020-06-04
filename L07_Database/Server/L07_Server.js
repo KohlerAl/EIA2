@@ -28,7 +28,7 @@ var L07_Household;
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
     }
-    function handleRequest(_request, _response) {
+    async function handleRequest(_request, _response) {
         console.log("What's up?");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
@@ -47,9 +47,16 @@ var L07_Household;
             console.log(url.query);
             if (_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS");
-                showData(_response);
+                //showData(_response); 
+                let options = { useNewUrlParser: true, useUnifiedTopology: true };
+                let mongoClient = new Mongo.MongoClient(databaseUrl, options);
+                await mongoClient.connect();
+                let orders = mongoClient.db("Household").collection("Orders");
+                let cursor = await orders.find();
+                await cursor.forEach(showOrders);
                 let jsonString = JSON.stringify(allOrders);
-                _response.write(jsonString);
+                console.log("AllOrders JSON: " + jsonString);
+                _response.write(allOrders);
             }
             else {
                 let jsonString = JSON.stringify((url.query), null, 2);
@@ -60,27 +67,30 @@ var L07_Household;
         _response.end();
     }
     let allOrders = [];
-    async function showData(_response) {
+    /* async function showData(_response: Http.ServerResponse): Promise<any> {
         console.log("ShowData called");
-        let options = { useNewUrlParser: true, useUnifiedTopology: true };
-        let mongoClient = new Mongo.MongoClient(databaseUrl, options);
+        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
         await mongoClient.connect();
-        let orders = mongoClient.db("Household").collection("Orders");
-        let cursor = await orders.find();
+        let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders")
+        let cursor: Mongo.Cursor<any> = await orders.find();
         await cursor.forEach(showOrders);
         console.log("Cursor " + cursor);
-        console.log(allOrders);
-        return allOrders;
-    }
+        console.log("AllOrders in Show Data" + allOrders);
+        return allOrders
+    } */
     function storeOrder(_order) {
         orders.insert(_order);
     }
     function showOrders(_item) {
-        for (let entry in _item) {
-            JSON.stringify(entry);
-            allOrders.push(entry);
-            console.log(entry);
-        }
+        console.log("Item in Show Orders" + _item);
+        //for (let entry in _item) {
+        //JSON.stringify(entry);
+        let jsonString = JSON.stringify(_item);
+        allOrders.push(jsonString);
+        console.log("JSON String of _item in all Orders: " + jsonString);
+        //console.log(entry); 
+        //}
     }
 })(L07_Household = exports.L07_Household || (exports.L07_Household = {}));
 //# sourceMappingURL=L07_Server.js.map

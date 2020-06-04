@@ -36,7 +36,7 @@ export namespace L07_Household {
         console.log("Database connection ", orders != undefined);
     }
 
-    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): any {
+    async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<any> {
         console.log("What's up?");
 
         _response.setHeader("content-type", "text/html; charset=utf-8");
@@ -57,9 +57,16 @@ export namespace L07_Household {
             console.log(url.query); 
             if(_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS"); 
-                showData(_response); 
+                //showData(_response); 
+                let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+                let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
+                await mongoClient.connect();
+                let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders") 
+                let cursor: Mongo.Cursor<any> = await orders.find(); 
+                await cursor.forEach(showOrders); 
                 let jsonString: string = JSON.stringify(allOrders); 
-                _response.write(jsonString);
+                console.log("AllOrders JSON: " + jsonString)
+                _response.write(allOrders);
                 
             }
             else {
@@ -72,7 +79,7 @@ export namespace L07_Household {
 
     let allOrders: string[] = []; 
     
-    async function showData(_response: Http.ServerResponse): Promise<any> {
+    /* async function showData(_response: Http.ServerResponse): Promise<any> {
         console.log("ShowData called");
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
@@ -81,19 +88,22 @@ export namespace L07_Household {
         let cursor: Mongo.Cursor<any> = await orders.find(); 
         await cursor.forEach(showOrders); 
         console.log("Cursor " + cursor);
-        console.log(allOrders); 
+        console.log("AllOrders in Show Data" + allOrders); 
         return allOrders
-    }
+    } */
 
     function storeOrder(_order: Order): void {
         orders.insert(_order);
     }
 
     function showOrders(_item: object): void {
-        for (let entry in _item) {
-            JSON.stringify(entry); 
-            allOrders.push(entry); 
-            console.log(entry); 
-        }
+        console.log("Item in Show Orders" + _item); 
+        //for (let entry in _item) {
+            //JSON.stringify(entry);
+            let jsonString: string = JSON.stringify(_item);  
+            allOrders.push(jsonString); 
+            console.log("JSON String of _item in all Orders: " + jsonString)
+            //console.log(entry); 
+        //}
     }
 }
