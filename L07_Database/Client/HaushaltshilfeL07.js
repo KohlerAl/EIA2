@@ -185,7 +185,7 @@ var L07_Household;
         for (let entry of pretty) {
             switch (entry) {
                 case ("_"):
-                    orderData.innerHTML += "<br>" + entry;
+                    orderData.innerHTML += "<br>" + "Bestell-ID: " + entry;
                     break;
                 case ("["):
                     break;
