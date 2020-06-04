@@ -178,6 +178,7 @@ var L07_Household;
     } */
     async function getData(_event) {
         let response = await fetch(url + "?" + "getOrder=yes");
+        orderData.innerHTML = "";
         let responseText = await response.text();
         for (let entry of responseText) {
             switch (entry) {
