@@ -82,7 +82,7 @@ export namespace L07_Household {
         let cursor: Mongo.Cursor<any> = await orders.find(); 
         await cursor.forEach(showOrders); 
         console.log("Cursor " + cursor);
-        console.log(allOrders); 
+        console.log("AllOrders in Show Data" + allOrders); 
         return allOrders
     }
 
@@ -91,11 +91,12 @@ export namespace L07_Household {
     }
 
     function showOrders(_item: object): void {
-        console.log(_item); 
+        console.log("Item in Show Orders" + _item); 
         //for (let entry in _item) {
             //JSON.stringify(entry);
             let jsonString: string = JSON.stringify(_item);  
             allOrders.push(jsonString); 
+            console.log("JSON String of _item in all Orders: " + jsonString)
             //console.log(entry); 
         //}
     }

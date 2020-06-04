@@ -70,18 +70,19 @@ var L07_Household;
         let cursor = await orders.find();
         await cursor.forEach(showOrders);
         console.log("Cursor " + cursor);
-        console.log(allOrders);
+        console.log("AllOrders in Show Data" + allOrders);
         return allOrders;
     }
     function storeOrder(_order) {
         orders.insert(_order);
     }
     function showOrders(_item) {
-        console.log(_item);
+        console.log("Item in Show Orders" + _item);
         //for (let entry in _item) {
         //JSON.stringify(entry);
         let jsonString = JSON.stringify(_item);
         allOrders.push(jsonString);
+        console.log("JSON String of _item in all Orders: " + jsonString);
         //console.log(entry); 
         //}
     }
