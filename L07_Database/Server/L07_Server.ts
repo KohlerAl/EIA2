@@ -36,7 +36,7 @@ export namespace L07_Household {
         console.log("Database connection ", orders != undefined);
     }
 
-    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
+    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): any {
         console.log("What's up?");
 
         _response.setHeader("content-type", "text/html; charset=utf-8");
@@ -58,6 +58,7 @@ export namespace L07_Household {
             if(_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS"); 
                 showData(_response); 
+                return allOrders; 
             }
             else {
             let jsonString: string = JSON.stringify((url.query), null , 2);
