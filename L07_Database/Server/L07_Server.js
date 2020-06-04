@@ -48,7 +48,7 @@ var L07_Household;
             if (_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS");
                 showData(_response);
-                let jsonString = JSON.stringify((allOrders), null, 2);
+                let jsonString = JSON.stringify(allOrders);
                 _response.write(jsonString);
             }
             else {
@@ -77,8 +77,7 @@ var L07_Household;
     }
     function showOrders(_item) {
         for (let entry in _item) {
-            console.log(entry);
-            JSON.stringify(entry);
+            //JSON.stringify(entry); 
             allOrders.push(entry);
             console.log(entry);
         }
