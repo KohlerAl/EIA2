@@ -160,3 +160,16 @@ table {
 .fa-trash-alt {
     margin: px; 
 }
+
+#needTasks {
+    color: #353535; 
+    border: none;
+    border-radius: 5px;   
+    padding: 8px;
+    margin: 5px 0px 5px 0px; 
+    width: 650px;
+    border-radius: 10px;
+    background: #a6b4b3;
+    box-shadow: inset -9px -9px 15px #94a09f, 
+            inset 9px 9px 15px #b8c8c7;
+}

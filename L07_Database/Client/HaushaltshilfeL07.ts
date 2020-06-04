@@ -197,6 +197,13 @@ namespace L07_Household {
             case("_"):
             orderData.innerHTML += "<br>" + entry ; 
             break;
+            case("["):
+            break; 
+            case("]"): 
+            break; 
+            case(","): 
+            orderData.innerHTML += "<br>"; 
+            break; 
             default:
             orderData.innerHTML += "" + entry ; 
             break; 
