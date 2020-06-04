@@ -57,6 +57,7 @@ var L07_Household;
                 let jsonString = JSON.stringify(allOrders);
                 let answer = jsonString.toString();
                 _response.write(answer);
+                allOrders = [];
             }
             else {
                 let jsonString = JSON.stringify((url.query), null, 2);

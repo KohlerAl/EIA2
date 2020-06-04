@@ -67,6 +67,7 @@ export namespace L07_Household {
                 let jsonString: string = JSON.stringify(allOrders); 
                 let answer: string = jsonString.toString();
                 _response.write(answer);
+                allOrders = [];
             }
             else {
             let jsonString: string = JSON.stringify((url.query), null , 2);
