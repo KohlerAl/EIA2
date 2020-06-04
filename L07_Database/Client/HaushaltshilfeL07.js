@@ -180,9 +180,12 @@ var L07_Household;
         let response = await fetch(url + "?" + "getOrder=yes");
         orderData.innerHTML = "";
         let responseText = await response.text();
-        for (let entry of responseText) {
+        let pretty = responseText.replace(/\\|{|}|"|/g, "");
+        console.log(pretty);
+        for (let entry of pretty) {
             switch (entry) {
-                case ("_id"):
+                case ("_"):
+                    orderData.innerHTML += "<br>" + entry;
                     break;
                 default:
                     orderData.innerHTML += "" + entry;
