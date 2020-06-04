@@ -213,6 +213,7 @@ namespace L07_Household {
     }
 
     async function sendOrder(_event: Event): Promise<void> {
+        let date: HTMLInputElement = <HTMLInputElement>document.getElementById("date");
         let formData: FormData = new FormData(document.forms[0]);
         console.log(form);
         for (let entry of formData) {
@@ -222,11 +223,9 @@ namespace L07_Household {
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         //Fetch (suchen der HTML-Datei (Haushaltshilfe))
         //await fetch("HaushaltshilfeL05.html?" + query.toString());
-        let response: Response = await fetch(url + "?" + query.toString());
-        let responseText: string = await response.text();
+        let datum: string = String(date.value)
 
         // Wenn der Button zum Abschicken gedrückt wurde, wird in einem Alert-Fenster eine Benachrichtigung mit dem Lieferdatum angezeigt
-        let date: HTMLInputElement = <HTMLInputElement>document.getElementById("date");
         let lieferdatum = date.value;
         let paypal: HTMLInputElement = <HTMLInputElement>document.getElementById("Paypal");
         let überweisung: HTMLInputElement = <HTMLInputElement>document.getElementById("Überweisung");
@@ -241,6 +240,8 @@ namespace L07_Household {
         else {
             Zahlungsart = "Bar"
         }
+        let response: Response = await fetch(url + "?" + query.toString() + "&Lieferdatum=" + datum + "&Zahlungsart=" + Zahlungsart);
+        let responseText: string = await response.text();
         alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " 
         + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost.toFixed(2) + "€" + "\n Ihre Bestellung: " + "\n" + responseText);
     }

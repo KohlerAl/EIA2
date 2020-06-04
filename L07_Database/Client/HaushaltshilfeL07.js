@@ -202,6 +202,7 @@ var L07_Household;
         console.log(responseText);
     }
     async function sendOrder(_event) {
+        let date = document.getElementById("date");
         let formData = new FormData(document.forms[0]);
         console.log(form);
         for (let entry of formData) {
@@ -211,10 +212,8 @@ var L07_Household;
         let query = new URLSearchParams(formData);
         //Fetch (suchen der HTML-Datei (Haushaltshilfe))
         //await fetch("HaushaltshilfeL05.html?" + query.toString());
-        let response = await fetch(url + "?" + query.toString());
-        let responseText = await response.text();
+        let datum = String(date.value);
         // Wenn der Button zum Abschicken gedrückt wurde, wird in einem Alert-Fenster eine Benachrichtigung mit dem Lieferdatum angezeigt
-        let date = document.getElementById("date");
         let lieferdatum = date.value;
         let paypal = document.getElementById("Paypal");
         let überweisung = document.getElementById("Überweisung");
@@ -228,6 +227,8 @@ var L07_Household;
         else {
             Zahlungsart = "Bar";
         }
+        let response = await fetch(url + "?" + query.toString() + "&Lieferdatum=" + datum + "&Zahlungsart=" + Zahlungsart);
+        let responseText = await response.text();
         alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: "
             + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost.toFixed(2) + "€" + "\n Ihre Bestellung: " + "\n" + responseText);
     }
