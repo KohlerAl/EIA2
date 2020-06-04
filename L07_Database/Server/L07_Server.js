@@ -6,6 +6,7 @@ const Url = require("url");
 const Mongo = require("mongodb");
 var L07_Household;
 (function (L07_Household) {
+    let allOrders = [];
     let orders;
     let port = process.env.PORT;
     if (port == undefined) {
@@ -47,10 +48,9 @@ var L07_Household;
             console.log(url.query);
             if (_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS");
-                let x = showData(_response);
-                let jsonString = JSON.stringify(x);
-                console.log("AllOrders JSON: " + jsonString);
-                _response.write(x);
+                showData(_response);
+                let jsonString = JSON.stringify(allOrders);
+                _response.write(jsonString);
             }
             else {
                 let jsonString = JSON.stringify((url.query), null, 2);
@@ -60,7 +60,6 @@ var L07_Household;
         }
         _response.end();
     }
-    let allOrders = [];
     async function showData(_response) {
         console.log("ShowData called");
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -70,21 +69,18 @@ var L07_Household;
         let cursor = await orders.find();
         await cursor.forEach(showOrders);
         console.log("Cursor " + cursor);
-        console.log("AllOrders in Show Data" + allOrders);
+        console.log(allOrders);
         return allOrders;
     }
     function storeOrder(_order) {
         orders.insert(_order);
     }
     function showOrders(_item) {
-        console.log("Item in Show Orders" + _item);
-        //for (let entry in _item) {
-        //JSON.stringify(entry);
-        let jsonString = JSON.stringify(_item);
-        allOrders.push(jsonString);
-        console.log("JSON String of _item in all Orders: " + jsonString);
-        //console.log(entry); 
-        //}
+        for (let entry in _item) {
+            JSON.stringify(entry);
+            allOrders.push(entry);
+            console.log(entry);
+        }
     }
 })(L07_Household = exports.L07_Household || (exports.L07_Household = {}));
 //# sourceMappingURL=L07_Server.js.map

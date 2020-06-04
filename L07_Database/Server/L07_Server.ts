@@ -6,6 +6,7 @@ export namespace L07_Household {
     interface Order {
         [type: string]: string | string[] | undefined;
     }
+    let allOrders: string[] = []; 
 
     let orders: Mongo.Collection;
 
@@ -57,10 +58,10 @@ export namespace L07_Household {
             console.log(url.query); 
             if(_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS"); 
-                let x: Promise<any> = showData(_response); 
-                let jsonString: string = JSON.stringify(x); 
-                console.log("AllOrders JSON: " + jsonString)
-                _response.write(x);
+                showData(_response); 
+                
+                let jsonString: string = JSON.stringify(allOrders); 
+                _response.write(jsonString);
                 
             }
             else {
@@ -70,8 +71,6 @@ export namespace L07_Household {
         }
         _response.end();
     }
-
-    let allOrders: string[] = []; 
     
     async function showData(_response: Http.ServerResponse): Promise<any> {
         console.log("ShowData called");
@@ -82,7 +81,7 @@ export namespace L07_Household {
         let cursor: Mongo.Cursor<any> = await orders.find(); 
         await cursor.forEach(showOrders); 
         console.log("Cursor " + cursor);
-        console.log("AllOrders in Show Data" + allOrders); 
+        console.log(allOrders); 
         return allOrders
     }
 
@@ -91,13 +90,11 @@ export namespace L07_Household {
     }
 
     function showOrders(_item: object): void {
-        console.log("Item in Show Orders" + _item); 
-        //for (let entry in _item) {
-            //JSON.stringify(entry);
-            let jsonString: string = JSON.stringify(_item);  
-            allOrders.push(jsonString); 
-            console.log("JSON String of _item in all Orders: " + jsonString)
-            //console.log(entry); 
-        //}
+        
+        for (let entry in _item) {
+            JSON.stringify(entry); 
+            allOrders.push(entry); 
+            console.log(entry); 
+        }
     }
 }
