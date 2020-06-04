@@ -36,7 +36,7 @@ export namespace L07_Household {
         console.log("Database connection ", orders != undefined);
     }
 
-    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): any {
+    async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<any> {
         console.log("What's up?");
 
         _response.setHeader("content-type", "text/html; charset=utf-8");
@@ -57,9 +57,15 @@ export namespace L07_Household {
             console.log(url.query); 
             if(_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS"); 
-                showData(_response); 
-                /* let jsonString: string = JSON.stringify(allOrders); 
-                console.log("AllOrders JSON: " + jsonString) */
+                //showData(_response); 
+                let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+                let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
+                await mongoClient.connect();
+                let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders") 
+                let cursor: Mongo.Cursor<any> = await orders.find(); 
+                await cursor.forEach(showOrders); 
+                let jsonString: string = JSON.stringify(allOrders); 
+                console.log("AllOrders JSON: " + jsonString)
                 _response.write(allOrders);
                 
             }
@@ -73,7 +79,7 @@ export namespace L07_Household {
 
     let allOrders: string[] = []; 
     
-    async function showData(_response: Http.ServerResponse): Promise<any> {
+    /* async function showData(_response: Http.ServerResponse): Promise<any> {
         console.log("ShowData called");
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
@@ -84,7 +90,7 @@ export namespace L07_Household {
         console.log("Cursor " + cursor);
         console.log("AllOrders in Show Data" + allOrders); 
         return allOrders
-    }
+    } */
 
     function storeOrder(_order: Order): void {
         orders.insert(_order);
