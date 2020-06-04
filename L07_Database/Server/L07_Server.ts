@@ -58,10 +58,7 @@ export namespace L07_Household {
             if(_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS"); 
                 showData(_response); 
-                for (let entry in allOrders) {
-                let jsonString: string = JSON.stringify(entry); 
-                _response.write(jsonString);
-                }
+                
             }
             else {
             let jsonString: string = JSON.stringify((url.query), null , 2);
@@ -80,20 +77,23 @@ export namespace L07_Household {
         await mongoClient.connect();
         let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders") 
         let cursor: Mongo.Cursor<any> = await orders.find(); 
-        await cursor.forEach(showOrders); 
+        let answer = await cursor.toArray(); 
+        JSON.stringify(answer); 
+        console.log("Answer " + answer); 
         console.log("Cursor " + cursor);
         console.log(allOrders); 
-        return allOrders
+        return answer
     }
 
     function storeOrder(_order: Order): void {
         orders.insert(_order);
     }
 
-    function showOrders(_item: object): void {
+
+    /* function showOrders(_item: object): void {
         for (let entry in _item) {
             allOrders.push(entry); 
             console.log(entry); 
         }
-    }
+    } */
 }
