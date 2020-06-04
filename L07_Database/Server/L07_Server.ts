@@ -66,7 +66,8 @@ export namespace L07_Household {
                 await cursor.forEach(showOrders); 
                 let jsonString: string = JSON.stringify(allOrders); 
                 console.log("AllOrders JSON: " + jsonString)
-                _response.write(allOrders);
+                let answer: string = jsonString.toString();
+                _response.write(answer);
                 
             }
             else {

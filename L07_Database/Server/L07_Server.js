@@ -56,7 +56,8 @@ var L07_Household;
                 await cursor.forEach(showOrders);
                 let jsonString = JSON.stringify(allOrders);
                 console.log("AllOrders JSON: " + jsonString);
-                _response.write(allOrders);
+                let answer = jsonString.toString();
+                _response.write(answer);
             }
             else {
                 let jsonString = JSON.stringify((url.query), null, 2);
