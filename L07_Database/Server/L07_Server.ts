@@ -6,7 +6,6 @@ export namespace L07_Household {
     interface Order {
         [type: string]: string | string[] | undefined;
     }
-    let allOrders: string[] = []; 
 
     let orders: Mongo.Collection;
 
@@ -59,7 +58,6 @@ export namespace L07_Household {
             if(_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS"); 
                 showData(_response); 
-                
                 let jsonString: string = JSON.stringify(allOrders); 
                 _response.write(jsonString);
                 
@@ -71,6 +69,8 @@ export namespace L07_Household {
         }
         _response.end();
     }
+
+    let allOrders: string[] = []; 
     
     async function showData(_response: Http.ServerResponse): Promise<any> {
         console.log("ShowData called");
@@ -90,7 +90,6 @@ export namespace L07_Household {
     }
 
     function showOrders(_item: object): void {
-        
         for (let entry in _item) {
             JSON.stringify(entry); 
             allOrders.push(entry); 

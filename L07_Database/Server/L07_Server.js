@@ -6,7 +6,6 @@ const Url = require("url");
 const Mongo = require("mongodb");
 var L07_Household;
 (function (L07_Household) {
-    let allOrders = [];
     let orders;
     let port = process.env.PORT;
     if (port == undefined) {
@@ -60,6 +59,7 @@ var L07_Household;
         }
         _response.end();
     }
+    let allOrders = [];
     async function showData(_response) {
         console.log("ShowData called");
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
