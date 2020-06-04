@@ -59,6 +59,7 @@ export namespace L07_Household {
                 console.log("THIS WORKS"); 
                 showData(_response); 
                 let jsonString: string = JSON.stringify(allOrders); 
+                console.log("AllOrders JSON: " + jsonString)
                 _response.write(jsonString);
                 
             }

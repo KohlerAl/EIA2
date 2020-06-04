@@ -49,6 +49,7 @@ var L07_Household;
                 console.log("THIS WORKS");
                 showData(_response);
                 let jsonString = JSON.stringify(allOrders);
+                console.log("AllOrders JSON: " + jsonString);
                 _response.write(jsonString);
             }
             else {
