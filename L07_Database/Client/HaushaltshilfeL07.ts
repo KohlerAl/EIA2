@@ -19,6 +19,7 @@ namespace L07_Household {
     let totalPrice: HTMLLabelElement = <HTMLLabelElement>document.getElementById("totalPrice");
     let orderData: HTMLDivElement = <HTMLDivElement>document.getElementById("orderData"); 
     let getOrderData: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getOrderData"); 
+    let deleteOrderData: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteOrderData"); 
 
     async function handleLoad(_event: Event): Promise<void> {
 
@@ -39,6 +40,7 @@ namespace L07_Household {
         submitButton.addEventListener("click", sendOrder);
         resetButton.addEventListener("click", resetForm);
         getOrderData.addEventListener("click", getData); 
+        deleteOrderData.addEventListener("click", deleteData); 
     }
 
     function handleChange(_event: Event): void {
@@ -214,6 +216,10 @@ namespace L07_Household {
             }
         }
         console.log(responseText); 
+    }
+
+    function deleteData(): void {
+        orderData.innerHTML = ""; 
     }
 
     async function sendOrder(_event: Event): Promise<void> {

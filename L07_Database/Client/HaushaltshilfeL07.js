@@ -19,6 +19,7 @@ var L07_Household;
     let totalPrice = document.getElementById("totalPrice");
     let orderData = document.getElementById("orderData");
     let getOrderData = document.getElementById("getOrderData");
+    let deleteOrderData = document.getElementById("deleteOrderData");
     async function handleLoad(_event) {
         let response = await fetch("DataL07.json");
         let offer = await response.text();
@@ -36,6 +37,7 @@ var L07_Household;
         submitButton.addEventListener("click", sendOrder);
         resetButton.addEventListener("click", resetForm);
         getOrderData.addEventListener("click", getData);
+        deleteOrderData.addEventListener("click", deleteData);
     }
     function handleChange(_event) {
         //Selektieren der drei Tabellen aus dem HTml, für jede Erledigung gibt es eine eigene Tabelle
@@ -204,6 +206,9 @@ var L07_Household;
             }
         }
         console.log(responseText);
+    }
+    function deleteData() {
+        orderData.innerHTML = "";
     }
     async function sendOrder(_event) {
         let date = document.getElementById("date");
