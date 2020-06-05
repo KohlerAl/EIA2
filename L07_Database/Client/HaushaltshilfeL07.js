@@ -4,7 +4,18 @@ var L07_Household;
     //Aufgabe07 erstellt am 03.06.2020 von Alida Kohler
     //Hinzufügen eines load-Listeners 
     window.addEventListener("load", handleLoad);
-    let url = "https://agkeia.herokuapp.com/";
+    let url;
+    function chooseUrl(_param) {
+        if (_param == "local") {
+            url = "http://localhost:5001/";
+            console.log("Server starting at localhost");
+        }
+        else {
+            url = "https://agkeia.herokuapp.com/";
+            console.log("Server starting at heroku");
+        }
+    }
+    chooseUrl;
     /**
      * Deklarieren von Variablen, für einfacheres Schreiben im Code und Deklaration
      * der globalen Variable totalCost
