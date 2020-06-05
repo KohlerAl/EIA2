@@ -1,6 +1,7 @@
 "use strict";
 var L07_Household;
 (function (L07_Household) {
+    //Aufgabe07 erstellt am 03.06.2020 von Alida Kohler
     function generateContent(_data) {
         for (let category in _data) {
             let items = _data[category];

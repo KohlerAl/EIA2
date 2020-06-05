@@ -1,12 +1,13 @@
 "use strict";
 var L07_Household;
 (function (L07_Household) {
-    //Hinzufügen eiens load-Listeners 
+    //Aufgabe07 erstellt am 03.06.2020 von Alida Kohler
+    //Hinzufügen eines load-Listeners 
     window.addEventListener("load", handleLoad);
     let url = "https://agkeia.herokuapp.com/";
     /**
      * Deklarieren von Variablen, für einfacheres Schreiben im Code und Deklaration
-     * der globalen Variablen totalCost
+     * der globalen Variable totalCost
      */
     let totalCost = 0;
     let form = document.querySelector("form"); /*

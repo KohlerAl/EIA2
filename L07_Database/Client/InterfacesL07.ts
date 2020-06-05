@@ -1,4 +1,5 @@
 namespace L07_Household {
+    //Aufgabe07 erstellt am 03.06.2020 von Alida Kohler
 
     export interface Item {
         name: string; 

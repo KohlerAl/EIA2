@@ -3,6 +3,7 @@ import * as Url from "url";
 import * as Mongo from "mongodb";
 
 export namespace L07_Household {
+    //Aufgabe07 erstellt am 03.06.2020 von Alida Kohler
     interface Order {
         [type: string]: string | string[] | undefined;
     }
