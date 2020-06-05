@@ -42,7 +42,7 @@ namespace L07_Household {
     }
 
     function handleChange(_event: Event): void {
-        //Selektieren der drei Tabellen aus dem HTML, für jede Erledigung gibt es eine Tabelle
+        //Selektieren der drei Tabellen aus dem HTml, für jede Erledigung gibt es eine eigene Tabelle
         let table: HTMLDivElement = <HTMLDivElement>document.getElementById("table");
         let table2: HTMLDivElement = <HTMLDivElement>document.getElementById("table2");
         let table3: HTMLDivElement = <HTMLDivElement>document.getElementById("table3");

@@ -38,7 +38,7 @@ var L07_Household;
         getOrderData.addEventListener("click", getData);
     }
     function handleChange(_event) {
-        //Selektieren der drei Tabellen aus dem HTML, für jede Erledigung gibt es eine Tabelle
+        //Selektieren der drei Tabellen aus dem HTml, für jede Erledigung gibt es eine eigene Tabelle
         let table = document.getElementById("table");
         let table2 = document.getElementById("table2");
         let table3 = document.getElementById("table3");
