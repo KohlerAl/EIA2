@@ -4,6 +4,8 @@ import * as Mongo from "mongodb";
 
 export namespace L07_Household {
     //Aufgabe07 erstellt am 03.06.2020 von Alida Kohler
+    //Anmerkung 06.06.2020 um 14:17 Uhr: Ich habe die Datenbank gerade geleert, damit sie die Ausgabe nicht zu 
+    //unübersichtlich wird. Falls mehr Einträge als einer drin sind, war das nicht ich. 
     interface Order {
         [type: string]: string | string[] | undefined;
     }
