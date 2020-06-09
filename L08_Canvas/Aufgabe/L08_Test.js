@@ -1,9 +1,54 @@
 "use strict";
 var L08_Test;
 (function (L08_Test) {
-    console.log("Hello World");
     let canvas = document.querySelector("canvas");
     let crc2 = canvas.getContext("2d");
+    window.addEventListener("load", createImage);
+    window.addEventListener("resize", createImage);
+    function createImage() {
+        createBackground();
+    }
+    function createBackground() {
+        //To make the Background look more interesting, I create a simple pattern, imitating cells. 
+        //The opacity is not very high so that the pattern does not distract 
+        let pattern = document.createElement('canvas').getContext('2d');
+        pattern.canvas.width = 100;
+        pattern.canvas.height = 40;
+        pattern.fillStyle = "#97a0db3a";
+        pattern.fillRect(0, 0, pattern.canvas.width, pattern.canvas.height);
+        pattern.moveTo(0, 20);
+        pattern.lineTo(20, 20);
+        pattern.lineTo(40, 0);
+        pattern.lineTo(60, 0);
+        pattern.lineTo(100, 20);
+        pattern.lineTo(60, 40);
+        pattern.lineTo(40, 40);
+        pattern.lineTo(20, 20);
+        //Draw the pattern for the cell membranes
+        pattern.strokeStyle = "#888888";
+        pattern.stroke();
+        pattern.closePath();
+        //Draw the nuclei 
+        pattern.beginPath();
+        pattern.arc(50, 20, 2, 0, 2 * Math.PI);
+        pattern.fillStyle = "#888888";
+        pattern.fill();
+        //Since the pattern cuts some cells in half, I draw two semicircles, one at the top and one at the bottom
+        //By repeating the pattern, whole circles are created.
+        pattern.beginPath();
+        pattern.arc(95, 40, 2, 1 * Math.PI, 0);
+        pattern.fillStyle = "#888888";
+        pattern.fill();
+        pattern.beginPath();
+        pattern.arc(95, 0, 2, 0 * Math.PI, 1 * Math.PI);
+        pattern.fillStyle = "#888888";
+        pattern.fill();
+        crc2.fillStyle = crc2.createPattern(pattern.canvas, "no-repeat");
+        crc2.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    /* console.log("Hello World");
+    let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
+    let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d"); */
     /* crc2.fillStyle = "#81a9e9";
     crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); */
     /**
@@ -146,24 +191,27 @@ var L08_Test;
             createCircles(color);
         }
     } */
-    let width = window.innerWidth;
+    /* let width: number = window.innerWidth;
     canvas.setAttribute("width", width + "px");
-    let height = window.innerHeight;
+    let height: number = window.innerHeight;
     canvas.setAttribute("height", height + "px");
     crc2.fillStyle = "#97a0db33";
     crc2.fillRect(0, 0, width, height);
-    let numCircles = (width + height) / 4;
+
+    let numCircles = (width + height) /4 ;
     let maxRadius = 20;
     let minRadius = 5;
     let colors = ["#ccddef", "#59e2ff", "#00bfff", "#7fb0e3"];
     let nucleusColors = ["#88888855", "#37373755", "#4a4a4a55", "#44444455"];
     let numColors = colors.length;
-    let xPos;
-    let yPos;
-    let radius;
-    let colorIndex;
-    let color;
-    let nucleusColor;
+
+    let xPos: number;
+    let yPos: number;
+    let radius: number;
+    let colorIndex: number;
+    let color: string;
+    let nucleusColor: string;
+
     // A3. CREATE circles.
     for (let n = 0; n < numCircles; n++) {
         // A4. RANDOM values for circle characteristics.
@@ -173,10 +221,12 @@ var L08_Test;
         colorIndex = Math.round(Math.random() * (numColors - 1));
         color = colors[colorIndex];
         nucleusColor = nucleusColors[colorIndex];
+
         // A5. DRAW circle.
         drawCircle(crc2, xPos, yPos, radius, color);
     }
-    function drawCircle(crc2, xPos, yPos, radius, color) {
+
+    function drawCircle(crc2: CanvasRenderingContext2D, xPos: number, yPos: number, radius: number, color: string) {
         // PARAMETERS for shadow and angles.
         let startAngle = (Math.PI / 180);
         let endAngle = (Math.PI / 180) * 360;
@@ -185,22 +235,24 @@ var L08_Test;
         crc2.shadowOffsetX = 1;
         crc2.shadowOffsetY = 1;
         crc2.shadowBlur = 5;
-        let rotation = Math.random() * 360;
+        let rotation: number = Math.random() * 360;
         console.log(rotation);
+
         // DRAW CIRCLE
         crc2.beginPath();
         crc2.ellipse(xPos, yPos, radius, radius * Math.random() + radius, rotation, startAngle, endAngle);
-        crc2.fillStyle = color + "44";
+        crc2.fillStyle = color +"44";
         crc2.closePath();
         crc2.strokeStyle = color + "77";
         crc2.stroke();
         crc2.fill();
-        //Draw Nucleus 
+
+        //Draw Nucleus
         crc2.beginPath();
         crc2.arc(xPos, yPos, 3, Math.random(), 1.7 * Math.PI);
         crc2.fillStyle = nucleusColor;
         crc2.fill();
-    }
+    } */
     //Ellipse 
     /*
     * crc2.ellipse(100, 100, 10, 75, Math.PI / 4, 0, 2 * Math.PI);

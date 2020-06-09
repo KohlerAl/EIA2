@@ -132,8 +132,8 @@ namespace L08_Virus {
             drawCell(xPos, yPos, radius, color, nucleusColor, bigCell, particle);
         }
         for (let i = 0; storage < width; i++) {
-            maxRadius = 50;
-            minRadius = 40;
+            maxRadius = 40;
+            minRadius = 30;
             //yPos = Math.random() * canvas.height / 4 + 50;
             yPos = 100; 
             radius = minRadius + (Math.random() * (maxRadius - minRadius));
@@ -197,7 +197,7 @@ namespace L08_Virus {
             //They are not perfect circles, to make them look more naturally
             crc2.beginPath();
             if (_size == true) {
-                crc2.arc(_xPos + 2, _yPos - (40*Math.random()), 10, Math.random(), 1.95 * Math.PI);
+                crc2.arc(_xPos + 2, _yPos - (30*Math.random()), 10, Math.random(), 1.95 * Math.PI);
                 crc2.fillStyle = _nucleusColor + "66";
             } else {
                 crc2.arc(_xPos + 2, _yPos - 3, 3, Math.random(), 1.7 * Math.PI);
@@ -213,6 +213,19 @@ namespace L08_Virus {
         let yPosition: number = height / 2;
         console.log(xPosition, yPosition); 
 
+        crc2.beginPath();
+        crc2.arc(xPosition, yPosition, 40, 0, 2*Math.PI); 
+        crc2.fillStyle = "darkslategray"; 
+        crc2.fill(); 
+        crc2.closePath(); 
 
+        crc2.beginPath(); 
+        crc2.arc(xPosition, yPosition, 60, 0, 0.3*Math.PI); 
+        let gradient: CanvasGradient = crc2.createLinearGradient(xPosition, yPosition, xPosition+60, yPosition+60); 
+        gradient.addColorStop(0, "darkslategray"); 
+        gradient.addColorStop(0.3, "red"); 
+        crc2.fillStyle = gradient; 
+        crc2.fill(); 
+        crc2.closePath(); 
     }
 }

@@ -1,8 +1,63 @@
 
 namespace L08_Test {
-    console.log("Hello World");
+
     let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
     let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
+
+    window.addEventListener("load", createImage);
+    window.addEventListener("resize", createImage);
+
+    function createImage(): void {
+        
+        createBackground();
+    }
+
+    function createBackground(): void {
+        //To make the Background look more interesting, I create a simple pattern, imitating cells. 
+        //The opacity is not very high so that the pattern does not distract 
+        let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
+        pattern.canvas.width = 100;
+        pattern.canvas.height = 40;
+        pattern.fillStyle = "#97a0db3a";
+        pattern.fillRect(0, 0, pattern.canvas.width, pattern.canvas.height);
+        pattern.moveTo(0, 20);
+        pattern.lineTo(20, 20);
+        pattern.lineTo(40, 0);
+        pattern.lineTo(60, 0);
+        pattern.lineTo(100, 20);
+        pattern.lineTo(60, 40);
+        pattern.lineTo(40, 40);
+        pattern.lineTo(20, 20);
+
+        //Draw the pattern for the cell membranes
+        pattern.strokeStyle = "#888888";
+        pattern.stroke();
+        pattern.closePath();
+
+        //Draw the nuclei 
+        pattern.beginPath();
+        pattern.arc(50, 20, 2, 0, 2 * Math.PI);
+        pattern.fillStyle = "#888888";
+        pattern.fill();
+
+        //Since the pattern cuts some cells in half, I draw two semicircles, one at the top and one at the bottom
+        //By repeating the pattern, whole circles are created.
+        pattern.beginPath();
+        pattern.arc(95, 40, 2, 1 * Math.PI, 0);
+        pattern.fillStyle = "#888888";
+        pattern.fill();
+
+        pattern.beginPath();
+        pattern.arc(95, 0, 2, 0 * Math.PI, 1 * Math.PI);
+        pattern.fillStyle = "#888888";
+        pattern.fill();
+
+        crc2.fillStyle = <CanvasRenderingContext2D>crc2.createPattern(pattern.canvas, "no-repeat");
+        crc2.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    /* console.log("Hello World");
+    let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
+    let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d"); */
     /* crc2.fillStyle = "#81a9e9";
     crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); */
     /**
@@ -159,7 +214,7 @@ namespace L08_Test {
     } */
     
 
-    let width: number = window.innerWidth;
+    /* let width: number = window.innerWidth;
     canvas.setAttribute("width", width + "px");
     let height: number = window.innerHeight;
     canvas.setAttribute("height", height + "px");
@@ -220,7 +275,7 @@ namespace L08_Test {
         crc2.arc(xPos, yPos, 3, Math.random(), 1.7 * Math.PI); 
         crc2.fillStyle = nucleusColor; 
         crc2.fill(); 
-    }
+    } */
 
     //Ellipse 
     /*
