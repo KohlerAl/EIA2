@@ -12,7 +12,6 @@ var L08_Virus;
         resizeCanvas();
         createBackground();
         createCells();
-        createCoronaCell();
     }
     function createBackground() {
         //To make the Background look more interesting, I create a simple pattern, imitating cells. 
@@ -85,12 +84,18 @@ var L08_Virus;
         let bigCell;
         let particle;
         let storage = 0;
+        let coronaPosition = 10;
+        let j;
+        let antibody = 10;
         //To make the picture not too confusing on small screens, the number of cells to be shown is reduced again 
-        if (width > 700) {
+        if (width > 800) {
             numCircles = numCircles;
+            j = Math.floor(width / 50);
+            console.log(j);
         }
         else {
             numCircles = numCircles / 2;
+            j = 3;
         }
         for (let n = 0; n < numCircles; n++) {
             // Creating some random values for circle characteristics.
@@ -127,7 +132,6 @@ var L08_Virus;
             radius = minRadius + (Math.random() * (maxRadius - minRadius));
             xPos = storage + radius;
             storage = xPos + radius;
-            console.log(xPos, storage, radius);
             colorIndex = Math.round(Math.random() * (numColors - 1));
             color = bigCellColors[colorIndex];
             nucleusColor = nucleusColors[colorIndex];
@@ -136,8 +140,33 @@ var L08_Virus;
             // Call draw Cell and commit all needed values for the cell 
             drawCell(xPos, yPos, radius, color, nucleusColor, bigCell, particle);
         }
+        for (let i = 0; i < j; i++) {
+            radius = 50;
+            xPos = coronaPosition + radius;
+            coronaPosition = xPos + radius;
+            yPos = 220 + (50 * Math.random());
+            createCoronaCell(xPos, yPos);
+            if (i < j - 1) {
+                xPos = coronaPosition + radius + 10;
+                yPos = 360 + (50 * Math.random());
+                createCoronaCell(xPos, yPos);
+            }
+        }
+        for (let i = 0; i < 4; i++) {
+            radius = 15;
+            xPos = antibody + radius;
+            antibody = xPos + radius;
+            yPos = 530 + (20 * Math.random());
+            createAntibodies(xPos, yPos);
+            if (i < 3) {
+                xPos = antibody + radius + 10;
+                yPos = 560 + (20 * Math.random());
+                createAntibodies(xPos, yPos);
+            }
+        }
     }
     function drawCell(_xPos, _yPos, _radius, _color, _nucleusColor, _size, _particle) {
+        crc2.save();
         // Set Parameters for Angles, Shadows and Rotation 
         let startAngle = (Math.PI / 180);
         let endAngle = (Math.PI / 180) * 360;
@@ -178,7 +207,7 @@ var L08_Virus;
             //They are not perfect circles, to make them look more naturally
             crc2.beginPath();
             if (_size == true) {
-                crc2.arc(_xPos + 2, _yPos - (30 * Math.random()), 10, Math.random(), 1.95 * Math.PI);
+                crc2.arc(_xPos + 2, _yPos - (25 * Math.random()), 10, Math.random(), 1.95 * Math.PI);
                 crc2.fillStyle = _nucleusColor + "66";
             }
             else {
@@ -189,22 +218,79 @@ var L08_Virus;
             crc2.fill();
         }
     }
-    function createCoronaCell() {
-        let xPosition = 300;
-        let yPosition = height / 2;
-        console.log(xPosition, yPosition);
+    function createCoronaCell(_xPosition, _yPosition) {
+        crc2.restore();
+        crc2.shadowColor = "rgba(173, 216, 230, 0)";
         crc2.beginPath();
-        crc2.arc(xPosition, yPosition, 40, 0, 2 * Math.PI);
+        crc2.arc(_xPosition, _yPosition, 40, 0, 2 * Math.PI);
         crc2.fillStyle = "darkslategray";
         crc2.fill();
         crc2.closePath();
         crc2.beginPath();
-        crc2.arc(xPosition, yPosition, 60, 0, 0.3 * Math.PI);
-        let gradient = crc2.createLinearGradient(xPosition, yPosition, xPosition + 60, yPosition + 60);
-        gradient.addColorStop(0, "darkslategray");
-        gradient.addColorStop(0.3, "red");
-        crc2.fillStyle = gradient;
+        crc2.arc(_xPosition + 30, _yPosition + 30, 10, 0, 2 * Math.PI);
+        crc2.fillStyle = "darkgreen";
         crc2.fill();
+        crc2.closePath();
+        crc2.beginPath();
+        crc2.arc(_xPosition, _yPosition + 40, 10, 0, 2 * Math.PI);
+        crc2.fillStyle = "darkgreen";
+        crc2.fill();
+        crc2.closePath();
+        crc2.beginPath();
+        crc2.arc(_xPosition + 30, _yPosition - 30, 10, 0, 2 * Math.PI);
+        crc2.fillStyle = "darkgreen";
+        crc2.fill();
+        crc2.closePath();
+        crc2.beginPath();
+        crc2.arc(_xPosition - 30, _yPosition + 30, 10, 0, 2 * Math.PI);
+        crc2.fillStyle = "darkgreen";
+        crc2.fill();
+        crc2.closePath();
+        crc2.beginPath();
+        crc2.arc(_xPosition - 30, _yPosition - 30, 10, 0, 2 * Math.PI);
+        crc2.fillStyle = "darkgreen";
+        crc2.fill();
+        crc2.closePath();
+        crc2.beginPath();
+        crc2.arc(_xPosition + 40, _yPosition, 10, 0, 2 * Math.PI);
+        crc2.fillStyle = "darkgreen";
+        crc2.fill();
+        crc2.closePath();
+        crc2.beginPath();
+        crc2.arc(_xPosition - 40, _yPosition, 10, 0, 2 * Math.PI);
+        crc2.fillStyle = "darkgreen";
+        crc2.fill();
+        crc2.closePath();
+        crc2.beginPath();
+        crc2.arc(_xPosition, _yPosition - 40, 10, 0, 2 * Math.PI);
+        crc2.fillStyle = "darkgreen";
+        crc2.fill();
+        crc2.closePath();
+    }
+    function createAntibodies(_xPos, _yPos) {
+        crc2.beginPath();
+        crc2.moveTo(_xPos, _yPos);
+        crc2.lineTo(_xPos + 20, _yPos - 12);
+        crc2.lineWidth = 2;
+        crc2.strokeStyle = "black";
+        crc2.stroke();
+        crc2.closePath();
+        crc2.beginPath();
+        crc2.arc(_xPos + 30, _yPos - 20, 12, 0.7, 1.4 * Math.PI);
+        crc2.stroke();
+        crc2.closePath();
+        crc2.beginPath();
+        let xPosition = _xPos + 20;
+        let yPosition = _yPos + 30;
+        crc2.moveTo(xPosition, yPosition);
+        crc2.lineTo(xPosition - 20, yPosition + 12);
+        crc2.lineWidth = 2;
+        crc2.strokeStyle = "black";
+        crc2.stroke();
+        crc2.closePath();
+        crc2.beginPath();
+        crc2.arc(xPosition - 30, yPosition + 20, 12, 0.8, 1.3 * Math.PI, true);
+        crc2.stroke();
         crc2.closePath();
     }
 })(L08_Virus || (L08_Virus = {}));
