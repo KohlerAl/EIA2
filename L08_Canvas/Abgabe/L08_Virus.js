@@ -12,8 +12,8 @@ var L08_Virus;
         resizeCanvas();
         createBackground();
         createCells();
-        createMacrophage(180, 550);
-        createMacrophage(300, 500);
+        createMacrophage(180, 480);
+        createMacrophage(300, 520);
     }
     function createBackground() {
         //To make the Background look more interesting, I create a simple pattern, imitating cells. 
@@ -130,7 +130,7 @@ var L08_Virus;
             maxRadius = 40;
             minRadius = 30;
             //yPos = Math.random() * canvas.height / 4 + 50;
-            yPos = 100;
+            yPos = 80;
             radius = minRadius + (Math.random() * (maxRadius - minRadius));
             xPos = storage + radius;
             storage = xPos + radius;
@@ -146,11 +146,11 @@ var L08_Virus;
             radius = 50;
             xPos = coronaPosition + radius;
             coronaPosition = xPos + radius;
-            yPos = 220 + (50 * Math.random());
+            yPos = 200 + (50 * Math.random());
             createCoronaCell(xPos, yPos);
             if (i < j - 1) {
                 xPos = coronaPosition + radius + 10;
-                yPos = 360 + (50 * Math.random());
+                yPos = 320 + (50 * Math.random());
                 createCoronaCell(xPos, yPos);
             }
         }
@@ -158,11 +158,11 @@ var L08_Virus;
             radius = 15;
             xPos = antibody + radius;
             antibody = xPos + radius;
-            yPos = 530 + (20 * Math.random());
+            yPos = 500 + (20 * Math.random());
             createAntibodies(xPos, yPos);
             if (i < 3) {
                 xPos = antibody + radius + 10;
-                yPos = 560 + (20 * Math.random());
+                yPos = 530 + (20 * Math.random());
                 createAntibodies(xPos, yPos);
             }
         }
