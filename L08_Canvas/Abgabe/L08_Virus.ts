@@ -77,8 +77,8 @@ namespace L08_Virus {
         let maxRadius = 20;
         let minRadius = 5;
         //define some colours both for the cells themselves and for their nuclei
-        let colors = ["#ccddef", "#59e2ff", "#7fb0e3", "#d0ddeb"];
-        let bigCellColors = ["#59e2ff", "#64affe", "#3276ff", "#3276ff"];
+        let colors = ["#fbcde2", "#c57ea2", "#f5aacf", "#fdddec"];
+        let bigCellColors = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f"];
         let particleColors = ["#ffcc01", "#ffac16", "#ff9026", "#ffd644"];
         let nucleusColors = ["#888888", "#373737", "#4a4a4a", "#444444"];
         let numColors = colors.length;
@@ -251,55 +251,33 @@ namespace L08_Virus {
 
         crc2.beginPath();
         crc2.arc(_xPosition, _yPosition, 40, 0, 2 * Math.PI);
-        crc2.fillStyle = "darkslategray";
+        crc2.fillStyle = "#ae2d16";
         crc2.fill();
-        crc2.closePath();
 
         crc2.beginPath();
         crc2.arc(_xPosition + 30, _yPosition + 30, 10, 0, 2 * Math.PI);
-        crc2.fillStyle = "darkgreen";
+        crc2.fillStyle = "#cb341a"
         crc2.fill();
-        crc2.closePath();
-
         crc2.beginPath();
         crc2.arc(_xPosition, _yPosition + 40, 10, 0, 2 * Math.PI);
-        crc2.fillStyle = "darkgreen";
         crc2.fill();
-        crc2.closePath();
-
         crc2.beginPath();
         crc2.arc(_xPosition + 30, _yPosition - 30, 10, 0, 2 * Math.PI);
-        crc2.fillStyle = "darkgreen";
         crc2.fill();
-        crc2.closePath();
-
         crc2.beginPath();
         crc2.arc(_xPosition - 30, _yPosition + 30, 10, 0, 2 * Math.PI);
-        crc2.fillStyle = "darkgreen";
         crc2.fill();
-        crc2.closePath();
-
         crc2.beginPath();
         crc2.arc(_xPosition - 30, _yPosition - 30, 10, 0, 2 * Math.PI);
-        crc2.fillStyle = "darkgreen";
         crc2.fill();
-        crc2.closePath();
-
         crc2.beginPath();
         crc2.arc(_xPosition + 40, _yPosition, 10, 0, 2 * Math.PI);
-        crc2.fillStyle = "darkgreen";
         crc2.fill();
-        crc2.closePath();
-
         crc2.beginPath();
         crc2.arc(_xPosition - 40, _yPosition, 10, 0, 2 * Math.PI);
-        crc2.fillStyle = "darkgreen";
         crc2.fill();
-        crc2.closePath();
-
         crc2.beginPath();
         crc2.arc(_xPosition, _yPosition - 40, 10, 0, 2 * Math.PI);
-        crc2.fillStyle = "darkgreen";
         crc2.fill();
         crc2.closePath();
 
@@ -311,7 +289,7 @@ namespace L08_Virus {
         crc2.moveTo(_xPos, _yPos);
         crc2.lineTo(_xPos + 20, _yPos - 12);
         crc2.lineWidth = 2;
-        crc2.strokeStyle = "black";
+        crc2.strokeStyle = "#114d89";
         crc2.stroke();
         crc2.closePath();
         crc2.beginPath();
@@ -325,7 +303,7 @@ namespace L08_Virus {
         crc2.moveTo(xPosition, yPosition);
         crc2.lineTo(xPosition - 20, yPosition + 12);
         crc2.lineWidth = 2;
-        crc2.strokeStyle = "black";
+        crc2.strokeStyle = "#114d89";
         crc2.stroke();
         crc2.closePath();
         crc2.beginPath();
