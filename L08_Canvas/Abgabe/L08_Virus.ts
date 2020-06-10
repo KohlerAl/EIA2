@@ -85,7 +85,8 @@ namespace L08_Virus {
         let nucleusColors = ["#888888", "#373737", "#4a4a4a", "#444444"];
         let numColors = colors.length;
 
-        //Define some variables to be passed to the function drawCell after their value is set.
+        //Define some variables to be passed to the function drawCell after their value is set
+        // as well as some other variables to distinguish different cases of cells and devices
         let xPos: number;
         let yPos: number;
         let radius: number;
