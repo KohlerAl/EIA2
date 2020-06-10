@@ -13,7 +13,7 @@ var L08_Virus;
         createBackground();
         createCells();
         createMacrophage(180, 480);
-        createMacrophage(300, 520);
+        createMacrophage(300, 460);
     }
     function createBackground() {
         //To make the Background look more interesting, I create a simple pattern, imitating cells. 
