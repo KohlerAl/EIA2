@@ -12,8 +12,6 @@ namespace L08_Virus {
         resizeCanvas();
         createBackground();
         createCells();
-        createMacrophage(180, 480); 
-        createMacrophage(300, 460); 
     }
 
     function createBackground(): void {
@@ -66,6 +64,7 @@ namespace L08_Virus {
         canvas.setAttribute("width", width + "px");
         height = window.innerHeight;
         canvas.setAttribute("height", height + "px");
+        console.log(width, height);
         //Set a light blue Background-color, fill a rectangle with it 
         crc2.fillStyle = "#97a0db33";
         //The rectangle is bigger as the canvas, making sure there are no margins in the background-color
@@ -126,20 +125,6 @@ namespace L08_Virus {
             // Call draw Cell and commit all needed values for the cell 
             drawCell(xPos, yPos, radius, color, nucleusColor, bigCell, particle);
         }
-        for (let i = 0; i < 100; i++) {
-            maxRadius = 3;
-            minRadius = 1;
-            xPos = Math.random() * canvas.width;
-            yPos = Math.random() * canvas.height;
-            radius = minRadius + (Math.random() * (maxRadius - minRadius));
-            colorIndex = Math.round(Math.random() * (numColors - 1));
-            color = particleColors[colorIndex];
-            nucleusColor = nucleusColors[colorIndex];
-            bigCell = false;
-            particle = true;
-            // Call draw Cell and commit all needed values for the cell 
-            drawCell(xPos, yPos, radius, color, nucleusColor, bigCell, particle);
-        }
         for (let i = 0; storage < width; i++) {
             maxRadius = 40;
             minRadius = 30;
@@ -162,11 +147,15 @@ namespace L08_Virus {
             xPos = coronaPosition + radius;
             coronaPosition = xPos + radius;
             yPos = 200 + (50 * Math.random());
+            console.log(xPos + "reiheEins");
+            console.log(yPos);
             createCoronaCell(xPos, yPos);
 
             if (i < j - 1) {
                 xPos = coronaPosition + radius + 10;
                 yPos = 320 + (50 * Math.random());
+                console.log(xPos);
+                console.log(yPos);
                 createCoronaCell(xPos, yPos);
             }
         }
@@ -185,9 +174,23 @@ namespace L08_Virus {
             }
         }
 
+        createMacrophage(180, 480);
+        createMacrophage(300, 460);
 
-
-
+        for (let i = 0; i < 100; i++) {
+            maxRadius = 3;
+            minRadius = 1;
+            xPos = Math.random() * canvas.width;
+            yPos = Math.random() * canvas.height;
+            radius = minRadius + (Math.random() * (maxRadius - minRadius));
+            colorIndex = Math.round(Math.random() * (numColors - 1));
+            color = particleColors[colorIndex];
+            nucleusColor = nucleusColors[colorIndex];
+            bigCell = false;
+            particle = true;
+            // Call draw Cell and commit all needed values for the cell 
+            drawCell(xPos, yPos, radius, color, nucleusColor, bigCell, particle);
+        }
     }
 
     function drawCell(_xPos: number, _yPos: number, _radius: number, _color: string, _nucleusColor: string, _size: boolean, _particle: boolean) {
@@ -253,11 +256,6 @@ namespace L08_Virus {
         crc2.shadowColor = "rgba(173, 216, 230, 0)";
 
         crc2.beginPath();
-        crc2.arc(_xPosition, _yPosition, 40, 0, 2 * Math.PI);
-        crc2.fillStyle = "#ae2d16";
-        crc2.fill();
-
-        crc2.beginPath();
         crc2.arc(_xPosition + 30, _yPosition + 30, 10, 0, 2 * Math.PI);
         crc2.fillStyle = "#cb341a"
         crc2.fill();
@@ -284,6 +282,12 @@ namespace L08_Virus {
         crc2.fill();
         crc2.closePath();
 
+        crc2.beginPath();
+        crc2.arc(_xPosition, _yPosition, 40, 0, 2 * Math.PI);
+        crc2.fillStyle = "#ae2d16";
+        crc2.fill();
+        crc2.closePath();
+
     }
 
     function createAntibodies(_xPos: number, _yPos: number): void {
@@ -301,8 +305,8 @@ namespace L08_Virus {
         crc2.closePath();
 
         crc2.beginPath();
-        let xPosition = _xPos+20; 
-        let yPosition = _yPos+30; 
+        let xPosition = _xPos + 20;
+        let yPosition = _yPos + 30;
         crc2.moveTo(xPosition, yPosition);
         crc2.lineTo(xPosition - 20, yPosition + 12);
         crc2.lineWidth = 2;
@@ -317,18 +321,18 @@ namespace L08_Virus {
 
     function createMacrophage(_xPosition: number, _yPosition: number): void {
         crc2.beginPath();
-        crc2.arc(_xPosition+40, _yPosition+40, 40, 0, 2*Math.PI);
-        crc2.arc(_xPosition+18, _yPosition+12, 35, 0, 2*Math.PI); 
-        crc2.arc(_xPosition+80, _yPosition+52, 30, 0, 2*Math.PI);   
-        crc2.fillStyle = "#29657c"; 
-        crc2.closePath(); 
-        crc2.fill(); 
+        crc2.arc(_xPosition + 40, _yPosition + 40, 40, 0, 2 * Math.PI);
+        crc2.arc(_xPosition + 18, _yPosition + 12, 35, 0, 2 * Math.PI);
+        crc2.arc(_xPosition + 80, _yPosition + 52, 30, 0, 2 * Math.PI);
+        crc2.fillStyle = "#29657c";
+        crc2.closePath();
+        crc2.fill();
 
         // Add a nucleus 
-        crc2.beginPath(); 
-        crc2.arc(_xPosition+40, _yPosition+40, 7, 0, 2*Math.PI);
+        crc2.beginPath();
+        crc2.arc(_xPosition + 40, _yPosition + 40, 7, 0, 2 * Math.PI);
         crc2.fillStyle = "darkslategrey";
-        crc2.closePath(); 
-        crc2.fill();  
+        crc2.closePath();
+        crc2.fill();
     }
 }

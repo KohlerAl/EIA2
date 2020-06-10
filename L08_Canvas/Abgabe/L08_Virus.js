@@ -12,8 +12,6 @@ var L08_Virus;
         resizeCanvas();
         createBackground();
         createCells();
-        createMacrophage(180, 480);
-        createMacrophage(300, 460);
     }
     function createBackground() {
         //To make the Background look more interesting, I create a simple pattern, imitating cells. 
@@ -59,6 +57,7 @@ var L08_Virus;
         canvas.setAttribute("width", width + "px");
         height = window.innerHeight;
         canvas.setAttribute("height", height + "px");
+        console.log(width, height);
         //Set a light blue Background-color, fill a rectangle with it 
         crc2.fillStyle = "#97a0db33";
         //The rectangle is bigger as the canvas, making sure there are no margins in the background-color
@@ -113,20 +112,6 @@ var L08_Virus;
             // Call draw Cell and commit all needed values for the cell 
             drawCell(xPos, yPos, radius, color, nucleusColor, bigCell, particle);
         }
-        for (let i = 0; i < 100; i++) {
-            maxRadius = 3;
-            minRadius = 1;
-            xPos = Math.random() * canvas.width;
-            yPos = Math.random() * canvas.height;
-            radius = minRadius + (Math.random() * (maxRadius - minRadius));
-            colorIndex = Math.round(Math.random() * (numColors - 1));
-            color = particleColors[colorIndex];
-            nucleusColor = nucleusColors[colorIndex];
-            bigCell = false;
-            particle = true;
-            // Call draw Cell and commit all needed values for the cell 
-            drawCell(xPos, yPos, radius, color, nucleusColor, bigCell, particle);
-        }
         for (let i = 0; storage < width; i++) {
             maxRadius = 40;
             minRadius = 30;
@@ -148,10 +133,14 @@ var L08_Virus;
             xPos = coronaPosition + radius;
             coronaPosition = xPos + radius;
             yPos = 200 + (50 * Math.random());
+            console.log(xPos + "reiheEins");
+            console.log(yPos);
             createCoronaCell(xPos, yPos);
             if (i < j - 1) {
                 xPos = coronaPosition + radius + 10;
                 yPos = 320 + (50 * Math.random());
+                console.log(xPos);
+                console.log(yPos);
                 createCoronaCell(xPos, yPos);
             }
         }
@@ -166,6 +155,22 @@ var L08_Virus;
                 yPos = 530 + (20 * Math.random());
                 createAntibodies(xPos, yPos);
             }
+        }
+        createMacrophage(180, 480);
+        createMacrophage(300, 460);
+        for (let i = 0; i < 100; i++) {
+            maxRadius = 3;
+            minRadius = 1;
+            xPos = Math.random() * canvas.width;
+            yPos = Math.random() * canvas.height;
+            radius = minRadius + (Math.random() * (maxRadius - minRadius));
+            colorIndex = Math.round(Math.random() * (numColors - 1));
+            color = particleColors[colorIndex];
+            nucleusColor = nucleusColors[colorIndex];
+            bigCell = false;
+            particle = true;
+            // Call draw Cell and commit all needed values for the cell 
+            drawCell(xPos, yPos, radius, color, nucleusColor, bigCell, particle);
         }
     }
     function drawCell(_xPos, _yPos, _radius, _color, _nucleusColor, _size, _particle) {
@@ -225,10 +230,6 @@ var L08_Virus;
         crc2.restore();
         crc2.shadowColor = "rgba(173, 216, 230, 0)";
         crc2.beginPath();
-        crc2.arc(_xPosition, _yPosition, 40, 0, 2 * Math.PI);
-        crc2.fillStyle = "#ae2d16";
-        crc2.fill();
-        crc2.beginPath();
         crc2.arc(_xPosition + 30, _yPosition + 30, 10, 0, 2 * Math.PI);
         crc2.fillStyle = "#cb341a";
         crc2.fill();
@@ -252,6 +253,11 @@ var L08_Virus;
         crc2.fill();
         crc2.beginPath();
         crc2.arc(_xPosition, _yPosition - 40, 10, 0, 2 * Math.PI);
+        crc2.fill();
+        crc2.closePath();
+        crc2.beginPath();
+        crc2.arc(_xPosition, _yPosition, 40, 0, 2 * Math.PI);
+        crc2.fillStyle = "#ae2d16";
         crc2.fill();
         crc2.closePath();
     }
