@@ -16,7 +16,7 @@ namespace L08_Virus {
 
     function createBackground(): void {
         //To make the Background look more interesting, I create a simple pattern, imitating cells. 
-        //The opacity is not very high so that the pattern does not distract 
+        //The opacity is not very high so that the pattern does not distract form the bigger cells. 
         let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
         pattern.canvas.width = 100;
         pattern.canvas.height = 40;
@@ -73,16 +73,16 @@ namespace L08_Virus {
 
     function createCells(): void {
         //Depending on the size of the canvas, different numbers of cells are created
-        let numCircles = (width + height) / 5;
+        let numCircles: number = (width + height) / 5;
         //Declaring the minium and maximum size each cell can be
-        let maxRadius = 20;
-        let minRadius = 5;
+        let maxRadius: number = 20;
+        let minRadius: number = 5;
         //define some colours both for the cells themselves and for their nuclei
-        let colors = ["#fbcde2", "#c57ea2", "#f5aacf", "#fdddec"];
-        let bigCellColors = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f"];
-        let particleColors = ["#ffcc01", "#ffac16", "#ff9026", "#ffd644"];
-        let nucleusColors = ["#888888", "#373737", "#4a4a4a", "#444444"];
-        let numColors = colors.length;
+        let colors: string[] = ["#fbcde2", "#c57ea2", "#f5aacf", "#fdddec"];
+        let bigCellColors: string[] = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f"];
+        let particleColors: string[] = ["#ffcc01", "#ffac16", "#ff9026", "#ffd644"];
+        let nucleusColors: string[] = ["#888888", "#373737", "#4a4a4a", "#444444"];
+        let numColors: number = colors.length;
 
         //Define some variables to be passed to the function drawCell after their value is set
         // as well as some other variables to distinguish different cases of cells and devices
@@ -111,7 +111,8 @@ namespace L08_Virus {
             j = 3;
         }
 
-        for (let n = 0; n < numCircles; n++) {
+        //Create Cells for the Background
+        for (let i = 0; i < numCircles; i++) {
             // Creating some random values for circle characteristics.
             xPos = Math.random() * canvas.width;
             yPos = Math.random() * canvas.height;
@@ -125,10 +126,10 @@ namespace L08_Virus {
             // Call draw Cell and commit all needed values for the cell 
             drawCell(xPos, yPos, radius, color, nucleusColor, bigCell, particle);
         }
-        for (let i = 0; storage < width; i++) {
+        //Create bigger Cells for the foreground
+        while (storage < width) {
             maxRadius = 40;
             minRadius = 30;
-            //yPos = Math.random() * canvas.height / 4 + 50;
             yPos = 80;
             radius = minRadius + (Math.random() * (maxRadius - minRadius));
             xPos = storage + radius;
@@ -147,15 +148,11 @@ namespace L08_Virus {
             xPos = coronaPosition + radius;
             coronaPosition = xPos + radius;
             yPos = 200 + (50 * Math.random());
-            console.log(xPos + "reiheEins");
-            console.log(yPos);
             createCoronaCell(xPos, yPos);
 
             if (i < j - 1) {
                 xPos = coronaPosition + radius + 10;
                 yPos = 320 + (50 * Math.random());
-                console.log(xPos);
-                console.log(yPos);
                 createCoronaCell(xPos, yPos);
             }
         }

@@ -15,7 +15,7 @@ var L08_Virus;
     }
     function createBackground() {
         //To make the Background look more interesting, I create a simple pattern, imitating cells. 
-        //The opacity is not very high so that the pattern does not distract 
+        //The opacity is not very high so that the pattern does not distract form the bigger cells. 
         let pattern = document.createElement('canvas').getContext('2d');
         pattern.canvas.width = 100;
         pattern.canvas.height = 40;
@@ -99,7 +99,8 @@ var L08_Virus;
             numCircles = numCircles / 2;
             j = 3;
         }
-        for (let n = 0; n < numCircles; n++) {
+        //Create Cells for the Background
+        for (let i = 0; i < numCircles; i++) {
             // Creating some random values for circle characteristics.
             xPos = Math.random() * canvas.width;
             yPos = Math.random() * canvas.height;
@@ -112,10 +113,10 @@ var L08_Virus;
             // Call draw Cell and commit all needed values for the cell 
             drawCell(xPos, yPos, radius, color, nucleusColor, bigCell, particle);
         }
-        for (let i = 0; storage < width; i++) {
+        //Create bigger Cells for the foreground
+        while (storage < width) {
             maxRadius = 40;
             minRadius = 30;
-            //yPos = Math.random() * canvas.height / 4 + 50;
             yPos = 80;
             radius = minRadius + (Math.random() * (maxRadius - minRadius));
             xPos = storage + radius;
@@ -133,14 +134,10 @@ var L08_Virus;
             xPos = coronaPosition + radius;
             coronaPosition = xPos + radius;
             yPos = 200 + (50 * Math.random());
-            console.log(xPos + "reiheEins");
-            console.log(yPos);
             createCoronaCell(xPos, yPos);
             if (i < j - 1) {
                 xPos = coronaPosition + radius + 10;
                 yPos = 320 + (50 * Math.random());
-                console.log(xPos);
-                console.log(yPos);
                 createCoronaCell(xPos, yPos);
             }
         }
