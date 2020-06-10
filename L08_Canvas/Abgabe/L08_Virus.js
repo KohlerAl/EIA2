@@ -12,6 +12,8 @@ var L08_Virus;
         resizeCanvas();
         createBackground();
         createCells();
+        createMacrophage(180, 550);
+        createMacrophage(300, 500);
     }
     function createBackground() {
         //To make the Background look more interesting, I create a simple pattern, imitating cells. 
@@ -277,6 +279,21 @@ var L08_Virus;
         crc2.arc(xPosition - 30, yPosition + 20, 12, 0.8, 1.3 * Math.PI, true);
         crc2.stroke();
         crc2.closePath();
+    }
+    function createMacrophage(_xPosition, _yPosition) {
+        crc2.beginPath();
+        crc2.arc(_xPosition + 40, _yPosition + 40, 40, 0, 2 * Math.PI);
+        crc2.arc(_xPosition + 18, _yPosition + 12, 35, 0, 2 * Math.PI);
+        crc2.arc(_xPosition + 80, _yPosition + 52, 30, 0, 2 * Math.PI);
+        crc2.fillStyle = "#29657c";
+        crc2.closePath();
+        crc2.fill();
+        // Add a nucleus 
+        crc2.beginPath();
+        crc2.arc(_xPosition + 40, _yPosition + 40, 7, 0, 2 * Math.PI);
+        crc2.fillStyle = "darkslategrey";
+        crc2.closePath();
+        crc2.fill();
     }
 })(L08_Virus || (L08_Virus = {}));
 //# sourceMappingURL=L08_Virus.js.map
