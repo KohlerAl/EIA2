@@ -1,5 +1,6 @@
 "use strict";
-//Abgabe L08 von Alida Kohler, erstellt am 08.06.2020
+//Abgabe L08 von Alida Kohler, erstellt am 09.06.2020
+//Konzipiert für ein Handy-Display mit dem Format 360x560
 var L08_Virus;
 (function (L08_Virus) {
     let canvas = document.querySelector("canvas");
