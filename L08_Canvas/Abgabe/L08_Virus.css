@@ -2,3 +2,8 @@ body {
     overflow: hidden;
     margin: 0px;
 }
+
+canvas {
+    width: 360;
+    height: 560;
+}

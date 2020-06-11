@@ -4,7 +4,11 @@ namespace L08_Test {
     let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
     let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
 
-    window.addEventListener("load", createImage);
+    let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
+    gradient.addColorStop(0, "HSL(0, 50%, 70%)");
+    gradient.addColorStop(0.25, "white");
+
+   /*  window.addEventListener("load", createImage);
     window.addEventListener("resize", createImage);
 
     function createImage(): void {
@@ -54,7 +58,7 @@ namespace L08_Test {
 
         crc2.fillStyle = <CanvasRenderingContext2D>crc2.createPattern(pattern.canvas, "no-repeat");
         crc2.fillRect(0, 0, canvas.width, canvas.height);
-    }
+    } */
     /* console.log("Hello World");
     let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
     let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d"); */

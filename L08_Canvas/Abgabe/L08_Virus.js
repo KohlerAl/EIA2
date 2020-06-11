@@ -57,7 +57,6 @@ var L08_Virus;
         canvas.setAttribute("width", width + "px");
         height = window.innerHeight;
         canvas.setAttribute("height", height + "px");
-        console.log(width, height);
         //Set a light blue Background-color, fill a rectangle with it 
         crc2.fillStyle = "#97a0db33";
         //The rectangle is bigger as the canvas, making sure there are no margins in the background-color
@@ -226,63 +225,44 @@ var L08_Virus;
     function createCoronaCell(_xPosition, _yPosition) {
         crc2.restore();
         crc2.shadowColor = "rgba(173, 216, 230, 0)";
+        crc2.save();
+        crc2.translate(_xPosition, _yPosition);
+        for (let i = 0; i < 9; i++) {
+            crc2.beginPath();
+            crc2.rotate(30);
+            crc2.moveTo(0, 40);
+            crc2.lineTo(0, 45);
+            crc2.strokeStyle = "#777777";
+            crc2.lineWidth = 3;
+            crc2.stroke();
+            crc2.closePath();
+            crc2.beginPath();
+            crc2.arc(0, 45, 10, 0, 1 * Math.PI);
+            crc2.fillStyle = "#cb341a";
+            crc2.fill();
+        }
         crc2.beginPath();
-        crc2.arc(_xPosition + 30, _yPosition + 30, 10, 0, 2 * Math.PI);
-        crc2.fillStyle = "#cb341a";
-        crc2.fill();
-        crc2.beginPath();
-        crc2.arc(_xPosition, _yPosition + 40, 10, 0, 2 * Math.PI);
-        crc2.fill();
-        crc2.beginPath();
-        crc2.arc(_xPosition + 30, _yPosition - 30, 10, 0, 2 * Math.PI);
-        crc2.fill();
-        crc2.beginPath();
-        crc2.arc(_xPosition - 30, _yPosition + 30, 10, 0, 2 * Math.PI);
-        crc2.fill();
-        crc2.beginPath();
-        crc2.arc(_xPosition - 30, _yPosition - 30, 10, 0, 2 * Math.PI);
-        crc2.fill();
-        crc2.beginPath();
-        crc2.arc(_xPosition + 40, _yPosition, 10, 0, 2 * Math.PI);
-        crc2.fill();
-        crc2.beginPath();
-        crc2.arc(_xPosition - 40, _yPosition, 10, 0, 2 * Math.PI);
-        crc2.fill();
-        crc2.beginPath();
-        crc2.arc(_xPosition, _yPosition - 40, 10, 0, 2 * Math.PI);
-        crc2.fill();
-        crc2.closePath();
-        crc2.beginPath();
-        crc2.arc(_xPosition, _yPosition, 40, 0, 2 * Math.PI);
+        crc2.arc(0, 0, 40, 0, 2 * Math.PI);
         crc2.fillStyle = "#ae2d16";
         crc2.fill();
         crc2.closePath();
+        crc2.restore();
     }
     function createAntibodies(_xPos, _yPos) {
+        crc2.save();
+        crc2.translate(_xPos, _yPos);
         crc2.beginPath();
-        crc2.moveTo(_xPos, _yPos);
-        crc2.lineTo(_xPos + 20, _yPos - 12);
-        crc2.lineWidth = 2;
+        crc2.rotate(Math.random() * 360);
+        crc2.moveTo(0, 0);
+        crc2.lineTo(0, 24);
         crc2.strokeStyle = "#114d89";
-        crc2.stroke();
-        crc2.closePath();
-        crc2.beginPath();
-        crc2.arc(_xPos + 30, _yPos - 20, 12, 0.7, 1.4 * Math.PI);
-        crc2.stroke();
-        crc2.closePath();
-        crc2.beginPath();
-        let xPosition = _xPos + 20;
-        let yPosition = _yPos + 30;
-        crc2.moveTo(xPosition, yPosition);
-        crc2.lineTo(xPosition - 20, yPosition + 12);
         crc2.lineWidth = 2;
-        crc2.strokeStyle = "#114d89";
         crc2.stroke();
         crc2.closePath();
         crc2.beginPath();
-        crc2.arc(xPosition - 30, yPosition + 20, 12, 0.8, 1.3 * Math.PI, true);
+        crc2.arc(0, 36, 12, 0, 1 * Math.PI, true);
         crc2.stroke();
-        crc2.closePath();
+        crc2.restore();
     }
     function createMacrophage(_xPosition, _yPosition) {
         crc2.beginPath();
