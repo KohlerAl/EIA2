@@ -59,7 +59,7 @@ var L08_Virus;
         height = window.innerHeight;
         canvas.setAttribute("height", height + "px");
         //Set a light blue Background-color, fill a rectangle with it 
-        crc2.scale(2, 2);
+        crc2.scale(0.5, 0.5);
         crc2.fillStyle = "#97a0db33";
         //The rectangle is bigger as the canvas, making sure there are no margins in the background-color
         crc2.fillRect(0, 0, width, height);
