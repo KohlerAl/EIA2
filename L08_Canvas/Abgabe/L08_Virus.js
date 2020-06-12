@@ -88,7 +88,7 @@ var L08_Virus;
         let storage = 0;
         let coronaPosition = 10;
         let j;
-        let antibody = 10;
+        // let antibody: number = 10;
         //To make the picture not too confusing on small screens, the number of cells to be shown is reduced again 
         if (width > 800) {
             numCircles = numCircles;
@@ -141,21 +141,21 @@ var L08_Virus;
                 createCoronaCell(xPos, yPos);
             }
         }
+        createMacrophage(width - 100, 480);
+        createMacrophage(width - 300, 460);
         for (let i = 0; i < 4; i++) {
             radius = 15;
-            xPos = antibody + radius;
-            antibody = xPos + radius;
-            yPos = 500 + (20 * Math.random());
+            xPos = Math.random() * canvas.width / 1.5;
+            /* antibody = xPos + radius; */
+            yPos = 450 + (20 * Math.random());
             createAntibodies(xPos, yPos);
             if (i < 3) {
-                xPos = antibody + radius + 10;
+                xPos = Math.random() * canvas.width / 1.5;
                 yPos = 530 + (20 * Math.random());
                 createAntibodies(xPos, yPos);
             }
         }
-        createMacrophage(180, 480);
-        createMacrophage(300, 460);
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 150; i++) {
             maxRadius = 3;
             minRadius = 1;
             xPos = Math.random() * canvas.width;
@@ -270,7 +270,7 @@ var L08_Virus;
         crc2.arc(_xPosition + 40, _yPosition + 40, 40, 0, 2 * Math.PI);
         crc2.arc(_xPosition + 18, _yPosition + 12, 35, 0, 2 * Math.PI);
         crc2.arc(_xPosition + 80, _yPosition + 52, 30, 0, 2 * Math.PI);
-        crc2.fillStyle = "#29657c";
+        crc2.fillStyle = "#008080";
         crc2.closePath();
         crc2.fill();
         // Add a nucleus 
