@@ -88,16 +88,17 @@ var L08_Virus;
         let storage = 0;
         let coronaPosition = 10;
         let j;
-        // let antibody: number = 10;
+        let particles;
         //To make the picture not too confusing on small screens, the number of cells to be shown is reduced again 
         if (width > 800) {
             numCircles = numCircles;
             j = Math.floor(width / 50);
-            console.log(j);
+            particles = 800;
         }
         else {
             numCircles = numCircles / 2;
             j = 3;
+            particles = 150;
         }
         //Create Cells for the Background
         for (let i = 0; i < numCircles; i++) {
@@ -146,7 +147,6 @@ var L08_Virus;
         for (let i = 0; i < 4; i++) {
             radius = 15;
             xPos = Math.random() * canvas.width / 1.5;
-            /* antibody = xPos + radius; */
             yPos = 450 + (20 * Math.random());
             createAntibodies(xPos, yPos);
             if (i < 3) {
@@ -155,7 +155,7 @@ var L08_Virus;
                 createAntibodies(xPos, yPos);
             }
         }
-        for (let i = 0; i < 150; i++) {
+        for (let i = 0; i < particles; i++) {
             maxRadius = 3;
             minRadius = 1;
             xPos = Math.random() * canvas.width;
