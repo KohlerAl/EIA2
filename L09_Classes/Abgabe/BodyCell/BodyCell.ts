@@ -22,7 +22,7 @@ namespace L09_Virus {
             this.color = colors[_colorIndex];
             this.nucleus = nucleusColors[_colorIndex];
 
-            this.velocity = new Vector(0, 2);
+            this.velocity = new Vector(0, 5);
             //this.velocity.add();
         }
 
@@ -61,10 +61,10 @@ namespace L09_Virus {
             // Zu der Posiition addieren 
             this.position.add(offset);
 
-            if (this.position.y < 75)
-                offset.y = Math.abs(offset.y);
-            if (this.position.y > 85)
-                offset.y = -1 * offset.y;
+            if (this.position.y < 72)
+            this.velocity = new Vector (0, 10); 
+            if (this.position.y > 87)
+            this.velocity = new Vector (0, -10);
         }
     }
 }

@@ -12,7 +12,7 @@ var L09_Virus;
             this.nucleusPos.y =   this.position.y - (25 * Math.random()) */
             this.color = colors[_colorIndex];
             this.nucleus = nucleusColors[_colorIndex];
-            this.velocity = new L09_Virus.Vector(0, 2);
+            this.velocity = new L09_Virus.Vector(0, 5);
             //this.velocity.add();
         }
         draw(_position) {
@@ -43,10 +43,10 @@ var L09_Virus;
             offset.y *= _timeslice;
             // Zu der Posiition addieren 
             this.position.add(offset);
-            if (this.position.y < 75)
-                offset.y = Math.abs(offset.y);
-            if (this.position.y > 85)
-                offset.y = -1 * offset.y;
+            if (this.position.y < 72)
+                this.velocity = new L09_Virus.Vector(0, 10);
+            if (this.position.y > 87)
+                this.velocity = new L09_Virus.Vector(0, -10);
         }
     }
     L09_Virus.BodyCell = BodyCell;

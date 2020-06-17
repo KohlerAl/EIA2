@@ -10,6 +10,7 @@ namespace L09_Virus {
     let largeCells: BodyCell[] = [];
     let particles: Particle[] = [];
     let smallCells: Background[] = [];
+    let antibodys: Antibody[] = [];
 
     let stopCoronas: Corona[] = [];
     let infectedBodyCell: BodyCell[] = [];
@@ -87,22 +88,24 @@ namespace L09_Virus {
         //  Create Macrophages
         for (let i = 0; i < 2; i++) {
             let macrophage: Macrophage = new Macrophage();
-            macrophage.draw(width - 200 + (100 * Math.random()), 400 + (200 * Math.random()))
+            macrophage.draw(width - 200 + (200 * Math.random()), 400 + (200 * Math.random()))
         }
+        backgroundImage = crc2.getImageData(0, 0, width, height);
 
         //Create Antibodys
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < j; i++) {
             xPos = Math.random() * canvas.width / 1.5;
-            yPos = 450 + (20 * Math.random());
-            if (xPos > width / 2) {
+            yPos = 450 + (70 * Math.random());
+            /* if (xPos > width / 2) {
                 yPos = yPos + 50;
                 xPos = xPos - width / 2 + 10;
-            }
-            let antibody: Antibody = new Antibody();
-            antibody.draw(xPos, yPos);
+            } */
+            let position: Vector = new Vector(xPos, yPos);
+            let antibody: Antibody = new Antibody(position);
+            antibody.draw(position);
+            antibodys.push(antibody); 
         }
-
-        backgroundImage = crc2.getImageData(0, 0, width, height);
+        
         //Create bigger Cells for the foreground
         while (storage < width) {
             yPos = 80;
@@ -147,21 +150,23 @@ namespace L09_Virus {
 
         crc2.putImageData(backgroundImage, 0, 0);
 
-        for (let particle of particles) {
-            particle.move(1 / 50);
-            particle.draw(particle.position);
-        }
-
         for (let cell of infectedBodyCell) {
+            cell.move(1/50);
             cell.draw(cell.position);
         }
 
-        for (let cell of largeCells) {
+        for (let cell of antibodys) {
+            cell.move(1/20);
             cell.draw(cell.position);
+        }
+
+        for (let bodyCell of largeCells) {
+            bodyCell.move(1 / 30); 
+            bodyCell.draw(bodyCell.position);
         }
 
         for (let corona of coronas) {
-            corona.move(1 / 50);
+            corona.move(1 / 30);
             corona.draw(corona.position);
         }
 
@@ -169,12 +174,12 @@ namespace L09_Virus {
             corona.draw(corona.position);
         }
 
-        isInfected();
+        for (let particle of particles) {
+            particle.move(1 / 50);
+            particle.draw(particle.position);
+        }
 
-        /* for (let bodyCell of largeCells) {
-            bodyCell.move(1 / 20); 
-            bodyCell.draw(bodyCell.position);
-        } */
+        isInfected();
     }
 
     function isInfected(): void {

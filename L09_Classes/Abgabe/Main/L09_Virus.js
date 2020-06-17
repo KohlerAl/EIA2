@@ -7,6 +7,7 @@ var L09_Virus;
     let largeCells = [];
     let particles = [];
     let smallCells = [];
+    let antibodys = [];
     let stopCoronas = [];
     let infectedBodyCell = [];
     let backgroundImage;
@@ -74,20 +75,22 @@ var L09_Virus;
         //  Create Macrophages
         for (let i = 0; i < 2; i++) {
             let macrophage = new L09_Virus.Macrophage();
-            macrophage.draw(L09_Virus.width - 200 + (100 * Math.random()), 400 + (200 * Math.random()));
-        }
-        //Create Antibodys
-        for (let i = 0; i < 7; i++) {
-            xPos = Math.random() * L09_Virus.canvas.width / 1.5;
-            yPos = 450 + (20 * Math.random());
-            if (xPos > L09_Virus.width / 2) {
-                yPos = yPos + 50;
-                xPos = xPos - L09_Virus.width / 2 + 10;
-            }
-            let antibody = new L09_Virus.Antibody();
-            antibody.draw(xPos, yPos);
+            macrophage.draw(L09_Virus.width - 200 + (200 * Math.random()), 400 + (200 * Math.random()));
         }
         backgroundImage = L09_Virus.crc2.getImageData(0, 0, L09_Virus.width, L09_Virus.height);
+        //Create Antibodys
+        for (let i = 0; i < j; i++) {
+            xPos = Math.random() * L09_Virus.canvas.width / 1.5;
+            yPos = 450 + (70 * Math.random());
+            /* if (xPos > width / 2) {
+                yPos = yPos + 50;
+                xPos = xPos - width / 2 + 10;
+            } */
+            let position = new L09_Virus.Vector(xPos, yPos);
+            let antibody = new L09_Virus.Antibody(position);
+            antibody.draw(position);
+            antibodys.push(antibody);
+        }
         //Create bigger Cells for the foreground
         while (storage < L09_Virus.width) {
             yPos = 80;
@@ -125,28 +128,30 @@ var L09_Virus;
     }
     function animation() {
         L09_Virus.crc2.putImageData(backgroundImage, 0, 0);
-        for (let particle of particles) {
-            particle.move(1 / 50);
-            particle.draw(particle.position);
-        }
         for (let cell of infectedBodyCell) {
+            cell.move(1 / 50);
             cell.draw(cell.position);
         }
-        for (let cell of largeCells) {
+        for (let cell of antibodys) {
+            cell.move(1 / 20);
             cell.draw(cell.position);
+        }
+        for (let bodyCell of largeCells) {
+            bodyCell.move(1 / 30);
+            bodyCell.draw(bodyCell.position);
         }
         for (let corona of coronas) {
-            corona.move(1 / 50);
+            corona.move(1 / 30);
             corona.draw(corona.position);
         }
         for (let corona of stopCoronas) {
             corona.draw(corona.position);
         }
+        for (let particle of particles) {
+            particle.move(1 / 50);
+            particle.draw(particle.position);
+        }
         isInfected();
-        /* for (let bodyCell of largeCells) {
-            bodyCell.move(1 / 20);
-            bodyCell.draw(bodyCell.position);
-        } */
     }
     function isInfected() {
         for (let corona of coronas) {
