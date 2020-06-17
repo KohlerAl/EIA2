@@ -33,11 +33,8 @@ namespace L09_Virus {
         //Depending on the size of the canvas, different numbers of cells are created
         let numCircles: number = (width + height) / 5;
         //Declaring the minium and maximum size each cell can be
-        let maxRadius: number = 20;
-        let minRadius: number = 5;
         //define some colours both for the cells themselves and for their nuclei
         let colors: string[] = ["#fbcde2", "#c57ea2", "#f5aacf", "#fdddec"];
-        let nucleusColors: string[] = ["#888888", "#373737", "#4a4a4a", "#444444"];
         let numColors: number = colors.length;
 
         //Define some variables to be passed to the function drawCell after their value is set
@@ -46,10 +43,6 @@ namespace L09_Virus {
         let yPos: number;
         let radius: number;
         let colorIndex: number;
-        let color: string;
-        let nucleusColor: string;
-        let bigCell: boolean;
-        let particle: boolean;
         let storage: number = 0;
         let coronaPosition: number = 10;
         let j: number;
@@ -73,16 +66,10 @@ namespace L09_Virus {
             // Creating some random values for circle characteristics.
             xPos = Math.random() * canvas.width;
             yPos = Math.random() * canvas.height;
-            radius = minRadius + (Math.random() * (maxRadius - minRadius));
-            colorIndex = Math.round(Math.random() * (numColors - 1));
-            color = colors[colorIndex];
-            nucleusColor = nucleusColors[colorIndex];
-            bigCell = false;
-            particle = false;
-
+            
             let position: Vector = new Vector(xPos, yPos);
             let cell: Background = new Background(position);
-            cell.draw(position, radius, color, nucleusColor, bigCell, particle);
+            cell.draw(position);
             smallCells.push(cell);
         }
         //  Create Macrophages
