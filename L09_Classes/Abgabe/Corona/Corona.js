@@ -3,8 +3,9 @@ var L09_Virus;
 (function (L09_Virus) {
     class Corona {
         constructor(_position) {
+            this.position = _position;
             this.velocity = new L09_Virus.Vector(0, 0);
-            this.velocity.random(50, 100);
+            this.velocity.random(30, 80);
         }
         draw(_pos) {
             L09_Virus.crc2.save();
@@ -39,8 +40,21 @@ var L09_Virus;
             this.position.add(offset);
             // Überprüfen, ob der Asteroid noch auf dem Canvas liegt und gegebenenfalls die Position verändern
             // Wenn er größer als height ist, height von der Position abziehen 
-            if (this.position.y > L09_Virus.width) {
-                this.position.y -= L09_Virus.width;
+            if (this.position.x < -30)
+                this.position.x += L09_Virus.crc2.canvas.width;
+            if (this.position.y < -30)
+                this.position.y += L09_Virus.crc2.canvas.height;
+            if (this.position.x > L09_Virus.crc2.canvas.width + 30)
+                this.position.x -= L09_Virus.crc2.canvas.width;
+            if (this.position.y > L09_Virus.crc2.canvas.height + 30)
+                this.position.y -= L09_Virus.crc2.canvas.height;
+        }
+        isInfected() {
+            if (this.position.y < 119) {
+                return true;
+            }
+            else {
+                return false;
             }
         }
     }

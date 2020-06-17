@@ -3,74 +3,54 @@ var L09_Virus;
 (function (L09_Virus) {
     class BodyCell {
         constructor(_position) {
-            this.velocity = new L09_Virus.Vector(0, 0);
-            this.velocity.random(50, 100);
+            this.position = _position;
+            let colors = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f"];
+            let nucleusColors = ["#888888", "#373737", "#4a4a4a", "#444444"];
+            let numColors = colors.length;
+            let colorIndex;
+            this.nucleusPosX = _position.x + 2;
+            this.nucleusPosY = _position.y - (25 * Math.random());
+            /* = this.positio;
+            this.nucleusPos.y =   this.position.y - (25 * Math.random()) */
+            this.radiusY = 40 * Math.random();
+            colorIndex = Math.round(Math.random() * (numColors - 1));
+            this.color = colors[colorIndex];
+            this.nucleus = nucleusColors[colorIndex];
+            this.velocity = new L09_Virus.Vector(0, 2);
+            //this.velocity.add();
         }
-        draw(_position, _radius, _color, _nucleusColor, _size, _particle) {
+        draw(_position) {
             L09_Virus.crc2.save();
-            // Set Parameters for Angles, Shadows and Rotation 
             let startAngle = (Math.PI / 180);
             let endAngle = (Math.PI / 180) * 360;
-            L09_Virus.crc2.shadowColor = "gray";
-            L09_Virus.crc2.shadowOffsetX = 1;
-            L09_Virus.crc2.shadowOffsetY = 1;
-            L09_Virus.crc2.shadowBlur = 5;
-            let rotation = Math.random() * 360;
-            // Creating a pattern, to give the Cells a bit of texture
-            let pattern = document.createElement('canvas').getContext('2d');
-            pattern.canvas.width = 2;
-            pattern.canvas.height = 2;
-            pattern.fillStyle = _color + "33";
-            pattern.fillRect(0, 0, pattern.canvas.width, pattern.canvas.height);
-            pattern.arc(2, 2, Math.floor(Math.random() * 2), 0, 2 * Math.PI);
-            pattern.strokeStyle = _color + "55";
-            pattern.stroke();
-            L09_Virus.crc2.fillStyle = L09_Virus.crc2.createPattern(pattern.canvas, "repeat");
             // Create the Cell itself
             L09_Virus.crc2.beginPath();
-            if (_size == true) {
-                rotation = 0;
-                L09_Virus.crc2.ellipse(_position.x, _position.y, _radius, _radius * Math.random() + _radius, rotation, startAngle, endAngle);
-                L09_Virus.crc2.closePath();
-                L09_Virus.crc2.strokeStyle = _color;
-                L09_Virus.crc2.fillStyle = _color;
-            }
-            else {
-                L09_Virus.crc2.ellipse(_position.x, _position.y, _radius, _radius * Math.random() + _radius, rotation, startAngle, endAngle);
-                L09_Virus.crc2.closePath();
-                L09_Virus.crc2.strokeStyle = _color + "88";
-                L09_Virus.crc2.fillStyle = pattern;
-            }
+            L09_Virus.crc2.ellipse(_position.x, _position.y, 40, this.radiusY + 40, 0, startAngle, endAngle);
+            L09_Virus.crc2.closePath();
+            L09_Virus.crc2.strokeStyle = this.color;
+            L09_Virus.crc2.fillStyle = this.color;
             L09_Virus.crc2.stroke();
             L09_Virus.crc2.fill();
-            if (_particle == false) {
-                //Draw Nucleus 
-                //They are not perfect circles, to make them look more naturally
-                L09_Virus.crc2.beginPath();
-                if (_size == true) {
-                    L09_Virus.crc2.arc(_position.x + 2, _position.y - (25 * Math.random()), 10, Math.random(), 1.95 * Math.PI);
-                    L09_Virus.crc2.fillStyle = _nucleusColor + "66";
-                }
-                else {
-                    L09_Virus.crc2.arc(_position.x + 2, _position.y - 3, 3, Math.random(), 1.7 * Math.PI);
-                    L09_Virus.crc2.fillStyle = _nucleusColor + "33";
-                }
-                L09_Virus.crc2.closePath();
-                L09_Virus.crc2.fill();
-            }
+            //Draw Nucleus 
+            //They are not perfect circles, to make them look more naturally
+            L09_Virus.crc2.beginPath();
+            L09_Virus.crc2.arc(this.nucleusPosX, this.nucleusPosY, 10, Math.random(), 1.95 * Math.PI);
+            L09_Virus.crc2.fillStyle = this.nucleus + "66";
+            L09_Virus.crc2.closePath();
+            L09_Virus.crc2.fill();
         }
         move(_timeslice) {
             // Offset = Geschwindigkeit
             let offset = new L09_Virus.Vector(this.velocity.x, this.velocity.y);
             // Mit der Zeit multiplizieren
-            offset.scale(_timeslice);
+            offset.x *= 0;
+            offset.y *= _timeslice;
             // Zu der Posiition addieren 
             this.position.add(offset);
-            // Überprüfen, ob der Asteroid noch auf dem Canvas liegt und gegebenenfalls die Position verändern
-            // Wenn er größer als height ist, height von der Position abziehen 
-            if (this.position.y > L09_Virus.width) {
-                this.position.y -= L09_Virus.width;
-            }
+            if (this.position.y < 75)
+                offset.y = Math.abs(offset.y);
+            if (this.position.y > 85)
+                offset.y = -1 * offset.y;
         }
     }
     L09_Virus.BodyCell = BodyCell;

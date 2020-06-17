@@ -8,10 +8,14 @@ namespace L09_Virus {
 
     export let coronas: Corona[] = [];
     export let largeCells: BodyCell[] = [];
-    export let particles: BodyCell[] = []; 
-    export let smallCells: BodyCell[] = [];
+    export let particles: Particle[] = [];
+    export let smallCells: Background[] = [];
     export let antibodys: Antibody[] = [];
-    export let macrophages: Macrophage[] = []; 
+    export let macrophages: Macrophage[] = [];
+
+    export let stopCoronas: Corona[] = []; 
+
+    export let backgroundImage: ImageData;
 
     window.addEventListener("load", createImage);
     window.addEventListener("resize", createImage);
@@ -20,6 +24,7 @@ namespace L09_Virus {
         resizeCanvas();
         createBackground();
         createCells();
+        //window.setInterval(animation, 20);
     }
 
     function createCells(): void {
@@ -30,8 +35,6 @@ namespace L09_Virus {
         let minRadius: number = 5;
         //define some colours both for the cells themselves and for their nuclei
         let colors: string[] = ["#fbcde2", "#c57ea2", "#f5aacf", "#fdddec"];
-        let bigCellColors: string[] = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f"];
-        let particleColors: string[] = ["#ffcc01", "#ffac16", "#ff9026", "#ffd644"];
         let nucleusColors: string[] = ["#888888", "#373737", "#4a4a4a", "#444444"];
         let numColors: number = colors.length;
 
@@ -59,7 +62,7 @@ namespace L09_Virus {
         }
         else {
             numCircles = numCircles / 2;
-            j = 10;
+            j = 15;
             nParticles = 150;
         }
 
@@ -76,33 +79,40 @@ namespace L09_Virus {
             particle = false;
 
             let position: Vector = new Vector(xPos, yPos);
-            let cell: BodyCell = new BodyCell(position);
+            let cell: Background = new Background(position);
             cell.draw(position, radius, color, nucleusColor, bigCell, particle);
             smallCells.push(cell);
         }
-        //Create bigger Cells for the foreground
-        while (storage < width) {
-            maxRadius = 40;
-            minRadius = 30;
-            yPos = 80;
-            radius = minRadius + (Math.random() * (maxRadius - minRadius));
-            xPos = storage + radius;
-            storage = xPos + radius;
-            colorIndex = Math.round(Math.random() * (numColors - 1));
-            color = bigCellColors[colorIndex];
-            nucleusColor = nucleusColors[colorIndex];
-            bigCell = true;
-            particle = false;
-            let position: Vector = new Vector(xPos, yPos);
-            let cell: BodyCell = new BodyCell(position);
-            cell.draw(position, radius, color, nucleusColor, bigCell, particle);
-            largeCells.push(cell);
-        }
-
+        //  Create Macrophages
         for (let i = 0; i < 2; i++) {
             let macrophage: Macrophage = new Macrophage();
             macrophage.draw(width - 200 + (100 * Math.random()), 400 + (200 * Math.random()))
         }
+
+        //Create Antibodys
+        for (let i = 0; i < 7; i++) {
+            xPos = Math.random() * canvas.width / 1.5;
+            yPos = 450 + (20 * Math.random());
+            if (xPos > width / 2) {
+                yPos = yPos + 50;
+                xPos = xPos - width / 2 + 10;
+            }
+            let antibody: Antibody = new Antibody();
+            antibody.draw(xPos, yPos);
+        }
+
+        //Create bigger Cells for the foreground
+        while (storage < width) {
+            yPos = 80;
+            xPos = storage + 40;
+            storage = xPos + 40;
+            let position: Vector = new Vector(xPos, yPos);
+            let cell: BodyCell = new BodyCell(position);
+            cell.draw(position);
+            largeCells.push(cell);
+        }
+
+        backgroundImage = crc2.getImageData(0, 0, width, height);
 
         for (let i = 0; i < j; i++) {
             radius = 30;
@@ -120,35 +130,69 @@ namespace L09_Virus {
             coronas.push(corona);
         }
 
-        for (let i = 0; i < 7; i++) {
-            xPos = Math.random() * canvas.width / 1.5;
-            yPos = 450 + (20 * Math.random());
-            if (xPos > width/2) {
-                yPos = yPos + 50;
-                xPos = xPos - width/2 + 10;
-            }
-            let antibody: Antibody = new Antibody();
-            antibody.draw(xPos, yPos);
-        }
-
         for (let i = 0; i < nParticles; i++) {
-            maxRadius = 3;
-            minRadius = 1;
             xPos = Math.random() * canvas.width;
             yPos = Math.random() * canvas.height;
-            radius = minRadius + (Math.random() * (maxRadius - minRadius));
-            colorIndex = Math.round(Math.random() * (numColors - 1));
-            color = particleColors[colorIndex];
-            nucleusColor = nucleusColors[colorIndex];
-            bigCell = false;
-            particle = true;
             // Call draw Cell and commit all needed values for the cell 
             let position: Vector = new Vector(xPos, yPos);
-            let cell: BodyCell = new BodyCell(position);
-            cell.draw(position, radius, color, nucleusColor, bigCell, particle);
+            let cell: Particle = new Particle(position);
+            cell.draw(position);
             particles.push(cell);
         }
 
+    }
+
+    function animation(): void {
+
+        crc2.putImageData(backgroundImage, 0, 0);
+
+        for (let particle of particles) {
+            particle.move(1 / 50);
+            particle.draw(particle.position);
+        }
+
+        for (let corona of coronas) {
+            corona.move(1 / 50);
+            corona.draw(corona.position);
+        }
+
+        for (let corona of stopCoronas) {
+            corona.draw(corona.position);
+        }
+
+        isInfected();
+
+        /* for (let bodyCell of largeCells) {
+            bodyCell.move(1 / 20); 
+            bodyCell.draw(bodyCell.position);
+        } */
+    }
+
+    function isInfected(): void {
+        for (let corona of coronas) {
+            if (corona.isInfected()) {
+                startReaction(corona)
+            }
+        }
+    }
+
+    function startReaction(_corona: Corona): void {
+        let index: number = coronas.indexOf(_corona);
+        stopCoronas.push(_corona); 
+        coronas.splice(index, 1);
+        window.setTimeout( function(): void {
+            endReaction(_corona);
+        }, 3000);
+    }
+
+    function endReaction(_corona: Corona) {
+        let index: number = stopCoronas.indexOf(_corona);
+        stopCoronas.splice(index, 1);
+        let newPosition: Vector = new Vector (width + 100*Math.random(), 400);
+
+        let newCorona: Corona = new Corona(newPosition);
+        newCorona.draw(newPosition);
+        coronas.push(newCorona);
     }
 
 }
