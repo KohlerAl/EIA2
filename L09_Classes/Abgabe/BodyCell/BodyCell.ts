@@ -4,29 +4,23 @@ namespace L09_Virus {
         velocity: Vector;
         color: string;
         nucleus: string;
-        radiusY: number;
 
         nucleusPosX: number;
         nucleusPosY: number;
 
-        constructor(_position: Vector) {
+        constructor(_position: Vector, _colorIndex: number) {
             this.position = _position;
 
-            let colors: string[] = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f"];
-            let nucleusColors: string[] = ["#888888", "#373737", "#4a4a4a", "#444444"];
-            let numColors: number = colors.length;
-            let colorIndex: number;
+            let colors: string[] = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f", "#891911"];
+            let nucleusColors: string[] = ["#888888", "#373737", "#4a4a4a", "#444444", "#4a4a4a"];
 
             this.nucleusPosX = _position.x + 2;
             this.nucleusPosY = _position.y - (25 * Math.random());
             /* = this.positio;
             this.nucleusPos.y =   this.position.y - (25 * Math.random()) */
 
-            this.radiusY = 40 * Math.random();
-
-            colorIndex = Math.round(Math.random() * (numColors - 1));
-            this.color = colors[colorIndex];
-            this.nucleus = nucleusColors[colorIndex];
+            this.color = colors[_colorIndex];
+            this.nucleus = nucleusColors[_colorIndex];
 
             this.velocity = new Vector(0, 2);
             //this.velocity.add();
@@ -39,7 +33,7 @@ namespace L09_Virus {
 
             // Create the Cell itself
             crc2.beginPath();
-            crc2.ellipse(_position.x, _position.y, 40, this.radiusY + 40, 0, startAngle, endAngle);
+            crc2.ellipse(_position.x, _position.y, 40, 50, 0, startAngle, endAngle);
             crc2.closePath();
             crc2.strokeStyle = this.color;
             crc2.fillStyle = this.color;

@@ -12,13 +12,14 @@ var L09_Virus;
     L09_Virus.antibodys = [];
     L09_Virus.macrophages = [];
     L09_Virus.stopCoronas = [];
+    L09_Virus.infectedBodyCell = [];
     window.addEventListener("load", createImage);
     window.addEventListener("resize", createImage);
     function createImage() {
         L09_Virus.resizeCanvas();
         L09_Virus.createBackground();
         createCells();
-        //window.setInterval(animation, 20);
+        window.setInterval(animation, 20);
     }
     function createCells() {
         //Depending on the size of the canvas, different numbers of cells are created
@@ -87,17 +88,18 @@ var L09_Virus;
             let antibody = new L09_Virus.Antibody();
             antibody.draw(xPos, yPos);
         }
+        L09_Virus.backgroundImage = L09_Virus.crc2.getImageData(0, 0, L09_Virus.width, L09_Virus.height);
         //Create bigger Cells for the foreground
         while (storage < L09_Virus.width) {
             yPos = 80;
             xPos = storage + 40;
             storage = xPos + 40;
+            colorIndex = Math.round(Math.random() * (numColors - 1));
             let position = new L09_Virus.Vector(xPos, yPos);
-            let cell = new L09_Virus.BodyCell(position);
+            let cell = new L09_Virus.BodyCell(position, colorIndex);
             cell.draw(position);
             L09_Virus.largeCells.push(cell);
         }
-        L09_Virus.backgroundImage = L09_Virus.crc2.getImageData(0, 0, L09_Virus.width, L09_Virus.height);
         for (let i = 0; i < j; i++) {
             radius = 30;
             xPos = coronaPosition + radius + 10;
@@ -128,6 +130,12 @@ var L09_Virus;
             particle.move(1 / 50);
             particle.draw(particle.position);
         }
+        for (let cell of L09_Virus.infectedBodyCell) {
+            cell.draw(cell.position);
+        }
+        for (let cell of L09_Virus.largeCells) {
+            cell.draw(cell.position);
+        }
         for (let corona of L09_Virus.coronas) {
             corona.move(1 / 50);
             corona.draw(corona.position);
@@ -145,6 +153,7 @@ var L09_Virus;
         for (let corona of L09_Virus.coronas) {
             if (corona.isInfected()) {
                 startReaction(corona);
+                changeBodyCell(corona.position.x);
             }
         }
     }
@@ -163,6 +172,20 @@ var L09_Virus;
         let newCorona = new L09_Virus.Corona(newPosition);
         newCorona.draw(newPosition);
         L09_Virus.coronas.push(newCorona);
+    }
+    function changeBodyCell(_virusPos) {
+        for (let cell of L09_Virus.largeCells) {
+            let areaMin = cell.position.x - 40;
+            let areaMax = cell.position.x + 40;
+            if (_virusPos > areaMin && _virusPos < areaMax) {
+                let index = L09_Virus.largeCells.indexOf(cell);
+                L09_Virus.largeCells.splice(index, 1);
+                let newPosition = new L09_Virus.Vector(cell.position.x, cell.position.y);
+                let infectedCell = new L09_Virus.BodyCell(newPosition, 4);
+                infectedCell.draw(newPosition);
+                L09_Virus.infectedBodyCell.push(infectedCell);
+            }
+        }
     }
 })(L09_Virus || (L09_Virus = {}));
 //# sourceMappingURL=L09_Virus.js.map

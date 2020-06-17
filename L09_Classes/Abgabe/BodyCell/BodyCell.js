@@ -2,20 +2,16 @@
 var L09_Virus;
 (function (L09_Virus) {
     class BodyCell {
-        constructor(_position) {
+        constructor(_position, _colorIndex) {
             this.position = _position;
-            let colors = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f"];
-            let nucleusColors = ["#888888", "#373737", "#4a4a4a", "#444444"];
-            let numColors = colors.length;
-            let colorIndex;
+            let colors = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f", "#891911"];
+            let nucleusColors = ["#888888", "#373737", "#4a4a4a", "#444444", "#4a4a4a"];
             this.nucleusPosX = _position.x + 2;
             this.nucleusPosY = _position.y - (25 * Math.random());
             /* = this.positio;
             this.nucleusPos.y =   this.position.y - (25 * Math.random()) */
-            this.radiusY = 40 * Math.random();
-            colorIndex = Math.round(Math.random() * (numColors - 1));
-            this.color = colors[colorIndex];
-            this.nucleus = nucleusColors[colorIndex];
+            this.color = colors[_colorIndex];
+            this.nucleus = nucleusColors[_colorIndex];
             this.velocity = new L09_Virus.Vector(0, 2);
             //this.velocity.add();
         }
@@ -25,7 +21,7 @@ var L09_Virus;
             let endAngle = (Math.PI / 180) * 360;
             // Create the Cell itself
             L09_Virus.crc2.beginPath();
-            L09_Virus.crc2.ellipse(_position.x, _position.y, 40, this.radiusY + 40, 0, startAngle, endAngle);
+            L09_Virus.crc2.ellipse(_position.x, _position.y, 40, 50, 0, startAngle, endAngle);
             L09_Virus.crc2.closePath();
             L09_Virus.crc2.strokeStyle = this.color;
             L09_Virus.crc2.fillStyle = this.color;
