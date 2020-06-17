@@ -1,27 +1,27 @@
 //Abgabe L09 von Alida Kohler, erstellt am 16.06.2020
 //Konzipiert für ein Handy-Display mit dem Format 360x560
 namespace L09_Virus {
-    export let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
-    export let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
+    export let canvas: HTMLCanvasElement;
+    export let crc2: CanvasRenderingContext2D;
     export let width: number;
     export let height: number;
 
-    export let coronas: Corona[] = [];
-    export let largeCells: BodyCell[] = [];
-    export let particles: Particle[] = [];
-    export let smallCells: Background[] = [];
-    export let antibodys: Antibody[] = [];
-    export let macrophages: Macrophage[] = [];
+    let coronas: Corona[] = [];
+    let largeCells: BodyCell[] = [];
+    let particles: Particle[] = [];
+    let smallCells: Background[] = [];
 
-    export let stopCoronas: Corona[] = [];
-    export let infectedBodyCell: BodyCell[] = [];
+    let stopCoronas: Corona[] = [];
+    let infectedBodyCell: BodyCell[] = [];
 
-    export let backgroundImage: ImageData;
+    let backgroundImage: ImageData;
 
     window.addEventListener("load", createImage);
     window.addEventListener("resize", createImage);
 
     function createImage(): void {
+        canvas = <HTMLCanvasElement>document.querySelector("canvas");
+        crc2  = <CanvasRenderingContext2D>canvas.getContext("2d");
         resizeCanvas();
         createBackground();
         createCells();
