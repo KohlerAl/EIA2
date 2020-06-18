@@ -12,9 +12,7 @@ var L09_Virus;
             color = colors[colorIndex];
             this.color = color;
             this.rotation = Math.random() * 360;
-            let maxRadius = 3;
-            let minRadius = 1;
-            this.radius = minRadius + (Math.random() * (maxRadius - minRadius));
+            this.radius = 1 + (Math.random() * 2);
             this.velocity = new L09_Virus.Vector(0, 0);
             this.velocity.random(10, 100);
         }

@@ -19,9 +19,7 @@ namespace L09_Virus {
 
             this.rotation = Math.random() * 360;
 
-            let maxRadius: number = 3;
-            let minRadius: number = 1;
-            this.radius = minRadius + (Math.random() * (maxRadius - minRadius));
+            this.radius = 1 + (Math.random() * 2);
 
             this.velocity = new Vector(0, 0);
             this.velocity.random(10, 100);
