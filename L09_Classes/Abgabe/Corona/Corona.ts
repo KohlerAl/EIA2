@@ -39,7 +39,11 @@ namespace L09_Virus {
             // Offset = Geschwindigkeit
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             // Mit der Zeit multiplizieren
-            offset.scale(_timeslice);
+            if(this.position.y < 250) {
+                offset.scale(_timeslice * 2);
+            }
+            else {
+            offset.scale(_timeslice);}
             // Zu der Posiition addieren 
             this.position.add(offset);
 

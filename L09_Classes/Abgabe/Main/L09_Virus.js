@@ -42,12 +42,12 @@ var L09_Virus;
         if (L09_Virus.width > 800) {
             numCircles = numCircles;
             j = Math.floor(L09_Virus.width / 50);
-            nParticles = 800;
+            nParticles = 600;
         }
         else {
             numCircles = numCircles / 2;
             j = 15;
-            nParticles = 150;
+            nParticles = 100;
         }
         //Create Cells for the Background
         for (let i = 0; i < numCircles; i++) {
@@ -128,7 +128,7 @@ var L09_Virus;
             bodyCell.draw(bodyCell.position);
         }
         for (let corona of coronas) {
-            corona.move(1 / 30);
+            corona.move(1 / 20);
             corona.draw(corona.position);
         }
         for (let corona of stopCoronas) {

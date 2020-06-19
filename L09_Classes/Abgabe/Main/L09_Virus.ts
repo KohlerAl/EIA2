@@ -53,12 +53,12 @@ namespace L09_Virus {
         if (width > 800) {
             numCircles = numCircles;
             j = Math.floor(width / 50);
-            nParticles = 800;
+            nParticles = 600;
         }
         else {
             numCircles = numCircles / 2;
             j = 15;
-            nParticles = 150;
+            nParticles = 100;
         }
 
         //Create Cells for the Background
@@ -153,7 +153,7 @@ namespace L09_Virus {
         }
 
         for (let corona of coronas) {
-            corona.move(1 / 30);
+            corona.move(1 / 20);
             corona.draw(corona.position);
         }
 
@@ -165,8 +165,8 @@ namespace L09_Virus {
             particle.move(1 / 50);
             particle.draw(particle.position);
         }
-
         isInfected();
+
     }
 
     function isInfected(): void {

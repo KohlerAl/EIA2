@@ -35,7 +35,12 @@ var L09_Virus;
             // Offset = Geschwindigkeit
             let offset = new L09_Virus.Vector(this.velocity.x, this.velocity.y);
             // Mit der Zeit multiplizieren
-            offset.scale(_timeslice);
+            if (this.position.y < 250) {
+                offset.scale(_timeslice * 2);
+            }
+            else {
+                offset.scale(_timeslice);
+            }
             // Zu der Posiition addieren 
             this.position.add(offset);
             // Überprüfen, ob der Asteroid noch auf dem Canvas liegt und gegebenenfalls die Position verändern
