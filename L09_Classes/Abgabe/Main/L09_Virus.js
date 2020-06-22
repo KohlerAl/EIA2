@@ -12,7 +12,17 @@ var L09_Virus;
     let infectedBodyCell = [];
     let backgroundImage;
     window.addEventListener("load", createImage);
-    window.addEventListener("resize", createImage);
+    window.addEventListener("resize", handleResize);
+    function handleResize() {
+        coronas = [];
+        largeCells = [];
+        particles = [];
+        smallCells = [];
+        antibodys = [];
+        stopCoronas = [];
+        infectedBodyCell = [];
+        createImage();
+    }
     function createImage() {
         L09_Virus.canvas = document.querySelector("canvas");
         L09_Virus.crc2 = L09_Virus.canvas.getContext("2d");

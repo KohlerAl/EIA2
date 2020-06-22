@@ -5,7 +5,7 @@ namespace L09_Virus {
     export let crc2: CanvasRenderingContext2D;
     export let width: number;
     export let height: number;
-
+    
     let coronas: Corona[] = [];
     let largeCells: BodyCell[] = [];
     let particles: Particle[] = [];
@@ -17,8 +17,20 @@ namespace L09_Virus {
 
     let backgroundImage: ImageData;
 
+
     window.addEventListener("load", createImage);
-    window.addEventListener("resize", createImage);
+    window.addEventListener("resize", handleResize);
+
+    function handleResize(): void {
+        coronas = []; 
+        largeCells = []; 
+        particles = []; 
+        smallCells = []; 
+        antibodys = []; 
+        stopCoronas = []; 
+        infectedBodyCell = []; 
+        createImage(); 
+    }
 
     function createImage(): void {
         canvas = <HTMLCanvasElement>document.querySelector("canvas");
