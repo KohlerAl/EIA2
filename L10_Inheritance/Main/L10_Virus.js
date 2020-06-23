@@ -3,22 +3,19 @@
 //Konzipiert für ein Handy-Display mit dem Format 360x560
 var L10_Virus;
 (function (L10_Virus) {
-    let coronas = [];
-    let largeCells = [];
-    let particles = [];
-    let smallCells = [];
-    let antibodys = [];
+    /* let coronas: Corona[] = [];
+    let largeCells: BodyCell[] = [];
+    let particles: Particle[] = [];
+    let smallCells: Background[] = [];
+    let antibodys: Antibody[] = []; */
+    let cells = [];
     let stopCoronas = [];
     let infectedBodyCell = [];
     let backgroundImage;
     window.addEventListener("load", createImage);
     window.addEventListener("resize", handleResize);
     function handleResize() {
-        coronas = [];
-        largeCells = [];
-        particles = [];
-        smallCells = [];
-        antibodys = [];
+        cells = [];
         stopCoronas = [];
         infectedBodyCell = [];
         createImage();
@@ -67,7 +64,6 @@ var L10_Virus;
             let position = new L10_Virus.Vector(xPos, yPos);
             let cell = new L10_Virus.Background(position);
             cell.draw(position);
-            smallCells.push(cell);
         }
         //  Create Macrophages
         for (let i = 0; i < 2; i++) {
@@ -87,7 +83,7 @@ var L10_Virus;
             let position = new L10_Virus.Vector(xPos, yPos);
             let antibody = new L10_Virus.Antibody(position);
             antibody.draw(position);
-            antibodys.push(antibody);
+            cells.push(antibody);
         }
         //Create bigger Cells for the foreground
         while (storage < L10_Virus.width) {
@@ -98,7 +94,7 @@ var L10_Virus;
             let position = new L10_Virus.Vector(xPos, yPos);
             let cell = new L10_Virus.BodyCell(position, colorIndex);
             cell.draw(position);
-            largeCells.push(cell);
+            cells.push(cell);
         }
         for (let i = 0; i < j; i++) {
             radius = 30;
@@ -112,7 +108,7 @@ var L10_Virus;
             let position = new L10_Virus.Vector(xPos, yPos);
             let corona = new L10_Virus.Corona(position);
             corona.draw(position);
-            coronas.push(corona);
+            cells.push(corona);
         }
         for (let i = 0; i < nParticles; i++) {
             xPos = Math.random() * L10_Virus.canvas.width;
@@ -121,7 +117,7 @@ var L10_Virus;
             let position = new L10_Virus.Vector(xPos, yPos);
             let cell = new L10_Virus.Particle(position);
             cell.draw(position);
-            particles.push(cell);
+            cells.push(cell);
         }
     }
     function animation() {
@@ -130,39 +126,32 @@ var L10_Virus;
             cell.move(1 / 50);
             cell.draw(cell.position);
         }
-        for (let cell of antibodys) {
-            cell.move(1 / 20);
-            cell.draw(cell.position);
-        }
-        for (let bodyCell of largeCells) {
-            bodyCell.move(1 / 30);
-            bodyCell.draw(bodyCell.position);
-        }
-        for (let corona of coronas) {
-            corona.move(1 / 20);
-            corona.draw(corona.position);
-        }
         for (let corona of stopCoronas) {
             corona.draw(corona.position);
         }
-        for (let particle of particles) {
-            particle.move(1 / 50);
-            particle.draw(particle.position);
+        for (let cell of cells) {
+            if (cell instanceof L10_Virus.Antibody || cell instanceof L10_Virus.Corona)
+                cell.move(1 / 20);
+            if (cell instanceof L10_Virus.BodyCell)
+                cell.move(1 / 30);
+            if (cell instanceof L10_Virus.Particle)
+                cell.move(1 / 50);
+            cell.draw(cell.position);
         }
         isInfected();
     }
     function isInfected() {
-        for (let corona of coronas) {
-            if (corona.isInfected()) {
-                startReaction(corona);
-                changeBodyCell(corona.position.x);
+        for (let cell of cells) {
+            if (cell instanceof L10_Virus.Corona && cell.isInfected()) {
+                startReaction(cell);
+                changeBodyCell(cell.position.x);
             }
         }
     }
     function startReaction(_corona) {
-        let index = coronas.indexOf(_corona);
+        let index = cells.indexOf(_corona);
         stopCoronas.push(_corona);
-        coronas.splice(index, 1);
+        cells.splice(index, 1);
         window.setTimeout(function () {
             endReaction(_corona);
         }, 3000);
@@ -173,15 +162,15 @@ var L10_Virus;
         let newPosition = new L10_Virus.Vector(L10_Virus.width + 100 * Math.random(), 400);
         let newCorona = new L10_Virus.Corona(newPosition);
         newCorona.draw(newPosition);
-        coronas.push(newCorona);
+        cells.push(newCorona);
     }
     function changeBodyCell(_virusPos) {
-        for (let cell of largeCells) {
+        for (let cell of cells) {
             let areaMin = cell.position.x - 40;
             let areaMax = cell.position.x + 40;
-            if (_virusPos > areaMin && _virusPos < areaMax) {
-                let index = largeCells.indexOf(cell);
-                largeCells.splice(index, 1);
+            if (cell instanceof L10_Virus.BodyCell && _virusPos > areaMin && _virusPos < areaMax) {
+                let index = cells.indexOf(cell);
+                cells.splice(index, 1);
                 let newPosition = new L10_Virus.Vector(cell.position.x, cell.position.y);
                 let infectedCell = new L10_Virus.BodyCell(newPosition, 4);
                 infectedCell.draw(newPosition);

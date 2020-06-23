@@ -54,7 +54,7 @@ namespace L10_Virus {
         }
 
         isInfected(): boolean {
-            if (this.position.y < 119) {
+            if (this.position.y < 125) {
                 return true;
             }
             else {

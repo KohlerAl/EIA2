@@ -49,7 +49,7 @@ var L10_Virus;
                 this.position.y -= L10_Virus.crc2.canvas.height;
         }
         isInfected() {
-            if (this.position.y < 119) {
+            if (this.position.y < 125) {
                 return true;
             }
             else {

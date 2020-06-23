@@ -5,12 +5,14 @@ namespace L10_Virus {
     export let crc2: CanvasRenderingContext2D;
     export let width: number;
     export let height: number;
-    
-    let coronas: Corona[] = [];
+
+    /* let coronas: Corona[] = [];
     let largeCells: BodyCell[] = [];
     let particles: Particle[] = [];
     let smallCells: Background[] = [];
-    let antibodys: Antibody[] = [];
+    let antibodys: Antibody[] = []; */
+
+    let cells: Cell[] = [];
 
     let stopCoronas: Corona[] = [];
     let infectedBodyCell: BodyCell[] = [];
@@ -22,19 +24,15 @@ namespace L10_Virus {
     window.addEventListener("resize", handleResize);
 
     function handleResize(): void {
-        coronas = []; 
-        largeCells = []; 
-        particles = []; 
-        smallCells = []; 
-        antibodys = []; 
-        stopCoronas = []; 
-        infectedBodyCell = []; 
-        createImage(); 
+        cells = [];
+        stopCoronas = [];
+        infectedBodyCell = [];
+        createImage();
     }
 
     function createImage(): void {
         canvas = <HTMLCanvasElement>document.querySelector("canvas");
-        crc2  = <CanvasRenderingContext2D>canvas.getContext("2d");
+        crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
         resizeCanvas();
         createBackground();
         createCells();
@@ -78,17 +76,16 @@ namespace L10_Virus {
             // Creating some random values for circle characteristics.
             xPos = Math.random() * canvas.width;
             yPos = Math.random() * canvas.height;
-            
+
             let position: Vector = new Vector(xPos, yPos);
             let cell: Background = new Background(position);
             cell.draw(position);
-            smallCells.push(cell);
         }
         //  Create Macrophages
         for (let i = 0; i < 2; i++) {
             let position: Vector = new Vector(width - 200 + (200 * Math.random()), 400 + (200 * Math.random()))
             let macrophage: Macrophage = new Macrophage(position);
-            macrophage.draw(position)
+            macrophage.draw(position);
         }
         backgroundImage = crc2.getImageData(0, 0, width, height);
 
@@ -103,9 +100,9 @@ namespace L10_Virus {
             let position: Vector = new Vector(xPos, yPos);
             let antibody: Antibody = new Antibody(position);
             antibody.draw(position);
-            antibodys.push(antibody); 
+            cells.push(antibody);
         }
-        
+
         //Create bigger Cells for the foreground
         while (storage < width) {
             yPos = 80;
@@ -115,7 +112,7 @@ namespace L10_Virus {
             let position: Vector = new Vector(xPos, yPos);
             let cell: BodyCell = new BodyCell(position, colorIndex);
             cell.draw(position);
-            largeCells.push(cell);
+            cells.push(cell);
         }
 
         for (let i = 0; i < j; i++) {
@@ -131,7 +128,7 @@ namespace L10_Virus {
             let position: Vector = new Vector(xPos, yPos);
             let corona: Corona = new Corona(position);
             corona.draw(position);
-            coronas.push(corona);
+            cells.push(corona);
         }
 
         for (let i = 0; i < nParticles; i++) {
@@ -141,7 +138,7 @@ namespace L10_Virus {
             let position: Vector = new Vector(xPos, yPos);
             let cell: Particle = new Particle(position);
             cell.draw(position);
-            particles.push(cell);
+            cells.push(cell);
         }
 
     }
@@ -151,50 +148,40 @@ namespace L10_Virus {
         crc2.putImageData(backgroundImage, 0, 0);
 
         for (let cell of infectedBodyCell) {
-            cell.move(1/50);
+            cell.move(1 / 50);
             cell.draw(cell.position);
-        }
-
-        for (let cell of antibodys) {
-            cell.move(1/20);
-            cell.draw(cell.position);
-        }
-
-        for (let bodyCell of largeCells) {
-            bodyCell.move(1 / 30); 
-            bodyCell.draw(bodyCell.position);
-        }
-
-        for (let corona of coronas) {
-            corona.move(1 / 20);
-            corona.draw(corona.position);
         }
 
         for (let corona of stopCoronas) {
             corona.draw(corona.position);
         }
 
-        for (let particle of particles) {
-            particle.move(1 / 50);
-            particle.draw(particle.position);
+        for (let cell of cells) {
+            if (cell instanceof Antibody || cell instanceof Corona)
+                cell.move(1 / 20);
+            if (cell instanceof BodyCell)
+                cell.move(1 / 30)
+            if (cell instanceof Particle)
+                cell.move(1 / 50)
+            cell.draw(cell.position); 
         }
         isInfected();
 
     }
 
     function isInfected(): void {
-        for (let corona of coronas) {
-            if (corona.isInfected()) {
-                startReaction(corona);
-                changeBodyCell(corona.position.x);
+        for (let cell of cells) {
+            if (cell instanceof Corona && cell.isInfected()) {
+                startReaction(cell);
+                changeBodyCell(cell.position.x);
             }
         }
     }
 
     function startReaction(_corona: Corona): void {
-        let index: number = coronas.indexOf(_corona);
+        let index: number = cells.indexOf(_corona);
         stopCoronas.push(_corona);
-        coronas.splice(index, 1);
+        cells.splice(index, 1);
         window.setTimeout(function (): void {
             endReaction(_corona);
         }, 3000);
@@ -207,17 +194,17 @@ namespace L10_Virus {
 
         let newCorona: Corona = new Corona(newPosition);
         newCorona.draw(newPosition);
-        coronas.push(newCorona);
+        cells.push(newCorona);
     }
 
     function changeBodyCell(_virusPos: number) {
-        for (let cell of largeCells) {
+        for (let cell of cells) {
             let areaMin: number = cell.position.x - 40;
             let areaMax: number = cell.position.x + 40;
 
-            if (_virusPos > areaMin && _virusPos < areaMax) {
-                let index: number = largeCells.indexOf(cell);
-                largeCells.splice(index, 1);
+            if (cell instanceof BodyCell && _virusPos > areaMin && _virusPos < areaMax) {
+                let index: number = cells.indexOf(cell);
+                cells.splice(index, 1);
 
                 let newPosition: Vector = new Vector(cell.position.x, cell.position.y);
                 let infectedCell: BodyCell = new BodyCell(newPosition, 4);
