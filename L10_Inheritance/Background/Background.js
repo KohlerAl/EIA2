@@ -1,10 +1,9 @@
 "use strict";
 var L10_Virus;
 (function (L10_Virus) {
-    class Background {
+    class Background extends L10_Virus.Cell {
         constructor(_position) {
-            this.velocity = new L10_Virus.Vector(0, 0);
-            this.velocity.random(50, 100);
+            super(_position);
         }
         draw(_position) {
             L10_Virus.crc2.save();
@@ -46,19 +45,6 @@ var L10_Virus;
             L10_Virus.crc2.fillStyle = nucleusColor + "33";
             L10_Virus.crc2.closePath();
             L10_Virus.crc2.fill();
-        }
-        move(_timeslice) {
-            // Offset = Geschwindigkeit
-            let offset = new L10_Virus.Vector(this.velocity.x, this.velocity.y);
-            // Mit der Zeit multiplizieren
-            offset.scale(_timeslice);
-            // Zu der Posiition addieren 
-            this.position.add(offset);
-            // Überprüfen, ob der Asteroid noch auf dem Canvas liegt und gegebenenfalls die Position verändern
-            // Wenn er größer als height ist, height von der Position abziehen 
-            if (this.position.y > L10_Virus.width) {
-                this.position.y -= L10_Virus.width;
-            }
         }
     }
     L10_Virus.Background = Background;

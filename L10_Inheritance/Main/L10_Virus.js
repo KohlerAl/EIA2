@@ -71,8 +71,9 @@ var L10_Virus;
         }
         //  Create Macrophages
         for (let i = 0; i < 2; i++) {
-            let macrophage = new L10_Virus.Macrophage();
-            macrophage.draw(L10_Virus.width - 200 + (200 * Math.random()), 400 + (200 * Math.random()));
+            let position = new L10_Virus.Vector(L10_Virus.width - 200 + (200 * Math.random()), 400 + (200 * Math.random()));
+            let macrophage = new L10_Virus.Macrophage(position);
+            macrophage.draw(position);
         }
         backgroundImage = L10_Virus.crc2.getImageData(0, 0, L10_Virus.width, L10_Virus.height);
         //Create Antibodys

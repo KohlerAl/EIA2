@@ -1,14 +1,13 @@
 namespace L10_Virus {
-    export class Antibody {
+    export class Antibody extends Cell{
         position: Vector;
         velocity: Vector;
 
         rotation: number;
 
         constructor(_position: Vector) {
-            this.position = _position;
-            this.velocity = new Vector(0, 0);
-            this.velocity.random(2, 5);
+            super(_position);
+            this.velocity.random(7, 10);
             this.rotation = Math.random() * 360
         }
 
@@ -30,13 +29,7 @@ namespace L10_Virus {
         }
 
         move(_timeslice: number): void {
-            // Offset = Geschwindigkeit
-            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
-            // Mit der Zeit multiplizieren
-            offset.x *= 0;
-            offset.y *= _timeslice;
-            // Zu der Posiition addieren 
-            this.position.add(offset);
+            super.move(_timeslice); 
 
             if (this.position.x < 0)
                 this.position.x += crc2.canvas.width;

@@ -1,5 +1,5 @@
 namespace L10_Virus {
-    export class BodyCell {
+    export class BodyCell extends Cell{
         position: Vector;
         velocity: Vector;
         color: string;
@@ -9,21 +9,18 @@ namespace L10_Virus {
         nucleusPosY: number;
 
         constructor(_position: Vector, _colorIndex: number) {
-            this.position = _position;
+            super(_position); 
 
             let colors: string[] = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f", "#891911"];
             let nucleusColors: string[] = ["#888888", "#373737", "#4a4a4a", "#444444", "#4a4a4a"];
 
             this.nucleusPosX = _position.x + 2;
             this.nucleusPosY = _position.y - (25 * Math.random());
-            /* = this.positio;
-            this.nucleusPos.y =   this.position.y - (25 * Math.random()) */
 
             this.color = colors[_colorIndex];
             this.nucleus = nucleusColors[_colorIndex];
 
-            this.velocity = new Vector(0, 5);
-            //this.velocity.add();
+            this.velocity.add(new Vector(0, 12));
         }
 
         draw(_position: Vector): void {
@@ -53,13 +50,7 @@ namespace L10_Virus {
         }
 
         move(_timeslice: number): void {
-            // Offset = Geschwindigkeit
-            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
-            // Mit der Zeit multiplizieren
-            offset.x *= 0;
-            offset.y *= _timeslice;
-            // Zu der Posiition addieren 
-            this.position.add(offset);
+            super.move(_timeslice); 
 
             if (this.position.y < 72)
             this.velocity = new Vector (0, 10); 

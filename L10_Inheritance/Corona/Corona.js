@@ -1,10 +1,9 @@
 "use strict";
 var L10_Virus;
 (function (L10_Virus) {
-    class Corona {
+    class Corona extends L10_Virus.Cell {
         constructor(_position) {
-            this.position = _position;
-            this.velocity = new L10_Virus.Vector(0, 0);
+            super(_position);
             this.velocity.random(30, 80);
         }
         draw(_pos) {
@@ -32,17 +31,12 @@ var L10_Virus;
             L10_Virus.crc2.restore();
         }
         move(_timeslice) {
-            // Offset = Geschwindigkeit
-            let offset = new L10_Virus.Vector(this.velocity.x, this.velocity.y);
-            // Mit der Zeit multiplizieren
             if (this.position.y < 250) {
-                offset.scale(_timeslice * 2);
+                super.move(_timeslice * 2);
             }
             else {
-                offset.scale(_timeslice);
+                super.move(_timeslice);
             }
-            // Zu der Posiition addieren 
-            this.position.add(offset);
             // Überprüfen, ob der Asteroid noch auf dem Canvas liegt und gegebenenfalls die Position verändern
             // Wenn er größer als height ist, height von der Position abziehen 
             if (this.position.x < -30)

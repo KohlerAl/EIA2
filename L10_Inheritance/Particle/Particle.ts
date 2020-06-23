@@ -1,5 +1,5 @@
 namespace L10_Virus {
-    export class Particle {
+    export class Particle extends Cell {
         position: Vector;
         velocity: Vector;
         radius: number;
@@ -7,7 +7,7 @@ namespace L10_Virus {
         rotation: number;
 
         constructor(_position: Vector) {
-            this.position = _position;
+            super(_position);
 
             let colors: string[] = ["#ffcc01", "#ffac16", "#ff9026", "#ffd644"];
             let numColors: number = colors.length;
@@ -15,13 +15,12 @@ namespace L10_Virus {
             let colorIndex: number;
             colorIndex = Math.round(Math.random() * (numColors - 1));
             color = colors[colorIndex];
-            this.color = color; 
+            this.color = color;
 
             this.rotation = Math.random() * 360;
 
             this.radius = 1 + (Math.random() * 2);
 
-            this.velocity = new Vector(0, 0);
             this.velocity.random(10, 100);
         }
 
@@ -43,16 +42,10 @@ namespace L10_Virus {
         }
 
         move(_timeslice: number): void {
-            // Offset = Geschwindigkeit
-            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
-            // Mit der Zeit multiplizieren
-            offset.x *= 0;
-            offset.y *= _timeslice * 1.5;
-            // Zu der Posiition addieren 
-            this.position.add(offset);
 
+            super.move(_timeslice);
             // Überprüfen, ob der Partikel noch auf dem Canvas liegt und gegebenenfalls die Position verändern
-            
+
             if (this.position.x < 0)
                 this.position.x += crc2.canvas.width;
             if (this.position.y < 0)

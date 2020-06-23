@@ -1,11 +1,10 @@
 namespace L10_Virus {
-    export class Background {
+    export class Background extends Cell {
         position: Vector;
         velocity: Vector;
 
         constructor(_position: Vector) {
-            this.velocity = new Vector(0, 0);
-            this.velocity.random(50, 100);
+            super(_position); 
         }
 
         draw(_position: Vector): void {
@@ -59,19 +58,5 @@ namespace L10_Virus {
 
         }
 
-        move(_timeslice: number): void {
-            // Offset = Geschwindigkeit
-            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
-            // Mit der Zeit multiplizieren
-            offset.scale(_timeslice);
-            // Zu der Posiition addieren 
-            this.position.add(offset);
-
-            // Überprüfen, ob der Asteroid noch auf dem Canvas liegt und gegebenenfalls die Position verändern
-            // Wenn er größer als height ist, height von der Position abziehen 
-            if (this.position.y > width) {
-                this.position.y -= width;
-            }
-        }
     }
 }

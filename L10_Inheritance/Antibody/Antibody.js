@@ -1,11 +1,10 @@
 "use strict";
 var L10_Virus;
 (function (L10_Virus) {
-    class Antibody {
+    class Antibody extends L10_Virus.Cell {
         constructor(_position) {
-            this.position = _position;
-            this.velocity = new L10_Virus.Vector(0, 0);
-            this.velocity.random(2, 5);
+            super(_position);
+            this.velocity.random(7, 10);
             this.rotation = Math.random() * 360;
         }
         draw(_position) {
@@ -25,13 +24,7 @@ var L10_Virus;
             L10_Virus.crc2.restore();
         }
         move(_timeslice) {
-            // Offset = Geschwindigkeit
-            let offset = new L10_Virus.Vector(this.velocity.x, this.velocity.y);
-            // Mit der Zeit multiplizieren
-            offset.x *= 0;
-            offset.y *= _timeslice;
-            // Zu der Posiition addieren 
-            this.position.add(offset);
+            super.move(_timeslice);
             if (this.position.x < 0)
                 this.position.x += L10_Virus.crc2.canvas.width;
             if (this.position.y < 0)

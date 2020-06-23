@@ -1,9 +1,9 @@
 "use strict";
 var L10_Virus;
 (function (L10_Virus) {
-    class Particle {
+    class Particle extends L10_Virus.Cell {
         constructor(_position) {
-            this.position = _position;
+            super(_position);
             let colors = ["#ffcc01", "#ffac16", "#ff9026", "#ffd644"];
             let numColors = colors.length;
             let color;
@@ -13,7 +13,6 @@ var L10_Virus;
             this.color = color;
             this.rotation = Math.random() * 360;
             this.radius = 1 + (Math.random() * 2);
-            this.velocity = new L10_Virus.Vector(0, 0);
             this.velocity.random(10, 100);
         }
         draw(_position) {
@@ -31,13 +30,7 @@ var L10_Virus;
             L10_Virus.crc2.fill();
         }
         move(_timeslice) {
-            // Offset = Geschwindigkeit
-            let offset = new L10_Virus.Vector(this.velocity.x, this.velocity.y);
-            // Mit der Zeit multiplizieren
-            offset.x *= 0;
-            offset.y *= _timeslice * 1.5;
-            // Zu der Posiition addieren 
-            this.position.add(offset);
+            super.move(_timeslice);
             // Überprüfen, ob der Partikel noch auf dem Canvas liegt und gegebenenfalls die Position verändern
             if (this.position.x < 0)
                 this.position.x += L10_Virus.crc2.canvas.width;

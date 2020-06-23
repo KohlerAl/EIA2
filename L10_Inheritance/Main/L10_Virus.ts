@@ -86,8 +86,9 @@ namespace L10_Virus {
         }
         //  Create Macrophages
         for (let i = 0; i < 2; i++) {
-            let macrophage: Macrophage = new Macrophage();
-            macrophage.draw(width - 200 + (200 * Math.random()), 400 + (200 * Math.random()))
+            let position: Vector = new Vector(width - 200 + (200 * Math.random()), 400 + (200 * Math.random()))
+            let macrophage: Macrophage = new Macrophage(position);
+            macrophage.draw(position)
         }
         backgroundImage = crc2.getImageData(0, 0, width, height);
 
