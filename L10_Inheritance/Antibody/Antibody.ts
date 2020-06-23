@@ -1,7 +1,5 @@
 namespace L10_Virus {
     export class Antibody extends Cell{
-        position: Vector;
-        velocity: Vector;
 
         rotation: number;
 

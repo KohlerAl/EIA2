@@ -1,7 +1,5 @@
 namespace L10_Virus {
     export class Background extends Cell {
-        position: Vector;
-        velocity: Vector;
 
         constructor(_position: Vector) {
             super(_position); 

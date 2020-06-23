@@ -1,6 +1,5 @@
 namespace L10_Virus {
     export class Macrophage extends Cell {
-        position: Vector; 
 
         constructor(_position: Vector) {
             super(_position); 

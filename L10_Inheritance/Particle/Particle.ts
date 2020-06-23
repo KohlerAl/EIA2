@@ -1,7 +1,5 @@
 namespace L10_Virus {
     export class Particle extends Cell {
-        position: Vector;
-        velocity: Vector;
         radius: number;
         color: string;
         rotation: number;
@@ -21,7 +19,7 @@ namespace L10_Virus {
 
             this.radius = 1 + (Math.random() * 2);
 
-            this.velocity.random(10, 100);
+            this.velocity.random(0, 100);
         }
 
         draw(_position: Vector): void {

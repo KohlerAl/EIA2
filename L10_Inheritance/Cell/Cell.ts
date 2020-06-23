@@ -9,7 +9,7 @@ namespace L10_Virus {
         }
 
         draw(_position: Vector): void {
-            //console.log("draw-Method of Cell"); 
+            //Just a happy little comment to avoid the error message
         }
 
         move(_timeslice: number): void {

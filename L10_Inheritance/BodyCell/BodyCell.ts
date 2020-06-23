@@ -1,7 +1,5 @@
 namespace L10_Virus {
     export class BodyCell extends Cell{
-        position: Vector;
-        velocity: Vector;
         color: string;
         nucleus: string;
 

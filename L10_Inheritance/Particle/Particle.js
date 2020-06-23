@@ -13,7 +13,7 @@ var L10_Virus;
             this.color = color;
             this.rotation = Math.random() * 360;
             this.radius = 1 + (Math.random() * 2);
-            this.velocity.random(10, 100);
+            this.velocity.random(0, 100);
         }
         draw(_position) {
             L10_Virus.crc2.save();

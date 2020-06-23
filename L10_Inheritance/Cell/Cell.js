@@ -7,7 +7,7 @@ var L10_Virus;
             this.velocity = new L10_Virus.Vector(0, 0);
         }
         draw(_position) {
-            //console.log("draw-Method of Cell"); 
+            //Just a happy little comment to avoid the error message
         }
         move(_timeslice) {
             let offset = new L10_Virus.Vector(this.velocity.x, this.velocity.y);

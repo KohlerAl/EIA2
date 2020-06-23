@@ -1,7 +1,5 @@
 namespace L10_Virus {
     export class Corona extends Cell {
-        position: Vector;
-        velocity: Vector;
 
         constructor(_position: Vector) {
             super(_position);
