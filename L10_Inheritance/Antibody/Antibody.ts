@@ -9,9 +9,9 @@ namespace L10_Virus {
             this.rotation = Math.random() * 360
         }
 
-        draw(_position: Vector): void {
+        draw(): void {
             crc2.save();
-            crc2.translate(_position.x, _position.y);
+            crc2.translate(this.position.x, this.position.y);
             crc2.beginPath();
             crc2.rotate(this.rotation);
             crc2.moveTo(0, 0);

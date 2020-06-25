@@ -15,13 +15,13 @@ var L10_Virus;
             this.radius = 1 + (Math.random() * 2);
             this.velocity.random(0, 100);
         }
-        draw(_position) {
+        draw() {
             L10_Virus.crc2.save();
             // Set Parameters for Angles, Shadows and Rotation 
             let startAngle = (Math.PI / 180);
             let endAngle = (Math.PI / 180) * 360;
             L10_Virus.crc2.beginPath();
-            L10_Virus.crc2.ellipse(_position.x, _position.y, this.radius, this.radius * Math.random() + this.radius, this.rotation, startAngle, endAngle);
+            L10_Virus.crc2.ellipse(this.position.x, this.position.y, this.radius, this.radius * Math.random() + this.radius, this.rotation, startAngle, endAngle);
             L10_Virus.crc2.closePath();
             L10_Virus.crc2.strokeStyle = this.color + "88";
             L10_Virus.crc2.fillStyle = this.color + "33";

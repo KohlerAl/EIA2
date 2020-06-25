@@ -7,9 +7,9 @@ var L10_Virus;
             this.velocity.random(7, 10);
             this.rotation = Math.random() * 360;
         }
-        draw(_position) {
+        draw() {
             L10_Virus.crc2.save();
-            L10_Virus.crc2.translate(_position.x, _position.y);
+            L10_Virus.crc2.translate(this.position.x, this.position.y);
             L10_Virus.crc2.beginPath();
             L10_Virus.crc2.rotate(this.rotation);
             L10_Virus.crc2.moveTo(0, 0);

@@ -8,7 +8,7 @@ namespace L10_Virus {
             this.velocity = new Vector(0, 0); 
         }
 
-        draw(_position: Vector): void {
+        draw(): void {
             //Just a happy little comment to avoid the error message
         }
 

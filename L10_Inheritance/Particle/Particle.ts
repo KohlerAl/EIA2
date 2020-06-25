@@ -22,14 +22,14 @@ namespace L10_Virus {
             this.velocity.random(0, 100);
         }
 
-        draw(_position: Vector): void {
+        draw(): void {
             crc2.save();
             // Set Parameters for Angles, Shadows and Rotation 
             let startAngle = (Math.PI / 180);
             let endAngle = (Math.PI / 180) * 360;
 
             crc2.beginPath();
-            crc2.ellipse(_position.x, _position.y, this.radius, this.radius * Math.random() + this.radius, this.rotation, startAngle, endAngle);
+            crc2.ellipse(this.position.x, this.position.y, this.radius, this.radius * Math.random() + this.radius, this.rotation, startAngle, endAngle);
             crc2.closePath();
             crc2.strokeStyle = this.color + "88";
             crc2.fillStyle = this.color + "33";

@@ -5,7 +5,7 @@ namespace L10_Virus {
             super(_position); 
         }
 
-        draw(_position: Vector): void {
+        draw(): void {
             crc2.save();
 
             let colors: string[] = ["#fbcde2", "#c57ea2", "#f5aacf", "#fdddec"];
@@ -18,10 +18,10 @@ namespace L10_Virus {
             // Set Parameters for Angles, Shadows and Rotation 
             let startAngle = (Math.PI / 180);
             let endAngle = (Math.PI / 180) * 360;
-            crc2.shadowColor = "gray";
+            /* crc2.shadowColor = "gray";
             crc2.shadowOffsetX = 1;
             crc2.shadowOffsetY = 1;
-            crc2.shadowBlur = 5;
+            crc2.shadowBlur = 5; */
             let rotation: number = Math.random() * 360;
 
             // Creating a pattern, to give the Cells a bit of texture
@@ -40,7 +40,7 @@ namespace L10_Virus {
             // Create the Cell itself
             crc2.beginPath();
 
-            crc2.ellipse(_position.x, _position.y, radius, radius * Math.random() + radius, rotation, startAngle, endAngle);
+            crc2.ellipse(this.position.x, this.position.y, radius, radius * Math.random() + radius, rotation, startAngle, endAngle);
             crc2.closePath();
             crc2.strokeStyle = color + "88";
             crc2.fillStyle = pattern;
@@ -48,7 +48,7 @@ namespace L10_Virus {
             crc2.fill();
 
             crc2.beginPath();
-            crc2.arc(_position.x + 2, _position.y - 3, 3, Math.random(), 1.7 * Math.PI);
+            crc2.arc(this.position.x + 2, this.position.y - 3, 3, Math.random(), 1.7 * Math.PI);
             crc2.fillStyle = nucleusColor + "33";
 
             crc2.closePath();

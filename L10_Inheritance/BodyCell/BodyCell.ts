@@ -6,29 +6,38 @@ namespace L10_Virus {
         nucleusPosX: number;
         nucleusPosY: number;
 
-        constructor(_position: Vector, _colorIndex: number) {
+        isInfected: boolean; 
+
+        constructor(_position: Vector, _isInfected: boolean) {
             super(_position); 
+            let colorIndex = Math.round(Math.random() * 3);
+            this.isInfected = _isInfected; 
 
-            let colors: string[] = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f", "#891911"];
-            let nucleusColors: string[] = ["#888888", "#373737", "#4a4a4a", "#444444", "#4a4a4a"];
+            if (this.isInfected == true) {
+                this.color = "#891911"
+            }
 
-            this.nucleusPosX = _position.x + 2;
-            this.nucleusPosY = _position.y - (25 * Math.random());
+            else {
+                let colors: string[] = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f"];
+                this.color = colors[colorIndex];
+            }
 
-            this.color = colors[_colorIndex];
-            this.nucleus = nucleusColors[_colorIndex];
+            this.nucleusPosX = this.position.x + 2;
+            this.nucleusPosY = this.position.y - 2;
+
+            this.nucleus = "#888888";
 
             this.velocity.add(new Vector(0, 12));
         }
 
-        draw(_position: Vector): void {
+        draw(): void {
             crc2.save();
             let startAngle = (Math.PI / 180);
             let endAngle = (Math.PI / 180) * 360;
 
             // Create the Cell itself
             crc2.beginPath();
-            crc2.ellipse(_position.x, _position.y, 40, 50, 0, startAngle, endAngle);
+            crc2.ellipse(this.position.x, this.position.y, 40, 50, 0, startAngle, endAngle);
             crc2.closePath();
             crc2.strokeStyle = this.color;
             crc2.fillStyle = this.color;

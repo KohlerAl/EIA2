@@ -4,11 +4,12 @@ var L10_Virus;
     class Corona extends L10_Virus.Cell {
         constructor(_position) {
             super(_position);
+            this.isInfecting = false;
             this.velocity.random(30, 80);
         }
-        draw(_pos) {
+        draw() {
             L10_Virus.crc2.save();
-            L10_Virus.crc2.translate(_pos.x, _pos.y);
+            L10_Virus.crc2.translate(this.position.x, this.position.y);
             for (let i = 0; i < 7; i++) {
                 L10_Virus.crc2.beginPath();
                 L10_Virus.crc2.rotate(45);
@@ -31,22 +32,24 @@ var L10_Virus;
             L10_Virus.crc2.restore();
         }
         move(_timeslice) {
-            if (this.position.y < 250) {
-                super.move(_timeslice * 2);
+            if (this.isInfecting == false) {
+                if (this.position.y < 250) {
+                    super.move(_timeslice * 2);
+                }
+                else {
+                    super.move(_timeslice);
+                }
+                // Überprüfen, ob der Asteroid noch auf dem Canvas liegt und gegebenenfalls die Position verändern
+                // Wenn er größer als height ist, height von der Position abziehen 
+                if (this.position.x < -30)
+                    this.position.x += L10_Virus.crc2.canvas.width;
+                if (this.position.y < -30)
+                    this.position.y += L10_Virus.crc2.canvas.height;
+                if (this.position.x > L10_Virus.crc2.canvas.width + 30)
+                    this.position.x -= L10_Virus.crc2.canvas.width;
+                if (this.position.y > L10_Virus.crc2.canvas.height + 30)
+                    this.position.y -= L10_Virus.crc2.canvas.height;
             }
-            else {
-                super.move(_timeslice);
-            }
-            // Überprüfen, ob der Asteroid noch auf dem Canvas liegt und gegebenenfalls die Position verändern
-            // Wenn er größer als height ist, height von der Position abziehen 
-            if (this.position.x < -30)
-                this.position.x += L10_Virus.crc2.canvas.width;
-            if (this.position.y < -30)
-                this.position.y += L10_Virus.crc2.canvas.height;
-            if (this.position.x > L10_Virus.crc2.canvas.width + 30)
-                this.position.x -= L10_Virus.crc2.canvas.width;
-            if (this.position.y > L10_Virus.crc2.canvas.height + 30)
-                this.position.y -= L10_Virus.crc2.canvas.height;
         }
         isInfected() {
             if (this.position.y < 125) {

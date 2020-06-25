@@ -6,7 +6,7 @@ var L10_Virus;
             this.position = _position;
             this.velocity = new L10_Virus.Vector(0, 0);
         }
-        draw(_position) {
+        draw() {
             //Just a happy little comment to avoid the error message
         }
         move(_timeslice) {
