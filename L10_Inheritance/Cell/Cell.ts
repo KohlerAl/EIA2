@@ -9,7 +9,7 @@ namespace L10_Virus {
         }
 
         draw(): void {
-            //Just a happy little comment to avoid the error message
+            //Just a happy little comment to avoid the error message :)
         }
 
         move(_timeslice: number): void {

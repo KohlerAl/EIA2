@@ -17,10 +17,6 @@ var L10_Virus;
             // Set Parameters for Angles, Shadows and Rotation 
             let startAngle = (Math.PI / 180);
             let endAngle = (Math.PI / 180) * 360;
-            /* crc2.shadowColor = "gray";
-            crc2.shadowOffsetX = 1;
-            crc2.shadowOffsetY = 1;
-            crc2.shadowBlur = 5; */
             let rotation = Math.random() * 360;
             // Creating a pattern, to give the Cells a bit of texture
             let pattern = document.createElement('canvas').getContext('2d');
