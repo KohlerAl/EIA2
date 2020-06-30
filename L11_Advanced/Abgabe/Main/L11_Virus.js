@@ -3,11 +3,6 @@
 //Konzipiert für ein Handy-Display mit dem Format 360x560
 var L11_Virus;
 (function (L11_Virus) {
-    /* let coronas: Corona[] = [];
-    let largeCells: BodyCell[] = [];
-    let particles: Particle[] = [];
-    let smallCells: Background[] = [];
-    let antibodys: Antibody[] = []; */
     let cells = [];
     let backgroundImage;
     window.addEventListener("load", createImage);
@@ -19,10 +14,27 @@ var L11_Virus;
     function createImage() {
         L11_Virus.canvas = document.querySelector("canvas");
         L11_Virus.crc2 = L11_Virus.canvas.getContext("2d");
+        L11_Virus.canvas.addEventListener("click", handleClick);
         L11_Virus.resizeCanvas();
         L11_Virus.createBackground();
         createCells();
         window.setInterval(animation, 20);
+    }
+    function handleClick(_event) {
+        let x = _event.clientX;
+        let y = _event.clientY;
+        for (let cell of cells) {
+            if (cell instanceof L11_Virus.BodyCell && cell.status == L11_Virus.STATE.INFECTED) {
+                if (cell.position.x - 40 < x && cell.position.x + 40 > x && cell.position.y - 50 < y && cell.position.y + 50 > y) {
+                    cell.task(L11_Virus.STATE.KILLED);
+                    cell.draw();
+                    console.log(cell.status);
+                    window.setTimeout(function () {
+                        killBodyCell(cell);
+                    }, 2000);
+                }
+            }
+        }
     }
     function createCells() {
         //Depending on the size of the canvas, different numbers of cells are created
@@ -84,7 +96,7 @@ var L11_Virus;
             xPos = storage + 40;
             storage = xPos + 40;
             let position = new L11_Virus.Vector(xPos, yPos);
-            let cell = new L11_Virus.BodyCell(position, false);
+            let cell = new L11_Virus.BodyCell(position, L11_Virus.STATE.NORMAL);
             cell.draw();
             cells.push(cell);
         }
@@ -146,20 +158,29 @@ var L11_Virus;
         for (let cell of cells) {
             let areaMin = cell.position.x - 40;
             let areaMax = cell.position.x + 40;
-            if (cell instanceof L11_Virus.BodyCell && _virusPos > areaMin && _virusPos < areaMax) {
-                let index = cells.indexOf(cell);
-                cells.splice(index, 1);
-                let newPosition = new L11_Virus.Vector(cell.position.x, cell.position.y);
-                let infectedCell = new L11_Virus.BodyCell(newPosition, true);
-                infectedCell.draw();
-                for (let cell of cells) {
-                    if (cell instanceof L11_Virus.Corona) {
-                        cell.draw();
-                    }
-                }
-                cells.push(infectedCell);
+            if (cell instanceof L11_Virus.BodyCell && cell.status != L11_Virus.STATE.KILLED && _virusPos > areaMin && _virusPos < areaMax) {
+                cell.task(L11_Virus.STATE.INFECTED);
+                /* let bodyCell: BodyCell = cell;
+                window.setTimeout(function(): void {
+                    handleCellState(bodyCell);
+                }, 3000);  */
             }
         }
+    }
+    /* function handleCellState(_cell: BodyCell) {
+        if (_cell.status != STATE.KILLED) {
+            console.log("HEllo");
+            for (let i: number = 0; i < 2; i++) {
+                let newCorona: Corona = new Corona(_cell.position);
+                newCorona.draw();
+                cells.push(newCorona);
+            }
+            killBodyCell(_cell);
+        }
+    } */
+    function killBodyCell(_cell) {
+        let index = cells.indexOf(_cell);
+        cells.splice(index, 1);
     }
 })(L11_Virus || (L11_Virus = {}));
 //# sourceMappingURL=L11_Virus.js.map

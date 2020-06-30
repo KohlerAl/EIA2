@@ -33,12 +33,13 @@ var L11_Virus;
         }
         move(_timeslice) {
             if (this.isInfecting == false) {
-                if (this.position.y < 250) {
-                    super.move(_timeslice * 2);
-                }
-                else {
+                /* if (this.position.y < 250) {
+                    super.move(_timeslice * 2)
+                } */
+                /* else {
                     super.move(_timeslice);
-                }
+                } */
+                super.move(_timeslice);
                 // Überprüfen, ob der Asteroid noch auf dem Canvas liegt und gegebenenfalls die Position verändern
                 // Wenn er größer als height ist, height von der Position abziehen 
                 if (this.position.x < -30)
