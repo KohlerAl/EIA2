@@ -1,17 +1,21 @@
 "use strict";
 var L11_Virus;
 (function (L11_Virus) {
-    let STATE;
-    (function (STATE) {
-        STATE[STATE["NORMAL"] = 0] = "NORMAL";
-        STATE[STATE["INFECTED"] = 1] = "INFECTED";
-        STATE[STATE["DEAD"] = 2] = "DEAD";
-        STATE[STATE["KILLED"] = 3] = "KILLED";
-    })(STATE = L11_Virus.STATE || (L11_Virus.STATE = {}));
+    let STATE_BODYCELL;
+    (function (STATE_BODYCELL) {
+        STATE_BODYCELL["NORMAL"] = "normal";
+        STATE_BODYCELL["INFECTED"] = "infected";
+        STATE_BODYCELL["KILLED"] = "killed";
+    })(STATE_BODYCELL = L11_Virus.STATE_BODYCELL || (L11_Virus.STATE_BODYCELL = {}));
     class BodyCell extends L11_Virus.Cell {
         constructor(_position, _isInfected) {
             super(_position);
-            this.task(_isInfected);
+            if (_isInfected) {
+                this.status = _isInfected;
+            }
+            else {
+                this.status = STATE_BODYCELL.NORMAL;
+            }
             let colorIndex = Math.round(Math.random() * 3);
             let colors = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f"];
             this.color = colors[colorIndex];
@@ -20,14 +24,14 @@ var L11_Virus;
             this.nucleus = "#888888";
             this.velocity.add(new L11_Virus.Vector(0, 12));
         }
-        task(_status) {
+        set task(_status) {
             this.status = _status;
         }
         draw() {
-            if (this.status == STATE.INFECTED) {
+            if (this.status == STATE_BODYCELL.INFECTED) {
                 this.color = "#891911";
             }
-            else if (this.status == STATE.DEAD || this.status == STATE.KILLED) {
+            else if (this.status == STATE_BODYCELL.KILLED) {
                 this.color = "#000000";
             }
             L11_Virus.crc2.save();

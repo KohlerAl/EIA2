@@ -5,7 +5,7 @@ namespace L11_Virus {
             super(_position); 
         }
 
-        draw(): void {
+        public draw(): void {
             crc2.beginPath();
         crc2.arc(this.position.x + 40, this.position.y + 40, 40, 0, 2 * Math.PI);
         crc2.arc(this.position.x + 18, this.position.y + 12, 35, 0, 2 * Math.PI);

@@ -4,7 +4,6 @@ var L11_Virus;
     class Background {
         constructor(_position) {
             this.position = _position;
-            this.velocity = new L11_Virus.Vector(0, 0);
         }
         draw() {
             L11_Virus.crc2.save();

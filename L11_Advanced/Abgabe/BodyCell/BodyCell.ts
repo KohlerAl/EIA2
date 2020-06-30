@@ -1,24 +1,29 @@
 namespace L11_Virus {
-    export enum STATE {
-        NORMAL,
-        INFECTED,
-        DEAD,
-        KILLED
+    export enum STATE_BODYCELL {
+        NORMAL = "normal",
+        INFECTED = "infected",
+        KILLED = "killed"
     }
 
     export class BodyCell extends Cell {
 
-        color: string;
-        nucleus: string;
+        private color: string;
+        private nucleus: string;
 
-        nucleusPosX: number;
-        nucleusPosY: number;
+        private nucleusPosX: number;
+        private nucleusPosY: number;
 
-        public status: STATE;
+        public status: STATE_BODYCELL;
 
-        constructor(_position: Vector, _isInfected: STATE) {
+        constructor(_position: Vector, _isInfected?: STATE_BODYCELL) {
             super(_position);
-            this.task(_isInfected);
+
+            if (_isInfected) {
+                this.status = _isInfected;
+            }
+            else {
+                this.status = STATE_BODYCELL.NORMAL;
+            }
 
             let colorIndex = Math.round(Math.random() * 3);
             let colors: string[] = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f"];
@@ -32,19 +37,19 @@ namespace L11_Virus {
             this.velocity.add(new Vector(0, 12));
         }
 
-        task(_status: STATE): void {
+        public set task(_status: STATE_BODYCELL) {
             this.status = _status;
         }
 
-        draw(): void {
-            if (this.status == STATE.INFECTED) {
+        public draw(): void {
+            if (this.status == STATE_BODYCELL.INFECTED) {
                 this.color = "#891911"
             }
 
-            else if (this.status == STATE.DEAD || this.status == STATE.KILLED) {
+            else if (this.status == STATE_BODYCELL.KILLED) {
                 this.color = "#000000"
             }
-            
+
             crc2.save();
             let startAngle = (Math.PI / 180);
             let endAngle = (Math.PI / 180) * 360;
@@ -70,7 +75,7 @@ namespace L11_Virus {
 
         }
 
-        move(_timeslice: number): void {
+        public move(_timeslice: number): void {
             super.move(_timeslice);
 
             if (this.position.y < 72)

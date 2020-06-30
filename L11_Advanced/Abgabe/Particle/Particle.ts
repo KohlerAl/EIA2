@@ -1,8 +1,8 @@
 namespace L11_Virus {
     export class Particle extends Cell {
-        radius: number;
-        color: string;
-        rotation: number;
+        private radius: number;
+        private color: string;
+        private rotation: number;
 
         constructor(_position: Vector) {
             super(_position);
@@ -22,7 +22,7 @@ namespace L11_Virus {
             this.velocity.random(0, 100);
         }
 
-        draw(): void {
+        public draw(): void {
             crc2.save();
             // Set Parameters for Angles, Shadows and Rotation 
             let startAngle = (Math.PI / 180);
@@ -39,7 +39,7 @@ namespace L11_Virus {
 
         }
 
-        move(_timeslice: number): void {
+        public move(_timeslice: number): void {
 
             super.move(_timeslice);
             // Überprüfen, ob der Partikel noch auf dem Canvas liegt und gegebenenfalls die Position verändern

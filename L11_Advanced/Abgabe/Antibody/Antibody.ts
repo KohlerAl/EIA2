@@ -1,7 +1,7 @@
 namespace L11_Virus {
     export class Antibody extends Cell{
 
-        rotation: number;
+        private rotation: number;
 
         constructor(_position: Vector) {
             super(_position);
@@ -9,7 +9,7 @@ namespace L11_Virus {
             this.rotation = Math.random() * 360
         }
 
-        draw(): void {
+        public draw(): void {
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
             crc2.beginPath();
@@ -26,7 +26,7 @@ namespace L11_Virus {
             crc2.restore();
         }
 
-        move(_timeslice: number): void {
+        public move(_timeslice: number): void {
             super.move(_timeslice); 
 
             if (this.position.x < 0)

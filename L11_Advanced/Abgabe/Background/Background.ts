@@ -1,19 +1,17 @@
 namespace L11_Virus {
     export class Background {
-        position: Vector;
-        velocity: Vector;
-        
+        private position: Vector;
+
         constructor(_position: Vector) {
-            this.position = _position; 
-            this.velocity = new Vector(0, 0);  
+            this.position = _position;
         }
 
-        draw(): void {
+        public draw(): void {
             crc2.save();
 
             let colors: string[] = ["#fbcde2", "#c57ea2", "#f5aacf", "#fdddec"];
             let nucleusColors: string[] = ["#888888", "#373737", "#4a4a4a", "#444444"];
-            let numColors: number = colors.length; 
+            let numColors: number = colors.length;
             let radius = 5 + (Math.random() * 15);
             let colorIndex = Math.round(Math.random() * (numColors - 1));
             let color = colors[colorIndex];

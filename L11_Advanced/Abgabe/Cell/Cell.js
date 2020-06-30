@@ -6,9 +6,6 @@ var L11_Virus;
             this.position = _position;
             this.velocity = new L11_Virus.Vector(0, 0);
         }
-        draw() {
-            //Just a happy little comment to avoid the error message :)
-        }
         move(_timeslice) {
             let offset = new L11_Virus.Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);

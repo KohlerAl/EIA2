@@ -1,18 +1,16 @@
 namespace L11_Virus {
-    export class Cell {
-        position: Vector;
-        velocity: Vector;
+    export abstract class Cell {
+        public position: Vector;
+        public velocity: Vector;
 
         constructor(_position: Vector) {
             this.position = _position; 
             this.velocity = new Vector(0, 0); 
         }
 
-        draw(): void {
-            //Just a happy little comment to avoid the error message :)
-        }
+        abstract draw(): void 
 
-        move(_timeslice: number): void {
+        public move(_timeslice: number): void {
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
