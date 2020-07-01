@@ -23,6 +23,7 @@ namespace L11_Virus {
         alert("Don't let Corona win! To destroy the infected (red) cells, click on them before they can send out more viruses! ");
         createImage();
     }
+
     function createImage(): void {
         canvas = <HTMLCanvasElement>document.querySelector("canvas");
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
@@ -234,7 +235,6 @@ namespace L11_Virus {
             case STATE_CORONA.INFECTING:
                 _cell.status = STATE_CORONA.PASSIVE;
                 handleCoronaState(_cell, 1000);
-                console.log("changed infecting to passive")
                 break;
             case STATE_CORONA.PASSIVE:
                 _cell.status = STATE_CORONA.NORMAL;

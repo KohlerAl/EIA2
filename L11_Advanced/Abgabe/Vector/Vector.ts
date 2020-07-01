@@ -18,7 +18,7 @@ namespace L11_Virus {
             this.y *= _factor;
         }
 
-        add(_addend: Vector): void {
+        public add(_addend: Vector): void {
             this.x += _addend.x;
             this.y += _addend.y;
         }

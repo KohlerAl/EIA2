@@ -201,7 +201,6 @@ var L11_Virus;
             case L11_Virus.STATE_CORONA.INFECTING:
                 _cell.status = L11_Virus.STATE_CORONA.PASSIVE;
                 handleCoronaState(_cell, 1000);
-                console.log("changed infecting to passive");
                 break;
             case L11_Virus.STATE_CORONA.PASSIVE:
                 _cell.status = L11_Virus.STATE_CORONA.NORMAL;
