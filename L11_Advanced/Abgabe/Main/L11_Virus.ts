@@ -38,7 +38,6 @@ namespace L11_Virus {
                 if (cell.position.x - 40 < x && cell.position.x + 40 > x && cell.position.y - 50 < y && cell.position.y + 50 > y) {
                     cell.status = STATE_BODYCELL.KILLED;
                     cell.draw();
-                    console.log(cell.status);
                     window.setTimeout(function (): void {
                         killBodyCell(cell);
                     }, 2000)
@@ -152,7 +151,7 @@ namespace L11_Virus {
         crc2.putImageData(backgroundImage, 0, 0);
 
         for (let cell of cells) {
-            if (cell instanceof Corona && cell.status)
+            if (cell instanceof Corona)
                 cell.move(1 / 20);
             else if (cell instanceof BodyCell)
                 cell.move(1 / 30)
@@ -166,23 +165,20 @@ namespace L11_Virus {
 
     function isInfected(): void {
         for (let cell of cells) {
-            if (cell instanceof Corona && cell.status == STATE_CORONA.NORMAL)
+            if (cell instanceof Corona && cell.status == STATE_CORONA.NORMAL) {
                 if (cell.isInfected()) {
                     startReaction(cell);
                     changeBodyCell(cell.position.x);
                 }
+            }
         }
     }
 
     function startReaction(_corona: Corona): void {
-        _corona.status = STATE_CORONA.INFECTING
+        _corona.status = STATE_CORONA.INFECTING;
         window.setTimeout(function (): void {
-            endReaction(_corona);
+            handleCoronaState(_corona, 1000);
         }, 3000);
-    }
-
-    function endReaction(_corona: Corona) {
-        _corona.status = STATE_CORONA.NORMAL
     }
 
     function changeBodyCell(_virusPos: number) {
@@ -192,7 +188,6 @@ namespace L11_Virus {
 
             if (cell instanceof BodyCell && cell.status != STATE_BODYCELL.KILLED && _virusPos > areaMin && _virusPos < areaMax) {
                 cell.status = STATE_BODYCELL.INFECTED;
-                console.log(cell.status);
                 let bodyCell: BodyCell = cell;
                 window.setTimeout(function (): void {
                     handleCellState(bodyCell);
@@ -203,17 +198,18 @@ namespace L11_Virus {
 
     function handleCellState(_cell: BodyCell) {
         if (_cell.status != STATE_BODYCELL.KILLED) {
-
             let newCorona: Corona = new Corona(_cell.position, STATE_CORONA.PASSIVE);
             newCorona.draw();
             cells.push(newCorona);
-
-            window.setTimeout(function (): void {
-                changeCoronaState(newCorona);
-            }, 5000)
-
+            handleCoronaState(newCorona, 2000); 
             killBodyCell(_cell);
         }
+    }
+
+    function handleCoronaState(_cell: Corona, _t: number): void {
+        window.setTimeout(function (): void {
+            changeCoronaState(_cell);
+        }, _t);
     }
 
     function killBodyCell(_cell: Cell) {
@@ -222,6 +218,17 @@ namespace L11_Virus {
     }
 
     function changeCoronaState(_cell: Corona): void {
-        _cell.status = STATE_CORONA.NORMAL;
+        switch (_cell.status) {
+            case STATE_CORONA.INFECTING:
+                _cell.status = STATE_CORONA.PASSIVE;
+                handleCoronaState(_cell, 1000); 
+                console.log("changed infecting to passive")
+                break;
+            case STATE_CORONA.PASSIVE:
+                _cell.status = STATE_CORONA.NORMAL;
+                break;
+            default:
+                _cell.status = STATE_CORONA.NORMAL;
+        }
     }
 }

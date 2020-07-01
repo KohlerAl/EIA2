@@ -57,6 +57,7 @@ namespace L11_Virus {
                     break;
                 case STATE_CORONA.PASSIVE:
                     super.move(_timeslice * 2);
+                    break; 
                 default:
                     super.move(_timeslice);
             }

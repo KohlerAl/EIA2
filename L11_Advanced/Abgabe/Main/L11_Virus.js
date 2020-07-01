@@ -28,7 +28,6 @@ var L11_Virus;
                 if (cell.position.x - 40 < x && cell.position.x + 40 > x && cell.position.y - 50 < y && cell.position.y + 50 > y) {
                     cell.status = L11_Virus.STATE_BODYCELL.KILLED;
                     cell.draw();
-                    console.log(cell.status);
                     window.setTimeout(function () {
                         killBodyCell(cell);
                     }, 2000);
@@ -127,7 +126,7 @@ var L11_Virus;
     function animation() {
         L11_Virus.crc2.putImageData(backgroundImage, 0, 0);
         for (let cell of cells) {
-            if (cell instanceof L11_Virus.Corona && cell.status)
+            if (cell instanceof L11_Virus.Corona)
                 cell.move(1 / 20);
             else if (cell instanceof L11_Virus.BodyCell)
                 cell.move(1 / 30);
@@ -139,21 +138,19 @@ var L11_Virus;
     }
     function isInfected() {
         for (let cell of cells) {
-            if (cell instanceof L11_Virus.Corona && cell.status == L11_Virus.STATE_CORONA.NORMAL)
+            if (cell instanceof L11_Virus.Corona && cell.status == L11_Virus.STATE_CORONA.NORMAL) {
                 if (cell.isInfected()) {
                     startReaction(cell);
                     changeBodyCell(cell.position.x);
                 }
+            }
         }
     }
     function startReaction(_corona) {
         _corona.status = L11_Virus.STATE_CORONA.INFECTING;
         window.setTimeout(function () {
-            endReaction(_corona);
+            handleCoronaState(_corona, 1000);
         }, 3000);
-    }
-    function endReaction(_corona) {
-        _corona.status = L11_Virus.STATE_CORONA.NORMAL;
     }
     function changeBodyCell(_virusPos) {
         for (let cell of cells) {
@@ -161,7 +158,6 @@ var L11_Virus;
             let areaMax = cell.position.x + 40;
             if (cell instanceof L11_Virus.BodyCell && cell.status != L11_Virus.STATE_BODYCELL.KILLED && _virusPos > areaMin && _virusPos < areaMax) {
                 cell.status = L11_Virus.STATE_BODYCELL.INFECTED;
-                console.log(cell.status);
                 let bodyCell = cell;
                 window.setTimeout(function () {
                     handleCellState(bodyCell);
@@ -174,18 +170,32 @@ var L11_Virus;
             let newCorona = new L11_Virus.Corona(_cell.position, L11_Virus.STATE_CORONA.PASSIVE);
             newCorona.draw();
             cells.push(newCorona);
-            window.setTimeout(function () {
-                changeCoronaState(newCorona);
-            }, 5000);
+            handleCoronaState(newCorona, 2000);
             killBodyCell(_cell);
         }
+    }
+    function handleCoronaState(_cell, _t) {
+        window.setTimeout(function () {
+            changeCoronaState(_cell);
+        }, _t);
     }
     function killBodyCell(_cell) {
         let index = cells.indexOf(_cell);
         cells.splice(index, 1);
     }
     function changeCoronaState(_cell) {
-        _cell.status = L11_Virus.STATE_CORONA.NORMAL;
+        switch (_cell.status) {
+            case L11_Virus.STATE_CORONA.INFECTING:
+                _cell.status = L11_Virus.STATE_CORONA.PASSIVE;
+                handleCoronaState(_cell, 1000);
+                console.log("changed infecting to passive");
+                break;
+            case L11_Virus.STATE_CORONA.PASSIVE:
+                _cell.status = L11_Virus.STATE_CORONA.NORMAL;
+                break;
+            default:
+                _cell.status = L11_Virus.STATE_CORONA.NORMAL;
+        }
     }
 })(L11_Virus || (L11_Virus = {}));
 //# sourceMappingURL=L11_Virus.js.map
