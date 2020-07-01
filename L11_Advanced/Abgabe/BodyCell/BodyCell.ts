@@ -35,6 +35,8 @@ namespace L11_Virus {
             this.nucleus = "#888888";
 
             this.velocity.add(new Vector(0, 12));
+
+            this.type = "BodyCell";
         }
 
         public set task(_status: STATE_BODYCELL) {

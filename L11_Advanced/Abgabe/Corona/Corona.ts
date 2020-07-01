@@ -18,6 +18,8 @@ namespace L11_Virus {
             else {
                 this.status = STATE_CORONA.NORMAL;
             }
+
+            this.type = "Corona"; 
         }
 
         public set task(_status: STATE_CORONA) {

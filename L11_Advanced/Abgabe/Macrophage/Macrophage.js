@@ -4,6 +4,7 @@ var L11_Virus;
     class Macrophage extends L11_Virus.Cell {
         constructor(_position) {
             super(_position);
+            this.type = "Macrophage";
         }
         draw() {
             L11_Virus.crc2.beginPath();

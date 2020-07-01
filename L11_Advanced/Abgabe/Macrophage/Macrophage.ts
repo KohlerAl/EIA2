@@ -3,6 +3,7 @@ namespace L11_Virus {
 
         constructor(_position: Vector) {
             super(_position); 
+            this.type = "Macrophage";
         }
 
         public draw(): void {

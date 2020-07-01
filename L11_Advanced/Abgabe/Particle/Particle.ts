@@ -20,6 +20,8 @@ namespace L11_Virus {
             this.radius = 1 + (Math.random() * 2);
 
             this.velocity.random(0, 100);
+
+            this.type = "Particle";
         }
 
         public draw(): void {

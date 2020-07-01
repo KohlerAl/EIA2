@@ -17,6 +17,7 @@ var L11_Virus;
             else {
                 this.status = STATE_CORONA.NORMAL;
             }
+            this.type = "Corona";
         }
         set task(_status) {
             this.status = _status;

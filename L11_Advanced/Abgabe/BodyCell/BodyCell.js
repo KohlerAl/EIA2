@@ -23,6 +23,7 @@ var L11_Virus;
             this.nucleusPosY = this.position.y - 2;
             this.nucleus = "#888888";
             this.velocity.add(new L11_Virus.Vector(0, 12));
+            this.type = "BodyCell";
         }
         set task(_status) {
             this.status = _status;

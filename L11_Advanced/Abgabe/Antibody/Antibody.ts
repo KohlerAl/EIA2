@@ -6,7 +6,8 @@ namespace L11_Virus {
         constructor(_position: Vector) {
             super(_position);
             this.velocity.random(7, 10);
-            this.rotation = Math.random() * 360
+            this.rotation = Math.random() * 360; 
+            this.type = "Antibody";
         }
 
         public draw(): void {

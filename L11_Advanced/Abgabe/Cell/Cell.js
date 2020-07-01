@@ -3,6 +3,7 @@ var L11_Virus;
 (function (L11_Virus) {
     class Cell {
         constructor(_position) {
+            this.type = "Cell";
             this.position = _position;
             this.velocity = new L11_Virus.Vector(0, 0);
         }

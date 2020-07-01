@@ -1,4 +1,4 @@
-//Abgabe L11 von Alida Kohler, erstellt am 23.06.2020
+//Abgabe L11 von Alida Kohler, erstellt am 30.06.2020
 //Konzipiert für ein Handy-Display mit dem Format 360x560
 namespace L11_Virus {
     export let canvas: HTMLCanvasElement;
@@ -11,7 +11,7 @@ namespace L11_Virus {
     let backgroundImage: ImageData;
 
 
-    window.addEventListener("load", createImage);
+    window.addEventListener("load", handleLoad);
     window.addEventListener("resize", handleResize);
 
     function handleResize(): void {
@@ -19,6 +19,10 @@ namespace L11_Virus {
         createImage();
     }
 
+    function handleLoad(): void {
+        alert("Don't let Corona win! To destroy the infected (red) cells, click on them before they can send out more viruses! ");
+        createImage();
+    }
     function createImage(): void {
         canvas = <HTMLCanvasElement>document.querySelector("canvas");
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
@@ -160,18 +164,26 @@ namespace L11_Virus {
             cell.draw();
         }
         isInfected();
-
     }
 
     function isInfected(): void {
-        for (let cell of cells) {
-            if (cell instanceof Corona && cell.status == STATE_CORONA.NORMAL) {
-                if (cell.isInfected()) {
-                    startReaction(cell);
-                    changeBodyCell(cell.position.x);
-                }
+        for (let unit of cells)
+            switch (unit.type) {
+                case "BodyCell":
+                    let areaMin: number = unit.position.x - 40;
+                    let areaMax: number = unit.position.x + 40;
+                    for (let cell of cells) {
+                        if (cell instanceof Corona && cell.position.x > areaMin && cell.position.x < areaMax && cell.status == STATE_CORONA.NORMAL) {
+                            if (cell.isInfected()) {
+                                startReaction(cell);
+                                changeBodyCell(cell.position.x);
+                            }
+                        }
+                    }
+                    break; 
+                default: 
+                break; 
             }
-        }
     }
 
     function startReaction(_corona: Corona): void {
@@ -201,7 +213,7 @@ namespace L11_Virus {
             let newCorona: Corona = new Corona(_cell.position, STATE_CORONA.PASSIVE);
             newCorona.draw();
             cells.push(newCorona);
-            handleCoronaState(newCorona, 2000); 
+            handleCoronaState(newCorona, 2000);
             killBodyCell(_cell);
         }
     }
@@ -221,7 +233,7 @@ namespace L11_Virus {
         switch (_cell.status) {
             case STATE_CORONA.INFECTING:
                 _cell.status = STATE_CORONA.PASSIVE;
-                handleCoronaState(_cell, 1000); 
+                handleCoronaState(_cell, 1000);
                 console.log("changed infecting to passive")
                 break;
             case STATE_CORONA.PASSIVE:
@@ -231,4 +243,5 @@ namespace L11_Virus {
                 _cell.status = STATE_CORONA.NORMAL;
         }
     }
+
 }

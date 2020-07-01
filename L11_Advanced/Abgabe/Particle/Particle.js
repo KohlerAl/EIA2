@@ -14,6 +14,7 @@ var L11_Virus;
             this.rotation = Math.random() * 360;
             this.radius = 1 + (Math.random() * 2);
             this.velocity.random(0, 100);
+            this.type = "Particle";
         }
         draw() {
             L11_Virus.crc2.save();

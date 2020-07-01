@@ -1,14 +1,18 @@
 "use strict";
-//Abgabe L11 von Alida Kohler, erstellt am 23.06.2020
+//Abgabe L11 von Alida Kohler, erstellt am 30.06.2020
 //Konzipiert für ein Handy-Display mit dem Format 360x560
 var L11_Virus;
 (function (L11_Virus) {
     let cells = [];
     let backgroundImage;
-    window.addEventListener("load", createImage);
+    window.addEventListener("load", handleLoad);
     window.addEventListener("resize", handleResize);
     function handleResize() {
         cells = [];
+        createImage();
+    }
+    function handleLoad() {
+        alert("Don't let Corona win! To destroy the infected (red) cells, click on them before they can send out more viruses! ");
         createImage();
     }
     function createImage() {
@@ -137,14 +141,23 @@ var L11_Virus;
         isInfected();
     }
     function isInfected() {
-        for (let cell of cells) {
-            if (cell instanceof L11_Virus.Corona && cell.status == L11_Virus.STATE_CORONA.NORMAL) {
-                if (cell.isInfected()) {
-                    startReaction(cell);
-                    changeBodyCell(cell.position.x);
-                }
+        for (let unit of cells)
+            switch (unit.type) {
+                case "BodyCell":
+                    let areaMin = unit.position.x - 40;
+                    let areaMax = unit.position.x + 40;
+                    for (let cell of cells) {
+                        if (cell instanceof L11_Virus.Corona && cell.position.x > areaMin && cell.position.x < areaMax && cell.status == L11_Virus.STATE_CORONA.NORMAL) {
+                            if (cell.isInfected()) {
+                                startReaction(cell);
+                                changeBodyCell(cell.position.x);
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    break;
             }
-        }
     }
     function startReaction(_corona) {
         _corona.status = L11_Virus.STATE_CORONA.INFECTING;

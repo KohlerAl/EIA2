@@ -6,6 +6,7 @@ var L11_Virus;
             super(_position);
             this.velocity.random(7, 10);
             this.rotation = Math.random() * 360;
+            this.type = "Antibody";
         }
         draw() {
             L11_Virus.crc2.save();
