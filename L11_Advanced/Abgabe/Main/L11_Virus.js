@@ -108,12 +108,26 @@ var L11_Virus;
             xPos = coronaPosition + radius + 10;
             coronaPosition = xPos + radius;
             yPos = 220 + (50 * Math.random());
+            let j = 0;
             if (xPos > L11_Virus.width) {
                 yPos = yPos + 100;
                 xPos = xPos - L11_Virus.width + 10;
             }
             let position = new L11_Virus.Vector(xPos, yPos);
-            let corona = new L11_Virus.Corona(position);
+            let corona;
+            if (j < 3) {
+                let num = cells.length - (j + 1);
+                let cell = cells[num];
+                if (cell instanceof L11_Virus.BodyCell) {
+                    corona = new L11_Virus.Corona(position, L11_Virus.STATE_CORONA.NORMAL, cell.position);
+                }
+                else {
+                    corona = new L11_Virus.Corona(position);
+                }
+            }
+            else {
+                corona = new L11_Virus.Corona(position);
+            }
             corona.draw();
             cells.push(corona);
         }

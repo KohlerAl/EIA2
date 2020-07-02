@@ -129,12 +129,28 @@ namespace L11_Virus {
             coronaPosition = xPos + radius;
             yPos = 220 + (50 * Math.random());
 
+            let j: number = 0;
+
             if (xPos > width) {
                 yPos = yPos + 100;
                 xPos = xPos - width + 10;
             }
             let position: Vector = new Vector(xPos, yPos);
-            let corona: Corona = new Corona(position);
+            let corona: Corona
+
+            if (j < 3) {
+                let num: number = cells.length - (j + 1);
+                let cell: Cell = cells[num];
+                if (cell instanceof BodyCell) {
+                    corona = new Corona(position, STATE_CORONA.NORMAL, cell.position);
+                }
+                else {
+                    corona = new Corona(position);
+                }
+            }
+            else {
+                corona = new Corona(position);
+            }
             corona.draw();
             cells.push(corona);
         }
@@ -181,9 +197,9 @@ namespace L11_Virus {
                             }
                         }
                     }
-                    break; 
-                default: 
-                break; 
+                    break;
+                default:
+                    break;
             }
     }
 

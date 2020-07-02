@@ -7,8 +7,9 @@ namespace L11_Virus {
     export class Corona extends Cell {
 
         public status: STATE_CORONA;
+        target: Vector;
 
-        constructor(_position: Vector, _status?: STATE_CORONA) {
+        constructor(_position: Vector, _status?: STATE_CORONA, _target?: Vector) {
             super(_position);
             this.velocity.random(30, 80);
 
@@ -19,7 +20,10 @@ namespace L11_Virus {
                 this.status = STATE_CORONA.NORMAL;
             }
 
-            this.type = "Corona"; 
+            if (_target)
+                this.target = _target;
+
+            this.type = "Corona";
         }
 
         public set task(_status: STATE_CORONA) {
@@ -54,14 +58,21 @@ namespace L11_Virus {
 
         public move(_timeslice: number): void {
 
-            switch (this.status) {
-                case STATE_CORONA.INFECTING:
-                    break;
-                case STATE_CORONA.PASSIVE:
-                    super.move(_timeslice * 2);
-                    break; 
-                default:
-                    super.move(_timeslice);
+            if (this.target) {
+                let move: Vector = Vector.getDifference(this.position, this.target);
+                move.scale(0.05);
+                this.position.add(move);
+            }
+            else {
+                switch (this.status) {
+                    case STATE_CORONA.INFECTING:
+                        break;
+                    case STATE_CORONA.PASSIVE:
+                        super.move(_timeslice * 2);
+                        break;
+                    default:
+                        super.move(_timeslice);
+                }
             }
 
             if (this.position.x < - 30)

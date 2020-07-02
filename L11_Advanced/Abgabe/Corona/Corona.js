@@ -8,7 +8,7 @@ var L11_Virus;
         STATE_CORONA["PASSIVE"] = "passive";
     })(STATE_CORONA = L11_Virus.STATE_CORONA || (L11_Virus.STATE_CORONA = {}));
     class Corona extends L11_Virus.Cell {
-        constructor(_position, _status) {
+        constructor(_position, _status, _target) {
             super(_position);
             this.velocity.random(30, 80);
             if (_status) {
@@ -17,6 +17,8 @@ var L11_Virus;
             else {
                 this.status = STATE_CORONA.NORMAL;
             }
+            if (_target)
+                this.target = _target;
             this.type = "Corona";
         }
         set task(_status) {
@@ -47,14 +49,21 @@ var L11_Virus;
             L11_Virus.crc2.restore();
         }
         move(_timeslice) {
-            switch (this.status) {
-                case STATE_CORONA.INFECTING:
-                    break;
-                case STATE_CORONA.PASSIVE:
-                    super.move(_timeslice * 2);
-                    break;
-                default:
-                    super.move(_timeslice);
+            if (this.target) {
+                let move = L11_Virus.Vector.getDifference(this.position, this.target);
+                move.scale(0.05);
+                this.position.add(move);
+            }
+            else {
+                switch (this.status) {
+                    case STATE_CORONA.INFECTING:
+                        break;
+                    case STATE_CORONA.PASSIVE:
+                        super.move(_timeslice * 2);
+                        break;
+                    default:
+                        super.move(_timeslice);
+                }
             }
             if (this.position.x < -30)
                 this.position.x += L11_Virus.crc2.canvas.width;
