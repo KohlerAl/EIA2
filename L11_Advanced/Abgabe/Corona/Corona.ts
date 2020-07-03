@@ -59,8 +59,8 @@ namespace L11_Virus {
         public move(_timeslice: number): void {
 
             if (this.target) {
-                let move: Vector = Vector.getDifference(this.position, this.target);
-                move.scale(0.05);
+                let move: Vector = Vector.getDifference(this.target, this.position);
+                move.scale(0.01);
                 this.position.add(move);
             }
             else {

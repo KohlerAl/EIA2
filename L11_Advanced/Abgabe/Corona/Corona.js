@@ -50,8 +50,8 @@ var L11_Virus;
         }
         move(_timeslice) {
             if (this.target) {
-                let move = L11_Virus.Vector.getDifference(this.position, this.target);
-                move.scale(0.05);
+                let move = L11_Virus.Vector.getDifference(this.target, this.position);
+                move.scale(0.01);
                 this.position.add(move);
             }
             else {
