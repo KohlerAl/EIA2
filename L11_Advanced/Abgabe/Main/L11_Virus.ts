@@ -158,7 +158,6 @@ namespace L11_Virus {
             cell.draw();
             cells.push(cell);
         }
-
     }
 
     function animation(): void {

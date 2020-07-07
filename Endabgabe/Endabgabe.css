@@ -1,0 +1,180 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #2d2d2d;
+	display: grid;
+    grid-template-areas: 
+    'canvas canvas btn1 button1 form form'
+    'canvas canvas btn2 button2 form form'
+    'canvas canvas btn3 button3  form form'
+    'canvas canvas btn4 button4 form form'
+    'canvas canvas btn5 delete form form'
+    'canvas canvas . . . .';
+    grid-template-rows: minmax(0,60);
+}
+
+canvas {
+    grid-area: canvas;
+}
+
+p{
+    color: white;
+}
+
+button {
+    width: 50px; 
+    height: 50px; 
+    margin: 10px;
+    border: none; 
+    color: white; 
+}
+
+form {
+    grid-area: form; 
+    display: grid; 
+    grid-template-areas: 
+    'form1 form2'
+    'form3 form4'
+    'database1 database2';
+    grid-template-rows: minmax(0,60);
+}
+
+input {
+    width: 200px; 
+    height: 50px; 
+    margin: 10px; 
+    width: 100px;
+    border: none; 
+    color: white;
+    border-radius: 56px;
+    background: linear-gradient(145deg, #303030, #292929);
+    box-shadow:  5px 5px 10px #1b1b1b, 
+             -5px -5px 10px #3f3f3f;
+}
+
+input[type="color"] {
+    opacity: 0;
+    grid-area: form1;
+    margin: 10px;
+	width: 75px;
+	height: 20px;
+    border: none;
+}
+
+input::placeholder {
+    opacity: 1;
+    color: white; 
+}
+
+.line {
+    position: relative; ;
+    top: -38px; 
+    font-size: 40px;
+    color: #fc5200;
+}
+
+.fa-caret-up {
+    position: relative; 
+    top: -5px;
+}
+
+#circle {
+    grid-area: btn3;
+    color: #ff1969;
+}
+
+#triangle {
+    grid-area: btn1;
+    color: #960bff;
+}
+
+#line {
+    grid-area: btn5;
+    color: #fc5200;
+}
+
+#square {
+    grid-area: btn4;
+    color: #ff1106;
+}
+
+#circle, #triangle, #line, #square,  #save, #ellipse {
+    border-radius: 50%;
+    background: linear-gradient(145deg, #303030, #292929);
+    box-shadow:  5px 5px 10px #1b1b1b, 
+             -5px -5px 10px #3f3f3f;
+}
+#rotate, #colorChange, #move, #sizeChange, #trash {
+    width: 100px;
+    border-radius: 56px;
+    background: linear-gradient(145deg, #303030, #292929);
+    box-shadow:  5px 5px 10px #1b1b1b, 
+             -5px -5px 10px #3f3f3f;
+}
+
+#rotate {
+    grid-area: button1;
+}
+
+#colorChange {
+    grid-area: button2;
+}
+
+#move {
+    grid-area: button3;
+}
+
+#sizeChange {
+    grid-area: button4;
+}
+
+#color-picker-wrapper {
+    grid-area: form1;
+    float: left;
+    border-radius: 56px;
+    margin-top: 10px;
+    height: 50px;
+    width: 215px;
+    box-shadow:  5px 5px 10px #1e1e1e, 
+             -5px -5px 10px #4c4c4c;
+}
+
+#scaleValue {
+    grid-area: form2; 
+    width: 200px;
+    padding-left: 10px;
+}
+
+#nameValue {
+    grid-area: form4; 
+    width: 200px;
+    padding-left: 10px;
+}
+
+#rotationValue {
+    position: relative;
+    top: -px;
+    grid-area: form3;
+    width: 200px; 
+    margin-left: 0px;
+    padding-left: 10px;
+}
+
+#creations {
+    width: 260px;
+    grid-area: database1;
+    margin-left: 0px;
+    padding-left: 10px;
+}
+
+#save  {
+    grid-area: database2;
+}
+
+#trash {
+    grid-area: delete;
+}
+
+#ellipse {
+    grid-area: btn2; 
+    color: #e300c6; 
+}

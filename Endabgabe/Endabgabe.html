@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script src="Endabgabe.js"></script>
+    <link rel="stylesheet" href="Endabgabe.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+</head>
+
+<body>
+    <canvas></canvas>
+    <button type="button" id="circle"><i class="fas fa-circle fa-2x"></i></button>
+    <button type="button" id="triangle"><i class="fas fa-caret-up fa-4x"></i></button>
+    <button type="button" id="square"><i class="fas fa-square fa-2x"></i></button>
+    <button type="button" id="ellipse"><i class="fas fa-hockey-puck fa-2x" ></i></button>
+    <button type="button" id="line">
+        <p class="line"> I</p>
+    </button>
+
+    <button type="button" id="rotate">rotate</button>
+    <button type="button" id="colorChange">change color</button>
+    <button type="button" id="move">move</button>
+    <button type="button" id="sizeChange">change size</button>
+    <button type="button" id="trash">delete figure</button>
+
+    <form>
+    <div id="color-picker-wrapper">
+        <input type="color" value="#ff1106" id="color-picker">
+    </div>
+    <input type="number" id="rotationValue" min="0" max="360" placeholder="rotation">
+    <input type="number" id="scaleValue" placeholder="enter a scale-value">
+    <input type="text" id="nameValue" placeholder="enter a name for your creation">
+
+    <input id="creations" name="Masterpieces" list="masterpiece"  placeholder="load a previously created image"/>
+    <datalist id="masterpiece">
+        <option>Placeholder1</option>
+        <option>Placeholder2</option>
+    </datalist>
+    <button type="button" id="save"><i class="far fa-save fa-2x"></i></button>
+    </form>
+
+</body>
+
+</html>
