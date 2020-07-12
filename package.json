@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node L12/Addition/Server.js"
+    "start": "node L12_Addition/Server.js"
   },
   "repository": {
     "type": "git",
