@@ -61,7 +61,7 @@ namespace EIA2_Endabgabe {
         canvasHeight.addEventListener("change", setCanvasHeight);
         canvasWidth.addEventListener("change", setCanvasWidth);
 
-        displayImage();
+        findPictures();
         createBackground();
         window.setInterval(animate, 30);
     }
@@ -257,11 +257,6 @@ namespace EIA2_Endabgabe {
                 }
             }
         }
-    }
-
-
-    function displayImage(): void {
-        console.log("Expecto Patronum");
     }
 
     function setActive(_figure: Form) {

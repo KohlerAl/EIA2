@@ -43,7 +43,7 @@ var EIA2_Endabgabe;
         patterns.style.display = "none";
         canvasHeight.addEventListener("change", setCanvasHeight);
         canvasWidth.addEventListener("change", setCanvasWidth);
-        displayImage();
+        EIA2_Endabgabe.findPictures();
         createBackground();
         window.setInterval(animate, 30);
     }
@@ -220,9 +220,6 @@ var EIA2_Endabgabe;
                 }
             }
         }
-    }
-    function displayImage() {
-        console.log("Expecto Patronum");
     }
     function setActive(_figure) {
         for (let figure of EIA2_Endabgabe.figures) {

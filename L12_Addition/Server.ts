@@ -50,7 +50,8 @@ export namespace EIA2_Endabgabe {
                 let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
                 let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
                 await mongoClient.connect(); 
-                let content: Mongo.CommandCursor = mongoClient.db("Household").listCollections(); 
+                let content: Mongo.CommandCursor = await mongoClient.db("Household").listCollections(); 
+                console.log(content); 
                 let contentString: string = JSON.stringify(content); 
                 _response.write(contentString); 
             }
@@ -92,4 +93,5 @@ export namespace EIA2_Endabgabe {
             //console.log(entry); 
         //}
     }
+
 }

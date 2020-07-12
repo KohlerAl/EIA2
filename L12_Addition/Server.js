@@ -39,7 +39,8 @@ var EIA2_Endabgabe;
                 let options = { useNewUrlParser: true, useUnifiedTopology: true };
                 let mongoClient = new Mongo.MongoClient(databaseUrl, options);
                 await mongoClient.connect();
-                let content = mongoClient.db("Household").listCollections();
+                let content = await mongoClient.db("Household").listCollections();
+                console.log(content);
                 let contentString = JSON.stringify(content);
                 _response.write(contentString);
             }
