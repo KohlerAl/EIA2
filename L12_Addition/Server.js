@@ -35,15 +35,14 @@ var EIA2_Endabgabe;
         console.log("Request-URL:  " + _request.url);
         if (_request.url) {
             let url = Url.parse(_request.url, true);
-            /* for (let key in url.query) {
-                switch (key) {
-                case "product":
-                break;
-                default:
-                _response.write(key + ":  " + url.query[key] + "\n");
-                break;
-                }
-            } */
+            if (_request.url == "/?getPicture=yes") {
+                let options = { useNewUrlParser: true, useUnifiedTopology: true };
+                let mongoClient = new Mongo.MongoClient(databaseUrl, options);
+                await mongoClient.connect();
+                let content = mongoClient.db("Household").listCollections();
+                let contentString = JSON.stringify(content);
+                _response.write(contentString);
+            }
             console.log(url.query);
             if (_request.url == "/?getOrder=yes") {
                 console.log("THIS WORKS");
@@ -68,20 +67,8 @@ var EIA2_Endabgabe;
         _response.end();
     }
     let allOrders = [];
-    /* async function showData(_response: Http.ServerResponse): Promise<any> {
-        console.log("ShowData called");
-        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
-        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
-        await mongoClient.connect();
-        let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders")
-        let cursor: Mongo.Cursor<any> = await orders.find();
-        await cursor.forEach(showOrders);
-        console.log("Cursor " + cursor);
-        console.log("AllOrders in Show Data" + allOrders);
-        return allOrders
-    } */
     function storeOrder(_order) {
-        orders.insert(_order);
+        orders.insertOne(_order);
     }
     function showOrders(_item) {
         //for (let entry in _item) {
