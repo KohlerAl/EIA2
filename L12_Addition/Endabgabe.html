@@ -5,7 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EIA 2 Endabgabe</title>
+    <script src="Vector.js"></script>
+    <script src="Form.js"></script>
+    <script src="Line.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Square.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Ellipse.js"></script>
     <script src="Endabgabe.js"></script>
+    <script src="connectServer.js"></script>
     <link rel="stylesheet" href="Endabgabe.css">
     <link rel="icon" href="Konzeption/Illustration.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
@@ -15,53 +23,57 @@
 <body>
     <canvas></canvas>
 
-    <h3>Style your Canvas!</h3>
-    <input type="number" id="canvasWidth" placeholder="Canvas-Width">
-    <input type="number" id="canvasHeight" placeholder="Canvas-Height">
-    <div id="backgroundColorWrapper">
-        <input type="color" value="#960bff" id="backgroundColor">
-    </div>
+    <h3>Klick here to style your Canvas!</h3>
+    <span id="canvasStyle">
+        <input type="number" id="canvasWidth" placeholder="Canvas-Width">
+        <input type="number" id="canvasHeight" placeholder="Canvas-Height">
+        <div id="backgroundColorWrapper">
+            <input type="color" value="#960bff" id="backgroundColor">
+        </div>
 
-    <div id="patterns">
-        <button type="button" id="dots"><i class="fas fa-braille fa-2x"></i></button>
-        <button type="button" id="squares"><i class="fas fa-chess-board fa-2x"></i></button>
-        <button type="button" id="plain"><i class="fas fa-ban fa-2x"></i></button>
-    </div>
+        <div id="patterns">
+            <button type="button" id="dots"><i class="fas fa-braille fa-2x"></i></button>
+            <button type="button" id="squares"><i class="fas fa-chess-board fa-2x"></i></button>
+            <button type="button" id="plain"><i class="fas fa-ban fa-2x"></i></button>
+        </div>
+    </span>
 
     <h4>Create, style and animate your forms!</h4>
 
     <div id="forms">
-    <button type="button" id="circle"><i class="fas fa-circle fa-2x"></i></button>
-    <button type="button" id="triangle"><i class="fas fa-caret-up fa-4x"></i></button>
-    <button type="button" id="square"><i class="fas fa-square fa-2x"></i></button>
-    <button type="button" id="ellipse"><i class="fas fa-hockey-puck fa-2x" ></i></button>
-    <button type="button" id="line">
-        <p class="line"> I</p>
-    </button>
+        <button type="button" id="circle" class="fas fa-circle fa-2x"></button>
+        <button type="button" id="triangle" class="fas fa-caret-up fa-4x"></button>
+        <button type="button" id="square" class="fas fa-square fa-2x"></button>
+        <button type="button" id="ellipse" class="fas fa-hockey-puck fa-2x"></button>
+        <button type="button" id="line" class="fas fa-minus fa-2x fa-rotate-90"></button>
     </div>
 
-    <div id="animations" >
-    <button type="button" id="rotate">rotate</button>
-    <button type="button" id="colorChange">change color</button>
-    <button type="button" id="move">move</button>
-    <button type="button" id="sizeChange">change size</button>
-    <button type="button" id="trash">delete figure</button>
+    <div id="animations">
+        <button type="button" id="rotate">rotate</button>
+        <button type="button" id="colorChange">change color</button>
+        <button type="button" id="move">move</button>
+        <button type="button" id="sizeChange">change size</button>
+        <button type="button" id="trash">delete figure</button>
     </div>
 
     <form>
-    <div id="colorPickerWrapper">
-        <input type="color" value="#fc5200" id="colorPicker">
-    </div>
-    <input type="number" id="rotationValue" min="0" max="360" placeholder="rotation">
-    <input type="number" id="scaleValue" placeholder="enter a scale-value">
-    <input type="text" id="nameValue" placeholder="enter a name for your creation">
+        <div id="colorPickerWrapper">
+            <input type="color" value="#fc5200" id="colorPicker">
+        </div>
+        <input type="number" id="rotationValue" min="0" max="360" placeholder="rotation">
+        <input type="number" id="scaleValue" placeholder="enter a scale-value">
 
-    <input id="creations" name="Masterpieces" list="masterpiece"  placeholder="load a previously created image"/>
-    <datalist id="masterpiece">
-        <option>Placeholder1</option>
-        <option>Placeholder2</option>
-    </datalist>
-    <button type="button" id="save"><i class="far fa-save fa-2x"></i></button>
+        <span id="databaseItems">
+
+            <input id="creations" name="Masterpieces" list="masterpiece"
+                placeholder="load a previously created image" />
+            <datalist id="masterpiece">
+                <option>Placeholder1</option>
+                <option>Placeholder2</option>
+            </datalist>
+        </span>
+        <button type="button" id="save"><i class="far fa-save fa-2x"></i></button>
+
     </form>
 
 

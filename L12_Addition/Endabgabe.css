@@ -4,7 +4,7 @@ body {
 	display: grid;
     grid-template-areas: 
     'canvas canvas title title . .'
-    'canvas canvas width height bckgrnd pattern'
+    'canvas canvas styling styling styling styling'
     'canvas canvas title2 title2  title2 .'
     'canvas canvas forms animations form form'
     'canvas canvas forms animations form form'
@@ -17,6 +17,7 @@ body {
 
 canvas {
     grid-area: canvas;
+    margin-right: 10px;
 }
 
 p, h3, h4{
@@ -25,6 +26,10 @@ p, h3, h4{
 
 h3 {
     grid-area: title; 
+}
+
+h3:hover{
+    cursor: pointer;
 }
 
 h4 {
@@ -46,7 +51,7 @@ form {
     grid-template-areas: 
     'form1 form2'
     'form3 form4'
-    'database1 database2';
+    'database database';
     grid-template-rows: minmax(0,60);
 }
 
@@ -64,11 +69,13 @@ input {
 }
 
 input[type="color"] {
-    opacity: 0;
+    opacity: 1;
+    position: relative;
+    top: -7px; 
     grid-area: form1;
     margin: 10px;
-	width: 75px;
-	height: 20px;
+	width: 190px;
+	height: 40px;
     border: none;
 }
 
@@ -87,6 +94,13 @@ input::placeholder {
 .fa-caret-up {
     position: relative; 
     top: -5px;
+}
+
+#canvasStyle {
+    grid-area: styling; 
+    display: grid;
+    grid-template-areas:
+    'width height bckgrnd pattern';
 }
 
 #circle {
@@ -127,6 +141,13 @@ input::placeholder {
     grid-area: button1;
 }
 
+#databaseItems{
+    grid-area: database;
+    display: grid;
+    grid-template-areas:
+    'database1 database2';
+}
+
 #colorChange {
     grid-area: button2;
 }
@@ -151,6 +172,7 @@ input::placeholder {
 }
 
 #backgroundColorWrapper {
+    display: none;
     grid-area: bckgrnd;
     float: left;
     border-radius: 56px;
@@ -167,11 +189,6 @@ input::placeholder {
     padding-left: 10px;
 }
 
-#nameValue {
-    grid-area: form4; 
-    width: 200px;
-    padding-left: 10px;
-}
 
 #rotationValue {
     position: relative;
@@ -190,7 +207,7 @@ input::placeholder {
 }
 
 #save  {
-    grid-area: database2;
+    grid-area: form4;
 }
 
 #trash {
@@ -203,6 +220,7 @@ input::placeholder {
 }
 
 #canvasWidth {
+    display: none;
     grid-area: width;
     width: 150px;
     margin-left: 0px;
@@ -210,6 +228,7 @@ input::placeholder {
 }
 
 #canvasHeight {
+    display: none;
     grid-area: height;
     width: 150px;
     margin-left: 0px;
@@ -217,6 +236,7 @@ input::placeholder {
 }
 
 #patterns{
+    display: none;
     grid-area: pattern;
     margin-left: 45px; 
 }
