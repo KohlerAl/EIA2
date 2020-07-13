@@ -6,6 +6,8 @@ const Url = require("url");
 const Mongo = require("mongodb");
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
+    let options;
+    let mongoClient;
     let orders;
     let port = process.env.PORT;
     if (port == undefined) {
@@ -22,8 +24,8 @@ var EIA2_Endabgabe;
         server.addListener("request", handleRequest);
     }
     async function connectToDatabase(_url) {
-        let options = { useNewUrlParser: true, useUnifiedTopology: true };
-        let mongoClient = new Mongo.MongoClient(_url, options);
+        options = { useNewUrlParser: true, useUnifiedTopology: true };
+        mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
@@ -36,22 +38,11 @@ var EIA2_Endabgabe;
         if (_request.url) {
             let url = Url.parse(_request.url, true);
             if (_request.url == "/?getPicture=yes") {
-                let options = { useNewUrlParser: true, useUnifiedTopology: true };
-                let mongoClient = new Mongo.MongoClient(databaseUrl, options);
-                await mongoClient.connect();
-                let content = await mongoClient.db("Household").listCollections();
-                console.log(content);
-                let contentString = JSON.stringify(content);
-                _response.write(contentString);
+                let pictures = mongoClient.db("Household").listCollections();
+                console.log(pictures);
             }
             console.log(url.query);
             if (_request.url == "/?getOrder=yes") {
-                console.log("THIS WORKS");
-                //showData(_response); 
-                let options = { useNewUrlParser: true, useUnifiedTopology: true };
-                let mongoClient = new Mongo.MongoClient(databaseUrl, options);
-                await mongoClient.connect();
-                let orders = mongoClient.db("Household").collection("Orders");
                 let cursor = await orders.find();
                 await cursor.forEach(showOrders);
                 let jsonString = JSON.stringify(allOrders);
