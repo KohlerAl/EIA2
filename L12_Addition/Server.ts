@@ -7,8 +7,9 @@ export namespace EIA2_Endabgabe {
         [type: string]: string | string[] | undefined;
     }
 
+    let options: Mongo.MongoClientOptions; 
+    let mongoClient: Mongo.MongoClient; 
     let orders: Mongo.Collection;
-
     let port: number | string | undefined = process.env.PORT;
     if (port == undefined) {
         port = 5001;
@@ -29,8 +30,8 @@ export namespace EIA2_Endabgabe {
     }
 
     async function connectToDatabase(_url: string): Promise<void> {
-        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
-        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+        options = {useNewUrlParser: true, useUnifiedTopology: true};
+        mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
         orders = mongoClient.db("Household").collection("Orders");
         console.log("Database connection ", orders != undefined);
@@ -47,23 +48,13 @@ export namespace EIA2_Endabgabe {
             
 
             if(_request.url == "/?getPicture=yes") {
-                let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
-                let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
-                await mongoClient.connect(); 
-                let content: Mongo.CommandCursor = await mongoClient.db("Household").listCollections(); 
-                console.log(content); 
-                let contentString: string = JSON.stringify(content); 
-                _response.write(contentString); 
+                let pictures = mongoClient.db("Household").listCollections(); 
+                console.log(pictures); 
+
             }
             
             console.log(url.query); 
             if(_request.url == "/?getOrder=yes") {
-                console.log("THIS WORKS"); 
-                //showData(_response); 
-                let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
-                let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
-                await mongoClient.connect();
-                let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders") 
                 let cursor: Mongo.Cursor<any> = await orders.find(); 
                 await cursor.forEach(showOrders); 
                 let jsonString: string = JSON.stringify(allOrders); 
