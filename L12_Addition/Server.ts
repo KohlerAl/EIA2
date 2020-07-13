@@ -33,7 +33,7 @@ export namespace EIA2_Endabgabe {
         options = {useNewUrlParser: true, useUnifiedTopology: true};
         mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        orders = mongoClient.db("Household").collection("Orders");
+        orders = mongoClient.db("Pictures").collection("Masterpieces");
         console.log("Database connection ", orders != undefined);
     }
 
@@ -48,7 +48,7 @@ export namespace EIA2_Endabgabe {
             
 
             if(_request.url == "/?getPicture=yes") {
-                let pictures = mongoClient.db("Household").listCollections(); 
+                let pictures = mongoClient.db("Pictures").listCollections(); 
                 console.log(pictures); 
 
             }
