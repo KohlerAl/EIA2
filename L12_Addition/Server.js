@@ -38,7 +38,7 @@ var EIA2_Endabgabe;
         console.log("Request-URL:  " + _request.url);
         if (_request.url) {
             let url = Url.parse(_request.url, true);
-            let splitURL = window.location.pathname.split('/');
+            let splitURL = _request.url.split('/');
             console.log(splitURL);
             if (_request.url == "/?getPicture=yes") {
                 let pictures = mongoClient.db("Pictures").collection("Overview");
