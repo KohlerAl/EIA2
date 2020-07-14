@@ -43,7 +43,7 @@ namespace EIA2_Endabgabe {
 
     export async function findPictures(): Promise<void> {
         console.log("called"); 
-        let response: Response = await fetch(url + "?" + "getPicture=yes"); 
+        let response: Response = await fetch(url + "?" + "getPicture"); 
         let responseText: string = await response.text(); 
         let pretty: string = responseText.replace(/\\|{|}|"|/g, ""); 
         console.log(pretty);
@@ -51,9 +51,11 @@ namespace EIA2_Endabgabe {
     }
 
     async function sendData(_information: PicturePart[], _name: string): Promise<void> {
+        let name: string  = _name.replace(" ", "_")
+        console.log(name); 
         let info: string = JSON.stringify(_information); 
         let query: URLSearchParams = new URLSearchParams(info); 
-        let response: Response = await fetch(url + "?" + _name + "&" + query.toString());
+        let response: Response = await fetch(url + "?savePicture&" + name + "&" + query.toString());
         let responseText: string = await response.text();
         console.log(responseText); 
     }

@@ -27,16 +27,18 @@ var EIA2_Endabgabe;
     EIA2_Endabgabe.savePicture = savePicture;
     async function findPictures() {
         console.log("called");
-        let response = await fetch(url + "?" + "getPicture=yes");
+        let response = await fetch(url + "?" + "getPicture");
         let responseText = await response.text();
         let pretty = responseText.replace(/\\|{|}|"|/g, "");
         console.log(pretty);
     }
     EIA2_Endabgabe.findPictures = findPictures;
     async function sendData(_information, _name) {
+        let name = _name.replace(" ", "_");
+        console.log(name);
         let info = JSON.stringify(_information);
         let query = new URLSearchParams(info);
-        let response = await fetch(url + "?" + _name + "&" + query.toString());
+        let response = await fetch(url + "?savePicture&" + name + "&" + query.toString());
         let responseText = await response.text();
         console.log(responseText);
     }

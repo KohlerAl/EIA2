@@ -50,7 +50,8 @@ export namespace EIA2_Endabgabe {
             let splitURL = _request.url.split('&');
             console.log("SPLIT URL" + splitURL[0]); 
 
-            if (_request.url == "/?getPicture=yes") {
+            if (_request.url == "/?getPicture") {
+                // Load Names of all Pictures and show them to user 
                 let pictures = mongoClient.db("Pictures").collection("Overview");
                 let cursor: Mongo.Cursor<any> = await pictures.find();
                 await cursor.forEach(showOrders);
@@ -60,18 +61,36 @@ export namespace EIA2_Endabgabe {
                 allOrders = [];
             }
 
+            else if (splitURL[0] == "/?findPicture") {
+                //Load specific Picture and show it to User
+                let picture = mongoClient.db("Pictures").collection(splitURL[1]); 
+                let cursor: Mongo.Cursor<any> = await picture.find();
+                await cursor.forEach(showOrders);
+                let jsonString: string = JSON.stringify(allOrders);
+                let answer: string = jsonString.toString();
+                _response.write(answer);
+                allOrders = [];
+            }
+
+            else if (splitURL[0] == "/?savePicture") {
+                //save new Picture in new Collection 
+                console.log(splitURL[1]); 
+                let pictures = mongoClient.db("Pictures").collection("Overview");
+                pictures.insertOne(splitURL[1]); 
+                let newCollection: Promise<Mongo.Collection<any>> = mongoClient.db("Pictures").createCollection(splitURL[1]);
+               
+                for (let index = 2; index < splitURL.length; index++) {
+                    (await newCollection).insertOne(splitURL[index]); 
+                }
+            }
+
             else {
-                let jsonString: string = JSON.stringify((url.query), null, 2);
-                _response.write(jsonString);
-                storeOrder(url.query);
+               _response.write("Error"); 
             }
         }
         _response.end();
     }
 
-    function storeOrder(_order: Picture): void {
-        orders.insertOne(_order);
-    }
 
     function showOrders(_item: object): void {
         //for (let entry in _item) {
