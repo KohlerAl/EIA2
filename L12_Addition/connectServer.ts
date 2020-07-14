@@ -44,9 +44,9 @@ namespace EIA2_Endabgabe {
     export async function findPictures(): Promise<void> {
         let response: Response = await fetch(url + "?" + "getPicture=yes"); 
         let responseText: string = await response.text(); 
-        let pretty: string = responseText.replace(/\\|{|}|"|/g, ""); 
-        console.log(pretty);
-        console.log(responseText); 
+        let pretty: string = responseText.replace(/\\|{|}|"|_id|insertName/g, ""); 
+        let prettier: string = pretty.replace(/,,,/g , "|"); 
+        console.log(prettier);
 
         createDatalist(pretty); 
     }

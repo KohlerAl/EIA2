@@ -55,7 +55,6 @@ export namespace EIA2_Endabgabe {
                 await cursor.forEach(showOrders);
                 let jsonString: string = JSON.stringify(allOrders);
                 _response.write(jsonString);
-                
                 allOrders = [];
 
                 
@@ -80,7 +79,7 @@ export namespace EIA2_Endabgabe {
                 //save new Picture in new Collection 
                 let newCollection: Promise<Mongo.Collection<any>> = mongoClient.db("Pictures").createCollection(splitURL[1]);
                 (await newCollection).insertOne(url.query); 
-                _response.write(url.query); 
+                _response.write("Ist angekommen"); 
             }
 
             else {

@@ -28,9 +28,9 @@ var EIA2_Endabgabe;
     async function findPictures() {
         let response = await fetch(url + "?" + "getPicture=yes");
         let responseText = await response.text();
-        let pretty = responseText.replace(/\\|{|}|"|/g, "");
-        console.log(pretty);
-        console.log(responseText);
+        let pretty = responseText.replace(/\\|{|}|"|_id|insertName/g, "");
+        let prettier = pretty.replace(/,,,/g, "|");
+        console.log(prettier);
         createDatalist(pretty);
     }
     EIA2_Endabgabe.findPictures = findPictures;

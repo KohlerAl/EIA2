@@ -66,7 +66,7 @@ var EIA2_Endabgabe;
                 //save new Picture in new Collection 
                 let newCollection = mongoClient.db("Pictures").createCollection(splitURL[1]);
                 (await newCollection).insertOne(url.query);
-                _response.write(url.query);
+                _response.write("Ist angekommen");
             }
             else {
                 _response.write("Error");
