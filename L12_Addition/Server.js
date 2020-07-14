@@ -46,8 +46,8 @@ var EIA2_Endabgabe;
                 let cursor = await pictures.find();
                 await cursor.forEach(showOrders);
                 let jsonString = JSON.stringify(allOrders);
-                let answer = jsonString.toString();
-                _response.write(answer);
+                //let answer: string = jsonString.toString();
+                _response.write(jsonString);
                 allOrders = [];
             }
             else if (splitURL[0] == "/?findPicture") {
@@ -66,9 +66,9 @@ var EIA2_Endabgabe;
             }
             else if (splitURL[0] == "/?savePicture") {
                 //save new Picture in new Collection 
-                console.log(splitURL[1]);
                 let newCollection = mongoClient.db("Pictures").createCollection(splitURL[1]);
                 (await newCollection).insertOne(url.query);
+                _response.write(url.query);
             }
             else {
                 _response.write("Error");

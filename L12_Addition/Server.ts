@@ -3,9 +3,7 @@ import * as Url from "url";
 import * as Mongo from "mongodb";
 
 export namespace EIA2_Endabgabe {
-    interface Picture {
-        [type: string]: string | string[] | undefined;
-    }
+    
     let allOrders: string[] = [];
     let options: Mongo.MongoClientOptions;
     let mongoClient: Mongo.MongoClient;
@@ -56,8 +54,8 @@ export namespace EIA2_Endabgabe {
                 let cursor: Mongo.Cursor<any> = await pictures.find();
                 await cursor.forEach(showOrders);
                 let jsonString: string = JSON.stringify(allOrders);
-                let answer: string = jsonString.toString();
-                _response.write(answer);
+                //let answer: string = jsonString.toString();
+                _response.write(jsonString);
                 allOrders = [];
             }
 
@@ -79,9 +77,9 @@ export namespace EIA2_Endabgabe {
 
             else if (splitURL[0] == "/?savePicture") {
                 //save new Picture in new Collection 
-                console.log(splitURL[1]); 
                 let newCollection: Promise<Mongo.Collection<any>> = mongoClient.db("Pictures").createCollection(splitURL[1]);
                 (await newCollection).insertOne(url.query); 
+                _response.write(url.query); 
             }
 
             else {

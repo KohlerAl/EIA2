@@ -42,12 +42,13 @@ namespace EIA2_Endabgabe {
     }
 
     export async function findPictures(): Promise<void> {
-        console.log("called"); 
         let response: Response = await fetch(url + "?" + "getPicture=yes"); 
         let responseText: string = await response.text(); 
         let pretty: string = responseText.replace(/\\|{|}|"|/g, ""); 
         console.log(pretty);
+        console.log(responseText); 
 
+        createDatalist(pretty); 
     }
 
     async function sendData(_information: PicturePart[], _name: string): Promise<void> {
@@ -59,6 +60,54 @@ namespace EIA2_Endabgabe {
         await fetch(url + "?insertName&" + name );
         
         let responseText: string = await response.text();
-        console.log(responseText); 
+        if(responseText != "") {
+            alert("Your picture " + _name + " has been saved!")
+        }
+    }
+
+    function createDatalist(_response: string) {
+
+        let creations: HTMLInputElement = <HTMLInputElement>document.getElementById("creations"); 
+        let masterpiece: HTMLDataListElement = <HTMLDataListElement>document.getElementById("masterpiece"); 
+        
+        for(let entry of _response){
+            let option: HTMLOptionElement = document.createElement("option");
+            switch(entry) {
+                case("_"):
+                option.innerHTML += "<br>" + "Bestell-ID: " + entry ; 
+                break;
+                case("["):
+                break; 
+                case("]"): 
+                break; 
+                case(","): 
+                option.innerHTML += "<br>"; 
+                break; 
+                case(":"):
+                option.innerHTML += entry + " "; 
+                break; 
+                default:
+                option.innerHTML += "" + entry ; 
+                break; 
+                }
+            
+        }
+        /* let group: HTMLDivElement = document.createElement("div");
+        let input: HTMLInputElement = document.createElement("input");
+        input.setAttribute("list", _product + "s");
+        input.setAttribute("placeholder", "Supermarkt auswählen");
+        input.name = _product;
+        let datalist: HTMLDataListElement = document.createElement("datalist");
+        datalist.id = _product + "s";
+        for (let item of _elements) {
+            let option: HTMLOptionElement = document.createElement("option");
+            option.setAttribute("name", item.name);
+            option.value = item.name;
+
+            group.appendChild(input);
+            group.appendChild(datalist);
+            datalist.appendChild(option);
+
+        } */
     }
 }
