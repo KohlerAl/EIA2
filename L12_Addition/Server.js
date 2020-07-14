@@ -62,7 +62,7 @@ var EIA2_Endabgabe;
             }
             else if (splitURL[0] == "/?insertName") {
                 let pictures = mongoClient.db("Pictures").collection("Overview");
-                (await pictures).insertOne(splitURL[1]);
+                (await pictures).insertOne(url.query);
             }
             else if (splitURL[0] == "/?savePicture") {
                 //save new Picture in new Collection 
