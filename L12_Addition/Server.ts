@@ -48,7 +48,7 @@ export namespace EIA2_Endabgabe {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
 
             let splitURL = _request.url.split('/');
-            console.log(splitURL); 
+            console.log("SPLIT URL" + splitURL); 
 
             if (_request.url == "/?getPicture=yes") {
                 let pictures = mongoClient.db("Pictures").collection("Overview");
