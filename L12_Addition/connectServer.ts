@@ -15,7 +15,7 @@ namespace EIA2_Endabgabe {
         hitAreaY: Vector, 
         velocity: Vector
     }
-    export function savePicture(): void {
+    export function savePicture(_name: string): void {
         let information: PicturePart[] = [];
         for (let figure of figures) {
             let form: PicturePart = {
@@ -38,7 +38,7 @@ namespace EIA2_Endabgabe {
         }
 
         console.log(information); 
-        sendData(information);
+        sendData(information, _name);
     }
 
     export async function findPictures(): Promise<void> {
@@ -50,10 +50,10 @@ namespace EIA2_Endabgabe {
 
     }
 
-    async function sendData(_information: PicturePart[]): Promise<void> {
+    async function sendData(_information: PicturePart[], _name: string): Promise<void> {
         let info: string = JSON.stringify(_information); 
         let query: URLSearchParams = new URLSearchParams(info); 
-        let response: Response = await fetch(url + "?" + query.toString());
+        let response: Response = await fetch(url + "?" + _name + "&" + query.toString());
         let responseText: string = await response.text();
         console.log(responseText); 
     }

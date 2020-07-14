@@ -28,7 +28,7 @@ var EIA2_Endabgabe;
         backgroundColor = document.getElementById("backgroundColor");
         backgroundColor.addEventListener("change", createBackground);
         save = document.getElementById("save");
-        save.addEventListener("click", EIA2_Endabgabe.savePicture);
+        save.addEventListener("click", getName);
         form = document.querySelector("form");
         form.addEventListener("change", handleFormInput);
         forms = document.getElementById("forms");
@@ -233,6 +233,14 @@ var EIA2_Endabgabe;
     function deleteElement(_figure) {
         let index = EIA2_Endabgabe.figures.indexOf(_figure);
         EIA2_Endabgabe.figures.splice(index, 1);
+    }
+    function getName() {
+        let pictureName = prompt("Please enter a name for your Picture!");
+        if (pictureName == null || pictureName == "") {
+            alert("Please enter a word or else the Picture cannot be saved");
+        }
+        else
+            EIA2_Endabgabe.savePicture(pictureName);
     }
 })(EIA2_Endabgabe || (EIA2_Endabgabe = {}));
 //# sourceMappingURL=Endabgabe.js.map

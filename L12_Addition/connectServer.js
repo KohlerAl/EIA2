@@ -2,7 +2,7 @@
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
     let url = "https://agkeia.herokuapp.com/";
-    function savePicture() {
+    function savePicture(_name) {
         let information = [];
         for (let figure of EIA2_Endabgabe.figures) {
             let form = {
@@ -22,7 +22,7 @@ var EIA2_Endabgabe;
             information.push(form);
         }
         console.log(information);
-        sendData(information);
+        sendData(information, _name);
     }
     EIA2_Endabgabe.savePicture = savePicture;
     async function findPictures() {
@@ -33,10 +33,10 @@ var EIA2_Endabgabe;
         console.log(pretty);
     }
     EIA2_Endabgabe.findPictures = findPictures;
-    async function sendData(_information) {
+    async function sendData(_information, _name) {
         let info = JSON.stringify(_information);
         let query = new URLSearchParams(info);
-        let response = await fetch(url + "?" + query.toString());
+        let response = await fetch(url + "?" + _name + "&" + query.toString());
         let responseText = await response.text();
         console.log(responseText);
     }

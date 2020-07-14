@@ -47,7 +47,7 @@ export namespace EIA2_Endabgabe {
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
 
-            let splitURL = _request.url.split('/');
+            let splitURL = _request.url.split('&');
             console.log("SPLIT URL" + splitURL); 
 
             if (_request.url == "/?getPicture=yes") {

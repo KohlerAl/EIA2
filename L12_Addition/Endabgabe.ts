@@ -39,7 +39,7 @@ namespace EIA2_Endabgabe {
         backgroundColor.addEventListener("change", createBackground);
 
         save = <HTMLButtonElement>document.getElementById("save");
-        save.addEventListener("click", savePicture);
+        save.addEventListener("click", getName);
 
         form = <HTMLFormElement>document.querySelector("form");
         form.addEventListener("change", handleFormInput);
@@ -271,5 +271,14 @@ namespace EIA2_Endabgabe {
     function deleteElement(_figure: Form) {
         let index: number = figures.indexOf(_figure);
         figures.splice(index, 1);
+    }
+
+    function getName(): void {
+        let pictureName = prompt("Please enter a name for your Picture!"); 
+        if (pictureName == null || pictureName == "") {
+            alert("Please enter a word or else the Picture cannot be saved")
+        }
+        else 
+        savePicture(pictureName); 
     }
 }
