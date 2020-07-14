@@ -55,7 +55,7 @@ export namespace EIA2_Endabgabe {
                 await cursor.forEach(showOrders);
                 let jsonString: string = JSON.stringify(allOrders);
                 //let answer: string = jsonString.toString();
-                _response.write(jsonString);
+                _response.write(allOrders);
                 allOrders = [];
             }
 
