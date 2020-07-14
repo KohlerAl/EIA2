@@ -45,9 +45,12 @@ var EIA2_Endabgabe;
                 let pictures = mongoClient.db("Pictures").collection("Overview");
                 let cursor = await pictures.find();
                 await cursor.forEach(showOrders);
-                let jsonString = JSON.stringify(allOrders);
-                _response.write(jsonString);
+                /* let jsonString: string = JSON.stringify(allOrders);
+                _response.write(jsonString); */
                 allOrders = [];
+                for (let key in url.query) {
+                    _response.write(key + ":   " + url.query[key]);
+                }
             }
             else if (splitURL[0] == "/?findPicture") {
                 //Load specific Picture and show it to User
