@@ -27,7 +27,7 @@ var EIA2_Endabgabe;
     EIA2_Endabgabe.savePicture = savePicture;
     async function findPictures() {
         console.log("called");
-        let response = await fetch(url + "?" + "getPicture");
+        let response = await fetch(url + "?" + "getPicture=yes");
         let responseText = await response.text();
         let pretty = responseText.replace(/\\|{|}|"|/g, "");
         console.log(pretty);

@@ -43,7 +43,7 @@ namespace EIA2_Endabgabe {
 
     export async function findPictures(): Promise<void> {
         console.log("called"); 
-        let response: Response = await fetch(url + "?" + "getPicture"); 
+        let response: Response = await fetch(url + "?" + "getPicture=yes"); 
         let responseText: string = await response.text(); 
         let pretty: string = responseText.replace(/\\|{|}|"|/g, ""); 
         console.log(pretty);
