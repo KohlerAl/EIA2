@@ -40,7 +40,7 @@ var EIA2_Endabgabe;
             let url = Url.parse(_request.url, true);
             let splitURL = _request.url.split('&');
             console.log("SPLIT URL" + splitURL[0]);
-            if (_request.url == "/?getPicture") {
+            if (_request.url == "/?getPicture=yes") {
                 // Load Names of all Pictures and show them to user 
                 let pictures = mongoClient.db("Pictures").collection("Overview");
                 let cursor = await pictures.find();
@@ -60,11 +60,13 @@ var EIA2_Endabgabe;
                 _response.write(answer);
                 allOrders = [];
             }
+            else if (splitURL[0] == "/?insertName") {
+                let pictures = mongoClient.db("Pictures").collection("Overview");
+                pictures.insertOne(_request.url);
+            }
             else if (splitURL[0] == "/?savePicture") {
                 //save new Picture in new Collection 
                 console.log(splitURL[1]);
-                let pictures = mongoClient.db("Pictures").collection("Overview");
-                pictures.insertOne(splitURL[1]);
                 let newCollection = mongoClient.db("Pictures").createCollection(splitURL[1]);
                 for (let index = 2; index < splitURL.length; index++) {
                     (await newCollection).insertOne(splitURL[index]);

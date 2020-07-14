@@ -56,6 +56,8 @@ namespace EIA2_Endabgabe {
         let info: string = JSON.stringify(_information); 
         let query: URLSearchParams = new URLSearchParams(info); 
         let response: Response = await fetch(url + "?savePicture&" + name + "&" + query.toString());
+        await fetch(url + "?insertName&" + name );
+        
         let responseText: string = await response.text();
         console.log(responseText); 
     }

@@ -39,6 +39,7 @@ var EIA2_Endabgabe;
         let info = JSON.stringify(_information);
         let query = new URLSearchParams(info);
         let response = await fetch(url + "?savePicture&" + name + "&" + query.toString());
+        await fetch(url + "?insertName&" + name);
         let responseText = await response.text();
         console.log(responseText);
     }
