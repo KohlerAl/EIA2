@@ -55,7 +55,8 @@ var EIA2_Endabgabe;
                 let cursor = await picture.find();
                 await cursor.forEach(showOrders);
                 let jsonString = JSON.stringify(allOrders);
-                _response.write(jsonString);
+                let answer = jsonString.toString();
+                _response.write(answer);
                 allOrders = [];
             }
             else if (splitURL[0] == "/?insertName") {

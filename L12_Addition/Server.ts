@@ -65,8 +65,9 @@ export namespace EIA2_Endabgabe {
                 let picture = mongoClient.db("Pictures").collection(splitURL[1]); 
                 let cursor: Mongo.Cursor<any> = await picture.find();
                 await cursor.forEach(showOrders);
-                let jsonString: string = JSON.stringify(allOrders);
-                _response.write(jsonString);
+                let jsonString: string = JSON.stringify(allOrders); 
+                let answer: string = jsonString.toString();
+                _response.write(answer);
                 allOrders = [];
             }
 
