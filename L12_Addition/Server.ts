@@ -81,7 +81,7 @@ export namespace EIA2_Endabgabe {
                 //save new Picture in new Collection 
                 console.log(splitURL[1]); 
                 let newCollection: Promise<Mongo.Collection<any>> = mongoClient.db("Pictures").createCollection(splitURL[1]);
-                (await newCollection).insertOne(_request.url); 
+                storeOrder(newCollection, url.query); 
             }
 
             else {
@@ -89,6 +89,10 @@ export namespace EIA2_Endabgabe {
             }
         }
         _response.end();
+    }
+
+    function storeOrder(_collection: any, _order: Picture): void {
+        orders.insertOne(_order);
     }
 
 

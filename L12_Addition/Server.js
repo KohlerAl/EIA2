@@ -68,13 +68,16 @@ var EIA2_Endabgabe;
                 //save new Picture in new Collection 
                 console.log(splitURL[1]);
                 let newCollection = mongoClient.db("Pictures").createCollection(splitURL[1]);
-                (await newCollection).insertOne(_request.url);
+                storeOrder(newCollection, url.query);
             }
             else {
                 _response.write("Error");
             }
         }
         _response.end();
+    }
+    function storeOrder(_collection, _order) {
+        orders.insertOne(_order);
     }
     function showOrders(_item) {
         //for (let entry in _item) {
