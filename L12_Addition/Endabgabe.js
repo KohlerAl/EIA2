@@ -221,14 +221,15 @@ var EIA2_Endabgabe;
             }
         }
     }
-    function setActive(_figure) {
-        for (let figure of EIA2_Endabgabe.figures) {
-            if (figure.active == true) {
-                figure.active = false;
-            }
-        }
-        _figure.active = true;
-    }
+    /*  function setActive(_figure: Form) {
+         for (let figure of figures) {
+             if (figure.active == true) {
+                 figure.active = false;
+             }
+         }
+         _figure.active = true;
+     }
+  */
     function deleteElement(_figure) {
         let index = EIA2_Endabgabe.figures.indexOf(_figure);
         EIA2_Endabgabe.figures.splice(index, 1);

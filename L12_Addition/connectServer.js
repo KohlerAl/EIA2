@@ -35,7 +35,6 @@ var EIA2_Endabgabe;
     EIA2_Endabgabe.findPictures = findPictures;
     async function sendData(_information) {
         let info = JSON.stringify(_information);
-        console.log(info);
         let query = new URLSearchParams(info);
         let response = await fetch(url + "?" + query.toString());
         let responseText = await response.text();

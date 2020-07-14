@@ -142,12 +142,12 @@ namespace EIA2_Endabgabe {
     function handleClick(_event: MouseEvent): void {
         let y: number = _event.clientY;
         let x: number = _event.clientX;
-        console.log(x, y); 
+        console.log(x, y);
 
         for (let figure of figures) {
             if (figure.active == true) {
-                console.log(figure.position); 
-                figure.position = new Vector(x,y); 
+                console.log(figure.position);
+                figure.position = new Vector(x, y);
             }
         }
 
@@ -221,13 +221,13 @@ namespace EIA2_Endabgabe {
                     }
                 }
                 break;
-            case "scaleValue": 
-            let scaleValue: HTMLInputElement = <HTMLInputElement>document.getElementById("scaleValue");
-            for (let figure of figures) {
-                if (figure.active == true) {
-                    figure.resize(parseInt(scaleValue.value));
+            case "scaleValue":
+                let scaleValue: HTMLInputElement = <HTMLInputElement>document.getElementById("scaleValue");
+                for (let figure of figures) {
+                    if (figure.active == true) {
+                        figure.resize(parseInt(scaleValue.value));
+                    }
                 }
-            }
 
         }
     }
@@ -259,7 +259,7 @@ namespace EIA2_Endabgabe {
         }
     }
 
-    function setActive(_figure: Form) {
+   /*  function setActive(_figure: Form) {
         for (let figure of figures) {
             if (figure.active == true) {
                 figure.active = false;
@@ -267,7 +267,7 @@ namespace EIA2_Endabgabe {
         }
         _figure.active = true;
     }
-
+ */
     function deleteElement(_figure: Form) {
         let index: number = figures.indexOf(_figure);
         figures.splice(index, 1);

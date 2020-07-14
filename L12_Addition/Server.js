@@ -6,6 +6,7 @@ const Url = require("url");
 const Mongo = require("mongodb");
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
+    let allOrders = [];
     let options;
     let mongoClient;
     let orders;
@@ -37,13 +38,11 @@ var EIA2_Endabgabe;
         console.log("Request-URL:  " + _request.url);
         if (_request.url) {
             let url = Url.parse(_request.url, true);
+            let splitURL = window.location.pathname.split('/');
+            console.log(splitURL);
             if (_request.url == "/?getPicture=yes") {
-                let pictures = mongoClient.db("Pictures").listCollections();
-                console.log(pictures);
-            }
-            console.log(url.query);
-            if (_request.url == "/?getOrder=yes") {
-                let cursor = await orders.find();
+                let pictures = mongoClient.db("Pictures").collection("Overview");
+                let cursor = await pictures.find();
                 await cursor.forEach(showOrders);
                 let jsonString = JSON.stringify(allOrders);
                 let answer = jsonString.toString();
@@ -58,7 +57,6 @@ var EIA2_Endabgabe;
         }
         _response.end();
     }
-    let allOrders = [];
     function storeOrder(_order) {
         orders.insertOne(_order);
     }
