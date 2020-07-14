@@ -74,17 +74,14 @@ export namespace EIA2_Endabgabe {
 
             else if(splitURL[0] == "/?insertName") {
                 let pictures = mongoClient.db("Pictures").collection("Overview");
-                pictures.insertOne(_request.url); 
+                (await pictures).insertOne(_request.url); 
             }
 
             else if (splitURL[0] == "/?savePicture") {
                 //save new Picture in new Collection 
                 console.log(splitURL[1]); 
                 let newCollection: Promise<Mongo.Collection<any>> = mongoClient.db("Pictures").createCollection(splitURL[1]);
-               
-                for (let index = 2; index < splitURL.length; index++) {
-                    (await newCollection).insertOne(splitURL[index]); 
-                }
+                (await newCollection).insertOne(_request.url); 
             }
 
             else {
