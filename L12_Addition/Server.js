@@ -60,10 +60,10 @@ var EIA2_Endabgabe;
                 _response.write(answer);
                 allOrders = [];
             }
-            /* else if(splitURL[0] == "/?insertName") {
+            else if (splitURL[0] == "/?insertName") {
                 let pictures = mongoClient.db("Pictures").collection("Overview");
-                (await pictures).insertOne(_request.url);
-            } */
+                (await pictures).insertOne(splitURL[1]);
+            }
             else if (splitURL[0] == "/?savePicture") {
                 //save new Picture in new Collection 
                 console.log(splitURL[1]);
