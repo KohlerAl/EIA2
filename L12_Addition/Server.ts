@@ -54,8 +54,7 @@ export namespace EIA2_Endabgabe {
                 let cursor: Mongo.Cursor<any> = await pictures.find();
                 await cursor.forEach(showOrders);
                 let jsonString: string = JSON.stringify(allOrders);
-                //let answer: string = jsonString.toString();
-                _response.write(allOrders);
+                _response.write(jsonString);
                 allOrders = [];
             }
 
@@ -65,8 +64,7 @@ export namespace EIA2_Endabgabe {
                 let cursor: Mongo.Cursor<any> = await picture.find();
                 await cursor.forEach(showOrders);
                 let jsonString: string = JSON.stringify(allOrders);
-                let answer: string = jsonString.toString();
-                _response.write(answer);
+                _response.write(jsonString);
                 allOrders = [];
             }
 

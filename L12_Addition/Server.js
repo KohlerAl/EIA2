@@ -46,8 +46,7 @@ var EIA2_Endabgabe;
                 let cursor = await pictures.find();
                 await cursor.forEach(showOrders);
                 let jsonString = JSON.stringify(allOrders);
-                //let answer: string = jsonString.toString();
-                _response.write(allOrders);
+                _response.write(jsonString);
                 allOrders = [];
             }
             else if (splitURL[0] == "/?findPicture") {
@@ -56,8 +55,7 @@ var EIA2_Endabgabe;
                 let cursor = await picture.find();
                 await cursor.forEach(showOrders);
                 let jsonString = JSON.stringify(allOrders);
-                let answer = jsonString.toString();
-                _response.write(answer);
+                _response.write(jsonString);
                 allOrders = [];
             }
             else if (splitURL[0] == "/?insertName") {
