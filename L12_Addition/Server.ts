@@ -55,9 +55,7 @@ export namespace EIA2_Endabgabe {
                 await cursor.forEach(showOrders);
                 let jsonString: string = JSON.stringify(allOrders);
                 _response.write(jsonString);
-                allOrders = [];
-
-                
+                allOrders = [];                
             }
 
             else if (splitURL[0] == "/?findPicture") {
@@ -68,7 +66,7 @@ export namespace EIA2_Endabgabe {
                 let jsonString: string = JSON.stringify(allOrders); 
                 let answer: string = jsonString.toString();
                 _response.write(answer);
-                
+
                 allOrders = [];
             }
 

@@ -4,7 +4,6 @@ var EIA2_Endabgabe;
     let backgroundImage;
     let pattern = "plain";
     EIA2_Endabgabe.figures = [];
-    let backgroundColor;
     let canvasWidth;
     let canvasHeight;
     let backgroundColorWrapper;
@@ -25,14 +24,16 @@ var EIA2_Endabgabe;
         patterns.addEventListener("click", createPattern);
         EIA2_Endabgabe.canvas = document.querySelector("canvas");
         EIA2_Endabgabe.canvas.addEventListener("click", handleClick);
-        backgroundColor = document.getElementById("backgroundColor");
-        backgroundColor.addEventListener("change", createBackground);
+        EIA2_Endabgabe.backgroundColor = document.getElementById("backgroundColor");
+        EIA2_Endabgabe.backgroundColor.addEventListener("change", createBackground);
         save = document.getElementById("save");
         save.addEventListener("click", getName);
         form = document.querySelector("form");
         form.addEventListener("change", handleFormInput);
         forms = document.getElementById("forms");
         forms.addEventListener("click", createElement);
+        EIA2_Endabgabe.creations = document.getElementById("creations");
+        EIA2_Endabgabe.creations.addEventListener("change", EIA2_Endabgabe.loadPicture);
         animations = document.getElementById("animations");
         animations.addEventListener("click", setAnimation);
         h3 = document.querySelector("h3");
@@ -138,12 +139,13 @@ var EIA2_Endabgabe;
         createBackground();
     }
     function createBackground() {
-        let background = backgroundColor.value;
+        EIA2_Endabgabe.background = EIA2_Endabgabe.backgroundColor.value;
+        console.log(EIA2_Endabgabe.background);
         if (pattern == "dots") {
             let pattern = document.createElement('canvas').getContext('2d');
             pattern.canvas.width = 20;
             pattern.canvas.height = 20;
-            pattern.fillStyle = background;
+            pattern.fillStyle = EIA2_Endabgabe.background;
             pattern.arc(10, 10, 9, 0, 2 * Math.PI);
             pattern.strokeStyle = "#111111";
             pattern.stroke();
@@ -154,7 +156,7 @@ var EIA2_Endabgabe;
             let pattern = document.createElement('canvas').getContext('2d');
             pattern.canvas.width = 5;
             pattern.canvas.height = 5;
-            pattern.fillStyle = background;
+            pattern.fillStyle = EIA2_Endabgabe.background;
             pattern.strokeStyle = "#111111";
             pattern.fillRect(0, 0, 5, 5);
             pattern.stroke();
@@ -162,7 +164,7 @@ var EIA2_Endabgabe;
             EIA2_Endabgabe.crc2.fillStyle = pattern;
         }
         else {
-            EIA2_Endabgabe.crc2.fillStyle = background;
+            EIA2_Endabgabe.crc2.fillStyle = EIA2_Endabgabe.background;
         }
         EIA2_Endabgabe.crc2.fillRect(0, 0, EIA2_Endabgabe.canvas.width, EIA2_Endabgabe.canvas.height);
         backgroundImage = EIA2_Endabgabe.crc2.getImageData(0, 0, EIA2_Endabgabe.canvas.width, EIA2_Endabgabe.canvas.height);

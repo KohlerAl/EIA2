@@ -5,7 +5,7 @@ namespace EIA2_Endabgabe {
     let pattern: string = "plain";
     export let figures: Form[] = [];
 
-    let backgroundColor: HTMLInputElement;
+    export let backgroundColor: HTMLInputElement;
 
     let canvasWidth: HTMLInputElement;
     let canvasHeight: HTMLInputElement;
@@ -17,6 +17,8 @@ namespace EIA2_Endabgabe {
     let form: HTMLFormElement;
     let h3: HTMLHeadingElement;
     let save: HTMLButtonElement;
+    export let background: string; 
+    export let creations: HTMLInputElement; 
 
 
     window.addEventListener("load", handleLoad);
@@ -48,6 +50,8 @@ namespace EIA2_Endabgabe {
         forms = <HTMLDivElement>document.getElementById("forms");
         forms.addEventListener("click", createElement);
 
+        creations = <HTMLInputElement>document.getElementById("creations"); 
+        creations.addEventListener("change", loadPicture); 
         animations = <HTMLDivElement>document.getElementById("animations");
         animations.addEventListener("click", setAnimation);
 
@@ -166,7 +170,8 @@ namespace EIA2_Endabgabe {
     }
 
     function createBackground(): void {
-        let background = backgroundColor.value;
+        background = backgroundColor.value;
+        console.log(background); 
 
         if (pattern == "dots") {
             let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');

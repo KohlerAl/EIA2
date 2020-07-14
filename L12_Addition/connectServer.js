@@ -4,6 +4,7 @@ var EIA2_Endabgabe;
     let url = "https://agkeia.herokuapp.com/";
     function savePicture(_name) {
         let information = [];
+        information.push();
         for (let figure of EIA2_Endabgabe.figures) {
             let form = {
                 "number": EIA2_Endabgabe.figures.indexOf(figure),
@@ -21,25 +22,29 @@ var EIA2_Endabgabe;
             };
             information.push(form);
         }
-        console.log(information);
         sendData(information, _name);
     }
     EIA2_Endabgabe.savePicture = savePicture;
     async function findPictures() {
         let response = await fetch(url + "?" + "getPicture=yes");
         let responseText = await response.text();
-        let pretty = responseText.replace(/\\|{|}|"|_id|insertName/g, "");
-        let prettier = pretty.replace(/,,,/g, "|");
-        console.log(prettier);
-        createDatalist(pretty);
+        let pretty = responseText.replace(/\\|\[|{|}|"|_id|insertName|]/g, "");
+        let prettier = pretty.replace(/,,,/g, ",");
+        createDatalist(prettier);
     }
     EIA2_Endabgabe.findPictures = findPictures;
     async function sendData(_information, _name) {
         let name = _name.replace(" ", "_");
-        console.log(name);
+        let canvasInfo = [];
+        let width = (Math.floor(EIA2_Endabgabe.canvas.width)).toString();
+        let height = (Math.floor(EIA2_Endabgabe.canvas.height)).toString();
+        console.log(EIA2_Endabgabe.background);
+        canvasInfo.push(width, height, EIA2_Endabgabe.background);
+        let canvasLook = JSON.stringify(canvasInfo);
+        let canvasQuery = new URLSearchParams(canvasLook);
         let info = JSON.stringify(_information);
         let query = new URLSearchParams(info);
-        let response = await fetch(url + "?savePicture&" + name + "&" + query.toString());
+        let response = await fetch(url + "?savePicture&" + name + "&" + canvasQuery.toString() + "&" + query.toString());
         await fetch(url + "?insertName&" + name);
         let responseText = await response.text();
         if (responseText != "") {
@@ -47,46 +52,31 @@ var EIA2_Endabgabe;
         }
     }
     function createDatalist(_response) {
-        let creations = document.getElementById("creations");
         let masterpiece = document.getElementById("masterpiece");
-        for (let entry of _response) {
-            let option = document.createElement("option");
-            switch (entry) {
-                case ("_"):
-                    option.innerHTML += "<br>" + "Bestell-ID: " + entry;
-                    break;
-                case ("["):
-                    break;
-                case ("]"):
-                    break;
-                case (","):
-                    option.innerHTML += "<br>";
-                    break;
-                case (":"):
-                    option.innerHTML += entry + " ";
-                    break;
-                default:
-                    option.innerHTML += "" + entry;
-                    break;
+        let options = _response.split(",");
+        console.log(options, options.length);
+        for (let entry of options) {
+            if (entry == "") {
+                //Skip this
+            }
+            else {
+                let option = document.createElement("option");
+                option.setAttribute("name", entry);
+                option.value = entry;
+                masterpiece.appendChild(option);
             }
         }
-        /* let group: HTMLDivElement = document.createElement("div");
-        let input: HTMLInputElement = document.createElement("input");
-        input.setAttribute("list", _product + "s");
-        input.setAttribute("placeholder", "Supermarkt auswählen");
-        input.name = _product;
-        let datalist: HTMLDataListElement = document.createElement("datalist");
-        datalist.id = _product + "s";
-        for (let item of _elements) {
-            let option: HTMLOptionElement = document.createElement("option");
-            option.setAttribute("name", item.name);
-            option.value = item.name;
-
-            group.appendChild(input);
-            group.appendChild(datalist);
-            datalist.appendChild(option);
-
-        } */
     }
+    async function loadPicture() {
+        let name = EIA2_Endabgabe.creations.value;
+        let response = await fetch(url + "?" + "findPicture&" + name);
+        let responseText = await response.text();
+        let pretty = responseText.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
+        let removeName = pretty.replace(name, "");
+        let prettier = removeName.replace(/,,,/g, ",");
+        let data = prettier.split(",");
+        console.log(data, data.length);
+    }
+    EIA2_Endabgabe.loadPicture = loadPicture;
 })(EIA2_Endabgabe || (EIA2_Endabgabe = {}));
 //# sourceMappingURL=connectServer.js.map
