@@ -72,10 +72,10 @@ export namespace EIA2_Endabgabe {
                 allOrders = [];
             }
 
-            else if(splitURL[0] == "/?insertName") {
+            /* else if(splitURL[0] == "/?insertName") {
                 let pictures = mongoClient.db("Pictures").collection("Overview");
                 (await pictures).insertOne(_request.url); 
-            }
+            } */
 
             else if (splitURL[0] == "/?savePicture") {
                 //save new Picture in new Collection 
