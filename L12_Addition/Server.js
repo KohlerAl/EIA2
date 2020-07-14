@@ -45,12 +45,9 @@ var EIA2_Endabgabe;
                 let pictures = mongoClient.db("Pictures").collection("Overview");
                 let cursor = await pictures.find();
                 await cursor.forEach(showOrders);
-                /* let jsonString: string = JSON.stringify(allOrders);
-                _response.write(jsonString); */
+                let jsonString = JSON.stringify(allOrders);
+                _response.write(jsonString);
                 allOrders = [];
-                for (let key in url.query) {
-                    _response.write(key + ":   " + url.query[key]);
-                }
             }
             else if (splitURL[0] == "/?findPicture") {
                 //Load specific Picture and show it to User
@@ -80,10 +77,13 @@ var EIA2_Endabgabe;
     function showOrders(_item) {
         //for (let entry in _item) {
         //JSON.stringify(entry);
-        let jsonString = JSON.stringify(_item);
-        allOrders.push(jsonString);
+        /* let jsonString: string = JSON.stringify(_item);
+        allOrders.push(jsonString); */
         //console.log(entry); 
         //}
+        for (let key in _item) {
+            allOrders.push(key);
+        }
     }
 })(EIA2_Endabgabe = exports.EIA2_Endabgabe || (exports.EIA2_Endabgabe = {}));
 //# sourceMappingURL=Server.js.map

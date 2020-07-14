@@ -53,13 +53,12 @@ export namespace EIA2_Endabgabe {
                 let pictures = mongoClient.db("Pictures").collection("Overview");
                 let cursor: Mongo.Cursor<any> = await pictures.find();
                 await cursor.forEach(showOrders);
-                /* let jsonString: string = JSON.stringify(allOrders);
-                _response.write(jsonString); */
+                let jsonString: string = JSON.stringify(allOrders);
+                _response.write(jsonString);
+                
                 allOrders = [];
 
-                for(let key in url.query) {
-                    _response.write(key + ":   " + url.query[key]);
-                }
+                
             }
 
             else if (splitURL[0] == "/?findPicture") {
@@ -96,10 +95,15 @@ export namespace EIA2_Endabgabe {
     function showOrders(_item: object): void {
         //for (let entry in _item) {
         //JSON.stringify(entry);
-        let jsonString: string = JSON.stringify(_item);
-        allOrders.push(jsonString);
+        /* let jsonString: string = JSON.stringify(_item);
+        allOrders.push(jsonString); */
         //console.log(entry); 
         //}
+
+        for(let key in _item) {
+            allOrders.push(key); 
+            
+        }
     }
 
 }
