@@ -7,8 +7,6 @@ var EIA2_Endabgabe;
         information.push();
         for (let figure of EIA2_Endabgabe.figures) {
             let form = {
-                "number": EIA2_Endabgabe.figures.indexOf(figure),
-                "type": figure.type,
                 "active": figure.active,
                 "size": figure.size,
                 "positionX": Math.floor(figure.position.x),
@@ -16,9 +14,8 @@ var EIA2_Endabgabe;
                 "rotation": figure.rotation,
                 "moveType": figure.moveType,
                 "color": figure.color,
-                "hitAreaX": figure.hitAreaX,
-                "hitAreaY": figure.hitAreaY,
                 "velocity": figure.velocity,
+                "type": figure.type,
             };
             information.push(form);
         }
@@ -74,8 +71,51 @@ var EIA2_Endabgabe;
         let pretty = responseText.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
         let removeName = pretty.replace(name, "");
         let prettier = removeName.replace(/,,,/g, ",");
-        let data = prettier.split(",");
-        console.log(data, data.length);
+        console.log(prettier);
+        let removeKey = prettier.replace(/type:|active:|size:|positionX:|positionY:|rotation:|moveType:|color:|velocity:/g, "");
+        let data = removeKey.split(",");
+        EIA2_Endabgabe.canvas.width = parseInt(data[1]);
+        EIA2_Endabgabe.canvas.height = parseInt(data[2]);
+        EIA2_Endabgabe.createBackground(data[3]);
+        data.splice(0, 4);
+        let info = [];
+        for (let i = 1; i < data.length; i++) {
+            switch (data[i]) {
+                case ("Triangle"):
+                    console.log(info);
+                    let triangle = new EIA2_Endabgabe.Triangle();
+                    triangle.draw();
+                    EIA2_Endabgabe.figures.push(triangle);
+                    break;
+                case ("Ellipse"):
+                    console.log(info);
+                    let ellipse = new EIA2_Endabgabe.Ellipse();
+                    ellipse.draw();
+                    EIA2_Endabgabe.figures.push(ellipse);
+                    break;
+                case ("Circle"):
+                    console.log(info);
+                    let circle = new EIA2_Endabgabe.Triangle();
+                    circle.draw();
+                    EIA2_Endabgabe.figures.push(circle);
+                    break;
+                case ("Square"):
+                    console.log(info);
+                    let square = new EIA2_Endabgabe.Triangle();
+                    square.draw();
+                    EIA2_Endabgabe.figures.push(square);
+                    break;
+                case ("Line"):
+                    console.log(info);
+                    let figure = new EIA2_Endabgabe.Triangle();
+                    figure.draw();
+                    EIA2_Endabgabe.figures.push(figure);
+                    break;
+                default:
+                    info.push(data[i]);
+                    break;
+            }
+        }
     }
     EIA2_Endabgabe.loadPicture = loadPicture;
 })(EIA2_Endabgabe || (EIA2_Endabgabe = {}));

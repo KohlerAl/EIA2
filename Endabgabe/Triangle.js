@@ -2,8 +2,11 @@
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
     class Triangle extends EIA2_Endabgabe.Form {
-        constructor() {
-            super();
+        constructor(_info) {
+            if (_info)
+                super(_info);
+            else
+                super();
             this.type = "Triangle";
         }
         draw() {

@@ -1,7 +1,10 @@
 namespace EIA2_Endabgabe {
     export class Triangle extends Form {
-        constructor() {
-            super();
+        constructor(_info?: string[]) {
+            if(_info)
+            super(_info);
+            else
+            super(); 
             this.type = "Triangle"; 
         }
 

@@ -25,7 +25,9 @@ var EIA2_Endabgabe;
         EIA2_Endabgabe.canvas = document.querySelector("canvas");
         EIA2_Endabgabe.canvas.addEventListener("click", handleClick);
         EIA2_Endabgabe.backgroundColor = document.getElementById("backgroundColor");
-        EIA2_Endabgabe.backgroundColor.addEventListener("change", createBackground);
+        EIA2_Endabgabe.backgroundColor.addEventListener("change", function () {
+            createBackground();
+        });
         save = document.getElementById("save");
         save.addEventListener("click", getName);
         form = document.querySelector("form");
@@ -138,9 +140,12 @@ var EIA2_Endabgabe;
         EIA2_Endabgabe.canvas.width = newWidth;
         createBackground();
     }
-    function createBackground() {
-        EIA2_Endabgabe.background = EIA2_Endabgabe.backgroundColor.value;
-        console.log(EIA2_Endabgabe.background);
+    function createBackground(_color) {
+        if (_color) {
+            EIA2_Endabgabe.background = _color;
+        }
+        else
+            EIA2_Endabgabe.background = EIA2_Endabgabe.backgroundColor.value;
         if (pattern == "dots") {
             let pattern = document.createElement('canvas').getContext('2d');
             pattern.canvas.width = 20;
@@ -169,6 +174,7 @@ var EIA2_Endabgabe;
         EIA2_Endabgabe.crc2.fillRect(0, 0, EIA2_Endabgabe.canvas.width, EIA2_Endabgabe.canvas.height);
         backgroundImage = EIA2_Endabgabe.crc2.getImageData(0, 0, EIA2_Endabgabe.canvas.width, EIA2_Endabgabe.canvas.height);
     }
+    EIA2_Endabgabe.createBackground = createBackground;
     function handleFormInput(_event) {
         let id = _event.target.id;
         switch (id) {
@@ -210,12 +216,6 @@ var EIA2_Endabgabe;
                         break;
                     case "move":
                         figure.moveType = EIA2_Endabgabe.FORM_MOVE.MOVE;
-                        break;
-                    case "colorChange":
-                        figure.moveType = EIA2_Endabgabe.FORM_MOVE.LIGHTEN;
-                        break;
-                    case "sizeChange":
-                        figure.moveType = EIA2_Endabgabe.FORM_MOVE.SIZECHANGE;
                         break;
                     default:
                         break;

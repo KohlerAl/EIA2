@@ -2,8 +2,6 @@ namespace EIA2_Endabgabe {
     export enum FORM_MOVE {
         ROTATE = "rotate",
         MOVE = "move",
-        LIGHTEN = "lighten", 
-        SIZECHANGE = "sizeChange"
     }
     export abstract class Form {
         public color: string; 
@@ -11,19 +9,19 @@ namespace EIA2_Endabgabe {
         public position: Vector; 
         public rotation: number; 
         public moveType: FORM_MOVE; 
-        public active: boolean = true; 
+        public active: boolean;
         public hitAreaX: Vector; 
         public hitAreaY: Vector; 
         public velocity: Vector = new Vector(5, 5); 
-        private scaleFactor: boolean = false; 
         public type: string; 
         
 
-        public constructor() {
+        public constructor(_info?: string[]) {
             this.color = "#ffffff"; 
             this.size = new Vector (40, 40); 
             this.position= new Vector (0, 0); 
             this.rotation = 0; 
+            this.active = true; 
             this.moveType = FORM_MOVE.MOVE;  
             this.hitAreaX = new Vector(this.position.x + this.size.x/2, this.position.x - this.size.x/2); 
             this.hitAreaY = new Vector(this.position.y + this.size.y/2, this.position.y - this.size.y/2); 
@@ -41,24 +39,6 @@ namespace EIA2_Endabgabe {
                 case FORM_MOVE.ROTATE: 
                     this.rotation += 0.01; 
                     break; 
-                case FORM_MOVE.SIZECHANGE: 
-                    let scaleValue: Vector = new Vector(0.05, 0.05); 
-                    if (this.size.x < 10) {
-                        this.scaleFactor = true; 
-                    } else if (this.size.x > 40){
-                        this.scaleFactor = false; 
-                    }
-
-                    if(this.scaleFactor == true) {
-                        this.size.add(scaleValue); 
-                    }
-                    else {
-                        this.size.substract(scaleValue); 
-                    }
-                    break; 
-
-                    //FARBANIMATION FEHLT
-            
                 default:
                     break;
             }

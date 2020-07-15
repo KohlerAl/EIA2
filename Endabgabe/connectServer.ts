@@ -2,8 +2,6 @@ namespace EIA2_Endabgabe {
     let url: string = "https://agkeia.herokuapp.com/";
 
     export interface PicturePart {
-        number: number,
-        type: string,
         active: boolean,
         size: Vector,
         positionX: number,
@@ -11,17 +9,14 @@ namespace EIA2_Endabgabe {
         rotation: number,
         moveType: FORM_MOVE,
         color: string,
-        hitAreaX: Vector,
-        hitAreaY: Vector,
-        velocity: Vector
+        velocity: Vector,
+        type: string
     }
     export function savePicture(_name: string): void {
         let information: PicturePart[] = [];
         information.push()
         for (let figure of figures) {
             let form: PicturePart = {
-                "number": figures.indexOf(figure),
-                "type": figure.type,
                 "active": figure.active,
                 "size": figure.size,
                 "positionX": Math.floor(figure.position.x),
@@ -29,9 +24,8 @@ namespace EIA2_Endabgabe {
                 "rotation": figure.rotation,
                 "moveType": figure.moveType,
                 "color": figure.color,
-                "hitAreaX": figure.hitAreaX,
-                "hitAreaY": figure.hitAreaY,
                 "velocity": figure.velocity,
+                "type": figure.type,
             }
             information.push(form);
         }
@@ -48,13 +42,13 @@ namespace EIA2_Endabgabe {
 
     async function sendData(_information: PicturePart[], _name: string): Promise<void> {
         let name: string = _name.replace(" ", "_")
-        
-        let canvasInfo: string[] = []; 
+
+        let canvasInfo: string[] = [];
         let width: string = (Math.floor(canvas.width)).toString();
         let height: string = (Math.floor(canvas.height)).toString();
-        console.log(background); 
+        console.log(background);
         canvasInfo.push(width, height, background);
-        let canvasLook: string = JSON.stringify(canvasInfo); 
+        let canvasLook: string = JSON.stringify(canvasInfo);
         let canvasQuery: URLSearchParams = new URLSearchParams(canvasLook)
 
         let info: string = JSON.stringify(_information);
@@ -81,19 +75,62 @@ namespace EIA2_Endabgabe {
                 let option: HTMLOptionElement = document.createElement("option");
                 option.setAttribute("name", entry);
                 option.value = entry;
-                masterpiece.appendChild(option); 
+                masterpiece.appendChild(option);
             }
         }
     }
 
     export async function loadPicture(): Promise<void> {
-        let name: string = creations.value; 
+        let name: string = creations.value;
         let response: Response = await fetch(url + "?" + "findPicture&" + name);
         let responseText: string = await response.text();
         let pretty: string = responseText.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
-        let removeName: string = pretty.replace(name, ""); 
+        let removeName: string = pretty.replace(name, "");
         let prettier: string = removeName.replace(/,,,/g, ",");
-        let data: string[] = prettier.split(",");
-        console.log(data, data.length);
+        console.log(prettier);
+        let removeKey: string = prettier.replace(/type:|active:|size:|positionX:|positionY:|rotation:|moveType:|color:|velocity:/g, "")
+        let data: string[] = removeKey.split(",");
+        canvas.width = parseInt(data[1]);
+        canvas.height = parseInt(data[2]);
+        createBackground(data[3]);
+        data.splice(0, 4);
+        let info: string[] = []; 
+        for (let i: number = 1; i < data.length; i++) {
+            switch (data[i]) {
+                case ("Triangle"):
+                    console.log(info); 
+                    let triangle: Triangle = new Triangle();
+                    triangle.draw();
+                    figures.push(triangle);
+                    break;
+                case ("Ellipse"):
+                    console.log(info); 
+                    let ellipse: Ellipse = new Ellipse();
+                    ellipse.draw();
+                    figures.push(ellipse);
+                    break;
+                case ("Circle"):
+                    console.log(info); 
+                    let circle: Triangle = new Triangle();
+                    circle.draw();
+                    figures.push(circle);
+                    break;
+                case ("Square"):
+                    console.log(info); 
+                    let square: Triangle = new Triangle();
+                    square.draw();
+                    figures.push(square);
+                    break;
+                case ("Line"):
+                    console.log(info); 
+                    let figure: Triangle = new Triangle();
+                    figure.draw();
+                    figures.push(figure);
+                    break;
+                default:
+                    info.push(data[i]);
+                    break;
+            }
+        }
     }
 }

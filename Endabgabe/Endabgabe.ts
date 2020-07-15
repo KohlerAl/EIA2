@@ -38,7 +38,9 @@ namespace EIA2_Endabgabe {
         canvas.addEventListener("click", handleClick);
 
         backgroundColor = <HTMLInputElement>document.getElementById("backgroundColor");
-        backgroundColor.addEventListener("change", createBackground);
+        backgroundColor.addEventListener("change", function(): void{
+            createBackground();
+        });
 
         save = <HTMLButtonElement>document.getElementById("save");
         save.addEventListener("click", getName);
@@ -169,9 +171,12 @@ namespace EIA2_Endabgabe {
         createBackground();
     }
 
-    function createBackground(): void {
+    export function createBackground(_color?: string): void {
+        if(_color){
+            background = _color; 
+        }
+        else
         background = backgroundColor.value;
-        console.log(background); 
 
         if (pattern == "dots") {
             let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
@@ -250,12 +255,6 @@ namespace EIA2_Endabgabe {
                         break;
                     case "move":
                         figure.moveType = FORM_MOVE.MOVE;
-                        break;
-                    case "colorChange":
-                        figure.moveType = FORM_MOVE.LIGHTEN;
-                        break;
-                    case "sizeChange":
-                        figure.moveType = FORM_MOVE.SIZECHANGE;
                         break;
                     default:
                         break;
