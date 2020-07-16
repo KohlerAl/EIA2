@@ -30,11 +30,14 @@
         <div id="backgroundColorWrapper">
             <input type="color" value="#960bff" id="backgroundColor">
         </div>
+        <div id="patternColorWrapper">
+            <input type="color" value="#05ff9f" id="patternColor">
+        </div>
 
         <div id="patterns">
-            <button type="button" id="dots"><i class="fas fa-braille fa-2x"></i></button>
-            <button type="button" id="squares"><i class="fas fa-chess-board fa-2x"></i></button>
-            <button type="button" id="plain"><i class="fas fa-ban fa-2x"></i></button>
+            <button type="button" id="dots" class="fas fa-braille fa-2x"></button>
+            <button type="button" id="squares" class="fas fa-chess-board fa-2x"></button>
+            <button type="button" id="plain" class="fas fa-ban fa-2x"></button>
         </div>
     </span>
 
@@ -50,6 +53,7 @@
 
     <div id="animations">
         <button type="button" id="rotate">rotate</button>
+        <input type="slider" id="speed">Change the speed of the figure!</input>
         <button type="button" id="move">move</button>
         <button type="button" id="trash">delete figure</button>
     </div>

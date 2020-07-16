@@ -2,7 +2,7 @@ namespace EIA2_Endabgabe {
     export let canvas: HTMLCanvasElement;
     export let crc2: CanvasRenderingContext2D;
     let backgroundImage: ImageData;
-    let pattern: string = "plain";
+    let backgroundPattern: string = "plain";
     export let figures: Form[] = [];
 
     export let backgroundColor: HTMLInputElement;
@@ -12,6 +12,9 @@ namespace EIA2_Endabgabe {
     let backgroundColorWrapper: HTMLElement;
     let patterns: HTMLDivElement;
 
+    let patternColor: HTMLInputElement; 
+    let patternColorWrapper: HTMLDivElement; 
+
     let forms: HTMLDivElement;
     let animations: HTMLDivElement;
     let form: HTMLFormElement;
@@ -19,6 +22,7 @@ namespace EIA2_Endabgabe {
     let save: HTMLButtonElement;
     export let background: string; 
     export let creations: HTMLInputElement; 
+    let speed: HTMLInputElement; 
 
 
     window.addEventListener("load", handleLoad);
@@ -29,7 +33,9 @@ namespace EIA2_Endabgabe {
 
         canvasWidth = <HTMLInputElement>document.getElementById("canvasWidth");
         canvasHeight = <HTMLInputElement>document.getElementById("canvasHeight");
-        backgroundColorWrapper = <HTMLElement>document.getElementById("backgroundColorWrapper");
+        backgroundColorWrapper = <HTMLDivElement>document.getElementById("backgroundColorWrapper");
+        patternColorWrapper = <HTMLDivElement>document.getElementById("patternColorWrapper");
+        patternColor = <HTMLInputElement>document.getElementById("patternColor"); 
 
         patterns = <HTMLDivElement>document.getElementById("patterns");
         patterns.addEventListener("click", createPattern);
@@ -39,6 +45,9 @@ namespace EIA2_Endabgabe {
 
         backgroundColor = <HTMLInputElement>document.getElementById("backgroundColor");
         backgroundColor.addEventListener("change", function(): void{
+            createBackground();
+        });
+        patternColor.addEventListener("change", function(): void{
             createBackground();
         });
 
@@ -56,6 +65,7 @@ namespace EIA2_Endabgabe {
         creations.addEventListener("change", loadPicture); 
         animations = <HTMLDivElement>document.getElementById("animations");
         animations.addEventListener("click", setAnimation);
+        speed = <HTMLInputElement>document.getElementById("speed"); 
 
         h3 = <HTMLHeadingElement>document.querySelector("h3");
         h3.addEventListener("click", toggleCanvasProperty);
@@ -63,6 +73,7 @@ namespace EIA2_Endabgabe {
         canvasHeight.style.display = "none";
         backgroundColorWrapper.style.display = "none";
         patterns.style.display = "none";
+        patternColorWrapper.style.display = "none"; 
 
         canvasHeight.addEventListener("change", setCanvasHeight);
         canvasWidth.addEventListener("change", setCanvasWidth);
@@ -77,12 +88,14 @@ namespace EIA2_Endabgabe {
             canvasWidth.style.display = "inline";
             canvasHeight.style.display = "inline";
             backgroundColorWrapper.style.display = "inline";
+            patternColorWrapper.style.display = "inline"; 
             patterns.style.display = "inline";
         }
         else {
             canvasWidth.style.display = "none";
             canvasHeight.style.display = "none";
             backgroundColorWrapper.style.display = "none";
+            patternColorWrapper.style.display = "none"; 
             patterns.style.display = "none";
         }
     }
@@ -134,29 +147,31 @@ namespace EIA2_Endabgabe {
     function createPattern(_event: any): void {
         let id: string = _event.target.id;
         if (id == "dots") {
-            pattern = "dots";
+            backgroundPattern = "dots";
         }
         else if (id == "squares") {
-            pattern = "squares";
+            backgroundPattern = "squares";
         }
         else {
-            pattern = "plain";
+            backgroundPattern = "plain";
         }
+        console.log(backgroundPattern); 
         createBackground();
     }
 
     function handleClick(_event: MouseEvent): void {
         let y: number = _event.clientY;
         let x: number = _event.clientX;
-        console.log(x, y);
+        console.log("x and y", x, y);
 
         for (let figure of figures) {
             if (figure.active == true) {
-                console.log(figure.position);
-                figure.position = new Vector(x, y);
+                console.log("figure position before", figure.position);
+                figure.position.x = x; 
+                figure.position.y = y; 
+                console.log("figure position after", figure.position);
             }
         }
-
     }
 
     function setCanvasHeight(): void {
@@ -178,30 +193,35 @@ namespace EIA2_Endabgabe {
         else
         background = backgroundColor.value;
 
-        if (pattern == "dots") {
+        console.log(backgroundPattern); 
+        if (backgroundPattern == "dots") {
             let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
+            pattern.beginPath(); 
             pattern.canvas.width = 20;
             pattern.canvas.height = 20;
-            pattern.fillStyle = background;
+            pattern.fillStyle = background; 
+            pattern.fillRect(0, 0, pattern.canvas.width, pattern.canvas.height);
             pattern.arc(10, 10, 9, 0, 2 * Math.PI);
-            pattern.strokeStyle = "#111111";
+            pattern.strokeStyle = patternColor.value;
             pattern.stroke();
             pattern.closePath();
 
-            crc2.fillStyle = pattern;
+            crc2.fillStyle = <CanvasRenderingContext2D>crc2.createPattern(pattern.canvas, "repeat");
         }
 
-        else if (pattern == "squares") {
+        else if (backgroundPattern == "squares") {
             let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
-            pattern.canvas.width = 5;
-            pattern.canvas.height = 5;
+            pattern.beginPath(); 
+            pattern.canvas.width = 10;
+            pattern.canvas.height = 10;
             pattern.fillStyle = background;
-            pattern.strokeStyle = "#111111";
-            pattern.fillRect(0, 0, 5, 5);
+            pattern.fillRect(0, 0, pattern.canvas.width, pattern.canvas.height);
+            pattern.strokeStyle = patternColor.value;
+            pattern.rect(0, 0, 5, 5);
             pattern.stroke();
             pattern.closePath();
 
-            crc2.fillStyle = pattern;
+            crc2.fillStyle = <CanvasRenderingContext2D>crc2.createPattern(pattern.canvas, "repeat");
         }
 
         else {
@@ -256,6 +276,9 @@ namespace EIA2_Endabgabe {
                     case "move":
                         figure.moveType = FORM_MOVE.MOVE;
                         break;
+                    case "speed": 
+                        figure.velocity.x = parseInt(speed.value); 
+                        figure.velocity.y = parseInt(speed.value); 
                     default:
                         break;
                 }

@@ -2,17 +2,20 @@
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
     let backgroundImage;
-    let pattern = "plain";
+    let backgroundPattern = "plain";
     EIA2_Endabgabe.figures = [];
     let canvasWidth;
     let canvasHeight;
     let backgroundColorWrapper;
     let patterns;
+    let patternColor;
+    let patternColorWrapper;
     let forms;
     let animations;
     let form;
     let h3;
     let save;
+    let speed;
     window.addEventListener("load", handleLoad);
     function handleLoad() {
         EIA2_Endabgabe.canvas = document.querySelector("canvas");
@@ -20,12 +23,17 @@ var EIA2_Endabgabe;
         canvasWidth = document.getElementById("canvasWidth");
         canvasHeight = document.getElementById("canvasHeight");
         backgroundColorWrapper = document.getElementById("backgroundColorWrapper");
+        patternColorWrapper = document.getElementById("patternColorWrapper");
+        patternColor = document.getElementById("patternColor");
         patterns = document.getElementById("patterns");
         patterns.addEventListener("click", createPattern);
         EIA2_Endabgabe.canvas = document.querySelector("canvas");
         EIA2_Endabgabe.canvas.addEventListener("click", handleClick);
         EIA2_Endabgabe.backgroundColor = document.getElementById("backgroundColor");
         EIA2_Endabgabe.backgroundColor.addEventListener("change", function () {
+            createBackground();
+        });
+        patternColor.addEventListener("change", function () {
             createBackground();
         });
         save = document.getElementById("save");
@@ -38,12 +46,14 @@ var EIA2_Endabgabe;
         EIA2_Endabgabe.creations.addEventListener("change", EIA2_Endabgabe.loadPicture);
         animations = document.getElementById("animations");
         animations.addEventListener("click", setAnimation);
+        speed = document.getElementById("speed");
         h3 = document.querySelector("h3");
         h3.addEventListener("click", toggleCanvasProperty);
         canvasWidth.style.display = "none";
         canvasHeight.style.display = "none";
         backgroundColorWrapper.style.display = "none";
         patterns.style.display = "none";
+        patternColorWrapper.style.display = "none";
         canvasHeight.addEventListener("change", setCanvasHeight);
         canvasWidth.addEventListener("change", setCanvasWidth);
         EIA2_Endabgabe.findPictures();
@@ -55,12 +65,14 @@ var EIA2_Endabgabe;
             canvasWidth.style.display = "inline";
             canvasHeight.style.display = "inline";
             backgroundColorWrapper.style.display = "inline";
+            patternColorWrapper.style.display = "inline";
             patterns.style.display = "inline";
         }
         else {
             canvasWidth.style.display = "none";
             canvasHeight.style.display = "none";
             backgroundColorWrapper.style.display = "none";
+            patternColorWrapper.style.display = "none";
             patterns.style.display = "none";
         }
     }
@@ -109,24 +121,27 @@ var EIA2_Endabgabe;
     function createPattern(_event) {
         let id = _event.target.id;
         if (id == "dots") {
-            pattern = "dots";
+            backgroundPattern = "dots";
         }
         else if (id == "squares") {
-            pattern = "squares";
+            backgroundPattern = "squares";
         }
         else {
-            pattern = "plain";
+            backgroundPattern = "plain";
         }
+        console.log(backgroundPattern);
         createBackground();
     }
     function handleClick(_event) {
         let y = _event.clientY;
         let x = _event.clientX;
-        console.log(x, y);
+        console.log("x and y", x, y);
         for (let figure of EIA2_Endabgabe.figures) {
             if (figure.active == true) {
-                console.log(figure.position);
-                figure.position = new EIA2_Endabgabe.Vector(x, y);
+                console.log("figure position before", figure.position);
+                figure.position.x = x;
+                figure.position.y = y;
+                console.log("figure position after", figure.position);
             }
         }
     }
@@ -146,27 +161,32 @@ var EIA2_Endabgabe;
         }
         else
             EIA2_Endabgabe.background = EIA2_Endabgabe.backgroundColor.value;
-        if (pattern == "dots") {
+        console.log(backgroundPattern);
+        if (backgroundPattern == "dots") {
             let pattern = document.createElement('canvas').getContext('2d');
+            pattern.beginPath();
             pattern.canvas.width = 20;
             pattern.canvas.height = 20;
             pattern.fillStyle = EIA2_Endabgabe.background;
+            pattern.fillRect(0, 0, pattern.canvas.width, pattern.canvas.height);
             pattern.arc(10, 10, 9, 0, 2 * Math.PI);
-            pattern.strokeStyle = "#111111";
+            pattern.strokeStyle = patternColor.value;
             pattern.stroke();
             pattern.closePath();
-            EIA2_Endabgabe.crc2.fillStyle = pattern;
+            EIA2_Endabgabe.crc2.fillStyle = EIA2_Endabgabe.crc2.createPattern(pattern.canvas, "repeat");
         }
-        else if (pattern == "squares") {
+        else if (backgroundPattern == "squares") {
             let pattern = document.createElement('canvas').getContext('2d');
-            pattern.canvas.width = 5;
-            pattern.canvas.height = 5;
+            pattern.beginPath();
+            pattern.canvas.width = 10;
+            pattern.canvas.height = 10;
             pattern.fillStyle = EIA2_Endabgabe.background;
-            pattern.strokeStyle = "#111111";
-            pattern.fillRect(0, 0, 5, 5);
+            pattern.fillRect(0, 0, pattern.canvas.width, pattern.canvas.height);
+            pattern.strokeStyle = patternColor.value;
+            pattern.rect(0, 0, 5, 5);
             pattern.stroke();
             pattern.closePath();
-            EIA2_Endabgabe.crc2.fillStyle = pattern;
+            EIA2_Endabgabe.crc2.fillStyle = EIA2_Endabgabe.crc2.createPattern(pattern.canvas, "repeat");
         }
         else {
             EIA2_Endabgabe.crc2.fillStyle = EIA2_Endabgabe.background;
@@ -217,6 +237,9 @@ var EIA2_Endabgabe;
                     case "move":
                         figure.moveType = EIA2_Endabgabe.FORM_MOVE.MOVE;
                         break;
+                    case "speed":
+                        figure.velocity.x = parseInt(speed.value);
+                        figure.velocity.y = parseInt(speed.value);
                     default:
                         break;
                 }

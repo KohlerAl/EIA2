@@ -76,12 +76,6 @@ var EIA2_Endabgabe;
         _response.end();
     }
     function showOrders(_item) {
-        //for (let entry in _item) {
-        //JSON.stringify(entry);
-        /* let jsonString: string = JSON.stringify(_item);
-        allOrders.push(jsonString); */
-        //console.log(entry); 
-        //}
         for (let key in _item) {
             allOrders.push(key);
         }

@@ -72,43 +72,49 @@ var EIA2_Endabgabe;
         let removeName = pretty.replace(name, "");
         let prettier = removeName.replace(/,,,/g, ",");
         console.log(prettier);
-        let removeKey = prettier.replace(/type:|active:|size:|positionX:|positionY:|rotation:|moveType:|color:|velocity:/g, "");
+        let removeKey = prettier.replace(/type:|active:|size:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "");
         let data = removeKey.split(",");
         EIA2_Endabgabe.canvas.width = parseInt(data[1]);
         EIA2_Endabgabe.canvas.height = parseInt(data[2]);
         EIA2_Endabgabe.createBackground(data[3]);
         data.splice(0, 4);
         let info = [];
-        for (let i = 1; i < data.length; i++) {
+        console.log("DATA " + data);
+        for (let i = 0; i < data.length; i++) {
             switch (data[i]) {
                 case ("Triangle"):
                     console.log(info);
-                    let triangle = new EIA2_Endabgabe.Triangle();
+                    let triangle = new EIA2_Endabgabe.Triangle(info);
                     triangle.draw();
+                    info = [];
                     EIA2_Endabgabe.figures.push(triangle);
                     break;
                 case ("Ellipse"):
                     console.log(info);
-                    let ellipse = new EIA2_Endabgabe.Ellipse();
+                    let ellipse = new EIA2_Endabgabe.Ellipse(info);
                     ellipse.draw();
+                    info = [];
                     EIA2_Endabgabe.figures.push(ellipse);
                     break;
                 case ("Circle"):
                     console.log(info);
-                    let circle = new EIA2_Endabgabe.Triangle();
+                    let circle = new EIA2_Endabgabe.Triangle(info);
                     circle.draw();
+                    info = [];
                     EIA2_Endabgabe.figures.push(circle);
                     break;
                 case ("Square"):
                     console.log(info);
-                    let square = new EIA2_Endabgabe.Triangle();
+                    let square = new EIA2_Endabgabe.Triangle(info);
                     square.draw();
+                    info = [];
                     EIA2_Endabgabe.figures.push(square);
                     break;
                 case ("Line"):
                     console.log(info);
-                    let figure = new EIA2_Endabgabe.Triangle();
+                    let figure = new EIA2_Endabgabe.Triangle(info);
                     figure.draw();
+                    info = [];
                     EIA2_Endabgabe.figures.push(figure);
                     break;
                 default:

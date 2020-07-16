@@ -88,43 +88,49 @@ namespace EIA2_Endabgabe {
         let removeName: string = pretty.replace(name, "");
         let prettier: string = removeName.replace(/,,,/g, ",");
         console.log(prettier);
-        let removeKey: string = prettier.replace(/type:|active:|size:|positionX:|positionY:|rotation:|moveType:|color:|velocity:/g, "")
+        let removeKey: string = prettier.replace(/type:|active:|size:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "")
         let data: string[] = removeKey.split(",");
         canvas.width = parseInt(data[1]);
         canvas.height = parseInt(data[2]);
         createBackground(data[3]);
         data.splice(0, 4);
         let info: string[] = []; 
-        for (let i: number = 1; i < data.length; i++) {
+        console.log("DATA " + data); 
+        for (let i: number = 0; i < data.length; i++) {
             switch (data[i]) {
                 case ("Triangle"):
                     console.log(info); 
-                    let triangle: Triangle = new Triangle();
+                    let triangle: Triangle = new Triangle(info);
                     triangle.draw();
+                    info = []; 
                     figures.push(triangle);
                     break;
                 case ("Ellipse"):
                     console.log(info); 
-                    let ellipse: Ellipse = new Ellipse();
+                    let ellipse: Ellipse = new Ellipse(info);
                     ellipse.draw();
+                    info = []; 
                     figures.push(ellipse);
                     break;
                 case ("Circle"):
                     console.log(info); 
-                    let circle: Triangle = new Triangle();
+                    let circle: Triangle = new Triangle(info);
                     circle.draw();
+                    info = []; 
                     figures.push(circle);
                     break;
                 case ("Square"):
                     console.log(info); 
-                    let square: Triangle = new Triangle();
+                    let square: Triangle = new Triangle(info);
                     square.draw();
+                    info = []; 
                     figures.push(square);
                     break;
                 case ("Line"):
                     console.log(info); 
-                    let figure: Triangle = new Triangle();
+                    let figure: Triangle = new Triangle(info);
                     figure.draw();
+                    info = []; 
                     figures.push(figure);
                     break;
                 default:

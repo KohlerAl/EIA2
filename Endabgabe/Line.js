@@ -2,21 +2,23 @@
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
     class Line extends EIA2_Endabgabe.Form {
-        constructor() {
-            super();
+        constructor(_info) {
+            if (_info)
+                super(_info);
+            else
+                super();
             this.size = new EIA2_Endabgabe.Vector(0, 100);
             this.type = "Line";
         }
         draw() {
             EIA2_Endabgabe.crc2.beginPath();
             EIA2_Endabgabe.crc2.save();
-            EIA2_Endabgabe.crc2.translate(this.position.x, this.position.y);
             EIA2_Endabgabe.crc2.rotate(this.rotation);
             EIA2_Endabgabe.crc2.moveTo(this.position.x, this.position.y - this.size.y / 2);
             EIA2_Endabgabe.crc2.lineTo(this.position.x, this.position.y + this.size.y / 2);
             if (this.active == true) {
                 EIA2_Endabgabe.crc2.strokeStyle = "red";
-                EIA2_Endabgabe.crc2.lineWidth = 2;
+                EIA2_Endabgabe.crc2.lineWidth = 3;
             }
             else {
                 EIA2_Endabgabe.crc2.strokeStyle = this.color;

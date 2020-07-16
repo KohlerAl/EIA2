@@ -12,7 +12,6 @@ var EIA2_Endabgabe;
         draw() {
             EIA2_Endabgabe.crc2.beginPath();
             EIA2_Endabgabe.crc2.save();
-            EIA2_Endabgabe.crc2.translate(this.position.x, this.position.y);
             EIA2_Endabgabe.crc2.rotate(this.rotation);
             EIA2_Endabgabe.crc2.moveTo(this.position.x - this.size.x / 2, this.position.y + this.size.y / 2);
             EIA2_Endabgabe.crc2.lineTo(this.position.x + this.size.x / 2, this.position.y + this.size.y / 2);

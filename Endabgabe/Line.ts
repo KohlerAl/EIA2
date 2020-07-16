@@ -1,6 +1,9 @@
 namespace EIA2_Endabgabe {
     export class Line extends Form {
-        constructor() {
+        constructor(_info?: string[]) {
+            if(_info)
+            super(_info);
+            else
             super();
             this.size = new Vector(0, 100); 
             this.type = "Line"; 
@@ -9,13 +12,12 @@ namespace EIA2_Endabgabe {
         public draw(): void {
             crc2.beginPath(); 
             crc2.save(); 
-            crc2.translate(this.position.x, this.position.y);
             crc2.rotate(this.rotation); 
             crc2.moveTo(this.position.x, this.position.y - this.size.y/2); 
             crc2.lineTo(this.position.x, this.position.y + this.size.y/2); 
             if (this.active == true) {
                 crc2.strokeStyle = "red";
-                crc2.lineWidth = 2; 
+                crc2.lineWidth = 3; 
             }
             else {
                 crc2.strokeStyle = this.color;

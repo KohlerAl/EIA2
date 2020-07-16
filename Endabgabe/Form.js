@@ -9,9 +9,25 @@ var EIA2_Endabgabe;
     class Form {
         constructor(_info) {
             this.velocity = new EIA2_Endabgabe.Vector(5, 5);
+            if (_info) {
+                if (_info[0] == "true") {
+                    this.active = true;
+                }
+                else
+                    this.active = false;
+                this.size = new EIA2_Endabgabe.Vector(parseInt(_info[1]), parseInt(_info[2]));
+                this.position = new EIA2_Endabgabe.Vector(parseInt(_info[3]), parseInt(_info[4]));
+                this.rotation = parseInt(_info[5]);
+                if (_info[6] == "move")
+                    this.moveType = FORM_MOVE.MOVE;
+                else
+                    this.moveType = FORM_MOVE.ROTATE;
+                this.color = _info[7];
+                this.velocity = new EIA2_Endabgabe.Vector(parseInt(_info[8]), parseInt(_info[9]));
+            }
             this.color = "#ffffff";
             this.size = new EIA2_Endabgabe.Vector(40, 40);
-            this.position = new EIA2_Endabgabe.Vector(0, 0);
+            this.position = new EIA2_Endabgabe.Vector(50, 50);
             this.rotation = 0;
             this.active = true;
             this.moveType = FORM_MOVE.MOVE;

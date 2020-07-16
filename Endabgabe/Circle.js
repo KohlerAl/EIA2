@@ -2,16 +2,18 @@
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
     class Circle extends EIA2_Endabgabe.Form {
-        constructor() {
-            super();
+        constructor(_info) {
+            if (_info)
+                super(_info);
+            else
+                super();
             this.type = "Circle";
         }
         draw() {
             EIA2_Endabgabe.crc2.beginPath();
             EIA2_Endabgabe.crc2.save();
             EIA2_Endabgabe.crc2.translate(this.position.x, this.position.y);
-            EIA2_Endabgabe.crc2.rotate(this.rotation);
-            EIA2_Endabgabe.crc2.arc(this.position.x, this.position.y, this.size.x, 0, 2 * Math.PI);
+            EIA2_Endabgabe.crc2.arc(0, 0, this.size.x, 0, 2 * Math.PI);
             if (this.active == true) {
                 EIA2_Endabgabe.crc2.strokeStyle = "red";
                 EIA2_Endabgabe.crc2.lineWidth = 2;

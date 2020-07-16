@@ -1,6 +1,9 @@
 namespace EIA2_Endabgabe {
     export class Square extends Form {
-        constructor() {
+        constructor(_info?: string[]) {
+            if(_info)
+            super(_info);
+            else
             super();
             this.type = "Square"; 
         }
@@ -8,9 +11,14 @@ namespace EIA2_Endabgabe {
         public draw(): void {
             crc2.beginPath();
             crc2.save(); 
-            crc2.translate(this.position.x, this.position.y);
+            crc2.translate(this.position.x, this.position.y); 
             crc2.rotate(this.rotation); 
-            crc2.rect(this.position.x - this.size.x/2, this.position.y -this.size.y/2, this.position.x + this.size.x/2, this.position.y + this.size.y/2); 
+            crc2.moveTo(this.size.x/2, this.size.y/2);
+            crc2.lineTo(this.size.x/2, -this.size.y/2);
+            crc2.lineTo(-this.size.x/2, -this.size.y/2);
+            crc2.lineTo(-this.size.x/2, this.size.y/2);
+            crc2.lineTo(this.size.x/2, this.size.y/2);
+
             if (this.active == true) {
                 crc2.strokeStyle = "red";
                 crc2.lineWidth = 2; 

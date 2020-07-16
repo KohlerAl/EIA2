@@ -1,7 +1,10 @@
 namespace EIA2_Endabgabe {
     export class Circle extends Form {
 
-        constructor() {
+        constructor(_info?: string[]) {
+            if(_info)
+            super(_info);
+            else
             super();
             this.type = "Circle"; 
         }
@@ -10,8 +13,7 @@ namespace EIA2_Endabgabe {
             crc2.beginPath(); 
             crc2.save(); 
             crc2.translate(this.position.x, this.position.y);
-            crc2.rotate(this.rotation); 
-            crc2.arc(this.position.x, this.position.y, this.size.x, 0, 2 * Math.PI);
+            crc2.arc(0, 0, this.size.x, 0, 2 * Math.PI);
             if (this.active == true) {
                 crc2.strokeStyle = "red";
                 crc2.lineWidth = 2; 

@@ -1,7 +1,10 @@
 namespace EIA2_Endabgabe {
     export class Ellipse extends Form {
 
-        constructor() {
+        constructor(_info?: string[]) {
+            if(_info)
+            super(_info);
+            else
             super();
             this.type = "Ellipse"; 
         }
@@ -11,7 +14,7 @@ namespace EIA2_Endabgabe {
             crc2.save(); 
             crc2.translate(this.position.x, this.position.y);
             crc2.rotate(this.rotation); 
-            crc2.ellipse(this.position.x, this.position.y, this.size.x, this.size.y/2, this.rotation, 0, 2*Math.PI); 
+            crc2.ellipse(0, 0, this.size.x, this.size.y/2, this.rotation, 0, 2*Math.PI); 
             if (this.active == true) {
                 crc2.strokeStyle = "red";
                 crc2.lineWidth = 2; 

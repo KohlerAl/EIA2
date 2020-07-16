@@ -2,8 +2,11 @@
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
     class Square extends EIA2_Endabgabe.Form {
-        constructor() {
-            super();
+        constructor(_info) {
+            if (_info)
+                super(_info);
+            else
+                super();
             this.type = "Square";
         }
         draw() {
@@ -11,7 +14,11 @@ var EIA2_Endabgabe;
             EIA2_Endabgabe.crc2.save();
             EIA2_Endabgabe.crc2.translate(this.position.x, this.position.y);
             EIA2_Endabgabe.crc2.rotate(this.rotation);
-            EIA2_Endabgabe.crc2.rect(this.position.x - this.size.x / 2, this.position.y - this.size.y / 2, this.position.x + this.size.x / 2, this.position.y + this.size.y / 2);
+            EIA2_Endabgabe.crc2.moveTo(this.size.x / 2, this.size.y / 2);
+            EIA2_Endabgabe.crc2.lineTo(this.size.x / 2, -this.size.y / 2);
+            EIA2_Endabgabe.crc2.lineTo(-this.size.x / 2, -this.size.y / 2);
+            EIA2_Endabgabe.crc2.lineTo(-this.size.x / 2, this.size.y / 2);
+            EIA2_Endabgabe.crc2.lineTo(this.size.x / 2, this.size.y / 2);
             if (this.active == true) {
                 EIA2_Endabgabe.crc2.strokeStyle = "red";
                 EIA2_Endabgabe.crc2.lineWidth = 2;

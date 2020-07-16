@@ -3,7 +3,7 @@ import * as Url from "url";
 import * as Mongo from "mongodb";
 
 export namespace EIA2_Endabgabe {
-    
+
     let allOrders: string[] = [];
     let options: Mongo.MongoClientOptions;
     let mongoClient: Mongo.MongoClient;
@@ -46,7 +46,7 @@ export namespace EIA2_Endabgabe {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
 
             let splitURL = _request.url.split('&');
-            console.log("SPLIT URL" + splitURL[0]); 
+            console.log("SPLIT URL" + splitURL[0]);
 
             if (_request.url == "/?getPicture=yes") {
                 // Load Names of all Pictures and show them to user 
@@ -55,35 +55,35 @@ export namespace EIA2_Endabgabe {
                 await cursor.forEach(showOrders);
                 let jsonString: string = JSON.stringify(allOrders);
                 _response.write(jsonString);
-                allOrders = [];                
+                allOrders = [];
             }
 
             else if (splitURL[0] == "/?findPicture") {
                 //Load specific Picture and show it to User
-                let picture = mongoClient.db("Pictures").collection(splitURL[1]); 
+                let picture = mongoClient.db("Pictures").collection(splitURL[1]);
                 let cursor: Mongo.Cursor<any> = await picture.find();
                 await cursor.forEach(showOrders);
-                let jsonString: string = JSON.stringify(allOrders); 
+                let jsonString: string = JSON.stringify(allOrders);
                 let answer: string = jsonString.toString();
                 _response.write(answer);
 
                 allOrders = [];
             }
 
-            else if(splitURL[0] == "/?insertName") {
+            else if (splitURL[0] == "/?insertName") {
                 let pictures = mongoClient.db("Pictures").collection("Overview");
-                (await pictures).insertOne(url.query);  
+                (await pictures).insertOne(url.query);
             }
 
             else if (splitURL[0] == "/?savePicture") {
                 //save new Picture in new Collection 
                 let newCollection: Promise<Mongo.Collection<any>> = mongoClient.db("Pictures").createCollection(splitURL[1]);
-                (await newCollection).insertOne(url.query); 
-                _response.write("Ist angekommen"); 
+                (await newCollection).insertOne(url.query);
+                _response.write("Ist angekommen");
             }
 
             else {
-               _response.write("Error"); 
+                _response.write("Error");
             }
         }
         _response.end();
@@ -92,16 +92,9 @@ export namespace EIA2_Endabgabe {
 
 
     function showOrders(_item: object): void {
-        //for (let entry in _item) {
-        //JSON.stringify(entry);
-        /* let jsonString: string = JSON.stringify(_item);
-        allOrders.push(jsonString); */
-        //console.log(entry); 
-        //}
+        for (let key in _item) {
+            allOrders.push(key);
 
-        for(let key in _item) {
-            allOrders.push(key); 
-            
         }
     }
 

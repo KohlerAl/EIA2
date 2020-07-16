@@ -100,7 +100,7 @@ input::placeholder {
     grid-area: styling; 
     display: grid;
     grid-template-areas:
-    'width height bckgrnd pattern';
+    'width height bckgrnd patternColor pattern';
 }
 
 #circle {
@@ -111,6 +111,11 @@ input::placeholder {
 #triangle {
     grid-area: btn1;
     color: #960bff;
+}
+
+.fa-caret-up:before {
+    position: relative;
+    top: -10px; 
 }
 
 #line {
@@ -174,6 +179,18 @@ input::placeholder {
 #backgroundColorWrapper {
     display: none;
     grid-area: bckgrnd;
+    float: left;
+    border-radius: 56px;
+    margin-top: 10px;
+    height: 50px;
+    width: 215px;
+    box-shadow:  5px 5px 10px #1e1e1e, 
+             -5px -5px 10px #4c4c4c;
+}
+
+#patternColorWrapper {
+    display: none;
+    grid-area: patternColor;
     float: left;
     border-radius: 56px;
     margin-top: 10px;
