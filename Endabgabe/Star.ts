@@ -6,7 +6,7 @@ namespace EIA2_Endabgabe {
                 super(_info);
             else
                 super();
-            this.type = "Circle";
+            this.type = "Star";
         }
 
         public draw(): void {

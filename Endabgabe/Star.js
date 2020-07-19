@@ -7,7 +7,7 @@ var EIA2_Endabgabe;
                 super(_info);
             else
                 super();
-            this.type = "Circle";
+            this.type = "Star";
         }
         draw() {
             EIA2_Endabgabe.crc2.beginPath();
