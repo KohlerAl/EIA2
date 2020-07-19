@@ -81,7 +81,8 @@ var EIA2_Endabgabe;
         }
     }
     function createElement(_event) {
-        let id = _event.target.id;
+        let target = _event.target;
+        let id = target.id;
         for (let figure of EIA2_Endabgabe.figures) {
             figure.active = false;
         }
@@ -211,7 +212,8 @@ var EIA2_Endabgabe;
     }
     EIA2_Endabgabe.createBackground = createBackground;
     function handleFormInput(_event) {
-        let id = _event.target.id;
+        let target = _event.target;
+        let id = target.id;
         switch (id) {
             case "colorPicker":
                 let colorPicker = document.getElementById("colorPicker");
@@ -236,10 +238,18 @@ var EIA2_Endabgabe;
                         figure.resize(parseFloat(scaleValue.value));
                     }
                 }
+            case "speed":
+                for (let figure of EIA2_Endabgabe.figures) {
+                    if (figure.active == true) {
+                        figure.velocity.x = parseInt(speed.value);
+                        figure.velocity.y = parseInt(speed.value);
+                    }
+                }
         }
     }
     function setAnimation(_event) {
-        let id = _event.target.id;
+        let target = _event.target;
+        let id = target.id;
         for (let figure of EIA2_Endabgabe.figures) {
             if (figure.active == true) {
                 switch (id) {
@@ -264,9 +274,6 @@ var EIA2_Endabgabe;
                         figure.neon = false;
                         figure.threeD = false;
                         break;
-                    case "speed":
-                        figure.velocity.x = parseInt(speed.value);
-                        figure.velocity.y = parseInt(speed.value);
                     default:
                         break;
                 }
@@ -300,8 +307,9 @@ var EIA2_Endabgabe;
         for (let entry of EIA2_Endabgabe.figures) {
             entry.active = false;
         }
-        console.log(_event.target.id);
-        let num = parseInt(_event.target.id);
+        let target = _event.target;
+        console.log(target.id);
+        let num = parseInt(target.id);
         EIA2_Endabgabe.figures[num].active = true;
     }
 })(EIA2_Endabgabe || (EIA2_Endabgabe = {}));

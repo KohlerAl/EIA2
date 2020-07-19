@@ -56,8 +56,7 @@ namespace EIA2_Endabgabe {
         save.addEventListener("click", getName);
 
         form = <HTMLFormElement>document.querySelector("form");
-        form.addEventListener("change", handleFormInput);
-
+        form.addEventListener("change", handleFormInput); 
 
         forms = <HTMLDivElement>document.getElementById("forms");
         forms.addEventListener("click", createElement);
@@ -106,8 +105,9 @@ namespace EIA2_Endabgabe {
         }
     }
 
-    function createElement(_event: any): void {
-        let id: string = _event.target.id;
+    function createElement(_event: MouseEvent): void {
+        let target: HTMLElement = <HTMLElement>_event.target; 
+        let id: string = target.id;
         for (let figure of figures) {
             figure.active = false;
         }
@@ -150,22 +150,22 @@ namespace EIA2_Endabgabe {
             default:
                 break;
         }
-        updateList(); 
+        updateList();
     }
 
     function updateList(): void {
-        while(allForms.firstChild){
+        while (allForms.firstChild) {
             allForms.removeChild(allForms.firstChild)
         }
-        let title: HTMLSpanElement = document.createElement("span"); 
+        let title: HTMLSpanElement = document.createElement("span");
         title.innerText = "All Elements on your canvas are listed here!";
-        allForms.appendChild(title); 
+        allForms.appendChild(title);
         for (let entry of figures) {
-            let list: HTMLSpanElement = document.createElement("span"); 
+            let list: HTMLSpanElement = document.createElement("span");
             list.setAttribute("id", figures.indexOf(entry).toString());
             list.innerText = entry.type, "  color: " + entry.color;
             list.addEventListener("click", setActive);
-            allForms.appendChild(list);  
+            allForms.appendChild(list);
         }
     }
 
@@ -248,8 +248,9 @@ namespace EIA2_Endabgabe {
         backgroundImage = crc2.getImageData(0, 0, canvas.width, canvas.height);
     }
 
-    function handleFormInput(_event: any): void {
-        let id: string = _event.target.id;
+    function handleFormInput(_event: Event): void {
+        let target: HTMLElement = <HTMLElement>_event.target;
+        let id: string = target.id;
         switch (id) {
             case "colorPicker":
                 let colorPicker: HTMLInputElement = <HTMLInputElement>document.getElementById("colorPicker");
@@ -274,12 +275,20 @@ namespace EIA2_Endabgabe {
                         figure.resize(parseFloat(scaleValue.value));
                     }
                 }
+            case "speed":
+                for (let figure of figures) {
+                    if (figure.active == true) {
+                        figure.velocity.x = parseInt(speed.value);
+                        figure.velocity.y = parseInt(speed.value);
+                    }
+                }
 
         }
     }
 
-    function setAnimation(_event: any): void {
-        let id: string = _event.target.id;
+    function setAnimation(_event: MouseEvent): void {
+        let target: HTMLElement = <HTMLElement>_event.target;
+        let id: string = target.id;
         for (let figure of figures) {
             if (figure.active == true) {
                 switch (id) {
@@ -304,9 +313,6 @@ namespace EIA2_Endabgabe {
                         figure.neon = false;
                         figure.threeD = false;
                         break;
-                    case "speed":
-                        figure.velocity.x = parseInt(speed.value);
-                        figure.velocity.y = parseInt(speed.value);
                     default:
                         break;
                 }
@@ -330,7 +336,7 @@ namespace EIA2_Endabgabe {
     function deleteElement(_figure: Form): void {
         let index: number = figures.indexOf(_figure);
         figures.splice(index, 1);
-        updateList(); 
+        updateList();
     }
 
     function getName(): void {
@@ -342,12 +348,13 @@ namespace EIA2_Endabgabe {
             savePicture(pictureName);
     }
 
-    function setActive(_event: any): void {
-        for(let entry of figures) {
-            entry.active = false; 
+    function setActive(_event: MouseEvent): void {
+        for (let entry of figures) {
+            entry.active = false;
         }
-        console.log(_event.target.id); 
-        let num: number = parseInt(_event.target.id); 
-        figures[num].active = true; 
+        let target: HTMLElement = <HTMLElement>_event.target;
+        console.log(target.id);
+        let num: number = parseInt(target.id);
+        figures[num].active = true;
     }
 }
