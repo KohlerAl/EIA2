@@ -1,5 +1,6 @@
 namespace EIA2_Endabgabe {
     let url: string = "https://agkeia.herokuapp.com/";
+    let options: string[]; 
 
     export interface PicturePart {
         active: boolean,
@@ -10,9 +11,34 @@ namespace EIA2_Endabgabe {
         moveType: FORM_MOVE,
         color: string,
         velocity: Vector,
+        neon: boolean; 
+        threeD: boolean; 
         type: string
     }
+
+    
     export function savePicture(_name: string): void {
+        console.log(options)
+        if(options) {
+            checkNames(_name)
+        }
+        if(true) {
+            insertPicture(_name); 
+        }
+    }
+
+    function checkNames(_name: string): boolean {
+        for(let i: number = 0; i < options.length; i++) {
+            if(options[i] == _name) {
+                alert("This name is already taken! Please choose another one!");
+                return false; 
+            }            
+        }
+        return true;
+
+    }
+
+    function insertPicture(_name: string): void {
         let information: PicturePart[] = [];
         information.push()
         for (let figure of figures) {
@@ -25,7 +51,10 @@ namespace EIA2_Endabgabe {
                 "moveType": figure.moveType,
                 "color": figure.color,
                 "velocity": figure.velocity,
+                "neon": figure.neon, 
+                "threeD": figure.threeD, 
                 "type": figure.type,
+
             }
             information.push(form);
         }
@@ -41,12 +70,11 @@ namespace EIA2_Endabgabe {
     }
 
     async function sendData(_information: PicturePart[], _name: string): Promise<void> {
+        console.log("Hi")
         let name: string = _name.replace(" ", "_")
-
         let canvasInfo: string[] = [];
         let width: string = (Math.floor(canvas.width)).toString();
         let height: string = (Math.floor(canvas.height)).toString();
-        console.log(background);
         canvasInfo.push(width, height, background);
         let canvasLook: string = JSON.stringify(canvasInfo);
         let canvasQuery: URLSearchParams = new URLSearchParams(canvasLook)
@@ -60,12 +88,15 @@ namespace EIA2_Endabgabe {
         if (responseText != "") {
             alert("Your picture " + _name + " has been saved!")
         }
+        findPictures(); 
     }
 
     function createDatalist(_response: string) {
         let masterpiece: HTMLDataListElement = <HTMLDataListElement>document.getElementById("masterpiece");
-        let options: string[] = _response.split(",");
-        console.log(options, options.length);
+        options = _response.split(",");
+        while(masterpiece.firstChild) {
+            masterpiece.removeChild(masterpiece.firstChild);
+        }
 
         for (let entry of options) {
             if (entry == "") {
@@ -81,54 +112,49 @@ namespace EIA2_Endabgabe {
     }
 
     export async function loadPicture(): Promise<void> {
+        figures = []; 
         let name: string = creations.value;
         let response: Response = await fetch(url + "?" + "findPicture&" + name);
         let responseText: string = await response.text();
         let pretty: string = responseText.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
         let removeName: string = pretty.replace(name, "");
         let prettier: string = removeName.replace(/,,,/g, ",");
-        console.log(prettier);
-        let removeKey: string = prettier.replace(/type:|active:|size:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "")
+        let removeKey: string = prettier.replace(/type:|active:|size:|neon:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "")
         let data: string[] = removeKey.split(",");
         canvas.width = parseInt(data[1]);
         canvas.height = parseInt(data[2]);
         createBackground(data[3]);
         data.splice(0, 4);
+        console.log(data); 
         let info: string[] = []; 
-        console.log("DATA " + data); 
         for (let i: number = 0; i < data.length; i++) {
             switch (data[i]) {
                 case ("Triangle"):
-                    console.log(info); 
                     let triangle: Triangle = new Triangle(info);
                     triangle.draw();
                     info = []; 
                     figures.push(triangle);
                     break;
                 case ("Ellipse"):
-                    console.log(info); 
                     let ellipse: Ellipse = new Ellipse(info);
                     ellipse.draw();
                     info = []; 
                     figures.push(ellipse);
                     break;
                 case ("Circle"):
-                    console.log(info); 
-                    let circle: Triangle = new Triangle(info);
+                    let circle: Circle = new Circle(info);
                     circle.draw();
                     info = []; 
                     figures.push(circle);
                     break;
                 case ("Square"):
-                    console.log(info); 
-                    let square: Triangle = new Triangle(info);
+                    let square: Square = new Square(info);
                     square.draw();
                     info = []; 
                     figures.push(square);
                     break;
                 case ("Line"):
-                    console.log(info); 
-                    let figure: Triangle = new Triangle(info);
+                    let figure: Line = new Line(info);
                     figure.draw();
                     info = []; 
                     figures.push(figure);

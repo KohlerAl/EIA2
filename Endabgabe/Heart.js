@@ -1,20 +1,28 @@
 "use strict";
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
-    class Ellipse extends EIA2_Endabgabe.Form {
+    class Heart extends EIA2_Endabgabe.Form {
         constructor(_info) {
             if (_info)
                 super(_info);
             else
                 super();
-            this.type = "Ellipse";
+            this.position.x = 100;
+            this.position.y = 100;
+            this.type = "Heart";
         }
         draw() {
             EIA2_Endabgabe.crc2.beginPath();
             EIA2_Endabgabe.crc2.save();
             EIA2_Endabgabe.crc2.translate(this.position.x, this.position.y);
             EIA2_Endabgabe.crc2.rotate(this.rotation * Math.PI / 180);
-            EIA2_Endabgabe.crc2.ellipse(0, 0, this.size.x, this.size.y / 2, this.rotation, 0, 2 * Math.PI);
+            EIA2_Endabgabe.crc2.moveTo(75, 40);
+            EIA2_Endabgabe.crc2.bezierCurveTo(75, 37, 70, 25, 50, 25);
+            EIA2_Endabgabe.crc2.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
+            EIA2_Endabgabe.crc2.bezierCurveTo(20, 80, 40, 102, 75, 120);
+            EIA2_Endabgabe.crc2.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
+            EIA2_Endabgabe.crc2.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
+            EIA2_Endabgabe.crc2.bezierCurveTo(85, 25, 75, 37, 75, 40);
             if (this.neon == true) {
                 EIA2_Endabgabe.crc2.globalCompositeOperation = "lighter";
                 EIA2_Endabgabe.crc2.shadowColor = this.color;
@@ -42,13 +50,11 @@ var EIA2_Endabgabe;
             }
             if (this.active == true) {
                 EIA2_Endabgabe.crc2.strokeStyle = "red";
-                EIA2_Endabgabe.crc2.lineWidth = 4;
+                EIA2_Endabgabe.crc2.stroke();
             }
             else {
-                EIA2_Endabgabe.crc2.strokeStyle = this.color;
+                EIA2_Endabgabe.crc2.stroke();
             }
-            EIA2_Endabgabe.crc2.fillStyle = this.color;
-            EIA2_Endabgabe.crc2.stroke();
             EIA2_Endabgabe.crc2.restore();
             EIA2_Endabgabe.crc2.closePath();
         }
@@ -65,7 +71,7 @@ var EIA2_Endabgabe;
             super.resize(_factor);
         }
         move() {
-            super.move(0.01);
+            super.move(1);
             if (this.position.x < 0)
                 this.position.x += EIA2_Endabgabe.crc2.canvas.width;
             if (this.position.y < 0)
@@ -76,6 +82,6 @@ var EIA2_Endabgabe;
                 this.position.y -= EIA2_Endabgabe.crc2.canvas.height;
         }
     }
-    EIA2_Endabgabe.Ellipse = Ellipse;
+    EIA2_Endabgabe.Heart = Heart;
 })(EIA2_Endabgabe || (EIA2_Endabgabe = {}));
-//# sourceMappingURL=Ellipse.js.map
+//# sourceMappingURL=Heart.js.map

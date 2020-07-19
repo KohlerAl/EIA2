@@ -1,9 +1,9 @@
 "use strict";
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
+    EIA2_Endabgabe.figures = [];
     let backgroundImage;
     let backgroundPattern = "plain";
-    EIA2_Endabgabe.figures = [];
     let canvasWidth;
     let canvasHeight;
     let backgroundColorWrapper;
@@ -16,6 +16,8 @@ var EIA2_Endabgabe;
     let h3;
     let save;
     let speed;
+    let formOverview;
+    let allForms;
     window.addEventListener("load", handleLoad);
     function handleLoad() {
         EIA2_Endabgabe.canvas = document.querySelector("canvas");
@@ -56,6 +58,11 @@ var EIA2_Endabgabe;
         patternColorWrapper.style.display = "none";
         canvasHeight.addEventListener("change", setCanvasHeight);
         canvasWidth.addEventListener("change", setCanvasWidth);
+        formOverview = document.getElementById("formOverview");
+        allForms = document.getElementById("allForms");
+        allForms.addEventListener("change", setActive);
+        EIA2_Endabgabe.canvas.width = 500;
+        EIA2_Endabgabe.canvas.height = 700;
         EIA2_Endabgabe.findPictures();
         createBackground();
         window.setInterval(animate, 30);
@@ -107,14 +114,30 @@ var EIA2_Endabgabe;
                 line.draw();
                 EIA2_Endabgabe.figures.push(line);
                 break;
+            case "heart":
+                let heart = new EIA2_Endabgabe.Heart();
+                heart.draw();
+                EIA2_Endabgabe.figures.push(heart);
+                break;
+            case "star":
+                let star = new EIA2_Endabgabe.Star();
+                star.draw();
+                EIA2_Endabgabe.figures.push(star);
+                break;
             default:
                 break;
         }
+        let num = EIA2_Endabgabe.figures.length - 1;
+        let option = document.createElement("option");
+        option.setAttribute("name", EIA2_Endabgabe.figures[num].type + " " + num);
+        option.innerText = num + 1 + ".  " + EIA2_Endabgabe.figures[num].type;
+        formOverview.appendChild(option);
+        console.log(option, num);
     }
     function animate() {
         EIA2_Endabgabe.crc2.putImageData(backgroundImage, 0, 0);
         for (let figure of EIA2_Endabgabe.figures) {
-            figure.move();
+            figure.move(0.5);
             figure.draw();
         }
     }
@@ -129,21 +152,7 @@ var EIA2_Endabgabe;
         else {
             backgroundPattern = "plain";
         }
-        console.log(backgroundPattern);
         createBackground();
-    }
-    function handleClick(_event) {
-        let y = _event.clientY;
-        let x = _event.clientX;
-        console.log("x and y", x, y);
-        for (let figure of EIA2_Endabgabe.figures) {
-            if (figure.active == true) {
-                console.log("figure position before", figure.position);
-                figure.position.x = x;
-                figure.position.y = y;
-                console.log("figure position after", figure.position);
-            }
-        }
     }
     function setCanvasHeight() {
         let newHeight = parseInt(canvasHeight.value);
@@ -161,7 +170,6 @@ var EIA2_Endabgabe;
         }
         else
             EIA2_Endabgabe.background = EIA2_Endabgabe.backgroundColor.value;
-        console.log(backgroundPattern);
         if (backgroundPattern == "dots") {
             let pattern = document.createElement('canvas').getContext('2d');
             pattern.beginPath();
@@ -217,8 +225,8 @@ var EIA2_Endabgabe;
             case "scaleValue":
                 let scaleValue = document.getElementById("scaleValue");
                 for (let figure of EIA2_Endabgabe.figures) {
-                    if (figure.active == true) {
-                        figure.resize(parseInt(scaleValue.value));
+                    if (figure.active == true && figure.type != "Heart") {
+                        figure.resize(parseFloat(scaleValue.value));
                     }
                 }
         }
@@ -237,6 +245,18 @@ var EIA2_Endabgabe;
                     case "move":
                         figure.moveType = EIA2_Endabgabe.FORM_MOVE.MOVE;
                         break;
+                    case "neon":
+                        figure.neon = true;
+                        figure.threeD = false;
+                        break;
+                    case "threeD":
+                        figure.neon = false;
+                        figure.threeD = true;
+                        break;
+                    case "stop":
+                        figure.neon = false;
+                        figure.threeD = false;
+                        break;
                     case "speed":
                         figure.velocity.x = parseInt(speed.value);
                         figure.velocity.y = parseInt(speed.value);
@@ -246,15 +266,16 @@ var EIA2_Endabgabe;
             }
         }
     }
-    /*  function setActive(_figure: Form) {
-         for (let figure of figures) {
-             if (figure.active == true) {
-                 figure.active = false;
-             }
-         }
-         _figure.active = true;
-     }
-  */
+    function handleClick(_event) {
+        let y = _event.clientY;
+        let x = _event.clientX;
+        for (let figure of EIA2_Endabgabe.figures) {
+            if (figure.active == true) {
+                figure.position.x = x;
+                figure.position.y = y;
+            }
+        }
+    }
     function deleteElement(_figure) {
         let index = EIA2_Endabgabe.figures.indexOf(_figure);
         EIA2_Endabgabe.figures.splice(index, 1);
@@ -266,6 +287,8 @@ var EIA2_Endabgabe;
         }
         else
             EIA2_Endabgabe.savePicture(pictureName);
+    }
+    function setActive(_event) {
     }
 })(EIA2_Endabgabe || (EIA2_Endabgabe = {}));
 //# sourceMappingURL=Endabgabe.js.map

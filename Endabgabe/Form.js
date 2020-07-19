@@ -9,14 +9,17 @@ var EIA2_Endabgabe;
     class Form {
         constructor(_info) {
             this.velocity = new EIA2_Endabgabe.Vector(5, 5);
+            console.log(_info);
             if (_info) {
                 if (_info[0] == "true") {
                     this.active = true;
+                    console.log("This is true");
                 }
                 else
                     this.active = false;
                 this.size = new EIA2_Endabgabe.Vector(parseInt(_info[1]), parseInt(_info[2]));
                 this.position = new EIA2_Endabgabe.Vector(parseInt(_info[3]), parseInt(_info[4]));
+                console.log(this.position);
                 this.rotation = parseInt(_info[5]);
                 if (_info[6] == "move")
                     this.moveType = FORM_MOVE.MOVE;
@@ -24,17 +27,29 @@ var EIA2_Endabgabe;
                     this.moveType = FORM_MOVE.ROTATE;
                 this.color = _info[7];
                 this.velocity = new EIA2_Endabgabe.Vector(parseInt(_info[8]), parseInt(_info[9]));
+                if (_info[10] == "true") {
+                    this.neon == true;
+                }
+                else
+                    this.neon == false;
+                if (_info[11] == "true") {
+                    this.threeD == true;
+                }
+                else
+                    this.threeD == false;
             }
-            this.color = "#ffffff";
-            this.size = new EIA2_Endabgabe.Vector(40, 40);
-            this.position = new EIA2_Endabgabe.Vector(50, 50);
-            this.rotation = 0;
-            this.active = true;
-            this.moveType = FORM_MOVE.MOVE;
-            this.hitAreaX = new EIA2_Endabgabe.Vector(this.position.x + this.size.x / 2, this.position.x - this.size.x / 2);
-            this.hitAreaY = new EIA2_Endabgabe.Vector(this.position.y + this.size.y / 2, this.position.y - this.size.y / 2);
+            else {
+                this.color = "#ffffff";
+                this.size = new EIA2_Endabgabe.Vector(40, 40);
+                this.position = new EIA2_Endabgabe.Vector(50, 50);
+                this.rotation = 0;
+                this.active = true;
+                this.moveType = FORM_MOVE.MOVE;
+                this.neon = false;
+                this.threeD = false;
+            }
         }
-        move() {
+        move(_rotateValue) {
             switch (this.moveType) {
                 case FORM_MOVE.MOVE:
                     let offset = new EIA2_Endabgabe.Vector(this.velocity.x, this.velocity.y);
@@ -42,7 +57,7 @@ var EIA2_Endabgabe;
                     this.position.add(offset);
                     break;
                 case FORM_MOVE.ROTATE:
-                    this.rotation += 0.01;
+                    this.rotation += _rotateValue;
                     break;
                 default:
                     break;
@@ -56,7 +71,6 @@ var EIA2_Endabgabe;
         }
         resize(_factor) {
             this.size.scale(_factor);
-            console.log(this.size);
         }
         changePosition(_x, _y) {
             this.position.x = _x;

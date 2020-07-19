@@ -1,28 +1,30 @@
 namespace EIA2_Endabgabe {
     export let canvas: HTMLCanvasElement;
     export let crc2: CanvasRenderingContext2D;
+    export let figures: Form[] = [];
+    export let backgroundColor: HTMLInputElement;
+    export let background: string;
+    export let creations: HTMLInputElement;
+
     let backgroundImage: ImageData;
     let backgroundPattern: string = "plain";
-    export let figures: Form[] = [];
-
-    export let backgroundColor: HTMLInputElement;
 
     let canvasWidth: HTMLInputElement;
     let canvasHeight: HTMLInputElement;
     let backgroundColorWrapper: HTMLElement;
     let patterns: HTMLDivElement;
 
-    let patternColor: HTMLInputElement; 
-    let patternColorWrapper: HTMLDivElement; 
+    let patternColor: HTMLInputElement;
+    let patternColorWrapper: HTMLDivElement;
 
     let forms: HTMLDivElement;
     let animations: HTMLDivElement;
     let form: HTMLFormElement;
     let h3: HTMLHeadingElement;
     let save: HTMLButtonElement;
-    export let background: string; 
-    export let creations: HTMLInputElement; 
-    let speed: HTMLInputElement; 
+    let speed: HTMLInputElement;
+    let formOverview: HTMLDataListElement;
+    let allForms: HTMLInputElement;
 
 
     window.addEventListener("load", handleLoad);
@@ -35,7 +37,7 @@ namespace EIA2_Endabgabe {
         canvasHeight = <HTMLInputElement>document.getElementById("canvasHeight");
         backgroundColorWrapper = <HTMLDivElement>document.getElementById("backgroundColorWrapper");
         patternColorWrapper = <HTMLDivElement>document.getElementById("patternColorWrapper");
-        patternColor = <HTMLInputElement>document.getElementById("patternColor"); 
+        patternColor = <HTMLInputElement>document.getElementById("patternColor");
 
         patterns = <HTMLDivElement>document.getElementById("patterns");
         patterns.addEventListener("click", createPattern);
@@ -44,10 +46,10 @@ namespace EIA2_Endabgabe {
         canvas.addEventListener("click", handleClick);
 
         backgroundColor = <HTMLInputElement>document.getElementById("backgroundColor");
-        backgroundColor.addEventListener("change", function(): void{
+        backgroundColor.addEventListener("change", function (): void {
             createBackground();
         });
-        patternColor.addEventListener("change", function(): void{
+        patternColor.addEventListener("change", function (): void {
             createBackground();
         });
 
@@ -61,11 +63,11 @@ namespace EIA2_Endabgabe {
         forms = <HTMLDivElement>document.getElementById("forms");
         forms.addEventListener("click", createElement);
 
-        creations = <HTMLInputElement>document.getElementById("creations"); 
-        creations.addEventListener("change", loadPicture); 
+        creations = <HTMLInputElement>document.getElementById("creations");
+        creations.addEventListener("change", loadPicture);
         animations = <HTMLDivElement>document.getElementById("animations");
         animations.addEventListener("click", setAnimation);
-        speed = <HTMLInputElement>document.getElementById("speed"); 
+        speed = <HTMLInputElement>document.getElementById("speed");
 
         h3 = <HTMLHeadingElement>document.querySelector("h3");
         h3.addEventListener("click", toggleCanvasProperty);
@@ -73,10 +75,17 @@ namespace EIA2_Endabgabe {
         canvasHeight.style.display = "none";
         backgroundColorWrapper.style.display = "none";
         patterns.style.display = "none";
-        patternColorWrapper.style.display = "none"; 
+        patternColorWrapper.style.display = "none";
 
         canvasHeight.addEventListener("change", setCanvasHeight);
         canvasWidth.addEventListener("change", setCanvasWidth);
+
+        formOverview = <HTMLDataListElement>document.getElementById("formOverview");
+        allForms = <HTMLInputElement>document.getElementById("allForms");
+        allForms.addEventListener("change", setActive);
+
+        canvas.width = 500;
+        canvas.height = 700;
 
         findPictures();
         createBackground();
@@ -88,14 +97,14 @@ namespace EIA2_Endabgabe {
             canvasWidth.style.display = "inline";
             canvasHeight.style.display = "inline";
             backgroundColorWrapper.style.display = "inline";
-            patternColorWrapper.style.display = "inline"; 
+            patternColorWrapper.style.display = "inline";
             patterns.style.display = "inline";
         }
         else {
             canvasWidth.style.display = "none";
             canvasHeight.style.display = "none";
             backgroundColorWrapper.style.display = "none";
-            patternColorWrapper.style.display = "none"; 
+            patternColorWrapper.style.display = "none";
             patterns.style.display = "none";
         }
     }
@@ -131,15 +140,31 @@ namespace EIA2_Endabgabe {
                 line.draw();
                 figures.push(line);
                 break;
+            case "heart":
+                let heart: Heart = new Heart();
+                heart.draw();
+                figures.push(heart);
+                break;
+            case "star":
+                let star: Star = new Star();
+                star.draw();
+                figures.push(star);
+                break;
             default:
                 break;
         }
+        let num: number = figures.length - 1;
+        let option: HTMLOptionElement = document.createElement("option");
+        option.setAttribute("name", figures[num].type + " " + num);
+        option.innerText = num + 1 + ".  " + figures[num].type;
+        formOverview.appendChild(option);
+        console.log(option, num);
     }
 
     function animate(): void {
         crc2.putImageData(backgroundImage, 0, 0);
         for (let figure of figures) {
-            figure.move();
+            figure.move(0.5);
             figure.draw();
         }
     }
@@ -155,23 +180,7 @@ namespace EIA2_Endabgabe {
         else {
             backgroundPattern = "plain";
         }
-        console.log(backgroundPattern); 
         createBackground();
-    }
-
-    function handleClick(_event: MouseEvent): void {
-        let y: number = _event.clientY;
-        let x: number = _event.clientX;
-        console.log("x and y", x, y);
-
-        for (let figure of figures) {
-            if (figure.active == true) {
-                console.log("figure position before", figure.position);
-                figure.position.x = x; 
-                figure.position.y = y; 
-                console.log("figure position after", figure.position);
-            }
-        }
     }
 
     function setCanvasHeight(): void {
@@ -187,19 +196,18 @@ namespace EIA2_Endabgabe {
     }
 
     export function createBackground(_color?: string): void {
-        if(_color){
-            background = _color; 
+        if (_color) {
+            background = _color;
         }
         else
-        background = backgroundColor.value;
+            background = backgroundColor.value;
 
-        console.log(backgroundPattern); 
         if (backgroundPattern == "dots") {
             let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
-            pattern.beginPath(); 
+            pattern.beginPath();
             pattern.canvas.width = 20;
             pattern.canvas.height = 20;
-            pattern.fillStyle = background; 
+            pattern.fillStyle = background;
             pattern.fillRect(0, 0, pattern.canvas.width, pattern.canvas.height);
             pattern.arc(10, 10, 9, 0, 2 * Math.PI);
             pattern.strokeStyle = patternColor.value;
@@ -211,7 +219,7 @@ namespace EIA2_Endabgabe {
 
         else if (backgroundPattern == "squares") {
             let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
-            pattern.beginPath(); 
+            pattern.beginPath();
             pattern.canvas.width = 10;
             pattern.canvas.height = 10;
             pattern.fillStyle = background;
@@ -254,8 +262,8 @@ namespace EIA2_Endabgabe {
             case "scaleValue":
                 let scaleValue: HTMLInputElement = <HTMLInputElement>document.getElementById("scaleValue");
                 for (let figure of figures) {
-                    if (figure.active == true) {
-                        figure.resize(parseInt(scaleValue.value));
+                    if (figure.active == true && figure.type != "Heart") {
+                        figure.resize(parseFloat(scaleValue.value));
                     }
                 }
 
@@ -276,9 +284,21 @@ namespace EIA2_Endabgabe {
                     case "move":
                         figure.moveType = FORM_MOVE.MOVE;
                         break;
-                    case "speed": 
-                        figure.velocity.x = parseInt(speed.value); 
-                        figure.velocity.y = parseInt(speed.value); 
+                    case "neon":
+                        figure.neon = true;
+                        figure.threeD = false;
+                        break;
+                    case "threeD":
+                        figure.neon = false;
+                        figure.threeD = true;
+                        break;
+                    case "stop":
+                        figure.neon = false;
+                        figure.threeD = false;
+                        break;
+                    case "speed":
+                        figure.velocity.x = parseInt(speed.value);
+                        figure.velocity.y = parseInt(speed.value);
                     default:
                         break;
                 }
@@ -286,26 +306,33 @@ namespace EIA2_Endabgabe {
         }
     }
 
-   /*  function setActive(_figure: Form) {
+    function handleClick(_event: MouseEvent): void {
+        let y: number = _event.clientY;
+        let x: number = _event.clientX;
+
         for (let figure of figures) {
             if (figure.active == true) {
-                figure.active = false;
+                figure.position.x = x;
+                figure.position.y = y;
             }
         }
-        _figure.active = true;
     }
- */
-    function deleteElement(_figure: Form) {
+
+
+    function deleteElement(_figure: Form): void {
         let index: number = figures.indexOf(_figure);
         figures.splice(index, 1);
     }
 
     function getName(): void {
-        let pictureName = prompt("Please enter a name for your Picture!"); 
+        let pictureName = prompt("Please enter a name for your Picture!");
         if (pictureName == null || pictureName == "") {
             alert("Please enter a word or else the Picture cannot be saved")
         }
-        else 
-        savePicture(pictureName); 
+        else
+            savePicture(pictureName);
+    }
+
+    function setActive(_event: Event): void {
     }
 }

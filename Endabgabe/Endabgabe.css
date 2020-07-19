@@ -5,12 +5,13 @@ body {
     grid-template-areas: 
     'canvas canvas title title . .'
     'canvas canvas styling styling styling styling'
-    'canvas canvas title2 title2  title2 .'
+    'canvas canvas . title2  title2 .'
+    'canvas canvas . title3  title3 .'
     'canvas canvas forms animations form form'
     'canvas canvas forms animations form form'
     'canvas canvas forms animations form form'
     'canvas canvas forms animations form form'
-    'canvas canvas forms animations form form'
+    'canvas canvas forms animations list list'
     'canvas canvas . . . .';
     grid-template-rows: minmax(0,60);
 }
@@ -20,12 +21,17 @@ canvas {
     margin-right: 10px;
 }
 
-p, h3, h4{
+p, h3, h4, h5{
     color: white;
 }
 
 h3 {
     grid-area: title; 
+}
+
+h5 {
+    grid-area: title3; 
+    margin: 2px; 
 }
 
 h3:hover{
@@ -51,12 +57,13 @@ form {
     grid-template-areas: 
     'form1 form2'
     'form3 form4'
-    'database database';
+    'form5 form6'
+    'database database1';
     grid-template-rows: minmax(0,60);
 }
 
+
 input {
-    width: 200px; 
     height: 50px; 
     margin: 10px; 
     width: 100px;
@@ -103,6 +110,14 @@ input::placeholder {
     'width height bckgrnd patternColor pattern';
 }
 
+#neon {
+    grid-area: button2;
+}
+
+#threeD {
+    grid-area: button4;
+}
+
 #circle {
     grid-area: btn3;
     color: #ff1969;
@@ -128,13 +143,21 @@ input::placeholder {
     color: #ff1106;
 }
 
-#circle, #triangle, #line, #square,  #save, #ellipse, #dots, #squares, #plain {
+#star {
+    color: #ffe23e; 
+}
+
+#heart {
+    color: #06ff27;
+}
+
+#circle, #triangle, #line, #square,  #save, #ellipse, #dots, #squares, #plain, #star, #heart, #moon {
     border-radius: 50%;
     background: linear-gradient(145deg, #303030, #292929);
     box-shadow:  5px 5px 10px #1b1b1b, 
              -5px -5px 10px #3f3f3f;
 }
-#rotate, #colorChange, #move, #sizeChange, #trash {
+#rotate, #colorChange, #move, #sizeChange, #trash, #figureX, #figureY,  #neon, #threeD, #stop {
     width: 100px;
     border-radius: 56px;
     background: linear-gradient(145deg, #303030, #292929);
@@ -200,9 +223,17 @@ input::placeholder {
              -5px -5px 10px #4c4c4c;
 }
 
+
 #scaleValue {
     grid-area: form2; 
+    margin-left: 10px; 
     width: 200px;
+    padding-left: 10px;
+}
+
+#allForms {
+    grid-area: list;
+    width: 400px;
     padding-left: 10px;
 }
 
@@ -224,7 +255,7 @@ input::placeholder {
 }
 
 #save  {
-    grid-area: form4;
+    grid-area: database1;
 }
 
 #trash {
@@ -286,8 +317,24 @@ input::placeholder {
     display: grid;
     grid-template-areas: 
     'button1'
-    'button2'
     'button3'
+    'button2'
     'button4'
     'delete';
+}
+
+#speed {
+    grid-area: form4;
+    width: 250px; 
+    height: 55px;
+    margin-top: 10px;
+}
+
+#speedText {
+    display: block;
+    grid-area: form4; 
+    font-size: 13px;
+    color: white; 
+    margin: 12px;
+    margin-left: 25px;    
 }

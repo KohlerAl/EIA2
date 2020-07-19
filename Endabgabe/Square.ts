@@ -12,23 +12,47 @@ namespace EIA2_Endabgabe {
             crc2.beginPath();
             crc2.save(); 
             crc2.translate(this.position.x, this.position.y); 
-            crc2.rotate(this.rotation); 
+            crc2.rotate(this.rotation * Math.PI / 180); 
             crc2.moveTo(this.size.x/2, this.size.y/2);
             crc2.lineTo(this.size.x/2, -this.size.y/2);
             crc2.lineTo(-this.size.x/2, -this.size.y/2);
             crc2.lineTo(-this.size.x/2, this.size.y/2);
             crc2.lineTo(this.size.x/2, this.size.y/2);
 
+            if (this.neon == true) {
+                crc2.globalCompositeOperation = "lighter";
+                crc2.shadowColor = this.color;
+                crc2.lineWidth = 8;
+                crc2.shadowOffsetX = 2;
+                crc2.shadowOffsetY = 2;
+                crc2.shadowBlur = 15;
+                crc2.strokeStyle = "#ffffff88"
+            }
+            else if (this.threeD == true) {
+                crc2.fillStyle = "414141"; 
+                crc2.shadowBlur = 10; 
+                crc2.shadowColor = "cyan"
+                crc2.shadowOffsetX = -5; 
+                crc2.shadowOffsetY = 0; 
+                crc2.lineWidth = 2;
+                crc2.strokeStyle = "#ff3a1f00"; 
+                crc2.fill(); 
+            }
+            else {
+                crc2.strokeStyle = this.color;
+                crc2.fillStyle = this.color;
+                crc2.lineWidth = 4;
+                crc2.fill(); }
+
             if (this.active == true) {
                 crc2.strokeStyle = "red";
-                crc2.lineWidth = 2; 
+                crc2.lineWidth = 4; 
             }
             else {
                 crc2.strokeStyle = this.color;
             }
             crc2.fillStyle = this.color; 
             crc2.stroke(); 
-            crc2.fill();  
             crc2.restore(); 
             crc2.closePath(); 
         }
@@ -50,7 +74,7 @@ namespace EIA2_Endabgabe {
         }
 
         public move(): void {
-            super.move(); 
+            super.move(1); 
             if (this.position.x < 0)
                 this.position.x += crc2.canvas.width;
             if (this.position.y < 0)

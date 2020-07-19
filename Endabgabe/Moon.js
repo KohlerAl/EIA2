@@ -1,56 +1,47 @@
 "use strict";
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
-    class Circle extends EIA2_Endabgabe.Form {
+    class Moon extends EIA2_Endabgabe.Form {
         constructor(_info) {
             if (_info)
                 super(_info);
             else
                 super();
-            this.type = "Circle";
+            this.type = "Moon";
         }
         draw() {
             EIA2_Endabgabe.crc2.beginPath();
             EIA2_Endabgabe.crc2.save();
             EIA2_Endabgabe.crc2.translate(this.position.x, this.position.y);
+            EIA2_Endabgabe.crc2.rotate(this.rotation * Math.PI / 180);
             EIA2_Endabgabe.crc2.arc(0, 0, this.size.x, 0, 2 * Math.PI);
-            if (this.neon == true) {
-                EIA2_Endabgabe.crc2.globalCompositeOperation = "lighter";
-                EIA2_Endabgabe.crc2.shadowColor = this.color;
-                EIA2_Endabgabe.crc2.lineWidth = 8;
-                EIA2_Endabgabe.crc2.shadowOffsetX = 2;
-                EIA2_Endabgabe.crc2.shadowOffsetY = 2;
-                EIA2_Endabgabe.crc2.shadowBlur = 15;
-                EIA2_Endabgabe.crc2.strokeStyle = "#ffffff88";
-            }
-            else if (this.threeD == true) {
-                EIA2_Endabgabe.crc2.fillStyle = "414141";
-                EIA2_Endabgabe.crc2.shadowBlur = 10;
-                EIA2_Endabgabe.crc2.shadowColor = "cyan";
-                EIA2_Endabgabe.crc2.shadowOffsetX = -5;
-                EIA2_Endabgabe.crc2.shadowOffsetY = 0;
-                EIA2_Endabgabe.crc2.lineWidth = 2;
-                EIA2_Endabgabe.crc2.strokeStyle = "#ff3a1f80";
-                EIA2_Endabgabe.crc2.fill();
-            }
-            else {
-                EIA2_Endabgabe.crc2.strokeStyle = this.color;
-                EIA2_Endabgabe.crc2.fillStyle = this.color;
-                EIA2_Endabgabe.crc2.lineWidth = 4;
-                EIA2_Endabgabe.crc2.fill();
-            }
+            EIA2_Endabgabe.crc2.globalCompositeOperation = "lighter";
+            EIA2_Endabgabe.crc2.shadowColor = "#ffffff66";
+            EIA2_Endabgabe.crc2.lineWidth = 4;
+            EIA2_Endabgabe.crc2.shadowOffsetX = 5;
+            EIA2_Endabgabe.crc2.shadowOffsetY = 5;
+            EIA2_Endabgabe.crc2.shadowBlur = 10;
             if (this.active == true) {
                 EIA2_Endabgabe.crc2.strokeStyle = "red";
-                EIA2_Endabgabe.crc2.lineWidth = 4;
+                ;
                 EIA2_Endabgabe.crc2.stroke();
             }
             else {
                 EIA2_Endabgabe.crc2.strokeStyle = this.color;
                 EIA2_Endabgabe.crc2.stroke();
             }
-            EIA2_Endabgabe.crc2.fillStyle = this.color;
             EIA2_Endabgabe.crc2.restore();
             EIA2_Endabgabe.crc2.closePath();
+            /* crc2.beginPath();
+            crc2.save();
+            crc2.translate(this.position.x, this.position.y);
+            crc2.rotate(this.rotation* Math.PI / 180);
+            crc2.arc(this.size.x/4, this.size.x/4, this.size.x/1.5, 0, 2 * Math.PI);
+            crc2.globalAlpha = 0.1;
+            crc2.fillStyle = "#000000";
+            crc2.fill();
+            crc2.restore();
+            crc2.closePath();  */
         }
         changeColor(_newColor) {
             super.changeColor(_newColor);
@@ -65,7 +56,7 @@ var EIA2_Endabgabe;
             super.resize(_factor);
         }
         move() {
-            super.move(0);
+            super.move(1);
             if (this.position.x < this.size.x)
                 this.position.x += EIA2_Endabgabe.crc2.canvas.width;
             if (this.position.y < this.size.y)
@@ -76,6 +67,6 @@ var EIA2_Endabgabe;
                 this.position.y -= EIA2_Endabgabe.crc2.canvas.height;
         }
     }
-    EIA2_Endabgabe.Circle = Circle;
+    EIA2_Endabgabe.Moon = Moon;
 })(EIA2_Endabgabe || (EIA2_Endabgabe = {}));
-//# sourceMappingURL=Circle.js.map
+//# sourceMappingURL=Moon.js.map
