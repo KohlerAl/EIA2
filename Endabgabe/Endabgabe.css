@@ -34,7 +34,7 @@ h5 {
     margin: 2px; 
 }
 
-h3:hover{
+h3:hover, #allForms *:hover{
     cursor: pointer;
 }
 
@@ -337,4 +337,21 @@ input::placeholder {
     color: white; 
     margin: 12px;
     margin-left: 25px;    
+}
+
+#allForms * {
+    display: block;
+    height: 15px; 
+    padding-left: 10px; 
+    padding-top: 15px; 
+    color: white; 
+    border-radius: 50px;
+    font-size: 13px;
+}
+
+#allForms {
+    border-radius: 56px;
+    background: linear-gradient(145deg, #303030, #292929);
+    box-shadow:  5px 5px 10px #1b1b1b, 
+             -5px -5px 10px #3f3f3f;
 }

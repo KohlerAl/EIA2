@@ -16,7 +16,6 @@ var EIA2_Endabgabe;
     let h3;
     let save;
     let speed;
-    let formOverview;
     let allForms;
     window.addEventListener("load", handleLoad);
     function handleLoad() {
@@ -58,9 +57,7 @@ var EIA2_Endabgabe;
         patternColorWrapper.style.display = "none";
         canvasHeight.addEventListener("change", setCanvasHeight);
         canvasWidth.addEventListener("change", setCanvasWidth);
-        formOverview = document.getElementById("formOverview");
         allForms = document.getElementById("allForms");
-        allForms.addEventListener("change", setActive);
         EIA2_Endabgabe.canvas.width = 500;
         EIA2_Endabgabe.canvas.height = 700;
         EIA2_Endabgabe.findPictures();
@@ -127,12 +124,22 @@ var EIA2_Endabgabe;
             default:
                 break;
         }
-        let num = EIA2_Endabgabe.figures.length - 1;
-        let option = document.createElement("option");
-        option.setAttribute("name", EIA2_Endabgabe.figures[num].type + " " + num);
-        option.innerText = num + 1 + ".  " + EIA2_Endabgabe.figures[num].type;
-        formOverview.appendChild(option);
-        console.log(option, num);
+        updateList();
+    }
+    function updateList() {
+        while (allForms.firstChild) {
+            allForms.removeChild(allForms.firstChild);
+        }
+        let title = document.createElement("span");
+        title.innerText = "All Elements on your canvas are listed here!";
+        allForms.appendChild(title);
+        for (let entry of EIA2_Endabgabe.figures) {
+            let list = document.createElement("span");
+            list.setAttribute("id", EIA2_Endabgabe.figures.indexOf(entry).toString());
+            list.innerText = entry.type, "  color: " + entry.color;
+            list.addEventListener("click", setActive);
+            allForms.appendChild(list);
+        }
     }
     function animate() {
         EIA2_Endabgabe.crc2.putImageData(backgroundImage, 0, 0);
@@ -279,6 +286,7 @@ var EIA2_Endabgabe;
     function deleteElement(_figure) {
         let index = EIA2_Endabgabe.figures.indexOf(_figure);
         EIA2_Endabgabe.figures.splice(index, 1);
+        updateList();
     }
     function getName() {
         let pictureName = prompt("Please enter a name for your Picture!");
@@ -289,6 +297,12 @@ var EIA2_Endabgabe;
             EIA2_Endabgabe.savePicture(pictureName);
     }
     function setActive(_event) {
+        for (let entry of EIA2_Endabgabe.figures) {
+            entry.active = false;
+        }
+        console.log(_event.target.id);
+        let num = parseInt(_event.target.id);
+        EIA2_Endabgabe.figures[num].active = true;
     }
 })(EIA2_Endabgabe || (EIA2_Endabgabe = {}));
 //# sourceMappingURL=Endabgabe.js.map

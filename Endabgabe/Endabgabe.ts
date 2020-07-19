@@ -23,8 +23,7 @@ namespace EIA2_Endabgabe {
     let h3: HTMLHeadingElement;
     let save: HTMLButtonElement;
     let speed: HTMLInputElement;
-    let formOverview: HTMLDataListElement;
-    let allForms: HTMLInputElement;
+    let allForms: HTMLDivElement;
 
 
     window.addEventListener("load", handleLoad);
@@ -80,9 +79,7 @@ namespace EIA2_Endabgabe {
         canvasHeight.addEventListener("change", setCanvasHeight);
         canvasWidth.addEventListener("change", setCanvasWidth);
 
-        formOverview = <HTMLDataListElement>document.getElementById("formOverview");
-        allForms = <HTMLInputElement>document.getElementById("allForms");
-        allForms.addEventListener("change", setActive);
+        allForms = <HTMLDivElement>document.getElementById("allForms");
 
         canvas.width = 500;
         canvas.height = 700;
@@ -153,12 +150,23 @@ namespace EIA2_Endabgabe {
             default:
                 break;
         }
-        let num: number = figures.length - 1;
-        let option: HTMLOptionElement = document.createElement("option");
-        option.setAttribute("name", figures[num].type + " " + num);
-        option.innerText = num + 1 + ".  " + figures[num].type;
-        formOverview.appendChild(option);
-        console.log(option, num);
+        updateList(); 
+    }
+
+    function updateList(): void {
+        while(allForms.firstChild){
+            allForms.removeChild(allForms.firstChild)
+        }
+        let title: HTMLSpanElement = document.createElement("span"); 
+        title.innerText = "All Elements on your canvas are listed here!";
+        allForms.appendChild(title); 
+        for (let entry of figures) {
+            let list: HTMLSpanElement = document.createElement("span"); 
+            list.setAttribute("id", figures.indexOf(entry).toString());
+            list.innerText = entry.type, "  color: " + entry.color;
+            list.addEventListener("click", setActive);
+            allForms.appendChild(list);  
+        }
     }
 
     function animate(): void {
@@ -322,6 +330,7 @@ namespace EIA2_Endabgabe {
     function deleteElement(_figure: Form): void {
         let index: number = figures.indexOf(_figure);
         figures.splice(index, 1);
+        updateList(); 
     }
 
     function getName(): void {
@@ -333,6 +342,12 @@ namespace EIA2_Endabgabe {
             savePicture(pictureName);
     }
 
-    function setActive(_event: Event): void {
+    function setActive(_event: any): void {
+        for(let entry of figures) {
+            entry.active = false; 
+        }
+        console.log(_event.target.id); 
+        let num: number = parseInt(_event.target.id); 
+        figures[num].active = true; 
     }
 }
