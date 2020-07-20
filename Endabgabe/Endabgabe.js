@@ -15,7 +15,6 @@ var EIA2_Endabgabe;
     let form;
     let h3;
     let save;
-    let speed;
     let allForms;
     window.addEventListener("load", handleLoad);
     function handleLoad() {
@@ -47,7 +46,6 @@ var EIA2_Endabgabe;
         EIA2_Endabgabe.creations.addEventListener("change", EIA2_Endabgabe.loadPicture);
         animations = document.getElementById("animations");
         animations.addEventListener("click", setAnimation);
-        speed = document.getElementById("speed");
         h3 = document.querySelector("h3");
         h3.addEventListener("click", toggleCanvasProperty);
         canvasWidth.style.display = "none";
@@ -137,7 +135,7 @@ var EIA2_Endabgabe;
         for (let entry of EIA2_Endabgabe.figures) {
             let list = document.createElement("span");
             list.setAttribute("id", EIA2_Endabgabe.figures.indexOf(entry).toString());
-            list.innerText = entry.type, "  color: " + entry.color;
+            list.innerText = entry.type + "  color: " + entry.color;
             list.addEventListener("click", setActive);
             allForms.appendChild(list);
         }
@@ -150,7 +148,8 @@ var EIA2_Endabgabe;
         }
     }
     function createPattern(_event) {
-        let id = _event.target.id;
+        let target = _event.target;
+        let id = target.id;
         if (id == "dots") {
             backgroundPattern = "dots";
         }
@@ -239,6 +238,7 @@ var EIA2_Endabgabe;
                     }
                 }
             case "speed":
+                let speed = document.getElementById("speed");
                 for (let figure of EIA2_Endabgabe.figures) {
                     if (figure.active == true) {
                         figure.velocity.x = parseInt(speed.value);

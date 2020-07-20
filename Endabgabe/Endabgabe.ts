@@ -22,7 +22,6 @@ namespace EIA2_Endabgabe {
     let form: HTMLFormElement;
     let h3: HTMLHeadingElement;
     let save: HTMLButtonElement;
-    let speed: HTMLInputElement;
     let allForms: HTMLDivElement;
 
 
@@ -56,7 +55,7 @@ namespace EIA2_Endabgabe {
         save.addEventListener("click", getName);
 
         form = <HTMLFormElement>document.querySelector("form");
-        form.addEventListener("change", handleFormInput); 
+        form.addEventListener("change", handleFormInput);
 
         forms = <HTMLDivElement>document.getElementById("forms");
         forms.addEventListener("click", createElement);
@@ -65,7 +64,6 @@ namespace EIA2_Endabgabe {
         creations.addEventListener("change", loadPicture);
         animations = <HTMLDivElement>document.getElementById("animations");
         animations.addEventListener("click", setAnimation);
-        speed = <HTMLInputElement>document.getElementById("speed");
 
         h3 = <HTMLHeadingElement>document.querySelector("h3");
         h3.addEventListener("click", toggleCanvasProperty);
@@ -106,7 +104,7 @@ namespace EIA2_Endabgabe {
     }
 
     function createElement(_event: MouseEvent): void {
-        let target: HTMLElement = <HTMLElement>_event.target; 
+        let target: HTMLElement = <HTMLElement>_event.target;
         let id: string = target.id;
         for (let figure of figures) {
             figure.active = false;
@@ -163,7 +161,7 @@ namespace EIA2_Endabgabe {
         for (let entry of figures) {
             let list: HTMLSpanElement = document.createElement("span");
             list.setAttribute("id", figures.indexOf(entry).toString());
-            list.innerText = entry.type, "  color: " + entry.color;
+            list.innerText = entry.type + "  color: " + entry.color;
             list.addEventListener("click", setActive);
             allForms.appendChild(list);
         }
@@ -177,8 +175,9 @@ namespace EIA2_Endabgabe {
         }
     }
 
-    function createPattern(_event: any): void {
-        let id: string = _event.target.id;
+    function createPattern(_event: MouseEvent): void {
+        let target: HTMLElement = <HTMLElement>_event.target;
+        let id: string = target.id;
         if (id == "dots") {
             backgroundPattern = "dots";
         }
@@ -276,6 +275,7 @@ namespace EIA2_Endabgabe {
                     }
                 }
             case "speed":
+                let speed: HTMLInputElement = <HTMLInputElement>document.getElementById("speed");
                 for (let figure of figures) {
                     if (figure.active == true) {
                         figure.velocity.x = parseInt(speed.value);

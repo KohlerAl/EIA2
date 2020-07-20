@@ -1,6 +1,6 @@
 namespace EIA2_Endabgabe {
     let url: string = "https://agkeia.herokuapp.com/";
-    let options: string[]; 
+    let options: string[];
 
     export interface PicturePart {
         active: boolean,
@@ -11,28 +11,27 @@ namespace EIA2_Endabgabe {
         moveType: FORM_MOVE,
         color: string,
         velocity: Vector,
-        neon: boolean; 
-        threeD: boolean; 
+        neon: boolean;
+        threeD: boolean;
         type: string
     }
 
-    
+
     export function savePicture(_name: string): void {
-        console.log(options)
-        if(options) {
+        if (options) {
             checkNames(_name)
         }
-        if(true) {
-            insertPicture(_name); 
+        if (true) {
+            insertPicture(_name);
         }
     }
 
     function checkNames(_name: string): boolean {
-        for(let i: number = 0; i < options.length; i++) {
-            if(options[i] == _name) {
+        for (let i: number = 0; i < options.length; i++) {
+            if (options[i] == _name) {
                 alert("This name is already taken! Please choose another one!");
-                return false; 
-            }            
+                return false;
+            }
         }
         return true;
 
@@ -51,8 +50,8 @@ namespace EIA2_Endabgabe {
                 "moveType": figure.moveType,
                 "color": figure.color,
                 "velocity": figure.velocity,
-                "neon": figure.neon, 
-                "threeD": figure.threeD, 
+                "neon": figure.neon,
+                "threeD": figure.threeD,
                 "type": figure.type,
 
             }
@@ -70,7 +69,6 @@ namespace EIA2_Endabgabe {
     }
 
     async function sendData(_information: PicturePart[], _name: string): Promise<void> {
-        console.log("Hi")
         let name: string = _name.replace(" ", "_")
         let canvasInfo: string[] = [];
         let width: string = (Math.floor(canvas.width)).toString();
@@ -88,13 +86,16 @@ namespace EIA2_Endabgabe {
         if (responseText != "") {
             alert("Your picture " + _name + " has been saved!")
         }
-        findPictures(); 
+        else {
+            alert("There was a mistake while saving your Picture"); 
+        }
+        findPictures();
     }
 
     function createDatalist(_response: string) {
         let masterpiece: HTMLDataListElement = <HTMLDataListElement>document.getElementById("masterpiece");
         options = _response.split(",");
-        while(masterpiece.firstChild) {
+        while (masterpiece.firstChild) {
             masterpiece.removeChild(masterpiece.firstChild);
         }
 
@@ -112,7 +113,7 @@ namespace EIA2_Endabgabe {
     }
 
     export async function loadPicture(): Promise<void> {
-        figures = []; 
+        figures = [];
         let name: string = creations.value;
         let response: Response = await fetch(url + "?" + "findPicture&" + name);
         let responseText: string = await response.text();
@@ -125,38 +126,38 @@ namespace EIA2_Endabgabe {
         canvas.height = parseInt(data[2]);
         createBackground(data[3]);
         data.splice(0, 4);
-        console.log(data); 
-        let info: string[] = []; 
+        console.log(data);
+        let info: string[] = [];
         for (let i: number = 0; i < data.length; i++) {
             switch (data[i]) {
                 case ("Triangle"):
                     let triangle: Triangle = new Triangle(info);
                     triangle.draw();
-                    info = []; 
+                    info = [];
                     figures.push(triangle);
                     break;
                 case ("Ellipse"):
                     let ellipse: Ellipse = new Ellipse(info);
                     ellipse.draw();
-                    info = []; 
+                    info = [];
                     figures.push(ellipse);
                     break;
                 case ("Circle"):
                     let circle: Circle = new Circle(info);
                     circle.draw();
-                    info = []; 
+                    info = [];
                     figures.push(circle);
                     break;
                 case ("Square"):
                     let square: Square = new Square(info);
                     square.draw();
-                    info = []; 
+                    info = [];
                     figures.push(square);
                     break;
                 case ("Line"):
                     let figure: Line = new Line(info);
                     figure.draw();
-                    info = []; 
+                    info = [];
                     figures.push(figure);
                     break;
                 default:

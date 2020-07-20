@@ -4,7 +4,6 @@ var EIA2_Endabgabe;
     let url = "https://agkeia.herokuapp.com/";
     let options;
     function savePicture(_name) {
-        console.log(options);
         if (options) {
             checkNames(_name);
         }
@@ -52,7 +51,6 @@ var EIA2_Endabgabe;
     }
     EIA2_Endabgabe.findPictures = findPictures;
     async function sendData(_information, _name) {
-        console.log("Hi");
         let name = _name.replace(" ", "_");
         let canvasInfo = [];
         let width = (Math.floor(EIA2_Endabgabe.canvas.width)).toString();
@@ -67,6 +65,9 @@ var EIA2_Endabgabe;
         let responseText = await response.text();
         if (responseText != "") {
             alert("Your picture " + _name + " has been saved!");
+        }
+        else {
+            alert("There was a mistake while saving your Picture");
         }
         findPictures();
     }
