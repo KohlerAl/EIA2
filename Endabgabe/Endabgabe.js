@@ -140,6 +140,7 @@ var EIA2_Endabgabe;
             allForms.appendChild(list);
         }
     }
+    EIA2_Endabgabe.updateList = updateList;
     function animate() {
         EIA2_Endabgabe.crc2.putImageData(backgroundImage, 0, 0);
         for (let figure of EIA2_Endabgabe.figures) {

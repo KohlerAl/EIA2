@@ -35,15 +35,15 @@ namespace EIA2_Endabgabe {
                 this.color = _info[7];
                 this.velocity = new Vector(parseInt(_info[8]), parseInt(_info[9]));
                 if (_info[10] == "true") {
-                    this.neon == true;
+                    this.neon = true;
                 }
                 else
-                    this.neon == false;
+                    this.neon = false;
                 if (_info[11] == "true") {
-                    this.threeD == true;
+                    this.threeD = true;
                 }
                 else
-                    this.threeD == false;
+                    this.threeD = false;
             }
             else {
                 this.color = "#ffffff";

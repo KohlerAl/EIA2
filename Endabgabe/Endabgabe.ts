@@ -151,7 +151,7 @@ namespace EIA2_Endabgabe {
         updateList();
     }
 
-    function updateList(): void {
+    export function updateList(): void {
         while (allForms.firstChild) {
             allForms.removeChild(allForms.firstChild)
         }

@@ -97,7 +97,7 @@ var EIA2_Endabgabe;
         let pretty = responseText.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
         let removeName = pretty.replace(name, "");
         let prettier = removeName.replace(/,,,/g, ",");
-        let removeKey = prettier.replace(/type:|active:|size:|neon:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "");
+        let removeKey = prettier.replace(/type:|active:|size:|neon:|threeD:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "");
         let data = removeKey.split(",");
         EIA2_Endabgabe.canvas.width = parseInt(data[1]);
         EIA2_Endabgabe.canvas.height = parseInt(data[2]);
@@ -142,6 +142,7 @@ var EIA2_Endabgabe;
                     break;
             }
         }
+        EIA2_Endabgabe.updateList();
     }
     EIA2_Endabgabe.loadPicture = loadPicture;
 })(EIA2_Endabgabe || (EIA2_Endabgabe = {}));

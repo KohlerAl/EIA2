@@ -120,7 +120,7 @@ namespace EIA2_Endabgabe {
         let pretty: string = responseText.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
         let removeName: string = pretty.replace(name, "");
         let prettier: string = removeName.replace(/,,,/g, ",");
-        let removeKey: string = prettier.replace(/type:|active:|size:|neon:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "")
+        let removeKey: string = prettier.replace(/type:|active:|size:|neon:|threeD:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "")
         let data: string[] = removeKey.split(",");
         canvas.width = parseInt(data[1]);
         canvas.height = parseInt(data[2]);
@@ -165,5 +165,6 @@ namespace EIA2_Endabgabe {
                     break;
             }
         }
+        updateList(); 
     }
 }
