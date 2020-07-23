@@ -73,7 +73,7 @@ namespace EIA2_Endabgabe {
         let canvasInfo: string[] = [];
         let width: string = (Math.floor(canvas.width)).toString();
         let height: string = (Math.floor(canvas.height)).toString();
-        canvasInfo.push(width, height, background);
+        canvasInfo.push(width, height, background, backgroundPattern, patternColor.value);
         let canvasLook: string = JSON.stringify(canvasInfo);
         let canvasQuery: URLSearchParams = new URLSearchParams(canvasLook)
 
@@ -87,7 +87,7 @@ namespace EIA2_Endabgabe {
             alert("Your picture " + _name + " has been saved!")
         }
         else {
-            alert("There was a mistake while saving your Picture"); 
+            alert("An error has occurred during saving");
         }
         findPictures();
     }
@@ -122,10 +122,14 @@ namespace EIA2_Endabgabe {
         let prettier: string = removeName.replace(/,,,/g, ",");
         let removeKey: string = prettier.replace(/type:|active:|size:|neon:|threeD:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "")
         let data: string[] = removeKey.split(",");
+        console.log(data);
         canvas.width = parseInt(data[1]);
         canvas.height = parseInt(data[2]);
+        backgroundPattern = data[4];
+        patternColor.value = data[5];
         createBackground(data[3]);
-        data.splice(0, 4);
+        data.splice(0, 6);
+        console.log(data);
         console.log(data);
         let info: string[] = [];
         for (let i: number = 0; i < data.length; i++) {
@@ -160,11 +164,23 @@ namespace EIA2_Endabgabe {
                     info = [];
                     figures.push(figure);
                     break;
+                case ("Heart"):
+                    let heart: Heart = new Heart(info);
+                    heart.draw();
+                    info = [];
+                    figures.push(heart);
+                    break;
+                case ("Star"):
+                    let star: Star = new Star(info);
+                    star.draw();
+                    info = [];
+                    figures.push(star);
+                    break;
                 default:
                     info.push(data[i]);
                     break;
             }
         }
-        updateList(); 
+        updateList();
     }
 }

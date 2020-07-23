@@ -2,13 +2,12 @@
 var EIA2_Endabgabe;
 (function (EIA2_Endabgabe) {
     EIA2_Endabgabe.figures = [];
+    EIA2_Endabgabe.backgroundPattern = "plain";
     let backgroundImage;
-    let backgroundPattern = "plain";
     let canvasWidth;
     let canvasHeight;
     let backgroundColorWrapper;
     let patterns;
-    let patternColor;
     let patternColorWrapper;
     let forms;
     let animations;
@@ -24,7 +23,7 @@ var EIA2_Endabgabe;
         canvasHeight = document.getElementById("canvasHeight");
         backgroundColorWrapper = document.getElementById("backgroundColorWrapper");
         patternColorWrapper = document.getElementById("patternColorWrapper");
-        patternColor = document.getElementById("patternColor");
+        EIA2_Endabgabe.patternColor = document.getElementById("patternColor");
         patterns = document.getElementById("patterns");
         patterns.addEventListener("click", createPattern);
         EIA2_Endabgabe.canvas = document.querySelector("canvas");
@@ -33,7 +32,7 @@ var EIA2_Endabgabe;
         EIA2_Endabgabe.backgroundColor.addEventListener("change", function () {
             createBackground();
         });
-        patternColor.addEventListener("change", function () {
+        EIA2_Endabgabe.patternColor.addEventListener("change", function () {
             createBackground();
         });
         save = document.getElementById("save");
@@ -152,13 +151,13 @@ var EIA2_Endabgabe;
         let target = _event.target;
         let id = target.id;
         if (id == "dots") {
-            backgroundPattern = "dots";
+            EIA2_Endabgabe.backgroundPattern = "dots";
         }
         else if (id == "squares") {
-            backgroundPattern = "squares";
+            EIA2_Endabgabe.backgroundPattern = "squares";
         }
         else {
-            backgroundPattern = "plain";
+            EIA2_Endabgabe.backgroundPattern = "plain";
         }
         createBackground();
     }
@@ -178,7 +177,7 @@ var EIA2_Endabgabe;
         }
         else
             EIA2_Endabgabe.background = EIA2_Endabgabe.backgroundColor.value;
-        if (backgroundPattern == "dots") {
+        if (EIA2_Endabgabe.backgroundPattern == "dots") {
             let pattern = document.createElement('canvas').getContext('2d');
             pattern.beginPath();
             pattern.canvas.width = 20;
@@ -186,19 +185,19 @@ var EIA2_Endabgabe;
             pattern.fillStyle = EIA2_Endabgabe.background;
             pattern.fillRect(0, 0, pattern.canvas.width, pattern.canvas.height);
             pattern.arc(10, 10, 9, 0, 2 * Math.PI);
-            pattern.strokeStyle = patternColor.value;
+            pattern.strokeStyle = EIA2_Endabgabe.patternColor.value;
             pattern.stroke();
             pattern.closePath();
             EIA2_Endabgabe.crc2.fillStyle = EIA2_Endabgabe.crc2.createPattern(pattern.canvas, "repeat");
         }
-        else if (backgroundPattern == "squares") {
+        else if (EIA2_Endabgabe.backgroundPattern == "squares") {
             let pattern = document.createElement('canvas').getContext('2d');
             pattern.beginPath();
             pattern.canvas.width = 10;
             pattern.canvas.height = 10;
             pattern.fillStyle = EIA2_Endabgabe.background;
             pattern.fillRect(0, 0, pattern.canvas.width, pattern.canvas.height);
-            pattern.strokeStyle = patternColor.value;
+            pattern.strokeStyle = EIA2_Endabgabe.patternColor.value;
             pattern.rect(0, 0, 5, 5);
             pattern.stroke();
             pattern.closePath();

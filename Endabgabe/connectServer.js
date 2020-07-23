@@ -55,7 +55,7 @@ var EIA2_Endabgabe;
         let canvasInfo = [];
         let width = (Math.floor(EIA2_Endabgabe.canvas.width)).toString();
         let height = (Math.floor(EIA2_Endabgabe.canvas.height)).toString();
-        canvasInfo.push(width, height, EIA2_Endabgabe.background);
+        canvasInfo.push(width, height, EIA2_Endabgabe.background, EIA2_Endabgabe.backgroundPattern, EIA2_Endabgabe.patternColor.value);
         let canvasLook = JSON.stringify(canvasInfo);
         let canvasQuery = new URLSearchParams(canvasLook);
         let info = JSON.stringify(_information);
@@ -67,7 +67,7 @@ var EIA2_Endabgabe;
             alert("Your picture " + _name + " has been saved!");
         }
         else {
-            alert("There was a mistake while saving your Picture");
+            alert("An error has occurred during saving");
         }
         findPictures();
     }
@@ -99,10 +99,14 @@ var EIA2_Endabgabe;
         let prettier = removeName.replace(/,,,/g, ",");
         let removeKey = prettier.replace(/type:|active:|size:|neon:|threeD:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "");
         let data = removeKey.split(",");
+        console.log(data);
         EIA2_Endabgabe.canvas.width = parseInt(data[1]);
         EIA2_Endabgabe.canvas.height = parseInt(data[2]);
+        EIA2_Endabgabe.backgroundPattern = data[4];
+        EIA2_Endabgabe.patternColor.value = data[5];
         EIA2_Endabgabe.createBackground(data[3]);
-        data.splice(0, 4);
+        data.splice(0, 6);
+        console.log(data);
         console.log(data);
         let info = [];
         for (let i = 0; i < data.length; i++) {
@@ -136,6 +140,18 @@ var EIA2_Endabgabe;
                     figure.draw();
                     info = [];
                     EIA2_Endabgabe.figures.push(figure);
+                    break;
+                case ("Heart"):
+                    let heart = new EIA2_Endabgabe.Heart(info);
+                    heart.draw();
+                    info = [];
+                    EIA2_Endabgabe.figures.push(heart);
+                    break;
+                case ("Star"):
+                    let star = new EIA2_Endabgabe.Star(info);
+                    star.draw();
+                    info = [];
+                    EIA2_Endabgabe.figures.push(star);
                     break;
                 default:
                     info.push(data[i]);

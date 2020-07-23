@@ -5,16 +5,16 @@ namespace EIA2_Endabgabe {
     export let backgroundColor: HTMLInputElement;
     export let background: string;
     export let creations: HTMLInputElement;
+    export let backgroundPattern: string = "plain";
+    export  let patternColor: HTMLInputElement;
 
     let backgroundImage: ImageData;
-    let backgroundPattern: string = "plain";
-
+    
     let canvasWidth: HTMLInputElement;
     let canvasHeight: HTMLInputElement;
     let backgroundColorWrapper: HTMLElement;
     let patterns: HTMLDivElement;
 
-    let patternColor: HTMLInputElement;
     let patternColorWrapper: HTMLDivElement;
 
     let forms: HTMLDivElement;
