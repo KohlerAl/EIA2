@@ -13,6 +13,7 @@ var EIA2_Endabgabe;
             EIA2_Endabgabe.crc2.beginPath();
             EIA2_Endabgabe.crc2.save();
             EIA2_Endabgabe.crc2.translate(this.position.x, this.position.y);
+            EIA2_Endabgabe.crc2.rotate(this.rotation * Math.PI / 180);
             EIA2_Endabgabe.crc2.moveTo(0, 0 - this.size.x / 2);
             for (var i = 0; i < 5; i++) {
                 EIA2_Endabgabe.crc2.rotate(Math.PI / 5);
@@ -71,7 +72,7 @@ var EIA2_Endabgabe;
             super.resize(_factor);
         }
         move() {
-            super.move(0);
+            super.move(1);
             if (this.position.x < this.size.x)
                 this.position.x += EIA2_Endabgabe.crc2.canvas.width;
             if (this.position.y < this.size.y)

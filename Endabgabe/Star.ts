@@ -13,6 +13,7 @@ namespace EIA2_Endabgabe {
             crc2.beginPath();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
+            crc2.rotate(this.rotation * Math.PI / 180); 
             crc2.moveTo(0, 0 - this.size.x/2);
             for (var i = 0; i < 5; i++) {
                 crc2.rotate(Math.PI / 5);
@@ -76,7 +77,7 @@ namespace EIA2_Endabgabe {
         }
 
         public move(): void {
-            super.move(0);
+            super.move(1);
             if (this.position.x < this.size.x)
                 this.position.x += crc2.canvas.width;
             if (this.position.y < this.size.y)
