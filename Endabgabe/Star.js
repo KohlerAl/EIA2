@@ -15,7 +15,7 @@ var EIA2_Endabgabe;
             EIA2_Endabgabe.crc2.translate(this.position.x, this.position.y);
             EIA2_Endabgabe.crc2.rotate(this.rotation * Math.PI / 180);
             EIA2_Endabgabe.crc2.moveTo(0, 0 - this.size.x / 2);
-            for (var i = 0; i < 5; i++) {
+            for (let i = 0; i < 5; i++) {
                 EIA2_Endabgabe.crc2.rotate(Math.PI / 5);
                 EIA2_Endabgabe.crc2.lineTo(0, 0 - (this.size.x / 2 * this.size.x / 20));
                 EIA2_Endabgabe.crc2.rotate(Math.PI / 5);

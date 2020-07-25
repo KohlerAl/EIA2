@@ -15,7 +15,7 @@ namespace EIA2_Endabgabe {
             crc2.translate(this.position.x, this.position.y);
             crc2.rotate(this.rotation * Math.PI / 180); 
             crc2.moveTo(0, 0 - this.size.x/2);
-            for (var i = 0; i < 5; i++) {
+            for (let i = 0; i < 5; i++) {
                 crc2.rotate(Math.PI / 5);
                 crc2.lineTo(0, 0 - (this.size.x/2 * this.size.x/20));
                 crc2.rotate(Math.PI / 5);
