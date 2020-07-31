@@ -39,7 +39,7 @@ namespace EIA2_Endabgabe {
 
     function insertPicture(_name: string): void {
         let information: PicturePart[] = [];
-        information.push()
+        information.push();
         for (let figure of figures) {
             let form: PicturePart = {
                 "active": figure.active,
@@ -69,13 +69,13 @@ namespace EIA2_Endabgabe {
     }
 
     async function sendData(_information: PicturePart[], _name: string): Promise<void> {
-        let name: string = _name.replace(" ", "_")
+        let name: string = _name.replace(" ", "_");
         let canvasInfo: string[] = [];
         let width: string = (Math.floor(canvas.width)).toString();
         let height: string = (Math.floor(canvas.height)).toString();
         canvasInfo.push(width, height, background, backgroundPattern, patternColor.value);
         let canvasLook: string = JSON.stringify(canvasInfo);
-        let canvasQuery: URLSearchParams = new URLSearchParams(canvasLook)
+        let canvasQuery: URLSearchParams = new URLSearchParams(canvasLook);
 
         let info: string = JSON.stringify(_information);
         let query: URLSearchParams = new URLSearchParams(info);
@@ -117,6 +117,7 @@ namespace EIA2_Endabgabe {
         let name: string = creations.value;
         let response: Response = await fetch(url + "?" + "findPicture&" + name);
         let responseText: string = await response.text();
+        console.log(responseText)
         let pretty: string = responseText.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
         let removeName: string = pretty.replace(name, "");
         let prettier: string = removeName.replace(/,,,/g, ",");

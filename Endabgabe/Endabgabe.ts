@@ -6,10 +6,10 @@ namespace EIA2_Endabgabe {
     export let background: string;
     export let creations: HTMLInputElement;
     export let backgroundPattern: string = "plain";
-    export  let patternColor: HTMLInputElement;
+    export let patternColor: HTMLInputElement;
 
     let backgroundImage: ImageData;
-    
+
     let canvasWidth: HTMLInputElement;
     let canvasHeight: HTMLInputElement;
     let backgroundColorWrapper: HTMLElement;
@@ -109,45 +109,34 @@ namespace EIA2_Endabgabe {
         for (let figure of figures) {
             figure.active = false;
         }
+        let symbol: Form;
         switch (id) {
             case "triangle":
-                let triangle: Triangle = new Triangle();
-                triangle.draw();
-                figures.push(triangle);
+                symbol = new Triangle();
                 break;
             case "ellipse":
-                let ellipse: Ellipse = new Ellipse();
-                ellipse.draw();
-                figures.push(ellipse);
+                symbol = new Ellipse();
                 break;
             case "square":
-                let square: Square = new Square();
-                square.draw();
-                figures.push(square);
+                symbol = new Square();
                 break;
             case "circle":
-                let circle: Circle = new Circle();
-                circle.draw();
-                figures.push(circle);
+                symbol = new Circle();
                 break;
             case "line":
-                let line: Line = new Line();
-                line.draw();
-                figures.push(line);
+                symbol = new Line();
                 break;
             case "heart":
-                let heart: Heart = new Heart();
-                heart.draw();
-                figures.push(heart);
+                symbol = new Heart();
                 break;
             case "star":
-                let star: Star = new Star();
-                star.draw();
-                figures.push(star);
+                symbol = new Star();
                 break;
             default:
-                break;
+                return;
         }
+        figures.push(symbol);
+        symbol.draw();
         updateList();
     }
 

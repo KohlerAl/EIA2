@@ -94,6 +94,7 @@ var EIA2_Endabgabe;
         let name = EIA2_Endabgabe.creations.value;
         let response = await fetch(url + "?" + "findPicture&" + name);
         let responseText = await response.text();
+        console.log(responseText);
         let pretty = responseText.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
         let removeName = pretty.replace(name, "");
         let prettier = removeName.replace(/,,,/g, ",");

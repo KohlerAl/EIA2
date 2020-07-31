@@ -45,12 +45,12 @@ export namespace EIA2_Endabgabe {
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
 
-            let splitURL = _request.url.split('&');
+            let splitURL: string[] = _request.url.split('&');
             console.log("SPLIT URL" + splitURL[0]);
 
             if (_request.url == "/?getPicture=yes") {
                 // Load Names of all Pictures and show them to user 
-                let pictures = mongoClient.db("Pictures").collection("Overview");
+                let pictures: Mongo.Collection<any> = mongoClient.db("Pictures").collection("Overview");
                 let cursor: Mongo.Cursor<any> = await pictures.find();
                 await cursor.forEach(showOrders);
                 let jsonString: string = JSON.stringify(allOrders);
