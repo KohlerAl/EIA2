@@ -28,7 +28,7 @@ var EIA2_Endabgabe;
         options = { useNewUrlParser: true, useUnifiedTopology: true };
         mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        orders = mongoClient.db("Pictures").collection("Masterpieces");
+        orders = mongoClient.db("Pictures").collection("Overview");
         console.log("Database connection ", orders != undefined);
     }
     async function handleRequest(_request, _response) {
