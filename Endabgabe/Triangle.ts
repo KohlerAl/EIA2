@@ -18,37 +18,7 @@ namespace EIA2_Endabgabe {
             crc2.lineTo(0, 0 - this.size.y / 2);
             crc2.lineTo(0 - this.size.x / 2, 0 + this.size.y / 2);
             crc2.lineJoin = "round"; 
-            if (this.neon == true) {
-                crc2.globalCompositeOperation = "lighter";
-                crc2.shadowColor = this.color;
-                crc2.lineWidth = 6;
-                crc2.shadowOffsetX = 2;
-                crc2.shadowOffsetY = 2;
-                crc2.shadowBlur = 15;
-                crc2.strokeStyle = "#ffffff88"
-            }
-            else if (this.threeD == true) {
-                crc2.fillStyle = "414141";
-                crc2.shadowBlur = 10;
-                crc2.shadowColor = "cyan"
-                crc2.shadowOffsetX = -5;
-                crc2.shadowOffsetY = 0;
-                crc2.lineWidth = 2;
-                crc2.strokeStyle = "#ff3a1f00";
-                crc2.fill();
-            }
-            else {
-                crc2.strokeStyle = this.color;
-                crc2.fillStyle = this.color;
-                crc2.lineWidth = 4;
-                crc2.fill();
-            }
-            if (this.active == true) {
-                crc2.strokeStyle = "red";
-            }
-            else {
-                crc2.strokeStyle = this.color;
-            }
+           super.draw(); 
             crc2.fillStyle = this.color;
             crc2.stroke();
             crc2.restore();

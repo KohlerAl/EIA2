@@ -49,6 +49,42 @@ var EIA2_Endabgabe;
                 this.threeD = false;
             }
         }
+        draw() {
+            if (this.neon == true) {
+                EIA2_Endabgabe.crc2.globalCompositeOperation = "lighter";
+                EIA2_Endabgabe.crc2.shadowColor = this.color;
+                EIA2_Endabgabe.crc2.lineWidth = 8;
+                EIA2_Endabgabe.crc2.shadowOffsetX = 2;
+                EIA2_Endabgabe.crc2.shadowOffsetY = 2;
+                EIA2_Endabgabe.crc2.shadowBlur = 15;
+                EIA2_Endabgabe.crc2.strokeStyle = "#ffffff88";
+            }
+            else if (this.threeD == true) {
+                EIA2_Endabgabe.crc2.fillStyle = "414141";
+                EIA2_Endabgabe.crc2.shadowBlur = 10;
+                EIA2_Endabgabe.crc2.shadowColor = "cyan";
+                EIA2_Endabgabe.crc2.shadowOffsetX = -5;
+                EIA2_Endabgabe.crc2.shadowOffsetY = 0;
+                EIA2_Endabgabe.crc2.lineWidth = 2;
+                EIA2_Endabgabe.crc2.strokeStyle = "#ff3a1f80";
+                EIA2_Endabgabe.crc2.fill();
+            }
+            else {
+                EIA2_Endabgabe.crc2.strokeStyle = this.color;
+                EIA2_Endabgabe.crc2.fillStyle = this.color;
+                EIA2_Endabgabe.crc2.lineWidth = 4;
+                EIA2_Endabgabe.crc2.fill();
+            }
+            if (this.active == true) {
+                EIA2_Endabgabe.crc2.strokeStyle = "red";
+                EIA2_Endabgabe.crc2.lineWidth = 4;
+                EIA2_Endabgabe.crc2.stroke();
+            }
+            else {
+                EIA2_Endabgabe.crc2.strokeStyle = this.color;
+                EIA2_Endabgabe.crc2.stroke();
+            }
+        }
         move(_rotateValue) {
             switch (this.moveType) {
                 case FORM_MOVE.MOVE:

@@ -4,23 +4,15 @@ var EIA2_Endabgabe;
     let url = "https://agkeia.herokuapp.com/";
     let options;
     function savePicture(_name) {
-        if (options) {
-            checkNames(_name);
-        }
-        if (true) {
-            insertPicture(_name);
-        }
-    }
-    EIA2_Endabgabe.savePicture = savePicture;
-    function checkNames(_name) {
         for (let i = 0; i < options.length; i++) {
             if (options[i] == _name) {
                 alert("This name is already taken! Please choose another one!");
-                return false;
+                return;
             }
         }
-        return true;
+        insertPicture(_name);
     }
+    EIA2_Endabgabe.savePicture = savePicture;
     function insertPicture(_name) {
         let information = [];
         information.push();

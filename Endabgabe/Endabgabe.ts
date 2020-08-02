@@ -1,4 +1,5 @@
 namespace EIA2_Endabgabe {
+    //Endabgabe von Alida Kohler, MKB2
     export let canvas: HTMLCanvasElement;
     export let crc2: CanvasRenderingContext2D;
     export let figures: Form[] = [];
@@ -84,6 +85,7 @@ namespace EIA2_Endabgabe {
         findPictures();
         createBackground();
         window.setInterval(animate, 30);
+        alert("Welcome! Here you can create your own magic image! Choose a figure, design it according to your wishes, change the background and when you are done, don't forget to save your picture! :)")
     }
 
     function toggleCanvasProperty(): void {
@@ -145,12 +147,12 @@ namespace EIA2_Endabgabe {
             allForms.removeChild(allForms.firstChild)
         }
         let title: HTMLSpanElement = document.createElement("span");
-        title.innerText = "All Elements on your canvas are listed here!";
+        title.innerText = "All Elements on your canvas are listed here! Click on a Element to edit it!";
         allForms.appendChild(title);
         for (let entry of figures) {
             let list: HTMLSpanElement = document.createElement("span");
             list.setAttribute("id", figures.indexOf(entry).toString());
-            list.innerText = entry.type + "  color: " + entry.color;
+            list.innerText = entry.type;
             list.addEventListener("click", setActive);
             allForms.appendChild(list);
         }

@@ -18,24 +18,15 @@ namespace EIA2_Endabgabe {
 
 
     export function savePicture(_name: string): void {
-        if (options) {
-            checkNames(_name)
-        }
-        if (true) {
-            insertPicture(_name);
-        }
-    }
-
-    function checkNames(_name: string): boolean {
         for (let i: number = 0; i < options.length; i++) {
             if (options[i] == _name) {
                 alert("This name is already taken! Please choose another one!");
-                return false;
+                return;
             }
         }
-        return true;
-
+        insertPicture(_name); 
     }
+
 
     function insertPicture(_name: string): void {
         let information: PicturePart[] = [];

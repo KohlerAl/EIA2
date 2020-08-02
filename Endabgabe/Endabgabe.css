@@ -5,8 +5,7 @@ body {
     grid-template-areas: 
     'canvas canvas title title . .'
     'canvas canvas styling styling styling styling'
-    'canvas canvas . title2  title2 .'
-    'canvas canvas . title3  title3 .'
+    'canvas canvas title1 title2  title4 .'
     'canvas canvas forms animations form form'
     'canvas canvas forms animations form form'
     'canvas canvas forms animations form form'
@@ -29,19 +28,25 @@ h3 {
     grid-area: title; 
 }
 
-h5 {
-    grid-area: title3; 
-    margin: 2px; 
-}
 
 h3:hover, #allForms *:hover{
     cursor: pointer;
 }
 
-h4 {
-    grid-area: title2;
+#figureInfo {
+    grid-area: title1;
+    font-size: 15px;
 }
 
+#effectInfo {
+    grid-area: title2;
+    font-size: 15px;
+}
+
+#formInfo {
+    grid-area: title4;
+    font-size: 15px;
+}
 
 button {
     width: 50px; 

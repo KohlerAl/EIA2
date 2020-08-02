@@ -60,6 +60,7 @@ var EIA2_Endabgabe;
         EIA2_Endabgabe.findPictures();
         createBackground();
         window.setInterval(animate, 30);
+        alert("Welcome! Here you can create your own magic image! Choose a figure, design it according to your wishes, change the background and when you are done, don't forget to save your picture! :)");
     }
     function toggleCanvasProperty() {
         if (canvasWidth.style.display == "none") {
@@ -83,45 +84,34 @@ var EIA2_Endabgabe;
         for (let figure of EIA2_Endabgabe.figures) {
             figure.active = false;
         }
+        let symbol;
         switch (id) {
             case "triangle":
-                let triangle = new EIA2_Endabgabe.Triangle();
-                triangle.draw();
-                EIA2_Endabgabe.figures.push(triangle);
+                symbol = new EIA2_Endabgabe.Triangle();
                 break;
             case "ellipse":
-                let ellipse = new EIA2_Endabgabe.Ellipse();
-                ellipse.draw();
-                EIA2_Endabgabe.figures.push(ellipse);
+                symbol = new EIA2_Endabgabe.Ellipse();
                 break;
             case "square":
-                let square = new EIA2_Endabgabe.Square();
-                square.draw();
-                EIA2_Endabgabe.figures.push(square);
+                symbol = new EIA2_Endabgabe.Square();
                 break;
             case "circle":
-                let circle = new EIA2_Endabgabe.Circle();
-                circle.draw();
-                EIA2_Endabgabe.figures.push(circle);
+                symbol = new EIA2_Endabgabe.Circle();
                 break;
             case "line":
-                let line = new EIA2_Endabgabe.Line();
-                line.draw();
-                EIA2_Endabgabe.figures.push(line);
+                symbol = new EIA2_Endabgabe.Line();
                 break;
             case "heart":
-                let heart = new EIA2_Endabgabe.Heart();
-                heart.draw();
-                EIA2_Endabgabe.figures.push(heart);
+                symbol = new EIA2_Endabgabe.Heart();
                 break;
             case "star":
-                let star = new EIA2_Endabgabe.Star();
-                star.draw();
-                EIA2_Endabgabe.figures.push(star);
+                symbol = new EIA2_Endabgabe.Star();
                 break;
             default:
-                break;
+                return;
         }
+        EIA2_Endabgabe.figures.push(symbol);
+        symbol.draw();
         updateList();
     }
     function updateList() {
@@ -129,12 +119,12 @@ var EIA2_Endabgabe;
             allForms.removeChild(allForms.firstChild);
         }
         let title = document.createElement("span");
-        title.innerText = "All Elements on your canvas are listed here!";
+        title.innerText = "All Elements on your canvas are listed here! Click on a Element to edit it!";
         allForms.appendChild(title);
         for (let entry of EIA2_Endabgabe.figures) {
             let list = document.createElement("span");
             list.setAttribute("id", EIA2_Endabgabe.figures.indexOf(entry).toString());
-            list.innerText = entry.type + "  color: " + entry.color;
+            list.innerText = entry.type;
             list.addEventListener("click", setActive);
             allForms.appendChild(list);
         }

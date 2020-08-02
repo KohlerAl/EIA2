@@ -23,14 +23,14 @@
 </head>
 
 <body>
+<!--  Endabgabe von Alida Kohler -->
     <canvas></canvas>
-
     <h3>Click here to style your Canvas!</h3>
     <span id="canvasStyle">
         <input type="number" id="canvasWidth" placeholder="Canvas-Width">
         <input type="number" id="canvasHeight" placeholder="Canvas-Height">
         <div id="backgroundColorWrapper">
-            <input type="color" value="#960bff" id="backgroundColor">
+            <input type="color" value="#960bff" id="backgroundColor" placeholder="Bachkground-Color">
         </div>
         <div id="patternColorWrapper">
             <input type="color" value="#05ff9f" id="patternColor">
@@ -43,8 +43,7 @@
         </div>
     </span>
 
-    <h4>Create, style and animate your forms!</h4>
-
+    <p id="figureInfo">Create a <br> new from!</p>
     <div id="forms">
         <button type="button" id="circle" class="fas fa-circle fa-2x"></button>
         <button type="button" id="triangle" class="fas fa-caret-up fa-4x"></button>
@@ -54,7 +53,8 @@
         <button type="button" id="star" class="fas fa-star fa-2x"></button>
         <button type="button" id="heart" class="fas fa-heart fa-2x"></button>
     </div>
-
+    
+    <p id="effectInfo">Add effects,  change the <br> animation and <br> delete the active figure</p>
     <div id="animations">
         <button type="button" id="rotate">rotate</button>
         <button type="button" id="move">move</button>
@@ -63,7 +63,8 @@
         <button type="button" id="stop">Stop Magic effect</button>
         <button type="button" id="trash">delete figure</button>
     </div>
-
+    
+    <p id="formInfo">In this area, you can change the properties of the active figure</p>
     <form>
         <div id="colorPickerWrapper">
             <input type="color" value="#fc5200" id="colorPicker">
@@ -83,7 +84,7 @@
 
     </form>
     <div id="allForms">
-        <span>All Elements on your canvas are listed here!</span>
+        <span>All Elements on your canvas are listed here! Click on a Element to edit it!</span>
     </div>
     
 

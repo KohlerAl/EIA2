@@ -53,11 +53,46 @@ namespace EIA2_Endabgabe {
                 this.active = true;
                 this.moveType = FORM_MOVE.MOVE;
                 this.neon = false;
-                this.threeD = false; 
+                this.threeD = false;
             }
         }
 
-        abstract draw(): void;
+        public draw(): void {
+            if (this.neon == true) {
+                crc2.globalCompositeOperation = "lighter";
+                crc2.shadowColor = this.color;
+                crc2.lineWidth = 8;
+                crc2.shadowOffsetX = 2;
+                crc2.shadowOffsetY = 2;
+                crc2.shadowBlur = 15;
+                crc2.strokeStyle = "#ffffff88"
+            }
+            else if (this.threeD == true) {
+                crc2.fillStyle = "414141";
+                crc2.shadowBlur = 10;
+                crc2.shadowColor = "cyan"
+                crc2.shadowOffsetX = -5;
+                crc2.shadowOffsetY = 0;
+                crc2.lineWidth = 2;
+                crc2.strokeStyle = "#ff3a1f80";
+                crc2.fill();
+            }
+            else {
+                crc2.strokeStyle = this.color;
+                crc2.fillStyle = this.color;
+                crc2.lineWidth = 4;
+                crc2.fill();
+            }
+            if (this.active == true) {
+                crc2.strokeStyle = "red";
+                crc2.lineWidth = 4;
+                crc2.stroke();
+            }
+            else {
+                crc2.strokeStyle = this.color;
+                crc2.stroke();
+            }
+        }
 
         public move(_rotateValue: number): void {
             switch (this.moveType) {
