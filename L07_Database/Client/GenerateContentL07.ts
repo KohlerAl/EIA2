@@ -49,9 +49,9 @@ namespace L07_Household {
     }
 
     function createSlider(_parent: HTMLDivElement, _name: string, _box: HTMLInputElement, _unit: string): void {
-        let slider = document.createElement("input"); 
-        let span = document.createElement("span"); 
-        span.innerHTML = "1"
+        let slider: HTMLInputElement = document.createElement("input"); 
+        let span: HTMLSpanElement = document.createElement("span"); 
+        span.innerHTML = "1";
         span.classList.add("range" + _name); 
         span.style.opacity = "0";
         slider.type = "range"; 
@@ -62,7 +62,7 @@ namespace L07_Household {
         slider.disabled = true; 
         slider.classList.add(_name); 
         slider.setAttribute("name", _name); 
-        let span2 = document.createElement("span");
+        let span2: HTMLSpanElement = document.createElement("span");
         _box.addEventListener("click", enableSlider); 
         span2.innerHTML = "5";  
         span2.classList.add("range2" + _name); 

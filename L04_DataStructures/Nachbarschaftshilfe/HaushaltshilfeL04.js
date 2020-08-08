@@ -195,17 +195,17 @@ var L04_Haushaltshilfe;
         let lieferdatum = date.value;
         let paypal = document.getElementById("Paypal");
         let überweisung = document.getElementById("Überweisung");
-        let Zahlungsart;
+        let zahlungsart;
         if (paypal.checked == true) {
-            Zahlungsart = "Paypal";
+            zahlungsart = "Paypal";
         }
         else if (überweisung.checked == true) {
-            Zahlungsart = "Überweisung";
+            zahlungsart = "Überweisung";
         }
         else {
-            Zahlungsart = "Bar";
+            zahlungsart = "Bar";
         }
-        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost + "€");
+        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost + "€");
     }
 })(L04_Haushaltshilfe || (L04_Haushaltshilfe = {}));
 //# sourceMappingURL=HaushaltshilfeL04.js.map

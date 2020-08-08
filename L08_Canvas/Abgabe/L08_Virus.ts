@@ -18,7 +18,7 @@ namespace L08_Virus {
     function createBackground(): void {
         //To make the Background look more interesting, I create a simple pattern, imitating cells. 
         //The opacity is not very high so that the pattern does not distract form the bigger cells. 
-        let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
+        let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement("canvas").getContext("2d");
         pattern.canvas.width = 100;
         pattern.canvas.height = 40;
         pattern.fillStyle = "#97a0db3a";
@@ -97,7 +97,7 @@ namespace L08_Virus {
         let storage: number = 0;
         let coronaPosition: number = 10;
         let j: number;
-        let particles: number; 
+        let particles: number;
 
         //To make the picture not too confusing on small screens, the number of cells to be shown is reduced again 
 
@@ -113,7 +113,7 @@ namespace L08_Virus {
         }
 
         //Create Cells for the Background
-        for (let i = 0; i < numCircles; i++) {
+        for (let i: number = 0; i < numCircles; i++) {
             // Creating some random values for circle characteristics.
             xPos = Math.random() * canvas.width;
             yPos = Math.random() * canvas.height;
@@ -144,7 +144,7 @@ namespace L08_Virus {
             drawCell(xPos, yPos, radius, color, nucleusColor, bigCell, particle);
         }
 
-        for (let i = 0; i < j; i++) {
+        for (let i: number = 0; i < j; i++) {
             radius = 50;
             xPos = coronaPosition + radius;
             coronaPosition = xPos + radius;
@@ -158,24 +158,24 @@ namespace L08_Virus {
             }
         }
 
-        
+
         createMacrophage(width - 100, 480);
         createMacrophage(width - 300, 460);
 
-        for (let i = 0; i < 4; i++) {
+        for (let i: number = 0; i < 4; i++) {
             radius = 15;
-            xPos = Math.random() * canvas.width/1.5;
+            xPos = Math.random() * canvas.width / 1.5;
             yPos = 450 + (20 * Math.random());
             createAntibodies(xPos, yPos);
 
             if (i < 3) {
-                xPos = Math.random() * canvas.width/1.5;
+                xPos = Math.random() * canvas.width / 1.5;
                 yPos = 530 + (20 * Math.random());
                 createAntibodies(xPos, yPos);
             }
         }
 
-        for (let i = 0; i < particles; i++) {
+        for (let i: number = 0; i < particles; i++) {
             maxRadius = 3;
             minRadius = 1;
             xPos = Math.random() * canvas.width;
@@ -191,11 +191,11 @@ namespace L08_Virus {
         }
     }
 
-    function drawCell(_xPos: number, _yPos: number, _radius: number, _color: string, _nucleusColor: string, _size: boolean, _particle: boolean) {
+    function drawCell(_xPos: number, _yPos: number, _radius: number, _color: string, _nucleusColor: string, _size: boolean, _particle: boolean): void {
         crc2.save();
         // Set Parameters for Angles, Shadows and Rotation 
-        let startAngle = (Math.PI / 180);
-        let endAngle = (Math.PI / 180) * 360;
+        let startAngle: number = (Math.PI / 180);
+        let endAngle: number = (Math.PI / 180) * 360;
         crc2.shadowColor = "gray";
         crc2.shadowOffsetX = 1;
         crc2.shadowOffsetY = 1;
@@ -203,7 +203,7 @@ namespace L08_Virus {
         let rotation: number = Math.random() * 360;
 
         // Creating a pattern, to give the Cells a bit of texture
-        let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
+        let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement("canvas").getContext("2d");
         pattern.canvas.width = 2;
         pattern.canvas.height = 2;
 
@@ -255,7 +255,7 @@ namespace L08_Virus {
         crc2.save();
         crc2.translate(_xPosition, _yPosition);
 
-        for (let i = 0; i < 9; i++) {
+        for (let i: number = 0; i < 9; i++) {
             crc2.beginPath();
             crc2.rotate(30);
             crc2.moveTo(0, 40);
@@ -286,7 +286,7 @@ namespace L08_Virus {
         crc2.rotate(Math.random() * 360);
         crc2.moveTo(0, 0);
         crc2.lineTo(0, 24);
-        crc2.strokeStyle = "#114d89"
+        crc2.strokeStyle = "#114d89";
         crc2.lineWidth = 2;
         crc2.stroke();
         crc2.closePath();

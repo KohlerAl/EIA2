@@ -13,7 +13,7 @@ namespace L09_Virus {
             crc2.save();
             crc2.translate(_pos.x, _pos.y);
 
-            for (let i = 0; i < 7; i++) {
+            for (let i: number = 0; i < 7; i++) {
                 crc2.beginPath();
                 crc2.rotate(45);
                 crc2.moveTo(0, 25);
@@ -39,11 +39,12 @@ namespace L09_Virus {
             // Offset = Geschwindigkeit
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             // Mit der Zeit multiplizieren
-            if(this.position.y < 250) {
+            if (this.position.y < 250) {
                 offset.scale(_timeslice * 2);
             }
             else {
-            offset.scale(_timeslice);}
+                offset.scale(_timeslice);
+            }
             // Zu der Posiition addieren 
             this.position.add(offset);
 

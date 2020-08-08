@@ -54,7 +54,7 @@ var L02_Sequenzmemory;
             card.innerHTML = "" + sentence[index];
             playground.appendChild(card);
         }
-        setTimer;
+        setTimer();
     }
     function createSequenz() {
         let sequence = ownWord.value;

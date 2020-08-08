@@ -45,7 +45,7 @@ namespace L11_Virus {
                     cell.draw();
                     window.setTimeout(function (): void {
                         killBodyCell(cell);
-                    }, 2000)
+                    },                2000);
                 }
             }
         }
@@ -81,7 +81,7 @@ namespace L11_Virus {
         }
 
         //Create Cells for the Background
-        for (let i = 0; i < numCircles; i++) {
+        for (let i: number = 0; i < numCircles; i++) {
             // Creating some random values for circle characteristics.
             xPos = Math.random() * canvas.width;
             yPos = Math.random() * canvas.height;
@@ -91,15 +91,15 @@ namespace L11_Virus {
             cell.draw();
         }
         //  Create Macrophages
-        for (let i = 0; i < 2; i++) {
-            let position: Vector = new Vector(width - 200 + (200 * Math.random()), 400 + (200 * Math.random()))
+        for (let i: number = 0; i < 2; i++) {
+            let position: Vector = new Vector(width - 200 + (200 * Math.random()), 400 + (200 * Math.random()));
             let macrophage: Macrophage = new Macrophage(position);
             macrophage.draw();
         }
         backgroundImage = crc2.getImageData(0, 0, width, height);
 
         //Create Antibodys
-        for (let i = 0; i < j; i++) {
+        for (let i: number = 0; i < j; i++) {
             xPos = Math.random() * canvas.width / 1.5;
             yPos = 450 + (70 * Math.random());
             /* if (xPos > width / 2) {
@@ -123,7 +123,7 @@ namespace L11_Virus {
             cells.push(cell);
         }
 
-        for (let i = 0; i < j/2; i++) {
+        for (let i: number = 0; i < j / 2; i++) {
             radius = 30;
             xPos = coronaPosition + radius + 10;
             coronaPosition = xPos + radius;
@@ -149,7 +149,7 @@ namespace L11_Virus {
             cells.push(corona);
         }
 
-        for (let i = 0; i < nParticles; i++) {
+        for (let i: number = 0; i < nParticles; i++) {
             xPos = Math.random() * canvas.width;
             yPos = Math.random() * canvas.height;
             // Call draw Cell and commit all needed values for the cell 
@@ -168,9 +168,9 @@ namespace L11_Virus {
             if (cell instanceof Corona)
                 cell.move(1 / 20);
             else if (cell instanceof BodyCell)
-                cell.move(1 / 30)
+                cell.move(1 / 30); 
             else if (cell instanceof Particle)
-                cell.move(1 / 50)
+                cell.move(1 / 50);
             cell.draw();
         }
         isInfected();
@@ -200,10 +200,10 @@ namespace L11_Virus {
         _corona.status = STATE_CORONA.INFECTING;
         window.setTimeout(function (): void {
             handleCoronaState(_corona, 1000);
-        }, 3000);
+        },                3000);
     }
 
-    function changeBodyCell(_virusPos: number) {
+    function changeBodyCell(_virusPos: number): void {
         for (let cell of cells) {
             let areaMin: number = cell.position.x - 40;
             let areaMax: number = cell.position.x + 40;
@@ -213,12 +213,12 @@ namespace L11_Virus {
                 let bodyCell: BodyCell = cell;
                 window.setTimeout(function (): void {
                     handleCellState(bodyCell);
-                }, 3000);
+                },                3000);
             }
         }
     }
 
-    function handleCellState(_cell: BodyCell) {
+    function handleCellState(_cell: BodyCell): void {
         if (_cell.status != STATE_BODYCELL.KILLED) {
             let newCorona: Corona = new Corona(_cell.position, STATE_CORONA.PASSIVE);
             newCorona.draw();
@@ -231,10 +231,10 @@ namespace L11_Virus {
     function handleCoronaState(_cell: Corona, _t: number): void {
         window.setTimeout(function (): void {
             changeCoronaState(_cell);
-        }, _t);
+        },                _t);
     }
 
-    function killBodyCell(_cell: Cell) {
+    function killBodyCell(_cell: Cell): void {
         let index: number = cells.indexOf(_cell);
         cells.splice(index, 1);
     }

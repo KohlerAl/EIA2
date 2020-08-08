@@ -19,7 +19,7 @@ var L10_Virus;
             let endAngle = (Math.PI / 180) * 360;
             let rotation = Math.random() * 360;
             // Creating a pattern, to give the Cells a bit of texture
-            let pattern = document.createElement('canvas').getContext('2d');
+            let pattern = document.createElement("canvas").getContext("2d");
             pattern.canvas.width = 2;
             pattern.canvas.height = 2;
             pattern.fillStyle = color + "55";

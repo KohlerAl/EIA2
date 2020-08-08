@@ -1,6 +1,6 @@
 namespace L10_Virus {
     export class Corona extends Cell {
-        isInfecting = false;
+        isInfecting: boolean = false;
 
         constructor(_position: Vector) {
             super(_position);
@@ -11,7 +11,7 @@ namespace L10_Virus {
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
 
-            for (let i = 0; i < 7; i++) {
+            for (let i: number = 0; i < 7; i++) {
                 crc2.beginPath();
                 crc2.rotate(45);
                 crc2.moveTo(0, 25);
@@ -36,7 +36,7 @@ namespace L10_Virus {
         move(_timeslice: number): void {
             if (this.isInfecting == false) {
                 if (this.position.y < 250) {
-                    super.move(_timeslice * 2)
+                    super.move(_timeslice * 2);
                 }
                 else {
                     super.move(_timeslice);

@@ -13,17 +13,17 @@ namespace EIA2_Endabgabe {
             crc2.beginPath();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
-            crc2.rotate(this.rotation * Math.PI / 180); 
-            crc2.moveTo(0, 0 - this.size.x/2);
+            crc2.rotate(this.rotation * Math.PI / 180);
+            crc2.moveTo(0, 0 - this.size.x / 2);
 
-            for (let i = 0; i < 5; i++) {
+            for (let i: number = 0; i < 5; i++) {
                 crc2.rotate(Math.PI / 5);
-                crc2.lineTo(0, 0 - (this.size.x/2 * this.size.x/20));
+                crc2.lineTo(0, 0 - (this.size.x / 2 * this.size.x / 20));
                 crc2.rotate(Math.PI / 5);
-                crc2.lineTo(0, 0 - this.size.x/2);
+                crc2.lineTo(0, 0 - this.size.x / 2);
             }
-            
-            super.draw(); 
+
+            super.draw();
             crc2.fillStyle = this.color;
             crc2.restore();
             crc2.closePath();
@@ -33,15 +33,15 @@ namespace EIA2_Endabgabe {
             super.changeColor(_newColor);
         }
 
-        public changePosition(_x: number, _y: number) {
+        public changePosition(_x: number, _y: number): void {
             super.changePosition(_x, _y);
         }
 
-        public changeRotation(_factor: number) {
+        public changeRotation(_factor: number): void {
             super.changeRotation(_factor);
         }
 
-        public resize(_factor: number) {
+        public resize(_factor: number): void {
             super.resize(_factor);
         }
 

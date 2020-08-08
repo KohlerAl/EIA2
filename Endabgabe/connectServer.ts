@@ -3,17 +3,17 @@ namespace EIA2_Endabgabe {
     let options: string[];
 
     export interface PicturePart {
-        active: boolean,
-        size: Vector,
-        positionX: number,
-        positionY: number,
-        rotation: number,
-        moveType: FORM_MOVE,
-        color: string,
-        velocity: Vector,
+        active: boolean;
+        size: Vector;
+        positionX: number;
+        positionY: number;
+        rotation: number;
+        moveType: FORM_MOVE;
+        color: string;
+        velocity: Vector;
         neon: boolean;
         threeD: boolean;
-        type: string
+        type: string;
     }
 
 
@@ -24,7 +24,7 @@ namespace EIA2_Endabgabe {
                 return;
             }
         }
-        insertPicture(_name); 
+        insertPicture(_name);
     }
 
 
@@ -43,9 +43,9 @@ namespace EIA2_Endabgabe {
                 "velocity": figure.velocity,
                 "neon": figure.neon,
                 "threeD": figure.threeD,
-                "type": figure.type,
+                "type": figure.type
 
-            }
+            };
             information.push(form);
         }
         sendData(information, _name);
@@ -75,7 +75,7 @@ namespace EIA2_Endabgabe {
 
         let responseText: string = await response.text();
         if (responseText != "") {
-            alert("Your picture " + _name + " has been saved!")
+            alert("Your picture " + _name + " has been saved!");
         }
         else {
             alert("An error has occurred during saving");
@@ -83,7 +83,7 @@ namespace EIA2_Endabgabe {
         findPictures();
     }
 
-    function createDatalist(_response: string) {
+    function createDatalist(_response: string): void {
         let masterpiece: HTMLDataListElement = <HTMLDataListElement>document.getElementById("masterpiece");
         options = _response.split(",");
         while (masterpiece.firstChild) {
@@ -108,11 +108,11 @@ namespace EIA2_Endabgabe {
         let name: string = creations.value;
         let response: Response = await fetch(url + "?" + "findPicture&" + name);
         let responseText: string = await response.text();
-        console.log(responseText)
+        console.log(responseText);
         let pretty: string = responseText.replace(/\\|\[|{|}|"|_id|savePicture|]/g, "");
         let removeName: string = pretty.replace(name, "");
         let prettier: string = removeName.replace(/,,,/g, ",");
-        let removeKey: string = prettier.replace(/type:|active:|size:|neon:|threeD:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "")
+        let removeKey: string = prettier.replace(/type:|active:|size:|neon:|threeD:|positionX:|positionY:|rotation:|x:|y:|moveType:|color:|velocity:/g, "");
         let data: string[] = removeKey.split(",");
         console.log(data);
         canvas.width = parseInt(data[1]);

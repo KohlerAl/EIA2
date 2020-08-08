@@ -1,20 +1,20 @@
 namespace L10_Virus {
-    export class BodyCell extends Cell{
+    export class BodyCell extends Cell {
         color: string;
         nucleus: string;
 
         nucleusPosX: number;
         nucleusPosY: number;
 
-        isInfected: boolean; 
+        isInfected: boolean;
 
         constructor(_position: Vector, _isInfected: boolean) {
-            super(_position); 
-            let colorIndex = Math.round(Math.random() * 3);
-            this.isInfected = _isInfected; 
+            super(_position);
+            let colorIndex: number = Math.round(Math.random() * 3);
+            this.isInfected = _isInfected;
 
             if (this.isInfected == true) {
-                this.color = "#891911"
+                this.color = "#891911";
             }
 
             else {
@@ -32,8 +32,8 @@ namespace L10_Virus {
 
         draw(): void {
             crc2.save();
-            let startAngle = (Math.PI / 180);
-            let endAngle = (Math.PI / 180) * 360;
+            let startAngle: number = (Math.PI / 180);
+            let endAngle: number = (Math.PI / 180) * 360;
 
             // Create the Cell itself
             crc2.beginPath();
@@ -57,12 +57,12 @@ namespace L10_Virus {
         }
 
         move(_timeslice: number): void {
-            super.move(_timeslice); 
+            super.move(_timeslice);
 
             if (this.position.y < 72)
-            this.velocity = new Vector (0, 10); 
+                this.velocity = new Vector(0, 10);
             if (this.position.y > 87)
-            this.velocity = new Vector (0, -10);
+                this.velocity = new Vector(0, -10);
         }
     }
 }

@@ -28,8 +28,8 @@ namespace L09_Virus {
 
         draw(_position: Vector): void {
             crc2.save();
-            let startAngle = (Math.PI / 180);
-            let endAngle = (Math.PI / 180) * 360;
+            let startAngle: number = (Math.PI / 180);
+            let endAngle: number = (Math.PI / 180) * 360;
 
             // Create the Cell itself
             crc2.beginPath();

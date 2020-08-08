@@ -1,12 +1,12 @@
 namespace L11_Virus {
-    export class Antibody extends Cell{
+    export class Antibody extends Cell {
 
         private rotation: number;
 
         constructor(_position: Vector) {
             super(_position);
             this.velocity.random(7, 10);
-            this.rotation = Math.random() * 360; 
+            this.rotation = Math.random() * 360;
             this.type = "Antibody";
         }
 
@@ -17,7 +17,7 @@ namespace L11_Virus {
             crc2.rotate(this.rotation);
             crc2.moveTo(0, 0);
             crc2.lineTo(0, 24);
-            crc2.strokeStyle = "#114d89"
+            crc2.strokeStyle = "#114d89";
             crc2.lineWidth = 2;
             crc2.stroke();
             crc2.closePath();
@@ -28,7 +28,7 @@ namespace L11_Virus {
         }
 
         public move(_timeslice: number): void {
-            super.move(_timeslice); 
+            super.move(_timeslice);
 
             if (this.position.x < 0)
                 this.position.x += crc2.canvas.width;

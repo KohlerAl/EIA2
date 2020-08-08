@@ -22,31 +22,31 @@ namespace L03_CocktailBar {
         order.innerHTML = "";
 
         let totalPrice: number = 0;
-        
+
         // erstes Forumlar des Dokuments
-        let formData = new FormData(document.forms[0]);
+        let formData: FormData = new FormData(document.forms[0]);
         for (let entry of formData) {
-            let item: HTMLInputElement = <HTMLInputElement>document.querySelector("[value='" +  entry[1] + "']");
+            let item: HTMLInputElement = <HTMLInputElement>document.querySelector("[value='" + entry[1] + "']");
             let price: number = Number(item.getAttribute("price"));
-            
+
             let prices: number;
             let amount: number = Number(formData.get("Amount"));
-                        
+
             if (item.classList.contains("drinks")) {
-                
-                prices = price * amount ;
+
+                prices = price * amount;
                 console.log(prices);
-                order.innerHTML += entry[1] + ":  " + amount + "L  =  " + prices.toFixed(2) + " € " + "<br>" ; 
+                order.innerHTML += entry[1] + ":  " + amount + "L  =  " + prices.toFixed(2) + " € " + "<br>";
                 totalPrice = prices + totalPrice;
             }
 
-            else if (item.classList.contains("containertype") || item.classList.contains("extras")){
-                order.innerHTML += entry[1] + " " + price.toFixed(2) + " € " + "<br>" ;
+            else if (item.classList.contains("containertype") || item.classList.contains("extras")) {
+                order.innerHTML += entry[1] + " " + price.toFixed(2) + " € " + "<br>";
                 totalPrice = price + totalPrice;
             }
-        
+
         }
-        order.innerHTML += "<br>" + "<hr>" + "<b>" +  "Total: " + totalPrice.toFixed(2) + " € " + "</b>";
+        order.innerHTML += "<br>" + "<hr>" + "<b>" + "Total: " + totalPrice.toFixed(2) + " € " + "</b>";
     }
 
 

@@ -38,7 +38,7 @@ var EIA2_Endabgabe;
         console.log("Request-URL:  " + _request.url);
         if (_request.url) {
             let url = Url.parse(_request.url, true);
-            let splitURL = _request.url.split('&');
+            let splitURL = _request.url.split("&");
             console.log("SPLIT URL" + splitURL[0]);
             if (_request.url == "/?getPicture=yes") {
                 // Load Names of all Pictures and show them to user 

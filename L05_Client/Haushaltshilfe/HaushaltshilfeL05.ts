@@ -6,7 +6,7 @@ namespace L05_Household {
      * der globalen Variablen totalCost 
      */
     let totalCost: number = 0;
-    let form: HTMLFormElement = <HTMLFormElement>document.querySelector("form");/* 
+    let form: HTMLFormElement = <HTMLFormElement>document.querySelector("form"); /* 
     let cart: HTMLButtonElement = <HTMLButtonElement>document.getElementById("cart");
     let getCash: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getCash"); */
     let householdDone: HTMLButtonElement = <HTMLButtonElement>document.getElementById("householdDone");
@@ -28,7 +28,7 @@ namespace L05_Household {
         // Event-Listener auf alle Buttons, nachdem alles geladen wurde
         /*cart.addEventListener("click", handleChange);
         getCash.addEventListener("click", handleChange); */
-        householdDone.addEventListener("click", handleChange);/* 
+        householdDone.addEventListener("click", handleChange); /* 
         confirm.addEventListener("click", showInput);  */
         submitButton.addEventListener("click", sendOrder);
         resetButton.addEventListener("click", resetForm);
@@ -48,13 +48,13 @@ namespace L05_Household {
             // Selektieren des HTML-Elements mit dem entsprechenden Wert
             let item: HTMLInputElement = <HTMLInputElement>document.querySelector(selector);
             //Neue Tabellenzeile und insgesamt sechs Spalten erstellen
-            let row = document.createElement("tr");
-            let td = document.createElement("td");
-            let td2 = document.createElement("td");
-            let td3 = document.createElement("td");
-            let td4 = document.createElement("td");
-            let td5 = document.createElement("td");
-            let td6 = document.createElement("td");/* 
+            let row: HTMLTableRowElement = document.createElement("tr");
+            let td: HTMLTableDataCellElement = document.createElement("td");
+            let td2: HTMLTableDataCellElement = document.createElement("td");
+            let td3: HTMLTableDataCellElement = document.createElement("td");
+            let td4: HTMLTableDataCellElement = document.createElement("td");
+            let td5: HTMLTableDataCellElement = document.createElement("td");
+            let td6: HTMLTableDataCellElement = document.createElement("td"); /* 
             let td7 = document.createElement("td"); */
             // Erstellen eines Buttons, damit man den Eintrag später auch löschen kann 
             /* let deleteButton: HTMLButtonElement | null = document.createElement("button");
@@ -72,7 +72,7 @@ namespace L05_Household {
                     let menge: string = String(entry[1]);
                     // Selektieren des HTML-Elements mit dem entsprechenden Wert
                     /* let slider: HTMLInputElement = <HTMLInputElement>document.querySelector(menge); */
-                    let slider = formData.get(menge);
+                    let slider: string | File | null = formData.get(menge);
                     let amount: number = Number(slider);
                     // Wert, um welche Einheit es sich bei dem Artikel handelt suchen 
                     let einheit: string = String(item.getAttribute("unit"));
@@ -101,7 +101,7 @@ namespace L05_Household {
                     row.appendChild(td3);
                     row.appendChild(td4);
                     row.appendChild(td5);
-                    row.appendChild(td6);/* 
+                    row.appendChild(td6); /* 
                     row.appendChild(td7) */
                     table.appendChild(row);
                     // Hinzufügen des Preises zum Gesamtpreis
@@ -116,7 +116,7 @@ namespace L05_Household {
                     // Der Wert vom Slider wird abgegriffen
                     let bargeld: number = Number(formData.get("bargeld"));
                     // Die Grundgebühr wird hinzugfeügt
-                    let geld = bargeld + 5;
+                    let geld: number = bargeld + 5;
                     // Die Werte in die Tabellenspalten eintragen
                     td.innerHTML = "" + money;
                     td2.innerHTML = "" + geld + "€";
@@ -127,7 +127,7 @@ namespace L05_Household {
                     // Alle neuen Elemente ins HTML integrieren
                     td3.appendChild(deleteButton); */
                     row.appendChild(td);
-                    row.appendChild(td2);/* 
+                    row.appendChild(td2); /* 
                     row.appendChild(td3); */
                     table2.appendChild(row);
                     // Die Kosten zu den Gesamtkosten hinzufügen und dann das Form-Element leeren
@@ -140,23 +140,23 @@ namespace L05_Household {
                     // Nach dem selben Prinzip wie oben werden jetzt auch die Haushaltsarbeiten durchgearbeitet
                     td.innerHTML = "" + entry[1];
                     td2.innerHTML = "" + itemCost + "€";
-                   /*  deleteButton.addEventListener("click", function () {
-                        deleteList(itemCost, event);
-                    });
-                    td3.appendChild(deleteButton); */
+                    /*  deleteButton.addEventListener("click", function () {
+                         deleteList(itemCost, event);
+                     });
+                     td3.appendChild(deleteButton); */
                     row.appendChild(td);
-                    row.appendChild(td2);/* 
+                    row.appendChild(td2); /* 
                     row.appendChild(td3) */
                     table3.appendChild(row);
                     totalCost += itemCost;
                     break;
                 default:
                     break;
-                }
-                    totalPrice.innerHTML = "";
-                    totalPrice.innerHTML = "<strong>Gesamtpreis: </strong>" + totalCost.toFixed(2) + "€";
+            }
+            totalPrice.innerHTML = "";
+            totalPrice.innerHTML = "<strong>Gesamtpreis: </strong>" + totalCost.toFixed(2) + "€";
 
-            
+
         }
     }
 
@@ -180,7 +180,7 @@ namespace L05_Household {
         console.log(form);
         for (let entry of formData) {
             console.log(entry[1]);
-        } 
+        }
         //Query-String zusammenbauen 
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         //Fetch (suchen der HTML-Datei (Haushaltshilfe))
@@ -189,44 +189,45 @@ namespace L05_Household {
 
         // Wenn der Button zum Abschicken gedrückt wurde, wird in einem Alert-Fenster eine Benachrichtigung mit dem Lieferdatum angezeigt
         let date: HTMLInputElement = <HTMLInputElement>document.getElementById("date");
-        let lieferdatum = date.value;
+        let lieferdatum: string = date.value;
         let paypal: HTMLInputElement = <HTMLInputElement>document.getElementById("Paypal");
         let überweisung: HTMLInputElement = <HTMLInputElement>document.getElementById("Überweisung");
-        let Zahlungsart: string;
+        let zahlungsart: string;
 
         if (paypal.checked == true) {
-            Zahlungsart = "Paypal"
+            zahlungsart = "Paypal";
         }
         else if (überweisung.checked == true) {
-            Zahlungsart = "Überweisung";
+            zahlungsart = "Überweisung";
         }
         else {
-            Zahlungsart = "Bar"
+            zahlungsart = "Bar";
         }
-        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost.toFixed(2) + "€");
+        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre zahlungsart: " + zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost.toFixed(2) + "€");
     }
 
     export function enableSlider(_event: any): void {
-        let id: string = _event.target.id; 
-        let slider: HTMLInputElement = <HTMLInputElement>document.querySelector("." + id); 
-        let range: HTMLSpanElement = <HTMLSpanElement>document.querySelector(".range" + id); 
-        let range2: HTMLSpanElement = <HTMLSpanElement>document.querySelector(".range2" + id); 
+        let id: string = _event.target.id;
+        let slider: HTMLInputElement = <HTMLInputElement>document.querySelector("." + id);
+        let range: HTMLSpanElement = <HTMLSpanElement>document.querySelector(".range" + id);
+        let range2: HTMLSpanElement = <HTMLSpanElement>document.querySelector(".range2" + id);
         if (_event.target.checked == true) {
-            slider.disabled = false; 
+            slider.disabled = false;
             range.style.opacity = "1";
             range2.style.opacity = "1";
         }
         else {
-        slider.disabled = true; 
-        range.style.opacity = "0";
-        range2.style.opacity = "0"; }
+            slider.disabled = true;
+            range.style.opacity = "0";
+            range2.style.opacity = "0";
+        }
     }
 
     export function enableRadio(): void {
-        let bank: HTMLInputElement = <HTMLInputElement>document.getElementById("Bank"); 
-        bank.disabled = false; 
+        let bank: HTMLInputElement = <HTMLInputElement>document.getElementById("Bank");
+        bank.disabled = false;
         let money: HTMLSpanElement = <HTMLSpanElement>document.querySelector(".money");
-        money.style.opacity = "1"
+        money.style.opacity = "1";
     }
 
     function resetForm(_event: Event): void {
@@ -257,7 +258,7 @@ namespace L05_Household {
             table3.removeChild(tr);
             length3--;
         }
-        totalCost = 0; 
+        totalCost = 0;
         totalPrice.innerHTML = "<strong>Gesamtpreis: </strong>  0.00€";
     }
 

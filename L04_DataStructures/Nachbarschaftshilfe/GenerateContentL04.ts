@@ -3,7 +3,7 @@ namespace L04_Haushaltshilfe {
         for (let category in _data) {
             let items: Item[] = _data[category];
             console.log(items); 
-            console.log("Hello")
+            console.log("Hello");
             let group: HTMLElement | null = null;
             switch (category) {
                 case "produce":

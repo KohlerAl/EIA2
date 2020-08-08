@@ -13,6 +13,7 @@ var L02_Memory;
     let startDuration = document.getElementById("startDuration");
     let playground = document.getElementById("playground");
     let word = document.getElementById("word");
+    let index = 0;
     /**
      * Wenn der Benutzer auf den ersten Button klickt, wird das jeweilige Inputfeld
      * deaktiviert. Dabei setzt man den disabled Wert des jeweiligen Inputfeldes auf "false"
@@ -128,7 +129,6 @@ var L02_Memory;
                 }
             }, 1000);
         }
-        let index = 0;
         function checkCard(_original, _event) {
             // Hier hole ich mir die ID von event.target (hier die Karte auf die geklickt wurde)
             let id = _event.target.id;

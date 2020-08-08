@@ -182,17 +182,17 @@ var L05_Household;
         let lieferdatum = date.value;
         let paypal = document.getElementById("Paypal");
         let überweisung = document.getElementById("Überweisung");
-        let Zahlungsart;
+        let zahlungsart;
         if (paypal.checked == true) {
-            Zahlungsart = "Paypal";
+            zahlungsart = "Paypal";
         }
         else if (überweisung.checked == true) {
-            Zahlungsart = "Überweisung";
+            zahlungsart = "Überweisung";
         }
         else {
-            Zahlungsart = "Bar";
+            zahlungsart = "Bar";
         }
-        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost.toFixed(2) + "€");
+        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre zahlungsart: " + zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost.toFixed(2) + "€");
     }
     function enableSlider(_event) {
         let id = _event.target.id;

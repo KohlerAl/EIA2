@@ -4,7 +4,7 @@ var L09_Virus;
     function createBackground() {
         //To make the Background look more interesting, I create a simple pattern, imitating cells. 
         //The opacity is not very high so that the pattern does not distract form the bigger cells. 
-        let pattern = document.createElement('canvas').getContext('2d');
+        let pattern = document.createElement("canvas").getContext("2d");
         pattern.canvas.width = 100;
         pattern.canvas.height = 40;
         pattern.fillStyle = "#97a0db3a";

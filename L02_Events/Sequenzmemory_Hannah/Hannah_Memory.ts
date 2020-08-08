@@ -1,5 +1,5 @@
 namespace L02_Sequenzmemory {
-    
+
     /**
      * Der Aufbau mit den Events ist im AD nicht ganz richtig. Keine Funktion wird irgendwo aufgerufen.
      * Ich hab das ganze mal so "interpretiert" wie ich denke, dass es gemeint war,
@@ -11,18 +11,18 @@ namespace L02_Sequenzmemory {
      * Ich finde, das wäre zu viel "Einmischung" gewesen. 
      */
 
-    let word : HTMLInputElement = <HTMLInputElement>document.getElementById("selectPredefined"); 
-    let playground : HTMLDivElement = <HTMLDivElement>document.getElementById("playground"); 
+    let word: HTMLInputElement = <HTMLInputElement>document.getElementById("selectPredefined");
+    let playground: HTMLDivElement = <HTMLDivElement>document.getElementById("playground");
     let ownWord: HTMLInputElement = <HTMLInputElement>document.getElementById("ownWord");
-    let clock: HTMLInputElement = <HTMLInputElement>document.getElementById("clock"); 
-    let timer: HTMLDivElement = <HTMLDivElement>document.getElementById("timer"); 
-    let index: number = 0; 
+    let clock: HTMLInputElement = <HTMLInputElement>document.getElementById("clock");
+    let timer: HTMLDivElement = <HTMLDivElement>document.getElementById("timer");
+    let index: number = 0;
     /**
      * Die beiden Buttons habe ich eingefügt, weil es beim Testen sonst sehr unübersichtlich 
      *  geworden wäre (und damit ich überhaupt was bekomme, um den nachfolgenenden Code zu testen)
      */
     let button: HTMLButtonElement = <HTMLButtonElement>document.getElementById("button");
-    let text: HTMLButtonElement = <HTMLButtonElement>document.getElementById("text"); 
+    let text: HTMLButtonElement = <HTMLButtonElement>document.getElementById("text");
 
     /**
      * Laut der WhatsApp Nachricht soll der Wert für den Timer eingegeben, dann die Sequenz ausgesucht
@@ -31,11 +31,11 @@ namespace L02_Sequenzmemory {
      */
 
     button.addEventListener("click", chooseSequence);
-    text.addEventListener("click", createSequenz); 
+    text.addEventListener("click", createSequenz);
 
     function chooseSequence(): void {
-        let sequence: string = word.value; 
-        let sentence: string[] = sequence.split(""); 
+        let sequence: string = word.value;
+        let sentence: string[] = sequence.split("");
         let temp1: number = sentence.length;
 
         /**
@@ -43,28 +43,28 @@ namespace L02_Sequenzmemory {
          * verstanden habe (und den Lösungsweg kenne). Das AD lässt hier aber relativ viel Spielraum 
          */
         while (temp1 > 0) {
-            let temp2: number = Math.floor(Math.random()*temp1); 
-            temp1--; 
-            let temp3: string = sentence[temp1]; 
-            sentence[temp1] = sentence[temp2]; 
-            sentence[temp2] = temp3; 
+            let temp2: number = Math.floor(Math.random() * temp1);
+            temp1--;
+            let temp3: string = sentence[temp1];
+            sentence[temp1] = sentence[temp2];
+            sentence[temp2] = temp3;
         }
 
-        let temp4: number = sentence.length
-        for (let index = 0; index < temp4; index++) {
+        let temp4: number = sentence.length;
+        for (let index: number = 0; index < temp4; index++) {
             // Ich habe mich für span-Elemente entschieden, weil die (im Gegensatz zu divs) keinen
             // Zeilenumbruch erzeugen (und so soll es laut dem UI-Scribble aussehen)
-            let card: HTMLSpanElement = document.createElement("span"); 
-            card.className = "card"; 
-            card.innerHTML = "" + sentence[index]; 
-            playground.appendChild(card); 
+            let card: HTMLSpanElement = document.createElement("span");
+            card.className = "card";
+            card.innerHTML = "" + sentence[index];
+            playground.appendChild(card);
         }
-        setTimer; 
+        setTimer();
     }
 
     function createSequenz(): void {
-        let sequence: string = ownWord.value; 
-        let sentence: string[] = sequence.split(""); 
+        let sequence: string = ownWord.value;
+        let sentence: string[] = sequence.split("");
         let temp1: number = sentence.length;
 
         /**
@@ -75,65 +75,65 @@ namespace L02_Sequenzmemory {
          * ich den Code zweimal (Update nachdem ich auf WhatsApp gefragt habe: eigentlich war ersteres gemeint)
          */
         while (temp1 > 0) {
-            let temp2: number = Math.floor(Math.random()*temp1); 
-            temp1--; 
-            let temp3: string = sentence[temp1]; 
-            sentence[temp1] = sentence[temp2]; 
-            sentence[temp2] = temp3; 
+            let temp2: number = Math.floor(Math.random() * temp1);
+            temp1--;
+            let temp3: string = sentence[temp1];
+            sentence[temp1] = sentence[temp2];
+            sentence[temp2] = temp3;
         }
 
-        let temp4: number = sentence.length
-        for (let index = 0; index < temp4; index++) {
-            let card: HTMLSpanElement = document.createElement("span"); 
-            card.className = "card"; 
+        let temp4: number = sentence.length;
+        for (let index: number = 0; index < temp4; index++) {
+            let card: HTMLSpanElement = document.createElement("span");
+            card.className = "card";
             /**
              * Der Event-Listener und die ID standen nicht dort im AD, wo die Karten erstellt werden, sondern
              *  in der Funktion checkCards. Da aber jede Karte separat einen Event-Listener bekommen soll, fand
              * ich, dass es einfacher ist, das direkt hier mit rein zu schreiben. 
              */
-            card.addEventListener("click", function(): void {
-                checkCards(sequence, event); 
-            }); 
-            card.id = "" + sentence[index]; 
-            card.innerHTML = "" + sentence[index]; 
-            playground.appendChild(card); 
+            card.addEventListener("click", function (): void {
+                checkCards(sequence, event);
+            });
+            card.id = "" + sentence[index];
+            card.innerHTML = "" + sentence[index];
+            playground.appendChild(card);
         }
 
-        setTimer(); 
+        setTimer();
     }
 
     function setTimer(): void {
         //Das AD sagt hier nur "Timer wird gestellt". Laut der WhatsApp Nachricht soll hier irgendwas mit 
         // "Array/ Schleife" passieren, ich nehme an, dass damit auch setInterval gemeint ist. 
-        let time: number = Number(clock.value);  
-        let countdown: number = 1; 
-        timer.innerHTML = "" + time; 
+        let time: number = Number(clock.value);
+        let countdown: number = 1;
+        timer.innerHTML = "" + time;
 
-        let i = setInterval(function(): void {
-            let currentTime: number  = time - countdown; 
-            timer.innerHTML = "" + currentTime; 
-            countdown++; 
+        let i: NodeJS.Timeout = setInterval(function (): void {
+            let currentTime: number = time - countdown;
+            timer.innerHTML = "" + currentTime;
+            countdown++;
             if (currentTime == 0) {
-                clearInterval(i); 
-                timer.innerHTML = "Spiel beendet"; 
+                clearInterval(i);
+                timer.innerHTML = "Spiel beendet";
             }
-        }, 1000);
+        },                                  1000);
 
     }
 
     function checkCards(_sequence: string, _event: any): void {
-        let id = _event.target.id; 
-        console.log(index); 
+        let id: string = _event.target.id;
+        console.log(index);
         console.log(_sequence[index]);
         // Im AD steht nicht, was passieren soll, wenn man alle Karten gefunden hat
         if (id == _sequence[index]) {
-            index++; 
+            index++;
             playground.removeChild(_event.target);
         }
         else {
             // Hier war ich nicht ganz sicher, was ich mit "Fehlermeldung erscheint" anfangen soll. Deswegen habe ich mich für
             // einen alert entschieden. 
-            alert("Diese Karte passt nicht"); 
+            alert("Diese Karte passt nicht");
         }
     }
 

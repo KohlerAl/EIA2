@@ -7,13 +7,12 @@ namespace L11_Virus {
 
     export class BodyCell extends Cell {
 
+        public status: STATE_BODYCELL;
         private color: string;
         private nucleus: string;
 
         private nucleusPosX: number;
         private nucleusPosY: number;
-
-        public status: STATE_BODYCELL;
 
         constructor(_position: Vector, _isInfected?: STATE_BODYCELL) {
             super(_position);
@@ -25,7 +24,7 @@ namespace L11_Virus {
                 this.status = STATE_BODYCELL.NORMAL;
             }
 
-            let colorIndex = Math.round(Math.random() * 3);
+            let colorIndex: number = Math.round(Math.random() * 3);
             let colors: string[] = ["#1bd080", "#55f6a2", "#54b27d", "#00ab5f"];
             this.color = colors[colorIndex];
 
@@ -45,16 +44,16 @@ namespace L11_Virus {
 
         public draw(): void {
             if (this.status == STATE_BODYCELL.INFECTED) {
-                this.color = "#891911"
+                this.color = "#891911";
             }
 
             else if (this.status == STATE_BODYCELL.KILLED) {
-                this.color = "#000000"
+                this.color = "#000000";
             }
 
             crc2.save();
-            let startAngle = (Math.PI / 180);
-            let endAngle = (Math.PI / 180) * 360;
+            let startAngle: number = (Math.PI / 180);
+            let endAngle: number = (Math.PI / 180) * 360;
 
             // Create the Cell itself
             crc2.beginPath();

@@ -28,7 +28,7 @@ var EIA2_Endabgabe;
                 "velocity": figure.velocity,
                 "neon": figure.neon,
                 "threeD": figure.threeD,
-                "type": figure.type,
+                "type": figure.type
             };
             information.push(form);
         }

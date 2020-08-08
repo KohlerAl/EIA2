@@ -11,7 +11,7 @@ console.log(v);
  *  5. Es hat vorhin funktioniert, weil aus v dann einfach auch ein string gemacht wurde
  */
 
-let a = [ 7, true, "Hallo"]
+let a: (string | number | boolean)[] = [7, true, "Hallo"];
 
 /** Komplexe Datentypen
  *  Bei a[index] zwischen 0 und 2 werden die jeweiligen Werte ausgegeben 
@@ -25,7 +25,11 @@ let a = [ 7, true, "Hallo"]
  * bei a[4] wird [101, 102] ausgegeben -> An der Stelle 4 ist im Array ein Array
  */
 
-let s = {"zahl": 7, "wahr": true, text: "Hallo"}
+let s: {
+    zahl: number;
+    wahr: boolean;
+    text: string;
+} = { "zahl": 7, "wahr": true, text: "Hallo" };
 
 /**
  * Egal ob s["key"] oder s.key eingegeben wird, es wird ein Wert ausgegeben
@@ -35,7 +39,7 @@ let s = {"zahl": 7, "wahr": true, text: "Hallo"}
 let v1: number = 1;
 let v2: number = v1;
 
-v1 = v1 + 5; 
+v1 = v1 + 5;
 console.log("V1 ist " + v1);
 console.log("V2 ist " + v2);
 
@@ -44,8 +48,8 @@ console.log("V2 ist " + v2);
  *  v1 ist dann 6, v2 ist weiterhin 1
  */
 
-let x1 = [1, 2, 3];
-let x2 = x1;
+let x1: number[] = [1, 2, 3];
+let x2: number[] = x1;
 
 x1[1] = 7;
 console.log("x1 ist " + x1);

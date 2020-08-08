@@ -17,8 +17,8 @@ namespace EIA2_Endabgabe {
             crc2.lineTo(0 + this.size.x / 2, 0 + this.size.y / 2);
             crc2.lineTo(0, 0 - this.size.y / 2);
             crc2.lineTo(0 - this.size.x / 2, 0 + this.size.y / 2);
-            crc2.lineJoin = "round"; 
-           super.draw(); 
+            crc2.lineJoin = "round";
+            super.draw();
             crc2.fillStyle = this.color;
             crc2.stroke();
             crc2.restore();
@@ -29,15 +29,15 @@ namespace EIA2_Endabgabe {
             super.changeColor(_newColor);
         }
 
-        public changePosition(_x: number, _y: number) {
+        public changePosition(_x: number, _y: number): void {
             super.changePosition(_x, _y);
         }
 
-        public changeRotation(_factor: number) {
+        public changeRotation(_factor: number): void {
             super.changeRotation(_factor);
         }
 
-        public resize(_factor: number) {
+        public resize(_factor: number): void {
             super.resize(_factor);
         }
 

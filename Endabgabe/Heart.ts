@@ -32,15 +32,15 @@ namespace EIA2_Endabgabe {
             super.changeColor(_newColor);
         }
 
-        public changePosition(_x: number, _y: number) {
+        public changePosition(_x: number, _y: number): void {
             super.changePosition(_x, _y);
         }
 
-        public changeRotation(_factor: number) {
+        public changeRotation(_factor: number): void {
             super.changeRotation(_factor);
         }
 
-        public resize(_factor: number) {
+        public resize(_factor: number): void {
             super.resize(_factor);
         }
 

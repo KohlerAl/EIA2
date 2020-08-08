@@ -34,7 +34,7 @@ namespace L11_Virus {
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
 
-            for (let i = 0; i < 7; i++) {
+            for (let i: number = 0; i < 7; i++) {
                 crc2.beginPath();
                 crc2.rotate(45);
                 crc2.moveTo(0, 25);

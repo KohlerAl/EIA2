@@ -2,7 +2,7 @@ namespace L11_Virus {
     export function createBackground(): void {
         //To make the Background look more interesting, I create a simple pattern, imitating cells. 
         //The opacity is not very high so that the pattern does not distract form the bigger cells. 
-        let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
+        let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement("canvas").getContext("2d");
         pattern.canvas.width = 100;
         pattern.canvas.height = 40;
         pattern.fillStyle = "#97a0db3a";
@@ -43,7 +43,7 @@ namespace L11_Virus {
         crc2.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-     export function resizeCanvas(): void {
+    export function resizeCanvas(): void {
         //Make the Canvas as big as the screen of the used device 
         width = window.innerWidth;
         canvas.setAttribute("width", width + "px");
@@ -54,5 +54,5 @@ namespace L11_Virus {
         //The rectangle is bigger as the canvas, making sure there are no margins in the background-color
         crc2.fillRect(0, 0, width, height);
     }
-    
+
 }

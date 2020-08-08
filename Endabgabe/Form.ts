@@ -1,7 +1,7 @@
 namespace EIA2_Endabgabe {
     export enum FORM_MOVE {
         ROTATE = "rotate",
-        MOVE = "move",
+        MOVE = "move"
     }
     export abstract class Form {
         public color: string;
@@ -65,12 +65,12 @@ namespace EIA2_Endabgabe {
                 crc2.shadowOffsetX = 2;
                 crc2.shadowOffsetY = 2;
                 crc2.shadowBlur = 15;
-                crc2.strokeStyle = "#ffffff88"
+                crc2.strokeStyle = "#ffffff88";
             }
             else if (this.threeD == true) {
                 crc2.fillStyle = "414141";
                 crc2.shadowBlur = 10;
-                crc2.shadowColor = "cyan"
+                crc2.shadowColor = "cyan";
                 crc2.shadowOffsetX = -5;
                 crc2.shadowOffsetY = 0;
                 crc2.lineWidth = 2;

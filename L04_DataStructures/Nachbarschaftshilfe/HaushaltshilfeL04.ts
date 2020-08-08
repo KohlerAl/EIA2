@@ -19,7 +19,7 @@ namespace L04_Haushaltshilfe {
     let totalPrice: HTMLLabelElement = <HTMLLabelElement>document.getElementById("totalPrice");
 
     function handleLoad(): void {
-        console.log("HaushaltshilfeL04 ready"); 
+        console.log("HaushaltshilfeL04 ready");
         generateContent(data);
         createContent(detail);
         // Event-Listener auf alle Buttons, nachdem alles geladen wurde
@@ -71,14 +71,14 @@ namespace L04_Haushaltshilfe {
             // Selektieren des HTML-Elements mit dem entsprechenden Wert
             let item: HTMLInputElement = <HTMLInputElement>document.querySelector(selector);
             //Neue Tabellenzeile und insgesamt sechs Spalten erstellen
-            let row = document.createElement("tr");
-            let td = document.createElement("td");
-            let td2 = document.createElement("td");
-            let td3 = document.createElement("td");
-            let td4 = document.createElement("td");
-            let td5 = document.createElement("td");
-            let td6 = document.createElement("td");
-            let td7 = document.createElement("td");
+            let row: HTMLTableRowElement = document.createElement("tr");
+            let td: HTMLTableDataCellElement = document.createElement("td");
+            let td2: HTMLTableDataCellElement = document.createElement("td");
+            let td3: HTMLTableDataCellElement = document.createElement("td");
+            let td4: HTMLTableDataCellElement = document.createElement("td");
+            let td5: HTMLTableDataCellElement = document.createElement("td");
+            let td6: HTMLTableDataCellElement = document.createElement("td");
+            let td7: HTMLTableDataCellElement = document.createElement("td");
             // Erstellen eines Buttons, damit man den Eintrag später auch löschen kann 
             let deleteButton: HTMLButtonElement = document.createElement("button");
             // Hinzufügen eines Mülleimer-Symbols
@@ -97,14 +97,14 @@ namespace L04_Haushaltshilfe {
                     let einheit: string = String(item.getAttribute("unit"));
                     // Eintrag aus dem Supermarkt-Inputfeld suchen 
                     let markt: string = String(formData.get("market"));
-                    console.log(markt); 
+                    console.log(markt);
                     // Den Preis aus Menge und dem jeweiligen Grundpreis des Artikels berechen
                     itemPrice = menge * itemPrice;
                     // Deklarieren einer Variablen, um den Gesamtpreis (inklusive Service-Gebühr) an 
                     // die Funktion deleteListener zu übergeben 
-                    let gesamt = itemPrice + 0.5;
+                    let gesamt: number = itemPrice + 0.5;
                     // Installieren des Event-Listeners auf dem Button und übergeben des Gesamtpreises
-                    deleteButton.addEventListener("click", function () {
+                    deleteButton.addEventListener("click", function (): void {
                         deleteList(gesamt, event);
                     });
                     // Eintragen der Werte in die Tabelle
@@ -122,7 +122,7 @@ namespace L04_Haushaltshilfe {
                     row.appendChild(td4);
                     row.appendChild(td5);
                     row.appendChild(td6);
-                    row.appendChild(td7)
+                    row.appendChild(td7);
                     table.appendChild(row);
                     // Hinzufügen des Preises zum Gesamtpreis
                     totalCost += itemPrice + 0.50;
@@ -138,12 +138,12 @@ namespace L04_Haushaltshilfe {
                     // Der Wert vom Slider wird abgegriffen
                     let bargeld: number = Number(formData.get("bargeld"));
                     // Die Grundgebühr wird hinzugfeügt
-                    let geld = bargeld + 5;
+                    let geld: number = bargeld + 5;
                     // Die Werte in die Tabellenspalten eintragen
                     td.innerHTML = "" + money;
                     td2.innerHTML = "" + geld + "€";
                     // Den Event-Listener zum Button hinzufügen und den Gesamtpreis übergeben
-                    deleteButton.addEventListener("click", function () {
+                    deleteButton.addEventListener("click", function (): void {
                         deleteList(geld, event);
                     });
                     // Alle neuen Elemente ins HTML integrieren
@@ -163,13 +163,13 @@ namespace L04_Haushaltshilfe {
                     // Nach dem selben Prinzip wie oben werden jetzt auch die Haushaltsarbeiten durchgearbeitet
                     td.innerHTML = "" + entry[1];
                     td2.innerHTML = "" + itemCost + "€";
-                    deleteButton.addEventListener("click", function () {
+                    deleteButton.addEventListener("click", function (): void {
                         deleteList(itemCost, event);
                     });
                     td3.appendChild(deleteButton);
                     row.appendChild(td);
                     row.appendChild(td2);
-                    row.appendChild(td3)
+                    row.appendChild(td3);
                     table3.appendChild(row);
                     totalCost += itemCost;
                     form.reset();
@@ -201,20 +201,20 @@ namespace L04_Haushaltshilfe {
     function sendOrder(_event: Event): void {
         // Wenn der Button zum Abschicken gedrückt wurde, wird in einem Alert-Fenster eine Benachrichtigung mit dem Lieferdatum angezeigt
         let date: HTMLInputElement = <HTMLInputElement>document.getElementById("date");
-        let lieferdatum = date.value;
+        let lieferdatum: string = date.value;
         let paypal: HTMLInputElement = <HTMLInputElement>document.getElementById("Paypal");
         let überweisung: HTMLInputElement = <HTMLInputElement>document.getElementById("Überweisung");
-        let Zahlungsart: string;
+        let zahlungsart: string;
         if (paypal.checked == true) {
-            Zahlungsart = "Paypal"
+            zahlungsart = "Paypal";
         }
         else if (überweisung.checked == true) {
-            Zahlungsart = "Überweisung";
+            zahlungsart = "Überweisung";
         }
         else {
-            Zahlungsart = "Bar"
+            zahlungsart = "Bar";
         }
-        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + Zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost + "€");
+        alert("Ihre Bestellung wurde versandt und wird am " + lieferdatum + "  bei Ihnen sein!" + "\n Ihre Zahlungsart: " + zahlungsart + "\n Ihre gesamte Bestellung kostet " + totalCost + "€");
     }
 
 }

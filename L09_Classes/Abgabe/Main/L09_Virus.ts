@@ -5,7 +5,7 @@ namespace L09_Virus {
     export let crc2: CanvasRenderingContext2D;
     export let width: number;
     export let height: number;
-    
+
     let coronas: Corona[] = [];
     let largeCells: BodyCell[] = [];
     let particles: Particle[] = [];
@@ -22,19 +22,19 @@ namespace L09_Virus {
     window.addEventListener("resize", handleResize);
 
     function handleResize(): void {
-        coronas = []; 
-        largeCells = []; 
-        particles = []; 
-        smallCells = []; 
-        antibodys = []; 
-        stopCoronas = []; 
-        infectedBodyCell = []; 
-        createImage(); 
+        coronas = [];
+        largeCells = [];
+        particles = [];
+        smallCells = [];
+        antibodys = [];
+        stopCoronas = [];
+        infectedBodyCell = [];
+        createImage();
     }
 
     function createImage(): void {
         canvas = <HTMLCanvasElement>document.querySelector("canvas");
-        crc2  = <CanvasRenderingContext2D>canvas.getContext("2d");
+        crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
         resizeCanvas();
         createBackground();
         createCells();
@@ -74,25 +74,25 @@ namespace L09_Virus {
         }
 
         //Create Cells for the Background
-        for (let i = 0; i < numCircles; i++) {
+        for (let i: number = 0; i < numCircles; i++) {
             // Creating some random values for circle characteristics.
             xPos = Math.random() * canvas.width;
             yPos = Math.random() * canvas.height;
-            
+
             let position: Vector = new Vector(xPos, yPos);
             let cell: Background = new Background(position);
             cell.draw(position);
             smallCells.push(cell);
         }
         //  Create Macrophages
-        for (let i = 0; i < 2; i++) {
+        for (let i: number = 0; i < 2; i++) {
             let macrophage: Macrophage = new Macrophage();
-            macrophage.draw(width - 200 + (200 * Math.random()), 400 + (200 * Math.random()))
+            macrophage.draw(width - 200 + (200 * Math.random()), 400 + (200 * Math.random()));
         }
         backgroundImage = crc2.getImageData(0, 0, width, height);
 
         //Create Antibodys
-        for (let i = 0; i < j; i++) {
+        for (let i: number = 0; i < j; i++) {
             xPos = Math.random() * canvas.width / 1.5;
             yPos = 450 + (70 * Math.random());
             /* if (xPos > width / 2) {
@@ -102,9 +102,9 @@ namespace L09_Virus {
             let position: Vector = new Vector(xPos, yPos);
             let antibody: Antibody = new Antibody(position);
             antibody.draw(position);
-            antibodys.push(antibody); 
+            antibodys.push(antibody);
         }
-        
+
         //Create bigger Cells for the foreground
         while (storage < width) {
             yPos = 80;
@@ -117,7 +117,7 @@ namespace L09_Virus {
             largeCells.push(cell);
         }
 
-        for (let i = 0; i < j; i++) {
+        for (let i: number = 0; i < j; i++) {
             radius = 30;
             xPos = coronaPosition + radius + 10;
             coronaPosition = xPos + radius;
@@ -133,7 +133,7 @@ namespace L09_Virus {
             coronas.push(corona);
         }
 
-        for (let i = 0; i < nParticles; i++) {
+        for (let i: number = 0; i < nParticles; i++) {
             xPos = Math.random() * canvas.width;
             yPos = Math.random() * canvas.height;
             // Call draw Cell and commit all needed values for the cell 
@@ -150,17 +150,17 @@ namespace L09_Virus {
         crc2.putImageData(backgroundImage, 0, 0);
 
         for (let cell of infectedBodyCell) {
-            cell.move(1/50);
+            cell.move(1 / 50);
             cell.draw(cell.position);
         }
 
         for (let cell of antibodys) {
-            cell.move(1/20);
+            cell.move(1 / 20);
             cell.draw(cell.position);
         }
 
         for (let bodyCell of largeCells) {
-            bodyCell.move(1 / 30); 
+            bodyCell.move(1 / 30);
             bodyCell.draw(bodyCell.position);
         }
 
@@ -196,10 +196,10 @@ namespace L09_Virus {
         coronas.splice(index, 1);
         window.setTimeout(function (): void {
             endReaction(_corona);
-        }, 3000);
+        },                3000);
     }
 
-    function endReaction(_corona: Corona) {
+    function endReaction(_corona: Corona): void {
         let index: number = stopCoronas.indexOf(_corona);
         stopCoronas.splice(index, 1);
         let newPosition: Vector = new Vector(width + 100 * Math.random(), 400);
@@ -209,7 +209,7 @@ namespace L09_Virus {
         coronas.push(newCorona);
     }
 
-    function changeBodyCell(_virusPos: number) {
+    function changeBodyCell(_virusPos: number): void {
         for (let cell of largeCells) {
             let areaMin: number = cell.position.x - 40;
             let areaMax: number = cell.position.x + 40;

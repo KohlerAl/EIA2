@@ -28,8 +28,8 @@ namespace L09_Virus {
         draw(_position: Vector): void {
             crc2.save();
             // Set Parameters for Angles, Shadows and Rotation 
-            let startAngle = (Math.PI / 180);
-            let endAngle = (Math.PI / 180) * 360;
+            let startAngle: number = (Math.PI / 180);
+            let endAngle: number = (Math.PI / 180) * 360;
 
             crc2.beginPath();
             crc2.ellipse(_position.x, _position.y, this.radius, this.radius * Math.random() + this.radius, this.rotation, startAngle, endAngle);

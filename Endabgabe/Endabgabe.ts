@@ -85,7 +85,7 @@ namespace EIA2_Endabgabe {
         findPictures();
         createBackground();
         window.setInterval(animate, 30);
-        alert("Welcome! Here you can create your own magic image! Choose a figure, design it according to your wishes, change the background and when you are done, don't forget to save your picture! :)")
+        alert("Welcome! Here you can create your own magic image! Choose a figure, design it according to your wishes, change the background and when you are done, don't forget to save your picture! :)");
     }
 
     function toggleCanvasProperty(): void {
@@ -144,7 +144,7 @@ namespace EIA2_Endabgabe {
 
     export function updateList(): void {
         while (allForms.firstChild) {
-            allForms.removeChild(allForms.firstChild)
+            allForms.removeChild(allForms.firstChild);
         }
         let title: HTMLSpanElement = document.createElement("span");
         title.innerText = "All Elements on your canvas are listed here! Click on a Element to edit it!";
@@ -201,7 +201,7 @@ namespace EIA2_Endabgabe {
             background = backgroundColor.value;
 
         if (backgroundPattern == "dots") {
-            let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
+            let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement("canvas").getContext("2d");
             pattern.beginPath();
             pattern.canvas.width = 20;
             pattern.canvas.height = 20;
@@ -216,7 +216,7 @@ namespace EIA2_Endabgabe {
         }
 
         else if (backgroundPattern == "squares") {
-            let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement('canvas').getContext('2d');
+            let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement("canvas").getContext("2d");
             pattern.beginPath();
             pattern.canvas.width = 10;
             pattern.canvas.height = 10;
@@ -246,7 +246,7 @@ namespace EIA2_Endabgabe {
                 let colorPicker: HTMLInputElement = <HTMLInputElement>document.getElementById("colorPicker");
                 for (let figure of figures) {
                     if (figure.active == true) {
-                        figure.changeColor(colorPicker.value)
+                        figure.changeColor(colorPicker.value);
                     }
                 }
                 break;
@@ -331,9 +331,9 @@ namespace EIA2_Endabgabe {
     }
 
     function getName(): void {
-        let pictureName = prompt("Please enter a name for your Picture!");
+        let pictureName: string | null = prompt("Please enter a name for your Picture!");
         if (pictureName == null || pictureName == "") {
-            alert("Please enter a word or else the Picture cannot be saved")
+            alert("Please enter a word or else the Picture cannot be saved");
         }
         else
             savePicture(pictureName);

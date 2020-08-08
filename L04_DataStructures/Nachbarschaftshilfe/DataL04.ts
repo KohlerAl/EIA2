@@ -23,8 +23,8 @@ namespace L04_Haushaltshilfe {
             {name: "Post abholen", unit: "", price: 5},
             {name: "Post wegbringen", unit: "", price: 5},
             {name: "Rasen mähen", unit: "Garten", price: 20}
-        ],
-    }
+        ]
+    };
 
     export let detail: Detail = {
         market: [
@@ -40,5 +40,5 @@ namespace L04_Haushaltshilfe {
         ] 
 
 
-    }
+    };
 }

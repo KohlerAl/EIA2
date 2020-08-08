@@ -168,7 +168,7 @@ var EIA2_Endabgabe;
         else
             EIA2_Endabgabe.background = EIA2_Endabgabe.backgroundColor.value;
         if (EIA2_Endabgabe.backgroundPattern == "dots") {
-            let pattern = document.createElement('canvas').getContext('2d');
+            let pattern = document.createElement("canvas").getContext("2d");
             pattern.beginPath();
             pattern.canvas.width = 20;
             pattern.canvas.height = 20;
@@ -181,7 +181,7 @@ var EIA2_Endabgabe;
             EIA2_Endabgabe.crc2.fillStyle = EIA2_Endabgabe.crc2.createPattern(pattern.canvas, "repeat");
         }
         else if (EIA2_Endabgabe.backgroundPattern == "squares") {
-            let pattern = document.createElement('canvas').getContext('2d');
+            let pattern = document.createElement("canvas").getContext("2d");
             pattern.beginPath();
             pattern.canvas.width = 10;
             pattern.canvas.height = 10;
