@@ -3,6 +3,7 @@ var EIA2_EndabgabeV2;
 (function (EIA2_EndabgabeV2) {
     let url = "https://agkeia.herokuapp.com/";
     let options;
+    let info = [];
     function savePicture(_name) {
         for (let i = 0; i < options.length; i++) {
             if (options[i] == _name) {
@@ -97,44 +98,36 @@ var EIA2_EndabgabeV2;
         EIA2_EndabgabeV2.patternColor.value = data[5];
         EIA2_EndabgabeV2.createBackground(data[3]);
         data.splice(0, 6);
-        let info = [];
         let newFigure;
         for (let i = 0; i < data.length; i++) {
             switch (data[i]) {
                 case ("Triangle"):
                     newFigure = new EIA2_EndabgabeV2.Triangle();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Ellipse"):
                     newFigure = new EIA2_EndabgabeV2.Ellipse();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Circle"):
                     newFigure = new EIA2_EndabgabeV2.Circle();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Square"):
                     newFigure = new EIA2_EndabgabeV2.Square();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Line"):
                     newFigure = new EIA2_EndabgabeV2.Line();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Heart"):
                     newFigure = new EIA2_EndabgabeV2.Heart();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Star"):
                     newFigure = new EIA2_EndabgabeV2.Star();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 default:
                     info.push(data[i]);
@@ -144,9 +137,10 @@ var EIA2_EndabgabeV2;
         EIA2_EndabgabeV2.updateList();
     }
     EIA2_EndabgabeV2.loadPicture = loadPicture;
-    function createFigure(_newFigure, _info) {
-        _newFigure.restoreFigure(_info);
+    function createFigure(_newFigure) {
+        _newFigure.restoreFigure(info);
         _newFigure.draw();
+        info = [];
         EIA2_EndabgabeV2.figures.push(_newFigure);
     }
 })(EIA2_EndabgabeV2 || (EIA2_EndabgabeV2 = {}));

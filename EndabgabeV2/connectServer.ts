@@ -1,6 +1,7 @@
 namespace EIA2_EndabgabeV2 {
     let url: string = "https://agkeia.herokuapp.com/";
     let options: string[];
+    let info: string[] = [];
 
     export interface PicturePart {
         active: boolean;
@@ -119,44 +120,36 @@ namespace EIA2_EndabgabeV2 {
         patternColor.value = data[5];
         createBackground(data[3]);
         data.splice(0, 6);
-        let info: string[] = [];
         let newFigure: Form;
         for (let i: number = 0; i < data.length; i++) {
             switch (data[i]) {
                 case ("Triangle"):
                     newFigure = new Triangle();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Ellipse"):
                     newFigure = new Ellipse();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Circle"):
                     newFigure = new Circle();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Square"):
                     newFigure = new Square();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Line"):
                     newFigure = new Line();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Heart"):
                     newFigure = new Heart();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 case ("Star"):
                     newFigure = new Star();
-                    createFigure(newFigure, info);
-                    info = [];
+                    createFigure(newFigure);
                     break;
                 default:
                     info.push(data[i]);
@@ -166,9 +159,10 @@ namespace EIA2_EndabgabeV2 {
         updateList();
     }
 
-    function createFigure(_newFigure: Form, _info: string[]): void {
-        _newFigure.restoreFigure(_info);
+    function createFigure(_newFigure: Form): void {
+        _newFigure.restoreFigure(info);
         _newFigure.draw();
+        info = []; 
         figures.push(_newFigure);
     }
 }
