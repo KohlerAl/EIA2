@@ -44,6 +44,17 @@ namespace EIA2_EndabgabeV2 {
             super.resize(_factor);
         }
 
+        public setActive(_active: boolean): void {
+            super.setActive(_active); 
+        }
+
+        public setAnimation(_move: FORM_MOVE): void {
+            super.setAnimation(_move); 
+        }
+
+        public changeVelocity(_speed: number): void {
+            super.changeVelocity(_speed); 
+        }
         public move(): void {
             super.move(1);
             if (this.position.x < 0)

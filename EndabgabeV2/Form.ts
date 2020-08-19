@@ -85,22 +85,22 @@ namespace EIA2_EndabgabeV2 {
             else
                 this.setActive(false);
 
-            this.resize(parseInt(_info[1]));
-            this.changePosition(parseInt(_info[2]), parseInt(_info[3]));
-            this.changeRotation(parseInt(_info[4]));
+            this.size = new Vector(parseInt(_info[1]), parseInt(_info[2]));
+            this.changePosition(parseInt(_info[3]), parseInt(_info[4]));
+            this.changeRotation(parseInt(_info[5]));
 
-            if (_info[5] == "FORM_MOVE.MOVE")
+            if (_info[6] == "move")
                 this.setAnimation(FORM_MOVE.MOVE);
             else
                 this.setAnimation(FORM_MOVE.ROTATE);
 
-            this.changeColor(_info[6]);
-            this.changeVelocity(parseInt(_info[7]));
-
-            if (_info[9] == "true")
-                this.neon = true;
+            this.changeColor(_info[7]);
+            this.changeVelocity(parseInt(_info[8]));
 
             if (_info[10] == "true")
+                this.neon = true;
+
+            if (_info[11] == "true")
                 this.threeD = true;
         }
 

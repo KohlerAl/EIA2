@@ -126,30 +126,37 @@ namespace EIA2_EndabgabeV2 {
                 case ("Triangle"):
                     newFigure = new Triangle();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Ellipse"):
                     newFigure = new Ellipse();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Circle"):
                     newFigure = new Circle();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Square"):
                     newFigure = new Square();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Line"):
                     newFigure = new Line();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Heart"):
                     newFigure = new Heart();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Star"):
                     newFigure = new Star();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 default:
                     info.push(data[i]);
@@ -160,9 +167,8 @@ namespace EIA2_EndabgabeV2 {
     }
 
     function createFigure(_newFigure: Form, _info: string[]): void {
-        _newFigure.restoreFigure(_info); 
+        _newFigure.restoreFigure(_info);
         _newFigure.draw();
         figures.push(_newFigure);
-        _info = []; 
     }
 }

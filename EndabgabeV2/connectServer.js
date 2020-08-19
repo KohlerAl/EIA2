@@ -104,30 +104,37 @@ var EIA2_EndabgabeV2;
                 case ("Triangle"):
                     newFigure = new EIA2_EndabgabeV2.Triangle();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Ellipse"):
                     newFigure = new EIA2_EndabgabeV2.Ellipse();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Circle"):
                     newFigure = new EIA2_EndabgabeV2.Circle();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Square"):
                     newFigure = new EIA2_EndabgabeV2.Square();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Line"):
                     newFigure = new EIA2_EndabgabeV2.Line();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Heart"):
                     newFigure = new EIA2_EndabgabeV2.Heart();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 case ("Star"):
                     newFigure = new EIA2_EndabgabeV2.Star();
                     createFigure(newFigure, info);
+                    info = [];
                     break;
                 default:
                     info.push(data[i]);
@@ -141,7 +148,6 @@ var EIA2_EndabgabeV2;
         _newFigure.restoreFigure(_info);
         _newFigure.draw();
         EIA2_EndabgabeV2.figures.push(_newFigure);
-        _info = [];
     }
 })(EIA2_EndabgabeV2 || (EIA2_EndabgabeV2 = {}));
 //# sourceMappingURL=connectServer.js.map

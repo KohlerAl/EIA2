@@ -33,6 +33,15 @@ var EIA2_EndabgabeV2;
         resize(_factor) {
             super.resize(_factor);
         }
+        setActive(_active) {
+            super.setActive(_active);
+        }
+        setAnimation(_move) {
+            super.setAnimation(_move);
+        }
+        changeVelocity(_speed) {
+            super.changeVelocity(_speed);
+        }
         move() {
             super.move(0.01);
             if (this.position.x < 0)
