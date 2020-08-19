@@ -1,0 +1,362 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #2d2d2d;
+	display: grid;
+    grid-template-areas: 
+    'canvas canvas title title . .'
+    'canvas canvas styling styling styling styling'
+    'canvas canvas title1 title2  title4 .'
+    'canvas canvas forms animations form form'
+    'canvas canvas forms animations form form'
+    'canvas canvas forms animations form form'
+    'canvas canvas forms animations form form'
+    'canvas canvas forms animations list list'
+    'canvas canvas . . . .';
+    grid-template-rows: minmax(0,60);
+}
+
+canvas {
+    grid-area: canvas;
+    margin-right: 10px;
+}
+
+p, h3, h4, h5{
+    color: white;
+}
+
+h3 {
+    grid-area: title; 
+}
+
+
+h3:hover, #allForms *:hover{
+    cursor: pointer;
+}
+
+#figureInfo {
+    grid-area: title1;
+    font-size: 15px;
+}
+
+#effectInfo {
+    grid-area: title2;
+    font-size: 15px;
+}
+
+#formInfo {
+    grid-area: title4;
+    font-size: 15px;
+}
+
+button {
+    width: 50px; 
+    height: 50px; 
+    margin: 10px;
+    border: none; 
+    color: white; 
+}
+
+form {
+    grid-area: form; 
+    display: grid; 
+    grid-template-areas: 
+    'form1 form2'
+    'form3 form4'
+    'form5 form6'
+    'database database1';
+    grid-template-rows: minmax(0,60);
+}
+
+
+input {
+    height: 50px; 
+    margin: 10px; 
+    width: 100px;
+    border: none; 
+    color: white;
+    border-radius: 56px;
+    background: linear-gradient(145deg, #303030, #292929);
+    box-shadow:  5px 5px 10px #1b1b1b, 
+             -5px -5px 10px #3f3f3f;
+}
+
+input[type="color"] {
+    opacity: 1;
+    position: relative;
+    top: -7px; 
+    grid-area: form1;
+    margin: 10px;
+	width: 190px;
+	height: 40px;
+    border: none;
+}
+
+input::placeholder {
+    opacity: 1;
+    color: white; 
+}
+
+.line {
+    position: relative; 
+    top: -38px; 
+    font-size: 40px;
+    color: #fc5200;
+}
+
+.fa-caret-up {
+    position: relative; 
+    top: -5px;
+}
+
+#canvasStyle {
+    grid-area: styling; 
+    display: grid;
+    grid-template-areas:
+    'width height bckgrnd patternColor pattern';
+}
+
+#neon {
+    grid-area: button2;
+}
+
+#threeD {
+    grid-area: button4;
+}
+
+#circle {
+    grid-area: btn3;
+    color: #ff1969;
+}
+
+#triangle {
+    grid-area: btn1;
+    color: #960bff;
+}
+
+.fa-caret-up:before {
+    position: relative;
+    top: -10px; 
+}
+
+#line {
+    grid-area: btn5;
+    color: #fc5200;
+}
+
+#square {
+    grid-area: btn4;
+    color: #ff1106;
+}
+
+#star {
+    color: #ffe23e; 
+}
+
+#heart {
+    color: #06ff27;
+}
+
+#circle, #triangle, #line, #square,  #save, #ellipse, #dots, #squares, #plain, #star, #heart, #moon {
+    border-radius: 50%;
+    background: linear-gradient(145deg, #303030, #292929);
+    box-shadow:  5px 5px 10px #1b1b1b, 
+             -5px -5px 10px #3f3f3f;
+}
+#rotate, #colorChange, #move, #sizeChange, #trash, #figureX, #figureY,  #neon, #threeD, #stop {
+    width: 100px;
+    border-radius: 56px;
+    background: linear-gradient(145deg, #303030, #292929);
+    box-shadow:  5px 5px 10px #1b1b1b, 
+             -5px -5px 10px #3f3f3f;
+}
+
+#rotate {
+    grid-area: button1;
+}
+
+#databaseItems{
+    grid-area: database;
+    display: grid;
+    grid-template-areas:
+    'database1 database2';
+}
+
+#colorChange {
+    grid-area: button2;
+}
+
+#move {
+    grid-area: button3;
+}
+
+#sizeChange {
+    grid-area: button4;
+}
+
+#colorPickerWrapper {
+    grid-area: form1;
+    float: left;
+    border-radius: 56px;
+    margin-top: 10px;
+    height: 50px;
+    width: 215px;
+    box-shadow:  5px 5px 10px #1e1e1e, 
+             -5px -5px 10px #4c4c4c;
+}
+
+#backgroundColorWrapper {
+    display: none;
+    grid-area: bckgrnd;
+    float: left;
+    border-radius: 56px;
+    margin-top: 10px;
+    height: 50px;
+    width: 215px;
+    box-shadow:  5px 5px 10px #1e1e1e, 
+             -5px -5px 10px #4c4c4c;
+}
+
+#patternColorWrapper {
+    display: none;
+    grid-area: patternColor;
+    float: left;
+    border-radius: 56px;
+    margin-top: 10px;
+    height: 50px;
+    width: 215px;
+    box-shadow:  5px 5px 10px #1e1e1e, 
+             -5px -5px 10px #4c4c4c;
+}
+
+
+#scaleValue {
+    grid-area: form2; 
+    margin-left: 10px; 
+    width: 200px;
+    padding-left: 10px;
+}
+
+#allForms {
+    grid-area: list;
+    width: 400px;
+    padding-left: 10px;
+}
+
+
+#rotationValue {
+    position: relative;
+    top: -px;
+    grid-area: form3;
+    width: 200px; 
+    margin-left: 0px;
+    padding-left: 10px;
+}
+
+#creations {
+    width: 260px;
+    grid-area: database1;
+    margin-left: 0px;
+    padding-left: 10px;
+}
+
+#save  {
+    grid-area: database1;
+}
+
+#trash {
+    grid-area: delete;
+}
+
+#ellipse {
+    grid-area: btn2; 
+    color: #e300c6; 
+}
+
+#canvasWidth {
+    display: none;
+    grid-area: width;
+    width: 150px;
+    margin-left: 0px;
+    padding-left: 10px;
+}
+
+#canvasHeight {
+    display: none;
+    grid-area: height;
+    width: 150px;
+    margin-left: 0px;
+    padding-left: 10px;
+}
+
+#patterns{
+    display: none;
+    grid-area: pattern;
+    margin-left: 45px; 
+}
+
+#dots {
+    color: #e300c6;
+}
+
+#squares {
+    color: #ff1969;
+}
+
+#plain {
+    color: #ff1106;
+}
+
+#forms {
+    grid-area: forms;
+    display: grid;
+    grid-template-areas: 
+    'btn1'
+    'btn2'
+    'btn3'
+    'btn4'
+    'btn5';
+}
+
+#animations {
+    grid-area: animations;
+    display: grid;
+    grid-template-areas: 
+    'button1'
+    'button3'
+    'button2'
+    'button4'
+    'delete';
+}
+
+#speed {
+    grid-area: form4;
+    width: 250px; 
+    height: 55px;
+    margin-top: 10px;
+}
+
+#speedText {
+    display: block;
+    grid-area: form4; 
+    font-size: 13px;
+    color: white; 
+    margin: 12px;
+    margin-left: 25px;    
+}
+
+#allForms * {
+    display: block;
+    height: 15px; 
+    padding-left: 10px; 
+    padding-top: 15px; 
+    color: white; 
+    border-radius: 50px;
+    font-size: 13px;
+}
+
+#allForms {
+    border-radius: 56px;
+    background: linear-gradient(145deg, #303030, #292929);
+    box-shadow:  5px 5px 10px #1b1b1b, 
+             -5px -5px 10px #3f3f3f;
+}
