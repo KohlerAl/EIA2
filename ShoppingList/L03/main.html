@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoppingList</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="entry" id="entry01">
+            <p class="name">Nudeln</p>
+            <p class="amount">2</p>
+            <p class="date">20.08.</p>
+            <p class="comment">Barilla</p>
+            <input type="checkbox" class="bought" value="Nudeln">
+        </div>
+
+        <div class="entry" id="entry02">
+            <p class="name">Brot</p>
+            <p class="amount">1</p>
+            <p class="date">25.08.</p>
+            <p class="comment">Vollkorn</p>
+            <input type="checkbox" class="bought" value="Brot">
+        </div>
+
+        <div class="entry checked" id="entry03">
+            <p class="name">Orangensaft</p>
+            <p class="amount">2</p>
+            <p class="date">23.08.</p>
+            <p class="comment">Granini</p>
+            <input type="checkbox" class="bought" value="Orangensaft" checked>
+        </div>
+    </div>
+
+    <div class="addEntry">
+        <form>
+            <input placeholder="Ware" name="Ware">
+            <input placeholder="Menge" name="Amount">
+            <input placeholder="Kommentar" name="Comment">
+            <button type="button" id="add">Hinzufügen</button>
+        </form>
+    </div>
+</body>
+</html>
