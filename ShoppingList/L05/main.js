@@ -8,7 +8,7 @@ var lektion05;
         let add = document.querySelector("#add");
         add.addEventListener("pointerdown", addProduct);
         wrapper = document.querySelector(".container");
-        let response = await fetch("L05/data.json");
+        let response = await fetch("https://kohleral.github.io/EIA2/ShoppingList/L05/data.json");
         let offer = await response.text();
         let data = JSON.parse(offer);
         generateContent(data);

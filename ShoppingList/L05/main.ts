@@ -22,7 +22,7 @@ namespace lektion05 {
 
         wrapper = <HTMLDivElement>document.querySelector(".container");
 
-        let response: Response = await fetch("L05/data.json");
+        let response: Response = await fetch("https://kohleral.github.io/EIA2/ShoppingList/L05/data.json");
         let offer: string = await response.text();
         let data: Entry = JSON.parse(offer);
         generateContent(data);
