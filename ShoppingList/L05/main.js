@@ -8,7 +8,7 @@ var lektion05;
         let add = document.querySelector("#add");
         add.addEventListener("pointerdown", addProduct);
         wrapper = document.querySelector(".container");
-        let response = await fetch(url + "EIA2/ShoppingList/data.json");
+        let response = await fetch("data.json");
         let offer = await response.text();
         let data = JSON.parse(offer);
         generateContent(data);
